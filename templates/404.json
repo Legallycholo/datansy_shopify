@@ -3,13 +3,13 @@
     "main": {
       "type": "main-404",
       "blocks": {
-        "cat_celulares": { "type": "category_link", "settings": { "title": "Celulares", "url": "/collections/celulares" } },
-        "cat_consolas": { "type": "category_link", "settings": { "title": "Consolas", "url": "/collections/consolas" } },
-        "cat_audio": { "type": "category_link", "settings": { "title": "Audio", "url": "/collections/audio" } },
-        "cat_computacion": { "type": "category_link", "settings": { "title": "Computación", "url": "/collections/computacion" } },
-        "cat_ofertas": { "type": "category_link", "settings": { "title": "Ofertas", "url": "/collections/all" } }
+        "cat_catalog": { "type": "category_link", "settings": { "title": "Catálogo Datansy", "url": "/collections/coleccion-principal" } },
+        "cat_featured": { "type": "category_link", "settings": { "title": "Destacados", "url": "/collections/frontpage" } },
+        "cat_all": { "type": "category_link", "settings": { "title": "Ver todo", "url": "/collections/all" } },
+        "cat_contact": { "type": "category_link", "settings": { "title": "Contacto", "url": "/pages/contact-us" } },
+        "cat_faq": { "type": "category_link", "settings": { "title": "Preguntas frecuentes", "url": "/pages/faq" } }
       },
-      "block_order": ["cat_celulares", "cat_consolas", "cat_audio", "cat_computacion", "cat_ofertas"],
+      "block_order": ["cat_catalog", "cat_featured", "cat_all", "cat_contact", "cat_faq"],
       "settings": {}
     }
   },

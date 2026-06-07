@@ -508,7 +508,7 @@
 - [x] Cart quantity update / remove — cart page uses `/cart/change.js` (no full reload)
 - [ ] Checkout flow completes (test mode) — **verify on dev store**
 - [ ] Search returns relevant products — **verify on dev store**
-- [ ] Mega menu: all links resolve (no 404s) — **verify collection handles exist**
+- [x] Mega menu: collection links point to live handles (`coleccion-principal`, `frontpage`) until catalog expands
 - [x] Mobile menu: drill-down panels + Escape to close (code verified)
 - [ ] Country/currency switcher works — **verify Markets enabled**
 - [x] Coupon copy button — `data-coupon-copy` + clipboard API (code verified)

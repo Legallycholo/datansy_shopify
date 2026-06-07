@@ -14,7 +14,7 @@
         "cta_catalog_label": "Ver Catálogo",
         "cta_catalog_url": "/collections/coleccion-principal",
         "cta_flash_label": "Ofertas Flash",
-        "cta_flash_url": "/collections/ofertas",
+        "cta_flash_url": "/collections/coleccion-principal",
         "show_trust_row": true,
         "trust_text": "+5,000 clientes felices"
       }
@@ -85,19 +85,19 @@
     "gsm_categories": {
       "type": "gsm-category-grid",
       "blocks": {
-        "cat1": { "type": "category", "settings": { "title": "Celulares", "icon": "smartphone", "url": "/collections/celulares" } },
-        "cat2": { "type": "category", "settings": { "title": "Audio", "icon": "headphones", "url": "/collections/audio" } },
-        "cat3": { "type": "category", "settings": { "title": "Computación", "icon": "laptop_mac", "url": "/collections/computacion" } },
-        "cat4": { "type": "category", "settings": { "title": "Wearables", "icon": "watch", "url": "/collections/wearables" } },
-        "cat5": { "type": "category", "settings": { "title": "Consolas", "icon": "sports_esports", "url": "/collections/consolas" } },
-        "cat6": { "type": "category", "settings": { "title": "Fotografía", "icon": "photo_camera", "url": "/collections/fotografia" } }
+        "cat1": { "type": "category", "settings": { "title": "Celulares", "icon": "smartphone", "url": "/collections/coleccion-principal" } },
+        "cat2": { "type": "category", "settings": { "title": "Audio", "icon": "headphones", "url": "/collections/coleccion-principal" } },
+        "cat3": { "type": "category", "settings": { "title": "Computación", "icon": "laptop_mac", "url": "/collections/coleccion-principal" } },
+        "cat4": { "type": "category", "settings": { "title": "Wearables", "icon": "watch", "url": "/collections/coleccion-principal" } },
+        "cat5": { "type": "category", "settings": { "title": "Consolas", "icon": "sports_esports", "url": "/collections/coleccion-principal" } },
+        "cat6": { "type": "category", "settings": { "title": "Fotografía", "icon": "photo_camera", "url": "/collections/coleccion-principal" } }
       },
       "block_order": ["cat1","cat2","cat3","cat4","cat5","cat6"],
       "settings": {
         "label": "Categorías Elite",
         "heading": "Explora por Categoría",
         "catalog_label": "Ver catálogo completo",
-        "catalog_url": "/collections/all"
+        "catalog_url": "/collections/coleccion-principal"
       }
     },
     "gsm_presales": {
@@ -118,7 +118,7 @@
         "label": "Preventas VIP",
         "heading": "El Futuro Llega Primero Aquí.",
         "cta_label": "Ver Colección Preventa",
-        "cta_url": "/collections/preventa"
+        "cta_url": "/collections/coleccion-principal"
       }
     },
     "gsm_testimonials": {

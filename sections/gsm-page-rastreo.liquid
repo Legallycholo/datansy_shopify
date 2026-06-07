@@ -9,7 +9,7 @@
       <div class="rte" style="margin-bottom: var(--space-6);">{{ page.content }}</div>
     {%- endif -%}
 
-    <form class="gsm-rastreo-form" action="{{ section.settings.tracking_url | default: 'https://datansy.com/pages/rastrea-tu-pedido' }}" method="get" target="_blank">
+    <form class="gsm-rastreo-form" action="{{ section.settings.tracking_url | default: 'https://datansy.com/pages/shipping' }}" method="get" target="_blank">
       <div class="gsm-form-field">
         <label for="RastreoOrder">{{ 'forms.order_number' | t }}</label>
         <input id="RastreoOrder" type="text" name="order" required placeholder="{{ section.settings.order_placeholder }}">

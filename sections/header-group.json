@@ -10,7 +10,7 @@
           "settings": {
             "handle": "nuevos",
             "title": "Nuevos Lanzamientos",
-            "url": "/collections/nuevos-lanzamientos"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_vendidos": {
@@ -18,7 +18,7 @@
           "settings": {
             "handle": "vendidos",
             "title": "Más Vendidos",
-            "url": "/collections/mas-vendidos"
+            "url": "/collections/frontpage"
           }
         },
         "menu_celulares": {
@@ -26,7 +26,7 @@
           "settings": {
             "handle": "celulares",
             "title": "Celulares",
-            "url": "/collections/celulares"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_iphone": {
@@ -35,7 +35,7 @@
             "parent": "celulares",
             "handle": "iphone",
             "title": "iPhone",
-            "url": "/collections/iphone"
+            "url": "/collections/coleccion-principal"
           }
         },
         "grand_iphone16": {
@@ -43,7 +43,7 @@
           "settings": {
             "parent": "iphone",
             "title": "iPhone 16",
-            "url": "/collections/iphone-16"
+            "url": "/collections/coleccion-principal"
           }
         },
         "grand_iphone15": {
@@ -51,7 +51,7 @@
           "settings": {
             "parent": "iphone",
             "title": "iPhone 15",
-            "url": "/collections/iphone-15"
+            "url": "/collections/coleccion-principal"
           }
         },
         "grand_iphone14": {
@@ -59,7 +59,7 @@
           "settings": {
             "parent": "iphone",
             "title": "iPhone 14",
-            "url": "/collections/iphone-14"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_pixel": {
@@ -68,7 +68,7 @@
             "parent": "celulares",
             "handle": "pixel",
             "title": "Google Pixel",
-            "url": "/collections/google-pixel"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_samsung": {
@@ -77,7 +77,7 @@
             "parent": "celulares",
             "handle": "samsung",
             "title": "Samsung",
-            "url": "/collections/samsung"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_xiaomi": {
@@ -86,7 +86,7 @@
             "parent": "celulares",
             "handle": "xiaomi",
             "title": "Xiaomi",
-            "url": "/collections/xiaomi"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_vivo": {
@@ -95,7 +95,7 @@
             "parent": "celulares",
             "handle": "vivo",
             "title": "Vivo",
-            "url": "/collections/vivo"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_otras": {
@@ -104,7 +104,7 @@
             "parent": "celulares",
             "handle": "otras",
             "title": "Otras Marcas",
-            "url": "/collections/otras-marcas"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_accesorios": {
@@ -113,7 +113,7 @@
             "parent": "celulares",
             "handle": "accesorios-cel",
             "title": "Accesorios",
-            "url": "/collections/accesorios-celulares"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_consolas": {
@@ -121,7 +121,7 @@
           "settings": {
             "handle": "consolas",
             "title": "Consolas",
-            "url": "/collections/consolas"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_vr": {
@@ -129,7 +129,7 @@
           "settings": {
             "handle": "vr",
             "title": "Realidad Virtual",
-            "url": "/collections/realidad-virtual"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_computacion": {
@@ -137,7 +137,7 @@
           "settings": {
             "handle": "computacion",
             "title": "Computación",
-            "url": "/collections/computacion"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_audio": {
@@ -145,7 +145,7 @@
           "settings": {
             "handle": "audio",
             "title": "Audio",
-            "url": "/collections/audio"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_reacondicionados": {
@@ -153,7 +153,7 @@
           "settings": {
             "handle": "reacondicionados",
             "title": "Reacondicionados",
-            "url": "/collections/reacondicionados"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_mas_tech": {
@@ -161,7 +161,7 @@
           "settings": {
             "handle": "mas-tech",
             "title": "Más Tecnología",
-            "url": "/collections/mas-tecnologia"
+            "url": "/collections/coleccion-principal"
           }
         }
       },
@@ -187,8 +187,8 @@
         "menu_mas_tech"
       ],
       "settings": {
-        "quote_url": "/pages/cotizaciones",
-        "track_url": "/pages/rastrea-tu-pedido",
+        "quote_url": "/pages/contact-us",
+        "track_url": "/pages/shipping",
         "help_phone": "+56 9 9136 9127",
         "help_email": "contacto@datansy.com"
       }
