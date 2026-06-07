@@ -1,5 +1,5 @@
 /**
- * GSMPRO Header — mega menu, mobile nav, predictive search, cart drawer
+ * Datansy Header — mega menu, mobile nav, predictive search, cart drawer
  */
 (function () {
   'use strict';

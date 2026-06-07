@@ -9,7 +9,7 @@
       <div class="rte" style="margin-bottom: var(--space-6);">{{ page.content }}</div>
     {%- endif -%}
 
-    <form class="gsm-rastreo-form" action="{{ section.settings.tracking_url | default: 'https://www.gsmpro.cl/pages/rastrea-tu-pedido' }}" method="get" target="_blank">
+    <form class="gsm-rastreo-form" action="{{ section.settings.tracking_url | default: 'https://datansy.com/pages/rastrea-tu-pedido' }}" method="get" target="_blank">
       <div class="gsm-form-field">
         <label for="RastreoOrder">{{ 'forms.order_number' | t }}</label>
         <input id="RastreoOrder" type="text" name="order" required placeholder="{{ section.settings.order_placeholder }}">
@@ -37,7 +37,7 @@
     { "type": "text", "id": "order_placeholder", "label": "Placeholder pedido", "default": "Ej: #1234" },
     { "type": "text", "id": "submit_label", "label": "Botón", "default": "Rastrear pedido" },
     { "type": "url", "id": "tracking_url", "label": "URL servicio de rastreo (opcional)" },
-    { "type": "text", "id": "help_text", "label": "Texto ayuda", "default": "¿Problemas? Escríbenos a contacto@gsmpro.cl" }
+    { "type": "text", "id": "help_text", "label": "Texto ayuda", "default": "¿Problemas? Escríbenos a contacto@datansy.com" }
   ]
 }
 {% endschema %}

@@ -1,10 +1,10 @@
-# GSMPRO Frontend Rebuild — Implementation Phases
+# Datansy Frontend Rebuild — Implementation Phases
 
-> **Purpose:** Step-by-step checklist for rebuilding the gsmpro.cl storefront as a Shopify Online Store 2.0 theme in Cursor, deployable via GitHub.
+> **Purpose:** Step-by-step checklist for rebuilding the datansy.com storefront as a Shopify Online Store 2.0 theme in Cursor, deployable via GitHub.
 >
 > **Status:** Phases **1–10, 12–13** implemented. Brand assets + store connection verified (2026-06-07). **Next: Phase 14 — push to GitHub & connect Online Store.** Manual browser QA + Admin setup still recommended. Phase 11 (Vitals) is **last**.
 >
-> **Reference store:** https://www.gsmpro.cl/
+> **Reference store:** https://datansy.com/
 > **Base theme:** Warehouse 6.1.0 (heavily customized)
 > **Target repo:** `datansy_shopify`
 
@@ -27,7 +27,7 @@
 | 10 | **Theme done** | Admin Markets + currency format still manual |
 | 12 | **Done** | Performance, a11y, SEO (theme-side); Lighthouse pending |
 | 13 | **Automated done** | Manual QA + checkout smoke test on dev store |
-| **14** | **Start here** | Initial git push → Connect GitHub in Shopify → publish |
+| **14** | **In progress** | GitHub connected; publish + QA pending |
 | **11** | **Last** | Vitals app + GTM/GSC/FB (after site is live) |
 | 15 | Optional | Post-launch enhancements |
 
@@ -53,7 +53,7 @@
 
 ### Access & source of truth
 - [x] Confirm Shopify Admin access to target store **`sn2n1j-6w.myshopify.com`** (Datansy / datansy.com)
-- [x] Confirm rebuild target: **Datansy-inspired variant** (not exact gsmpro.cl clone)
+- [x] Confirm rebuild target: **Datansy-inspired variant** (not exact datansy.com clone)
 - [x] Warehouse theme license — N/A (custom OS 2.0 theme built from scratch)
 - [x] Theme source: built in repo (no Warehouse pull required)
 - [x] Dev theme ID documented: **`#147124748348`** (Development); live theme: Refresh `#147095060540`
@@ -68,10 +68,10 @@
 ### Scope decisions (record answers in this file or a comment)
 - [x] **Markets:** Chile first at launch; international expansion later (CL, AR, PE, CO, MX, US long-term)
 - [x] **Apps:** **Vitals** replaces legacy multi-app stack (Phase 11 — last). Google GTM/GSC/FB separate.
-- [x] **Collection pages:** Native GSMPRO grid + facets (Datansy-inspired, not gsmpro app blocks)
+- [x] **Collection pages:** Native Datansy grid + facets (no legacy page-builder app blocks)
 - [x] **Page builders:** Remove Beae / PageFly dependency (recommended: yes)
 - [x] **Languages:** Spanish only for now
-- [x] **Brand / domain:** **Datansy.com** on store `sn2n1j-6w.myshopify.com`; Datansy-inspired design (not exact gsmpro clone)
+- [x] **Brand / domain:** **Datansy.com** on store `sn2n1j-6w.myshopify.com`; Datansy-inspired design
 - [x] **Brand assets** saved in `assets/datansy-*.png` (logo + favicon, white/black variants)
 
 ---
@@ -84,7 +84,7 @@
 - [x] Create required top-level folders: `layout/`, `templates/`, `sections/`, `snippets/`, `assets/`, `config/`, `locales/`
 - [x] Add `layout/theme.liquid` (base HTML shell, `content_for_header`, `content_for_layout`)
 - [x] Add `config/settings_schema.json` (minimal valid schema)
-- [x] Add `config/settings_data.json` (default settings matching GSMPRO colors)
+- [x] Add `config/settings_data.json` (default settings matching Datansy colors)
 - [x] Add `locales/es.default.json` (Spanish strings)
 - [x] Verify theme passes `shopify theme check` with zero errors (warnings documented — 4 RemoteAsset font warnings)
 
@@ -105,7 +105,7 @@
 > **Goal:** Single source of truth for colors, typography, spacing — no Tailwind CDN in production.
 
 ### 2.1 CSS variables & tokens
-- [x] Define GSMPRO color tokens in `:root`:
+- [x] Define Datansy color tokens in `:root`:
   - `--gsm-dark: #00003A`
   - `--gsm-blue: #0389FC`
   - `--gsm-indigo: #413AF4`
@@ -183,7 +183,7 @@
   - WhatsApp Chile: +56 9 9136 9127
   - International: +1 754 200 9891
   - Call center: +56 2 2938 1889
-  - Email: contacto@gsmpro.cl
+  - Email: contacto@datansy.com
   - Hours: Lun–Vie 7:00–23:00, Sab–Dom 9:00–22:00
 - [x] Country/region selector (duplicate of header)
 - [x] Payment icons row (Visa, MC, Amex, PayPal, Apple Pay, etc.)
@@ -208,7 +208,7 @@
   - "Innovación Total / Sin Fronteras / Ni Esperas"
   - "Las Mejores Marcas / Garantía Oficial / En Chile"
   - (+ any additional sets from live source)
-- [x] Subtext: "Envíos Gratis a todo Chile. Garantía GSMPRO Oficial"
+- [x] Subtext: "Envíos Gratis a todo Chile. Garantía Datansy Oficial"
 - [x] CTA buttons: "Ver Catálogo", "Ofertas Flash"
 - [x] Trust row: 5 stars + "+5,000 clientes felices"
 - [x] Decorative circle / gradient background elements
@@ -256,7 +256,7 @@
 - [x] Blocks: image, title, status, link per item
 
 ### 5.7 Testimonials — `sections/gsm-testimonials.liquid`
-- [x] Heading: "Experiencia GSMPRO"
+- [x] Heading: "Experiencia Datansy"
 - [x] Subheading: "Lo que dicen nuestros clientes de Arica a Punta Arenas."
 - [x] Infinite horizontal scroll of review cards
 - [x] Each card: name, "Compra Verificada" badge, product name, quote, 5 stars
@@ -301,7 +301,7 @@
   14. Recently viewed — deferred (localStorage; optional post-launch)
   15. Blog posts — **Phase 6** ✓ (`gsm-blog-strip`)
   16. Footer (group) ✓
-- [x] Preview homepage in dev theme — real products from `coleccion-principal`; compare styling vs gsmpro.cl (optional)
+- [x] Preview homepage in dev theme — real products from `coleccion-principal`; compare styling vs datansy.com (optional)
 
 ---
 
@@ -347,7 +347,7 @@
 
 ## Phase 7 — Product detail page (PDP)
 
-> **Goal:** Warehouse product template with GSMPRO customizations.
+> **Goal:** Warehouse product template with Datansy customizations.
 
 ### 7.1 Product template — `templates/product.json`
 - [x] Section: `main-product` (Warehouse base)
@@ -397,7 +397,7 @@
 > **Goal:** Product listing pages with filters, sort, pagination.
 
 ### 8.1 Collection template — `templates/collection.json`
-- [x] Decide: standard Warehouse grid **vs** custom layout (live site uses app block) — **using native GSMPRO grid + facets**
+- [x] Decide: standard Warehouse grid **vs** custom layout (live site uses app block) — **using native Datansy grid + facets**
 - [x] Collection banner / title
 - [x] Product count
 - [x] Sort dropdown (price, best selling, newest)
@@ -437,7 +437,7 @@
 - [x] Optional custom templates: `page.cotizacion.json`, `page.rastreo.json`
 
 ### 9.3 Blog — `templates/blog.json` + `templates/article.json`
-- [x] Blog listing: "GSM News - Tecnología y Noticias"
+- [x] Blog listing: "Datansy News - Tecnología y Noticias"
 - [x] Article template with date, author, featured image
 - [x] Homepage blog strip pulls from `/blogs/noticias` (section exists — confirm blog handle on live store)
 
@@ -516,9 +516,9 @@
 - [x] Hero slogan rotation cycles — 4s interval (code verified)
 
 ### 13.2 Visual regression
-- [ ] Homepage vs gsmpro.cl — desktop (1440px) — **manual**
-- [ ] Homepage vs gsmpro.cl — tablet (768px) — **manual**
-- [ ] Homepage vs gsmpro.cl — mobile (375px) — **manual**
+- [ ] Homepage vs datansy.com — desktop (1440px) — **manual**
+- [ ] Homepage vs datansy.com — tablet (768px) — **manual**
+- [ ] Homepage vs datansy.com — mobile (375px) — **manual**
 - [ ] PDP layout check — **manual**
 - [ ] Collection page layout check — **manual**
 - [ ] Footer on all page types — **manual**
@@ -555,10 +555,9 @@
 - [ ] README with setup instructions (optional — only if requested)
 
 ### 14.2 Shopify connection (GitHub import)
-- [ ] Admin → **Online Store → Themes → Add theme → Connect from GitHub**
-- [ ] Authorize GitHub app; select repo **`Legallycholo/datansy_shopify`**, branch **`main`**
-- [ ] Map to **unpublished** theme first (do not publish over Refresh until QA pass)
-- [ ] Test auto-sync: push a small change → confirm theme updates in Admin
+- [x] Admin → **Online Store → Themes → Connect from GitHub**
+- [x] Repo **`Legallycholo/datansy_shopify`** connected (unpublished)
+- [ ] Test auto-sync: push a change → confirm theme updates in Admin
 - [ ] Alternative (no GitHub): `shopify theme push --unpublished` from CLI
 
 ### 14.3 Go-live checklist
@@ -578,7 +577,7 @@
 ## Phase 11 — Vitals + analytics (LAST — after website build)
 
 > **Decision:** Use **Vitals** as the single Shopify app for conversion/marketing features.
-> Replaces legacy gsmpro.cl stack (Yotpo, Crisp, Qikify, Autoketing, etc.).
+> Replaces legacy datansy.com stack (Yotpo, Crisp, Qikify, Autoketing, etc.).
 > **Do not install** separate apps for reviews, upsells, sticky cart, trust badges, pop-ups, etc.
 >
 > **Outside Vitals (already in theme or Admin):** Google Tag Manager, Google Analytics, Google Search Console, Facebook domain verification.
@@ -746,12 +745,11 @@ Phase 15 → Post-launch enhancements (optional)
 | **Phase 14** | Git commit + push → Connect GitHub in Shopify Admin → QA → publish |
 | **Admin** | Discount `BIENVENIDO10`, CLP `${{amount_no_decimals}}`, product images, collections, blog `noticias`, page templates |
 | **Phase 13 (manual)** | Checkout test, visual QA, browser matrix, Lighthouse |
-| **Branding copy** | Optional: replace GSMPRO footer/contact strings with Datansy details |
+| **Branding copy** | Done — all user-facing copy uses Datansy |
 | **Phase 11** | Vitals + GTM/GSC/FB — **after go-live** |
 | **Phase 15** | Optional post-launch features |
 
 ---
 
 *Last updated: 2026-06-07*
-*Phases 1–10, 12–13 implemented. Brand assets + store API verified. Coupon: BIENVENIDO10. Next: Phase 14 (git push + GitHub connect). Phase 11 (Vitals) last.*
-*Created from frontend audit of https://www.gsmpro.cl/*
+*Phases 1–10, 12–13 implemented. Datansy branding applied. GitHub connected (unpublished). Coupon: BIENVENIDO10. Next: QA → publish → Vitals.*

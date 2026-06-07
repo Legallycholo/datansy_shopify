@@ -1,5 +1,5 @@
 /**
- * GSMPRO Markets — country switcher helpers for localization forms and region cards.
+ * Datansy Markets — country switcher helpers for localization forms and region cards.
  */
 (function () {
   'use strict';

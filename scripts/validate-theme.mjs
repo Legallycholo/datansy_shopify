@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * GSMPRO theme validation — run before deploy / as part of Phase 13 QA.
+ * Datansy theme validation — run before deploy / as part of Phase 13 QA.
  * Usage: node scripts/validate-theme.mjs
  */
 import fs from 'fs';
@@ -143,7 +143,7 @@ function validateDeprecatedLiquid() {
   ok('Deprecated Liquid scan complete');
 }
 
-console.log('GSMPRO theme validation\n');
+console.log('Datansy theme validation\n');
 validateRequiredFiles();
 validateSectionSchemas();
 validateSectionGroups();

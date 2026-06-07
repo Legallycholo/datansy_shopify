@@ -1,4 +1,4 @@
-/* GSMPRO Catalog — product cards, sliders, collection grid */
+/* Datansy Catalog — product cards, sliders, collection grid */
 
 /* Product card */
 .gsm-product-card { display: flex; flex-direction: column; height: 100%; background: var(--gsm-white); border-radius: var(--radius-2xl); border: 1px solid var(--gsm-border); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition); }

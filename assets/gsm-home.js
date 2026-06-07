@@ -1,5 +1,5 @@
 /**
- * GSMPRO Homepage JS — hero rotation, FAQ accordion, coupon copy
+ * Datansy Homepage JS — hero rotation, FAQ accordion, coupon copy
  * Full section wiring in Phase 5
  */
 (function () {

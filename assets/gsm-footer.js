@@ -1,5 +1,5 @@
 /**
- * GSMPRO Footer — collapsible columns on mobile
+ * Datansy Footer — collapsible columns on mobile
  */
 (function () {
   'use strict';
