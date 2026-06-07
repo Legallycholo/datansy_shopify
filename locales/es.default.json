@@ -152,6 +152,11 @@
     "no_results": "No se encontraron resultados para \"{{ terms }}\"",
     "articles": "Artículos"
   },
+  "footer": {
+    "newsletter_placeholder": "Tu correo electrónico",
+    "newsletter_submit": "Suscribirme",
+    "newsletter_success": "¡Gracias! Te has suscrito correctamente."
+  },
   "404": {
     "title": "Página no encontrada",
     "subtext": "La página que buscas no existe.",

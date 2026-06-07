@@ -9,7 +9,7 @@
     "color_text": "#1A1A2E",
     "color_sale": "#EE0000",
     "body_font_size": 16,
-    "sticky_header": false,
+    "sticky_header": true,
     "logo_width": 160,
     "cart_type": "drawer",
     "free_shipping_threshold": 50000,

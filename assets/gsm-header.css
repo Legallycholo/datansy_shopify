@@ -1,5 +1,21 @@
+/* Announcement bar */
+.gsm-announcement-bar{background:var(--gsm-blue);color:var(--gsm-white);font-size:var(--text-sm);font-weight:500;position:relative;overflow:hidden;min-height:42px;display:flex;align-items:center}
+.gsm-announcement-bar[hidden]{display:none}
+.gsm-announcement-bar__track{flex:1;position:relative;min-height:42px;overflow:hidden}
+.gsm-announcement-bar__item{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:var(--space-2);padding:0 var(--space-10);text-align:center;opacity:0;transform:translateY(100%);transition:opacity .4s ease,transform .4s ease;pointer-events:none}
+.gsm-announcement-bar__item.is-active{opacity:1;transform:translateY(0);pointer-events:auto}
+.gsm-announcement-bar__item.is-leaving{opacity:0;transform:translateY(-100%)}
+.gsm-announcement-bar__link{color:var(--gsm-white);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2)}
+.gsm-announcement-bar__link:hover{text-decoration:underline}
+.gsm-announcement-bar__icon{font-size:16px}
+.gsm-announcement-bar__close{position:absolute;right:var(--space-3);top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:28px;height:28px;color:rgba(255,255,255,.75);border-radius:var(--radius-full);transition:background var(--transition),color var(--transition);flex-shrink:0}
+.gsm-announcement-bar__close:hover{background:rgba(255,255,255,.15);color:var(--gsm-white)}
+.gsm-announcement-bar__close .material-symbols-outlined{font-size:18px}
+.header-sticky .gsm-announcement-bar{position:sticky;top:0;z-index:201}
+
 /* Datansy Header — see gsm-header section for structure */
 .gsm-header{background:var(--gsm-dark);color:var(--gsm-white);position:relative;z-index:100}
+.header-sticky .gsm-header{position:sticky;top:42px;z-index:200;box-shadow:0 2px 16px rgba(0,0,58,.18)}
 .gsm-header__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);min-height:var(--header-height);padding:var(--space-2) 0}
 .gsm-header__logo{flex-shrink:0;display:flex;align-items:center}
 .gsm-header__logo-link{display:block}

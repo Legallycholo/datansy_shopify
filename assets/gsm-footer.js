@@ -43,5 +43,16 @@
     mq.addEventListener('change', setup);
   }
 
-  document.addEventListener('DOMContentLoaded', initFooterAccordion);
+  function initBackToTop() {
+    var btn = document.querySelector('[data-back-to-top]');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initFooterAccordion();
+    initBackToTop();
+  });
 })();

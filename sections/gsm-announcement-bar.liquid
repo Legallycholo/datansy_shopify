@@ -1,0 +1,115 @@
+{%- if section.settings.enabled and section.blocks.size > 0 -%}
+<div class="gsm-announcement-bar" id="GsmAnnouncementBar" data-announcement-bar>
+  <div class="gsm-announcement-bar__track" data-announcement-track>
+    {%- for block in section.blocks -%}
+      <div
+        class="gsm-announcement-bar__item{% if forloop.first %} is-active{% endif %}"
+        data-announcement-item
+        {{ block.shopify_attributes }}
+      >
+        {%- if block.settings.url != blank -%}
+          <a href="{{ block.settings.url }}" class="gsm-announcement-bar__link">
+            {%- if block.settings.icon != blank -%}
+              <span class="material-symbols-outlined gsm-announcement-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+            {%- endif -%}
+            {{ block.settings.text }}
+          </a>
+        {%- else -%}
+          <span>
+            {%- if block.settings.icon != blank -%}
+              <span class="material-symbols-outlined gsm-announcement-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+            {%- endif -%}
+            {{ block.settings.text }}
+          </span>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+  <button
+    type="button"
+    class="gsm-announcement-bar__close"
+    data-announcement-close
+    aria-label="Cerrar barra"
+  >
+    <span class="material-symbols-outlined" aria-hidden="true">close</span>
+  </button>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barra de anuncio",
+  "class": "section-announcement-bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Mostrar barra",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "rotation_speed",
+      "label": "Velocidad de rotación (segundos)",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Mensaje",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Mensaje",
+          "default": "🚀 Envío gratis a todo Chile en compras sobre $50.000"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícono Material (opcional)",
+          "info": "Nombre del ícono de Material Symbols, ej: local_shipping",
+          "default": ""
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Enlace (opcional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra de anuncio",
+      "blocks": [
+        {
+          "type": "message",
+          "settings": {
+            "text": "🚀 Envío gratis a todo Chile en compras sobre $50.000",
+            "url": "/collections/coleccion-principal"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "text": "✅ Garantía oficial en todos los productos — Respaldo Datansy",
+            "url": "/pages/about-us"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "text": "🎁 Usa el código BIENVENIDO10 y obtén 10% off en tu primera compra",
+            "url": "/collections/coleccion-principal"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

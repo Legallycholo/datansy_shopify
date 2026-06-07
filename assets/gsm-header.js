@@ -387,7 +387,50 @@
     document.addEventListener('cart:refresh', refreshCart);
   }
 
+  /* ---- Announcement bar rotation + dismiss ---- */
+  function initAnnouncementBar() {
+    var bar = document.getElementById('GsmAnnouncementBar');
+    if (!bar) return;
+
+    var storageKey = 'gsm_announcement_dismissed_v1';
+    if (sessionStorage.getItem(storageKey)) {
+      bar.hidden = true;
+      document.documentElement.style.setProperty('--announcement-height', '0px');
+      return;
+    }
+
+    var items = bar.querySelectorAll('[data-announcement-item]');
+    var closeBtn = bar.querySelector('[data-announcement-close]');
+    var speed = parseInt(bar.closest('[data-section-id]') ? 4000 : 4000, 10);
+    var current = 0;
+    var timer;
+
+    function showNext() {
+      if (items.length <= 1) return;
+      items[current].classList.remove('is-active');
+      items[current].classList.add('is-leaving');
+      var leaving = current;
+      setTimeout(function () { items[leaving].classList.remove('is-leaving'); }, 450);
+      current = (current + 1) % items.length;
+      items[current].classList.add('is-active');
+    }
+
+    if (items.length > 1) {
+      timer = setInterval(showNext, speed * 1000);
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        clearInterval(timer);
+        bar.hidden = true;
+        sessionStorage.setItem(storageKey, '1');
+        document.documentElement.style.setProperty('--announcement-height', '0px');
+      });
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    initAnnouncementBar();
     initMegaMenu();
     initMobileNav();
     initMobileSearch();

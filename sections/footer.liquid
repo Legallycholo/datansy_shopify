@@ -1,3 +1,64 @@
+{%- if section.settings.show_mission and section.settings.mission_text != blank -%}
+  <div class="gsm-footer__mission">
+    <div class="page-width">
+      <div class="gsm-footer__mission-inner">
+        <div class="gsm-footer__mission-logo">
+          {{
+            'datansy-logo-white.png'
+            | asset_url
+            | image_tag:
+              alt: shop.name,
+              width: 140,
+              height: 40,
+              loading: 'lazy'
+          }}
+        </div>
+        <p class="gsm-footer__mission-text">{{ section.settings.mission_text }}</p>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{%- if section.settings.show_newsletter -%}
+  <div class="gsm-footer__newsletter-band">
+    <div class="page-width">
+      <div class="gsm-footer__newsletter-inner">
+        <div class="gsm-footer__newsletter-copy">
+          <p class="gsm-footer__newsletter-heading">{{ section.settings.newsletter_heading }}</p>
+          {%- if section.settings.newsletter_subtext != blank -%}
+            <p class="gsm-footer__newsletter-sub">{{ section.settings.newsletter_subtext }}</p>
+          {%- endif -%}
+        </div>
+        {%- form 'customer', id: 'FooterNewsletterForm', class: 'gsm-footer__newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p class="gsm-footer__newsletter-success">{{ 'footer.newsletter_success' | t }}</p>
+          {%- else -%}
+            <div class="gsm-footer__newsletter-fields">
+              <input
+                type="email"
+                name="contact[email]"
+                id="FooterNewsletterEmail"
+                class="gsm-footer__newsletter-input"
+                placeholder="{{ 'footer.newsletter_placeholder' | t }}"
+                autocomplete="email"
+                required
+                aria-label="{{ 'footer.newsletter_placeholder' | t }}"
+              >
+              <button type="submit" class="btn btn--accent gsm-footer__newsletter-btn">
+                {{ 'footer.newsletter_submit' | t }}
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <p class="gsm-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
 <footer class="gsm-footer" data-section-id="{{ section.id }}" data-section-type="footer">
   <div class="gsm-footer__main">
     <div class="page-width">
@@ -21,7 +82,7 @@
           </div>
         </div>
 
-        {%- comment -%} Column 2 — Menú 2026 {%- endcomment -%}
+        {%- comment -%} Column 2 — Tienda {%- endcomment -%}
         <div class="gsm-footer__column" data-footer-column>
           <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
             {{ section.settings.column_2_title }}
@@ -40,7 +101,26 @@
           </div>
         </div>
 
-        {%- comment -%} Column 3 — Contact {%- endcomment -%}
+        {%- comment -%} Column 3 — Legal {%- endcomment -%}
+        <div class="gsm-footer__column" data-footer-column>
+          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
+            {{ section.settings.column_3_title }}
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="gsm-footer__column-body">
+            <nav class="gsm-footer__links" aria-label="{{ section.settings.column_3_title }}">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'link' and block.settings.group == 'legal' -%}
+                  <a href="{{ block.settings.url }}" class="gsm-footer__link" {{ block.shopify_attributes }}>
+                    {{ block.settings.title }}
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </nav>
+          </div>
+        </div>
+
+        {%- comment -%} Column 4 — Contacto {%- endcomment -%}
         <div class="gsm-footer__column" data-footer-column>
           <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
             {{ section.settings.contact_title }}
@@ -127,6 +207,10 @@
             <a href="{{ section.settings.social_linkedin }}" class="gsm-footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener">IN</a>
           {%- endif -%}
         </div>
+
+        <button type="button" class="gsm-footer__back-to-top" data-back-to-top aria-label="Volver arriba">
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
+        </button>
       </div>
 
       <div style="margin-top: var(--space-6); text-align: center;">
@@ -150,6 +234,48 @@
   "class": "section-footer",
   "settings": [
     {
+      "type": "header",
+      "content": "Misión"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mission",
+      "label": "Mostrar misión",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "mission_text",
+      "label": "Texto de misión",
+      "default": "Conectamos a Chile con la tecnología premium del mundo. Somos especialistas en electrónica de alta calidad con garantía oficial, los mejores precios y envío a todo el país."
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Mostrar newsletter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Título newsletter",
+      "default": "Únete a la comunidad Datansy"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_subtext",
+      "label": "Subtítulo newsletter",
+      "default": "Recibe ofertas exclusivas, lanzamientos y novedades tech directo en tu correo."
+    },
+    {
+      "type": "header",
+      "content": "Títulos de columnas"
+    },
+    {
       "type": "text",
       "id": "column_1_title",
       "label": "Título columna 1",
@@ -159,7 +285,13 @@
       "type": "text",
       "id": "column_2_title",
       "label": "Título columna 2",
-      "default": "Menú 2026"
+      "default": "Tienda"
+    },
+    {
+      "type": "text",
+      "id": "column_3_title",
+      "label": "Título columna 3 (Legal)",
+      "default": "Legal"
     },
     {
       "type": "text",
@@ -263,7 +395,8 @@
           "label": "Columna",
           "options": [
             { "value": "nosotros", "label": "Nosotros" },
-            { "value": "menu", "label": "Menú 2026" }
+            { "value": "menu", "label": "Tienda" },
+            { "value": "legal", "label": "Legal" }
           ],
           "default": "nosotros"
         },
@@ -285,20 +418,21 @@
     {
       "name": "Footer Datansy",
       "blocks": [
-        { "type": "link", "settings": { "group": "nosotros", "title": "Quienes Somos", "url": "/pages/about-us" } },
+        { "type": "link", "settings": { "group": "nosotros", "title": "Quiénes Somos", "url": "/pages/about-us" } },
         { "type": "link", "settings": { "group": "nosotros", "title": "Referidos", "url": "/pages/about-us" } },
         { "type": "link", "settings": { "group": "nosotros", "title": "Venta a Empresas", "url": "/pages/contact-us" } },
-        { "type": "link", "settings": { "group": "nosotros", "title": "Blog", "url": "/pages/about-us" } },
+        { "type": "link", "settings": { "group": "nosotros", "title": "Blog", "url": "/blogs/news" } },
         { "type": "link", "settings": { "group": "nosotros", "title": "Contacto", "url": "/pages/contact-us" } },
         { "type": "link", "settings": { "group": "menu", "title": "Nuevos Lanzamientos", "url": "/collections/coleccion-principal" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Celulares", "url": "/collections/coleccion-principal" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Consolas", "url": "/collections/coleccion-principal" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Realidad Virtual", "url": "/collections/coleccion-principal" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Computación", "url": "/collections/coleccion-principal" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Audio", "url": "/collections/coleccion-principal" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Reacondicionados", "url": "/collections/coleccion-principal" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Cotización", "url": "/pages/contact-us" } },
-        { "type": "link", "settings": { "group": "menu", "title": "Rastrea tu Pedido", "url": "/pages/shipping" } }
+        { "type": "link", "settings": { "group": "menu", "title": "Headphones & Audio", "url": "/collections/audio" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Smartwatches", "url": "/collections/smartwatches" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Celulares", "url": "/collections/celulares" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Computación", "url": "/collections/computacion" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Ofertas", "url": "/collections/ofertas" } },
+        { "type": "link", "settings": { "group": "legal", "title": "Política de Privacidad", "url": "/policies/privacy-policy" } },
+        { "type": "link", "settings": { "group": "legal", "title": "Política de Devoluciones", "url": "/policies/refund-policy" } },
+        { "type": "link", "settings": { "group": "legal", "title": "Términos de Servicio", "url": "/policies/terms-of-service" } },
+        { "type": "link", "settings": { "group": "legal", "title": "Política de Envíos", "url": "/policies/shipping-policy" } }
       ]
     }
   ]
