@@ -1,0 +1,89 @@
+{%- comment -%} Hero section — slogan sets rendered as JSON in data attribute {%- endcomment -%}
+
+<section class="gsm-hero" data-hero-rotation data-slogan-sets='[
+  {%- assign slogan_sets = section.blocks | where: 'type', 'slogan_set' -%}
+  {%- for block in slogan_sets -%}
+    ["{{ block.settings.line_1 | escape }}","{{ block.settings.line_2 | escape }}","{{ block.settings.line_3 | escape }}"]{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+]'>
+  <div class="gsm-hero__bg" aria-hidden="true">
+    <div class="gsm-hero__circle gsm-hero__circle--1"></div>
+    <div class="gsm-hero__circle gsm-hero__circle--2"></div>
+    <div class="gsm-hero__gradient"></div>
+  </div>
+
+  <div class="page-width gsm-hero__content">
+    {%- if section.settings.badge != blank -%}
+      <span class="gsm-badge gsm-hero__badge">{{ section.settings.badge }}</span>
+    {%- endif -%}
+
+    <h1 class="gsm-hero__headline">
+      {%- assign first_set = slogan_sets | first -%}
+      <span class="gsm-hero__headline-line" data-hero-line>{{ first_set.settings.line_1 | default: section.settings.fallback_line_1 }}</span>
+      <span class="gsm-hero__headline-line" data-hero-line>{{ first_set.settings.line_2 | default: section.settings.fallback_line_2 }}</span>
+      <span class="gsm-hero__headline-line gsm-hero__headline-line--accent" data-hero-line>{{ first_set.settings.line_3 | default: section.settings.fallback_line_3 }}</span>
+    </h1>
+
+    {%- if section.settings.subtext != blank -%}
+      <p class="gsm-hero__subtext">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+
+    <div class="gsm-hero__actions">
+      {%- if section.settings.cta_catalog_url != blank -%}
+        <a href="{{ section.settings.cta_catalog_url }}" class="btn btn--primary">{{ section.settings.cta_catalog_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.cta_flash_url != blank -%}
+        <a href="{{ section.settings.cta_flash_url }}" class="btn btn--accent">{{ section.settings.cta_flash_label }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_trust_row -%}
+      <div class="gsm-hero__trust">
+        {% render 'gsm-stars', rating: 5, class: 'gsm-hero__stars' %}
+        <span class="gsm-hero__trust-text">{{ section.settings.trust_text }}</span>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GSMPRO Hero",
+  "tag": "section",
+  "class": "section-gsm-hero",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge", "default": "Tecnología Premium" },
+    { "type": "text", "id": "fallback_line_1", "label": "Línea 1 (fallback)", "default": "Tecnología Premium" },
+    { "type": "text", "id": "fallback_line_2", "label": "Línea 2 (fallback)", "default": "Al Precio Que" },
+    { "type": "text", "id": "fallback_line_3", "label": "Línea 3 (fallback)", "default": "Debería Ser" },
+    { "type": "textarea", "id": "subtext", "label": "Subtexto", "default": "Envíos Gratis a todo Chile. Garantía GSMPRO Oficial" },
+    { "type": "text", "id": "cta_catalog_label", "label": "CTA catálogo", "default": "Ver Catálogo" },
+    { "type": "url", "id": "cta_catalog_url", "label": "URL catálogo" },
+    { "type": "text", "id": "cta_flash_label", "label": "CTA ofertas", "default": "Ofertas Flash" },
+    { "type": "url", "id": "cta_flash_url", "label": "URL ofertas" },
+    { "type": "checkbox", "id": "show_trust_row", "label": "Mostrar fila de confianza", "default": true },
+    { "type": "text", "id": "trust_text", "label": "Texto confianza", "default": "+5,000 clientes felices" }
+  ],
+  "blocks": [
+    {
+      "type": "slogan_set",
+      "name": "Set de slogans",
+      "settings": [
+        { "type": "text", "id": "line_1", "label": "Línea 1", "default": "Tecnología Premium" },
+        { "type": "text", "id": "line_2", "label": "Línea 2", "default": "Al Precio Que" },
+        { "type": "text", "id": "line_3", "label": "Línea 3", "default": "Debería Ser" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GSMPRO Hero",
+      "blocks": [
+        { "type": "slogan_set", "settings": { "line_1": "Tecnología Premium", "line_2": "Al Precio Que", "line_3": "Debería Ser" } },
+        { "type": "slogan_set", "settings": { "line_1": "Innovación Total", "line_2": "Sin Fronteras", "line_3": "Ni Esperas" } },
+        { "type": "slogan_set", "settings": { "line_1": "Las Mejores Marcas", "line_2": "Garantía Oficial", "line_3": "En Chile" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

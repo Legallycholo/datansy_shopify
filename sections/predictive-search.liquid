@@ -1,0 +1,15 @@
+{% comment %}
+  Section rendered via predictive search AJAX — id must be predictive-search
+{% endcomment %}
+{%- if predictive_search.performed -%}
+  <div id="shopify-section-predictive-search">
+    {% render 'predictive-search-results', predictive_search: predictive_search %}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Predictive search",
+  "settings": []
+}
+{% endschema %}

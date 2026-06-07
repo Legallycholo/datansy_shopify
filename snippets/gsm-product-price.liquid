@@ -1,0 +1,37 @@
+{% doc %}
+  Product price display with sale, range, and savings.
+  @param {object} product - Shopify product
+  @param {object} [variant] - Selected variant (defaults to selected_or_first_available)
+  @param {boolean} [show_savings] - Show savings badge
+  @param {string} [price_class] - Extra CSS class on wrapper
+{% enddoc %}
+
+{%- liquid
+  assign current_variant = variant | default: product.selected_or_first_available_variant
+  assign compare_at = current_variant.compare_at_price
+  assign price = current_variant.price
+  assign on_sale = false
+  if compare_at > price
+    assign on_sale = true
+    assign savings = compare_at | minus: price
+  endif
+-%}
+
+<div class="gsm-price{% if price_class %} {{ price_class }}{% endif %}">
+  {%- if product.price_varies and product.compare_at_price_varies == false -%}
+    {%- capture formatted_min -%}{% render 'gsm-money', amount: product.price_min %}{%- endcapture -%}
+    <span class="gsm-price__from">{{ 'products.from_price' | t: price: formatted_min }}</span>
+  {%- else -%}
+    <span class="gsm-price__current{% if on_sale %} gsm-price__current--sale{% endif %}">
+      {%- render 'gsm-money', amount: price -%}
+    </span>
+  {%- endif -%}
+
+  {%- if on_sale -%}
+    <s class="gsm-price__compare">{%- render 'gsm-money', amount: compare_at -%}</s>
+    {%- if show_savings -%}
+      {%- capture formatted_savings -%}{% render 'gsm-money', amount: savings %}{%- endcapture -%}
+      <span class="gsm-price__savings">{{ 'products.save' | t: amount: formatted_savings }}</span>
+    {%- endif -%}
+  {%- endif -%}
+</div>

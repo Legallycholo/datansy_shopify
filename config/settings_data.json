@@ -1,0 +1,27 @@
+{
+  "current": {
+    "color_header_bg": "#00003A",
+    "color_primary": "#0389FC",
+    "color_secondary": "#413AF4",
+    "color_accent": "#EDFF00",
+    "color_background": "#FFFFFF",
+    "color_background_secondary": "#F5F7FA",
+    "color_text": "#1A1A2E",
+    "color_sale": "#EE0000",
+    "body_font_size": 16,
+    "sticky_header": false,
+    "logo_width": 160,
+    "cart_type": "drawer",
+    "free_shipping_threshold": 50000,
+    "default_coupon_code": "BIENVENIDO10",
+    "show_currency_code": false,
+    "localization_auto_submit": true,
+    "markets_enable_hreflang": true,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      }
+    }
+  }
+}

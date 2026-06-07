@@ -1,0 +1,89 @@
+{% doc %}
+  Localization country/language selector form (Shopify Markets).
+  @param {string} [class_prefix] - CSS class prefix
+  @param {string} [form_id] - Unique form element id (required when multiple instances on page)
+  @param {boolean} [compact] - Show compact toggle label
+{% enddoc %}
+
+{%- liquid
+  assign prefix = class_prefix | default: 'gsm-localization'
+  assign form_id = form_id | default: 'GsmLocalizationForm'
+  assign country_select_id = form_id | append: '-country'
+  assign language_select_id = form_id | append: '-language'
+  assign current_country = localization.country
+  assign current_currency = cart.currency.iso_code | default: current_country.currency.iso_code | default: shop.currency
+-%}
+
+<div class="{{ prefix }}" data-localization>
+  <button
+    type="button"
+    class="{{ prefix }}__toggle"
+    data-localization-toggle
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-label="{{ 'localization.selector_label' | t }}"
+  >
+    {%- if compact -%}
+      <span class="{{ prefix }}__toggle-code">{{ current_currency }}</span>
+    {%- else -%}
+      {%- if current_country -%}
+        <span class="{{ prefix }}__toggle-country">{{ current_country.name }}</span>
+        <span class="{{ prefix }}__toggle-sep" aria-hidden="true">·</span>
+      {%- endif -%}
+      <span class="{{ prefix }}__toggle-code">{{ current_currency }}</span>
+    {%- endif -%}
+    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+  </button>
+
+  <div class="{{ prefix }}__dropdown" data-localization-dropdown>
+    {%- form 'localization', id: form_id, data-localization-form: true -%}
+      <input type="hidden" name="return_to" value="{{ request.path | append: request.search }}">
+
+      <label class="{{ prefix }}__label" for="{{ country_select_id }}">
+        {{ 'localization.country_label' | t }}
+      </label>
+      <select
+        id="{{ country_select_id }}"
+        class="{{ prefix }}__select"
+        name="country_code"
+        data-localization-country
+        aria-label="{{ 'localization.country_label' | t }}"
+      >
+        {%- for country in localization.available_countries -%}
+          <option
+            value="{{ country.iso_code }}"
+            {%- if country.iso_code == current_country.iso_code %} selected{% endif -%}
+          >
+            {{ country.name }} ({{ country.currency.iso_code }})
+          </option>
+        {%- endfor -%}
+      </select>
+
+      {%- if localization.available_languages.size > 1 -%}
+        <label class="{{ prefix }}__label" for="{{ language_select_id }}">
+          {{ 'localization.language_label' | t }}
+        </label>
+        <select
+          id="{{ language_select_id }}"
+          class="{{ prefix }}__select"
+          name="locale_code"
+          data-localization-language
+          aria-label="{{ 'localization.language_label' | t }}"
+        >
+          {%- for language in localization.available_languages -%}
+            <option
+              value="{{ language.iso_code }}"
+              {%- if language.iso_code == localization.language.iso_code %} selected{% endif -%}
+            >
+              {{ language.endonym_name | capitalize }}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
+
+      <button type="submit" class="{{ prefix }}__submit">
+        {{ 'localization.update' | t }}
+      </button>
+    {%- endform -%}
+  </div>
+</div>

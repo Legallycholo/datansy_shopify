@@ -1,0 +1,55 @@
+{% doc %}
+  Warehouse availability display for PDP.
+  Reads product metafield custom.warehouse_locations (JSON) or shows placeholder locations.
+  @param {object} product - Shopify product
+  @param {object} block - Section block settings (optional)
+{% enddoc %}
+
+{%- liquid
+  assign warehouse_data = product.metafields.custom.warehouse_locations.value
+  assign show_placeholder = true
+  if warehouse_data != blank
+    assign show_placeholder = false
+  endif
+-%}
+
+<div class="gsm-warehouse" {{ block.shopify_attributes }}>
+  <p class="gsm-warehouse__title">{{ 'products.warehouse_title' | t }}</p>
+  <div class="gsm-warehouse__list">
+    {%- if show_placeholder -%}
+      <div class="gsm-warehouse__item gsm-warehouse__item--express">
+        <div class="gsm-warehouse__status">
+          <span class="gsm-warehouse__status-dot"></span>
+          <span>Santiago — {{ 'products.warehouse_express' | t }}</span>
+        </div>
+        <span class="gsm-warehouse__qty">{{ 'products.warehouse_in_stock' | t }}</span>
+      </div>
+      <div class="gsm-warehouse__item gsm-warehouse__item--standard">
+        <div class="gsm-warehouse__status">
+          <span class="gsm-warehouse__status-dot gsm-warehouse__status-dot--blue"></span>
+          <span>Valparaíso — 2-3 días</span>
+        </div>
+        <span class="gsm-warehouse__qty">{{ 'products.warehouse_in_stock' | t }}</span>
+      </div>
+      <div class="gsm-warehouse__item gsm-warehouse__item--standard">
+        <div class="gsm-warehouse__status">
+          <span class="gsm-warehouse__status-dot gsm-warehouse__status-dot--blue"></span>
+          <span>Importación — 5-7 días</span>
+        </div>
+        <span class="gsm-warehouse__qty">{{ 'products.warehouse_available' | t }}</span>
+      </div>
+    {%- else -%}
+      {%- for location in warehouse_data -%}
+        <div class="gsm-warehouse__item{% if location.express %} gsm-warehouse__item--express{% else %} gsm-warehouse__item--standard{% endif %}">
+          <div class="gsm-warehouse__status">
+            <span class="gsm-warehouse__status-dot{% unless location.express %} gsm-warehouse__status-dot--blue{% endunless %}"></span>
+            <span>{{ location.name }}{% if location.timing != blank %} — {{ location.timing }}{% endif %}</span>
+          </div>
+          {%- if location.quantity != blank -%}
+            <span class="gsm-warehouse__qty">{{ location.quantity }} uds.</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>

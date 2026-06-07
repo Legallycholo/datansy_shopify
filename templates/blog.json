@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "label": "Blog",
+        "heading": "GSM News - Tecnología y Noticias",
+        "posts_per_page": 12
+      }
+    }
+  },
+  "order": ["main"]
+}

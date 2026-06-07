@@ -1,0 +1,179 @@
+{% doc %}
+  Mobile slide-out navigation with 3-level drill-down panels.
+  @param {object} section - Header section object with menu blocks
+{% enddoc %}
+
+<nav id="GsmMobileNav" class="gsm-mobile-nav" aria-label="{{ 'general.menu' | t }}">
+  <div class="gsm-mobile-nav__header">
+    <span class="gsm-mobile-nav__title">{{ shop.name }}</span>
+    <button type="button" class="gsm-mobile-nav__close" data-mobile-nav-close aria-label="{{ 'accessibility.close_menu' | t }}">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </div>
+
+  <div class="gsm-mobile-nav__panels">
+    {%- comment -%} Root panel {%- endcomment -%}
+    <div class="gsm-mobile-nav__panel is-active" data-mobile-panel="root">
+      <ul class="gsm-mobile-nav__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'menu_item' -%}
+            {%- assign has_children = false -%}
+            {%- for child in section.blocks -%}
+              {%- if child.type == 'menu_child' and child.settings.parent == block.settings.handle -%}
+                {%- assign has_children = true -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            <li {{ block.shopify_attributes }}>
+              {%- if has_children -%}
+                <button
+                  type="button"
+                  class="gsm-mobile-nav__link"
+                  data-mobile-nav-next="{{ block.settings.handle }}"
+                >
+                  {{ block.settings.title }}
+                  <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                </button>
+              {%- else -%}
+                <a href="{{ block.settings.url }}" class="gsm-mobile-nav__link">
+                  {{ block.settings.title }}
+                </a>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <li>
+          <a href="{{ section.settings.quote_url }}" class="gsm-mobile-nav__link">{{ 'header.quote' | t }}</a>
+        </li>
+        <li>
+          <a href="{{ section.settings.track_url }}" class="gsm-mobile-nav__link">{{ 'header.track_order' | t }}</a>
+        </li>
+      </ul>
+
+      <div class="gsm-mobile-nav__help">
+        <p class="gsm-mobile-nav__help-title">{{ 'header.help_title' | t }}</p>
+        {%- if section.settings.help_phone != blank -%}
+          <a href="tel:{{ section.settings.help_phone | replace: ' ', '' }}" class="gsm-mobile-nav__help-item">
+            <span class="material-symbols-outlined" aria-hidden="true">call</span>
+            {{ section.settings.help_phone }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.help_email != blank -%}
+          <a href="mailto:{{ section.settings.help_email }}" class="gsm-mobile-nav__help-item">
+            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+            {{ section.settings.help_email }}
+          </a>
+        {%- endif -%}
+
+        <div class="gsm-mobile-nav__social">
+          {%- if section.settings.social_facebook != blank -%}
+            <a href="{{ section.settings.social_facebook }}" class="gsm-mobile-nav__social-link" aria-label="Facebook">FB</a>
+          {%- endif -%}
+          {%- if section.settings.social_instagram != blank -%}
+            <a href="{{ section.settings.social_instagram }}" class="gsm-mobile-nav__social-link" aria-label="Instagram">IG</a>
+          {%- endif -%}
+          {%- if section.settings.social_youtube != blank -%}
+            <a href="{{ section.settings.social_youtube }}" class="gsm-mobile-nav__social-link" aria-label="YouTube">YT</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="gsm-mobile-nav__localization">
+        {% render 'gsm-localization', class_prefix: 'gsm-localization gsm-localization--mobile', form_id: 'MobileLocalizationForm', compact: true %}
+      </div>
+    </div>
+
+    {%- comment -%} Level 2 panels (one per parent menu item with children) {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'menu_item' -%}
+        {%- assign parent_handle = block.settings.handle -%}
+        {%- assign child_count = 0 -%}
+        {%- for child in section.blocks -%}
+          {%- if child.type == 'menu_child' and child.settings.parent == parent_handle -%}
+            {%- assign child_count = child_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if child_count > 0 -%}
+          <div class="gsm-mobile-nav__panel" data-mobile-panel="{{ parent_handle }}">
+            <div class="gsm-mobile-nav__panel-header">
+              <button type="button" class="gsm-mobile-nav__back" data-mobile-nav-back>
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+                {{ 'general.back' | t }}
+              </button>
+              <span class="gsm-mobile-nav__panel-title">{{ block.settings.title }}</span>
+            </div>
+            <ul class="gsm-mobile-nav__list">
+              {%- for child in section.blocks -%}
+                {%- if child.type == 'menu_child' and child.settings.parent == parent_handle -%}
+                  {%- assign has_grandchildren = false -%}
+                  {%- for grand in section.blocks -%}
+                    {%- if grand.type == 'menu_grandchild' and grand.settings.parent == child.settings.handle -%}
+                      {%- assign has_grandchildren = true -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  <li {{ child.shopify_attributes }}>
+                    {%- if has_grandchildren -%}
+                      <button
+                        type="button"
+                        class="gsm-mobile-nav__link"
+                        data-mobile-nav-next="{{ child.settings.handle }}"
+                      >
+                        {{ child.settings.title }}
+                        <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+                      </button>
+                    {%- else -%}
+                      <a href="{{ child.settings.url }}" class="gsm-mobile-nav__link">
+                        {{ child.settings.title }}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- comment -%} Level 3 panels {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'menu_child' -%}
+        {%- assign child_handle = block.settings.handle -%}
+        {%- assign grand_count = 0 -%}
+        {%- for grand in section.blocks -%}
+          {%- if grand.type == 'menu_grandchild' and grand.settings.parent == child_handle -%}
+            {%- assign grand_count = grand_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if grand_count > 0 -%}
+          <div class="gsm-mobile-nav__panel" data-mobile-panel="{{ child_handle }}">
+            <div class="gsm-mobile-nav__panel-header">
+              <button type="button" class="gsm-mobile-nav__back" data-mobile-nav-back>
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+                {{ 'general.back' | t }}
+              </button>
+              <span class="gsm-mobile-nav__panel-title">{{ block.settings.title }}</span>
+            </div>
+            <ul class="gsm-mobile-nav__list">
+              {%- for grand in section.blocks -%}
+                {%- if grand.type == 'menu_grandchild' and grand.settings.parent == child_handle -%}
+                  <li {{ grand.shopify_attributes }}>
+                    <a href="{{ grand.settings.url }}" class="gsm-mobile-nav__link">
+                      {{ grand.settings.title }}
+                    </a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</nav>

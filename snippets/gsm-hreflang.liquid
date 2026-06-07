@@ -1,0 +1,34 @@
+{% doc %}
+  hreflang alternates for Markets / multi-domain setup.
+  Uses Shopify country root_url when configured; falls back to theme market URL settings.
+{% enddoc %}
+
+{%- if settings.markets_enable_hreflang -%}
+  <link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">
+
+  {%- for country in localization.available_countries -%}
+    {%- assign hreflang_code = country.iso_code | downcase -%}
+    {%- assign alternate_url = blank -%}
+
+    {%- if country.root_url != blank -%}
+      {%- assign alternate_url = country.root_url | append: request.path -%}
+    {%- else -%}
+      {%- case country.iso_code -%}
+        {%- when 'CL' -%}{%- assign alternate_url = settings.market_url_cl -%}
+        {%- when 'AR' -%}{%- assign alternate_url = settings.market_url_ar -%}
+        {%- when 'PE' -%}{%- assign alternate_url = settings.market_url_pe -%}
+        {%- when 'CO' -%}{%- assign alternate_url = settings.market_url_co -%}
+        {%- when 'MX' -%}{%- assign alternate_url = settings.market_url_mx -%}
+        {%- when 'US' -%}{%- assign alternate_url = settings.market_url_us -%}
+        {%- when 'BR' -%}{%- assign alternate_url = settings.market_url_br -%}
+      {%- endcase -%}
+      {%- if alternate_url != blank -%}
+        {%- assign alternate_url = alternate_url | append: request.path -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if alternate_url != blank -%}
+      <link rel="alternate" hreflang="{{ hreflang_code }}" href="{{ alternate_url }}">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

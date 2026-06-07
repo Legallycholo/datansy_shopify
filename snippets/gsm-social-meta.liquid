@@ -1,0 +1,69 @@
+{% doc %}
+  Open Graph and Twitter Card meta tags for social sharing and SEO.
+{% enddoc %}
+
+{%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_description = page_description | default: shop.description | strip_html | strip
+  assign og_url = canonical_url
+  assign og_type = 'website'
+  assign og_image = settings.seo_default_image
+
+  if template.name == 'product'
+    assign og_type = 'product'
+    assign og_title = product.title
+    assign og_description = product.description | strip_html | truncate: 200 | default: og_description
+    if product.featured_media
+      assign og_image = product.featured_media
+    endif
+  elsif template.name == 'article'
+    assign og_type = 'article'
+    assign og_title = article.title
+    assign og_description = article.excerpt_or_content | strip_html | truncate: 200 | default: og_description
+    if article.image
+      assign og_image = article.image
+    endif
+  elsif template.name == 'collection'
+    assign og_title = collection.title
+    assign og_description = collection.description | strip_html | truncate: 200 | default: og_description
+    if collection.image
+      assign og_image = collection.image
+    endif
+  endif
+
+  if og_description == blank
+    assign og_description = shop.name
+  endif
+-%}
+
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:description" content="{{ og_description | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:locale" content="{{ request.locale.iso_code | replace: '-', '_' }}">
+
+{%- if og_image != blank -%}
+  <meta property="og:image" content="https:{{ og_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:alt" content="{{ og_image.alt | default: og_title | escape }}">
+{%- endif -%}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+<meta name="twitter:description" content="{{ og_description | escape }}">
+{%- if settings.twitter_handle != blank -%}
+  <meta name="twitter:site" content="@{{ settings.twitter_handle | remove: '@' }}">
+{%- endif -%}
+{%- if og_image != blank -%}
+  <meta name="twitter:image" content="https:{{ og_image | image_url: width: 1200 }}">
+  <meta name="twitter:image:alt" content="{{ og_image.alt | default: og_title | escape }}">
+{%- endif -%}
+
+{%- if settings.google_site_verification != blank -%}
+  <meta name="google-site-verification" content="{{ settings.google_site_verification | escape }}">
+{%- endif -%}
+
+{%- if settings.facebook_domain_verification != blank -%}
+  <meta name="facebook-domain-verification" content="{{ settings.facebook_domain_verification | escape }}">
+{%- endif -%}

@@ -1,0 +1,251 @@
+{
+  "sections": {
+    "gsm_hero": {
+      "type": "gsm-hero",
+      "blocks": {
+        "slogan_1": { "type": "slogan_set", "settings": { "line_1": "Tecnología Premium", "line_2": "Al Precio Que", "line_3": "Debería Ser" } },
+        "slogan_2": { "type": "slogan_set", "settings": { "line_1": "Innovación Total", "line_2": "Sin Fronteras", "line_3": "Ni Esperas" } },
+        "slogan_3": { "type": "slogan_set", "settings": { "line_1": "Las Mejores Marcas", "line_2": "Garantía Oficial", "line_3": "En Chile" } }
+      },
+      "block_order": ["slogan_1", "slogan_2", "slogan_3"],
+      "settings": {
+        "badge": "Tecnología Premium",
+        "subtext": "Envíos Gratis a todo Chile. Garantía GSMPRO Oficial",
+        "cta_catalog_label": "Ver Catálogo",
+        "cta_catalog_url": "/collections/coleccion-principal",
+        "cta_flash_label": "Ofertas Flash",
+        "cta_flash_url": "/collections/ofertas",
+        "show_trust_row": true,
+        "trust_text": "+5,000 clientes felices"
+      }
+    },
+    "gsm_marquee": {
+      "type": "gsm-brand-marquee",
+      "blocks": {
+        "b1": { "type": "brand", "settings": { "name": "Google" } },
+        "b2": { "type": "brand", "settings": { "name": "Apple" } },
+        "b3": { "type": "brand", "settings": { "name": "Samsung" } },
+        "b4": { "type": "brand", "settings": { "name": "Motorola" } },
+        "b5": { "type": "brand", "settings": { "name": "Vivo" } },
+        "b6": { "type": "brand", "settings": { "name": "ZTE" } },
+        "b7": { "type": "brand", "settings": { "name": "Red Magic" } },
+        "b8": { "type": "brand", "settings": { "name": "CAT" } },
+        "b9": { "type": "brand", "settings": { "name": "Valve" } },
+        "b10": { "type": "brand", "settings": { "name": "Sony" } },
+        "b11": { "type": "brand", "settings": { "name": "Xbox" } },
+        "b12": { "type": "brand", "settings": { "name": "Amazon" } },
+        "b13": { "type": "brand", "settings": { "name": "Meta" } },
+        "b14": { "type": "brand", "settings": { "name": "Ray-Ban" } },
+        "b15": { "type": "brand", "settings": { "name": "Oakley" } },
+        "b16": { "type": "brand", "settings": { "name": "DJI" } },
+        "b17": { "type": "brand", "settings": { "name": "Hollyland" } },
+        "b18": { "type": "brand", "settings": { "name": "Asus ROG" } },
+        "b19": { "type": "brand", "settings": { "name": "Dell" } },
+        "b20": { "type": "brand", "settings": { "name": "HP" } }
+      },
+      "block_order": ["b1","b2","b3","b4","b5","b6","b7","b8","b9","b10","b11","b12","b13","b14","b15","b16","b17","b18","b19","b20"],
+      "settings": {
+        "label": "Marcas Oficiales",
+        "heading": "Solo las Mejores Marcas"
+      }
+    },
+    "gsm_regions": {
+      "type": "gsm-regions",
+      "blocks": {
+        "c1": { "type": "country", "settings": { "country": "Chile", "country_iso_code": "CL", "emoji": "🇨🇱" } },
+        "c2": { "type": "country", "settings": { "country": "Argentina", "country_iso_code": "AR", "emoji": "🇦🇷" } },
+        "c3": { "type": "country", "settings": { "country": "Perú", "country_iso_code": "PE", "emoji": "🇵🇪" } },
+        "c4": { "type": "country", "settings": { "country": "Colombia", "country_iso_code": "CO", "emoji": "🇨🇴" } },
+        "c5": { "type": "country", "settings": { "country": "México", "country_iso_code": "MX", "emoji": "🇲🇽" } },
+        "c6": { "type": "country", "settings": { "country": "Estados Unidos", "country_iso_code": "US", "emoji": "🇺🇸" } }
+      },
+      "block_order": ["c1","c2","c3","c4","c5","c6"],
+      "settings": {
+        "label": "Cobertura Regional",
+        "heading": "Operamos en 6 Países",
+        "enable_market_switch": true
+      }
+    },
+    "gsm_hubs": {
+      "type": "gsm-sourcing-hubs",
+      "blocks": {
+        "h1": { "type": "hub", "settings": { "title": "Dubai", "subtitle": "Emiratos Árabes Unidos", "icon": "flight_takeoff" } },
+        "h2": { "type": "hub", "settings": { "title": "Singapur", "subtitle": "Sudeste Asiático", "icon": "hub" } },
+        "h3": { "type": "hub", "settings": { "title": "Hong Kong", "subtitle": "Puerta de entrada a China", "icon": "sailing" } },
+        "h4": { "type": "hub", "settings": { "title": "Estados Unidos", "subtitle": "Miami & Los Angeles", "icon": "public" } },
+        "h5": { "type": "hub", "settings": { "title": "China (Shenzhen)", "subtitle": "Manufactura directa", "icon": "factory" } }
+      },
+      "block_order": ["h1","h2","h3","h4","h5"],
+      "settings": {
+        "label": "Sourcing Internacional",
+        "heading": "Los Mejores Precios Del Mundo",
+        "stat_badge": "5+ Hubs de Abastecimiento"
+      }
+    },
+    "gsm_categories": {
+      "type": "gsm-category-grid",
+      "blocks": {
+        "cat1": { "type": "category", "settings": { "title": "Celulares", "icon": "smartphone", "url": "/collections/celulares" } },
+        "cat2": { "type": "category", "settings": { "title": "Audio", "icon": "headphones", "url": "/collections/audio" } },
+        "cat3": { "type": "category", "settings": { "title": "Computación", "icon": "laptop_mac", "url": "/collections/computacion" } },
+        "cat4": { "type": "category", "settings": { "title": "Wearables", "icon": "watch", "url": "/collections/wearables" } },
+        "cat5": { "type": "category", "settings": { "title": "Consolas", "icon": "sports_esports", "url": "/collections/consolas" } },
+        "cat6": { "type": "category", "settings": { "title": "Fotografía", "icon": "photo_camera", "url": "/collections/fotografia" } }
+      },
+      "block_order": ["cat1","cat2","cat3","cat4","cat5","cat6"],
+      "settings": {
+        "label": "Categorías Elite",
+        "heading": "Explora por Categoría",
+        "catalog_label": "Ver catálogo completo",
+        "catalog_url": "/collections/all"
+      }
+    },
+    "gsm_presales": {
+      "type": "gsm-presales",
+      "blocks": {
+        "ben1": { "type": "benefit", "settings": { "icon": "sell", "title": "Precio Especial", "text": "Accede al mejor precio de preventa." } },
+        "ben2": { "type": "benefit", "settings": { "icon": "priority_high", "title": "Prioridad Total", "text": "Sé de los primeros en recibirlo." } },
+        "ben3": { "type": "benefit", "settings": { "icon": "inventory", "title": "Stock Asegurado", "text": "Reserva garantizada desde el día uno." } },
+        "p1": { "type": "product_teaser", "settings": { "title": "S26 Ultra", "status": "RUMOR" } },
+        "p2": { "type": "product_teaser", "settings": { "title": "Steam Deck Machine", "status": "PROTOTIPO" } },
+        "p3": { "type": "product_teaser", "settings": { "title": "Poco F8", "status": "PRÓXIMAMENTE" } },
+        "p4": { "type": "product_teaser", "settings": { "title": "Pixel 10a", "status": "CONFIRMADO" } },
+        "p5": { "type": "product_teaser", "settings": { "title": "RTX 5090", "status": "ESPERA" } },
+        "p6": { "type": "product_teaser", "settings": { "title": "iPad Pro M5", "status": "RUMOR" } }
+      },
+      "block_order": ["ben1","ben2","ben3","p1","p2","p3","p4","p5","p6"],
+      "settings": {
+        "label": "Preventas VIP",
+        "heading": "El Futuro Llega Primero Aquí.",
+        "cta_label": "Ver Colección Preventa",
+        "cta_url": "/collections/preventa"
+      }
+    },
+    "gsm_testimonials": {
+      "type": "gsm-testimonials",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "name": "Carlos M.", "product": "iPhone 15 Pro", "quote": "Llegó en 24 horas a Santiago. Impecable.", "rating": 5 } },
+        "r2": { "type": "review", "settings": { "name": "Valentina R.", "product": "Samsung Galaxy S24", "quote": "El mejor precio que encontré en Chile.", "rating": 5 } },
+        "r3": { "type": "review", "settings": { "name": "Diego P.", "product": "Google Pixel 8", "quote": "Atención excelente por WhatsApp.", "rating": 5 } },
+        "r4": { "type": "review", "settings": { "name": "Camila S.", "product": "AirPods Pro", "quote": "Producto original con garantía oficial.", "rating": 5 } },
+        "r5": { "type": "review", "settings": { "name": "Andrés L.", "product": "Steam Deck OLED", "quote": "Compré desde Concepción, todo perfecto.", "rating": 5 } },
+        "r6": { "type": "review", "settings": { "name": "Francisca H.", "product": "MacBook Air M3", "quote": "Envío gratis y embalaje impecable.", "rating": 5 } },
+        "r7": { "type": "review", "settings": { "name": "Matías G.", "product": "PlayStation 5", "quote": "Segunda compra, siempre confiable.", "rating": 5 } },
+        "r8": { "type": "review", "settings": { "name": "Javiera T.", "product": "DJI Mini 4 Pro", "quote": "Llegó a Punta Arenas sin problemas.", "rating": 5 } },
+        "r9": { "type": "review", "settings": { "name": "Rodrigo A.", "product": "RTX 4080 Super", "quote": "Precio increíble vs otras tiendas.", "rating": 5 } },
+        "r10": { "type": "review", "settings": { "name": "Constanza V.", "product": "iPad Pro M4", "quote": "Preventa cumplida a tiempo.", "rating": 5 } },
+        "r11": { "type": "review", "settings": { "name": "Felipe N.", "product": "Meta Quest 3", "quote": "Recomendado 100%.", "rating": 5 } },
+        "r12": { "type": "review", "settings": { "name": "Isidora C.", "product": "Xiaomi 14 Ultra", "quote": "Excelente experiencia de compra.", "rating": 5 } }
+      },
+      "block_order": ["r1","r2","r3","r4","r5","r6","r7","r8","r9","r10","r11","r12"],
+      "settings": {
+        "heading": "Experiencia GSMPRO",
+        "subheading": "Lo que dicen nuestros clientes de Arica a Punta Arenas."
+      }
+    },
+    "gsm_faq": {
+      "type": "gsm-faq",
+      "blocks": {
+        "f1": { "type": "faq_item", "settings": { "question": "¿Los productos tienen garantía?", "answer": "<p>Sí. Todos nuestros productos cuentan con garantía oficial del fabricante y respaldo GSMPRO.</p>" } },
+        "f2": { "type": "faq_item", "settings": { "question": "¿Cuáles son los medios de pago?", "answer": "<p>Aceptamos tarjetas de crédito y débito, transferencia bancaria, PayPal, Apple Pay y Google Pay.</p>" } },
+        "f3": { "type": "faq_item", "settings": { "question": "¿Hacen envíos a regiones?", "answer": "<p>Sí, enviamos a todo Chile incluyendo regiones extremas.</p>" } },
+        "f4": { "type": "faq_item", "settings": { "question": "¿Tienen tienda física?", "answer": "<p>Operamos principalmente online con centros de distribución en Santiago.</p>" } },
+        "f5": { "type": "faq_item", "settings": { "question": "¿Debo preocuparme por el \"Aduanazo\"?", "answer": "<p>No. GSMPRO gestiona toda la importación de forma legal y transparente.</p>" } }
+      },
+      "block_order": ["f1","f2","f3","f4","f5"],
+      "settings": {
+        "label": "Preguntas Frecuentes",
+        "heading": "Transparencia Total"
+      }
+    },
+    "gsm_coupon": {
+      "type": "gsm-coupon-cta",
+      "settings": {
+        "heading": "Tecnología a tu Alcance",
+        "subtext": "Únete a nuestra comunidad.",
+        "coupon_code": "BIENVENIDO10",
+        "urgency_text": "Oferta válida solo por hoy",
+        "show_newsletter": true,
+        "email_placeholder": "tu@email.com",
+        "submit_label": "Unirme",
+        "success_message": "¡Gracias por unirte!"
+      }
+    },
+    "slider_express": {
+      "type": "gsm-product-slider",
+      "settings": { "heading": "Catálogo Datansy", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+    },
+    "slider_pixel": {
+      "type": "gsm-product-slider",
+      "settings": { "heading": "Destacados", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+    },
+    "slider_iphone": {
+      "type": "gsm-product-slider",
+      "settings": { "heading": "Tecnología", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12, "label": "Tienda" }
+    },
+    "slider_vr": {
+      "type": "gsm-product-slider",
+      "settings": { "heading": "Accesorios", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+    },
+    "slider_new": {
+      "type": "gsm-product-slider",
+      "settings": { "heading": "Novedades", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+    },
+    "slider_drones": {
+      "type": "gsm-product-slider",
+      "settings": { "heading": "Ofertas", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+    },
+    "slider_black_sale": {
+      "type": "gsm-product-slider",
+      "settings": { "heading": "Promociones", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12, "label": "Datansy" }
+    },
+    "gsm_promo": {
+      "type": "gsm-promo-banner",
+      "settings": {
+        "full_width": true,
+        "label": "BLACK SALE",
+        "heading": "!BLACK SALE!",
+        "text": "Descuentos exclusivos en tecnología premium.",
+        "button_label": "Ver ofertas",
+        "button_url": "/collections/coleccion-principal",
+        "background_color": "#00003A",
+        "text_color": "#FFFFFF"
+      }
+    },
+    "gsm_limited": {
+      "type": "gsm-featured-collections",
+      "settings": { "label": "Destacados", "heading": "Unidades Limitadas" },
+      "blocks": {
+        "lc1": { "type": "collection", "settings": { "collection": "coleccion-principal", "title": "Colección Principal", "subtitle": "7 productos" } },
+        "lc2": { "type": "collection", "settings": { "collection": "coleccion-principal", "title": "Tecnología", "subtitle": "Catálogo Datansy" } },
+        "lc3": { "type": "collection", "settings": { "collection": "frontpage", "title": "Inicio", "subtitle": "Destacados" } }
+      },
+      "block_order": ["lc1", "lc2", "lc3"]
+    },
+    "gsm_blog": {
+      "type": "gsm-blog-strip",
+      "settings": { "heading": "Datansy News", "blog": "noticias", "posts_to_show": 3 }
+    }
+  },
+  "order": [
+    "gsm_hero",
+    "gsm_marquee",
+    "gsm_regions",
+    "gsm_hubs",
+    "gsm_categories",
+    "gsm_presales",
+    "gsm_testimonials",
+    "gsm_faq",
+    "gsm_coupon",
+    "slider_express",
+    "slider_pixel",
+    "slider_iphone",
+    "slider_vr",
+    "slider_new",
+    "slider_drones",
+    "slider_black_sale",
+    "gsm_promo",
+    "gsm_limited",
+    "gsm_blog"
+  ]
+}

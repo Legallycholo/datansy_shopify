@@ -1,0 +1,33 @@
+<article class="gsm-article page-width">
+  <a href="{{ blog.url }}" class="gsm-article__back">
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+    {{ 'blog.back_to_blog' | t }}
+  </a>
+
+  {%- if article.image -%}
+    {{ article.image | image_url: width: 1200 | image_tag: loading: 'eager', class: 'gsm-article__image', alt: article.title }}
+  {%- else -%}
+    <div class="placeholder-image gsm-article__image" style="aspect-ratio: 16/9; border-radius: var(--radius-2xl);">Article image placeholder</div>
+  {%- endif -%}
+
+  <div class="gsm-article__meta">
+    <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d/%m/%Y' }}</time>
+    {%- if article.author != blank -%}
+      <span>{{ 'blog.author' | t: author: article.author }}</span>
+    {%- endif -%}
+    {%- if blog.title != blank -%}
+      <span>{{ blog.title }}</span>
+    {%- endif -%}
+  </div>
+
+  <h1 class="gsm-article__title">{{ article.title }}</h1>
+  <div class="gsm-article__content rte">{{ article.content }}</div>
+</article>
+
+{% schema %}
+{
+  "name": "Artículo",
+  "class": "section-main-article",
+  "settings": []
+}
+{% endschema %}

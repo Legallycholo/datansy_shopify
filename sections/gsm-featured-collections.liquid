@@ -1,0 +1,70 @@
+<section class="gsm-section gsm-featured-collections">
+  <div class="page-width">
+    <div class="gsm-section__header">
+      {%- if section.settings.label != blank -%}
+        <span class="gsm-section__label">{{ section.settings.label }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="gsm-featured-collections__grid">
+      {%- for block in section.blocks -%}
+        {%- assign coll = collections[block.settings.collection] -%}
+        <a href="{{ coll.url | default: block.settings.fallback_url | default: '#' }}" class="gsm-featured-collections__card gsm-card" {{ block.shopify_attributes }}>
+          <div class="gsm-featured-collections__media">
+            {%- if coll.featured_image -%}
+              {{ coll.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: coll.title }}
+            {%- elsif block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {%- else -%}
+              <div class="placeholder-image">Colección</div>
+            {%- endif -%}
+          </div>
+          <div class="gsm-featured-collections__info">
+            <h3 class="gsm-featured-collections__title">{{ block.settings.title | default: coll.title }}</h3>
+            {%- if block.settings.subtitle != blank -%}
+              <p class="gsm-featured-collections__subtitle">{{ block.settings.subtitle }}</p>
+            {%- endif -%}
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GSMPRO Colecciones",
+  "tag": "section",
+  "class": "section-gsm-featured-collections",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Etiqueta", "default": "Destacados" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Unidades Limitadas" }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Colección",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Colección" },
+        { "type": "text", "id": "title", "label": "Título personalizado" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo" },
+        { "type": "image_picker", "id": "image", "label": "Imagen alternativa" },
+        { "type": "url", "id": "fallback_url", "label": "URL alternativa" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GSMPRO Colecciones",
+      "blocks": [
+        { "type": "collection", "settings": { "title": "Entrega Express", "subtitle": "Stock inmediato" } },
+        { "type": "collection", "settings": { "title": "Últimas unidades", "subtitle": "No te quedes sin el tuyo" } },
+        { "type": "collection", "settings": { "title": "Outlet", "subtitle": "Precios especiales" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

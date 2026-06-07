@@ -1,0 +1,45 @@
+{% doc %}
+  Header search form with category filter and predictive search.
+  @param {string} [id_suffix] - Unique suffix for form IDs
+  @param {boolean} [show_category] - Show category dropdown
+{% enddoc %}
+
+{%- assign suffix = id_suffix | default: 'desktop' -%}
+{%- assign show_cat = show_category | default: true -%}
+
+<form
+  action="{{ routes.search_url }}"
+  method="get"
+  role="search"
+  class="gsm-search-form"
+  data-predictive-search
+>
+  {%- if show_cat -%}
+    <select class="gsm-search-form__category" name="filter.p.product_type" aria-label="{{ 'general.all_categories' | t }}">
+      <option value="">{{ 'general.all_categories' | t }}</option>
+      {%- for collection in collections limit: 20 -%}
+        <option value="{{ collection.title }}">{{ collection.title }}</option>
+      {%- endfor -%}
+    </select>
+  {%- endif -%}
+
+  <div class="gsm-search-form__input-wrap">
+    <label class="visually-hidden" for="SearchInput-{{ suffix }}">{{ 'general.search' | t }}</label>
+    <input
+      id="SearchInput-{{ suffix }}"
+      class="gsm-search-form__input"
+      type="search"
+      name="q"
+      value="{{ search.terms | escape }}"
+      placeholder="{{ 'general.search_placeholder' | t }}"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    >
+    <button type="submit" class="gsm-search-form__submit" aria-label="{{ 'general.search' | t }}">
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+    </button>
+    <div class="gsm-predictive-search" data-predictive-results role="listbox" aria-label="{{ 'general.search' | t }}"></div>
+  </div>
+</form>

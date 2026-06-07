@@ -1,0 +1,59 @@
+{% doc %}
+  Cart drawer panel with free-shipping progress bar.
+{% enddoc %}
+
+<aside
+  id="GsmCartDrawer"
+  class="gsm-cart-drawer"
+  aria-label="{{ 'cart.title' | t }}"
+  role="dialog"
+  aria-modal="true"
+  hidden
+>
+  <div class="gsm-cart-drawer__header">
+    <h2 class="gsm-cart-drawer__title">{{ 'cart.title' | t }}</h2>
+    <button type="button" class="gsm-cart-drawer__close" data-cart-close aria-label="{{ 'accessibility.close_cart' | t }}">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </div>
+
+  <div class="gsm-cart-drawer__shipping-bar" data-shipping-bar>
+    <p class="gsm-cart-drawer__shipping-text" data-shipping-text>
+      {{ 'cart.free_shipping_remaining' | t: amount: '$50.000' }}
+    </p>
+    <div class="gsm-cart-drawer__shipping-progress">
+      <div class="gsm-cart-drawer__shipping-fill" data-shipping-fill style="width: 0%"></div>
+    </div>
+  </div>
+
+  <div class="gsm-cart-drawer__body" data-cart-body>
+    <div class="gsm-cart-drawer__empty">
+      <span class="material-symbols-outlined gsm-cart-drawer__empty-icon" aria-hidden="true">shopping_cart</span>
+      <p class="gsm-cart-drawer__empty-text">{{ 'cart.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">
+        {{ 'cart.empty_cta' | t }}
+      </a>
+    </div>
+  </div>
+
+  <div class="gsm-cart-drawer__footer" data-cart-footer style="display: none;">
+    <div class="gsm-cart-drawer__subtotal">
+      <span>{{ 'cart.subtotal' | t }}</span>
+      <span class="gsm-cart-drawer__subtotal-amount" data-cart-subtotal>{%- render 'gsm-money', amount: cart.total_price -%}</span>
+    </div>
+    <div class="gsm-cart-drawer__actions">
+      <a href="{{ routes.cart_url }}" class="btn btn--outline" style="border-color: var(--gsm-blue); color: var(--gsm-blue);">
+        {{ 'cart.view_cart' | t }}
+      </a>
+      <form action="{{ routes.cart_url }}" method="post">
+        <button type="submit" name="checkout" class="btn btn--primary">
+          {{ 'cart.checkout' | t }}
+        </button>
+      </form>
+    </div>
+  </div>
+</aside>
+
+<script>
+  document.getElementById('GsmCartDrawer').removeAttribute('hidden');
+</script>

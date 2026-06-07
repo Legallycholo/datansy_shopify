@@ -1,0 +1,309 @@
+/* ==========================================================================
+   GSMPRO Design System — Base tokens & utilities
+   ========================================================================== */
+
+:root {
+  /* Brand colors (overridden by theme settings in theme.liquid) */
+  --gsm-dark: #00003A;
+  --gsm-blue: #0389FC;
+  --gsm-indigo: #413AF4;
+  --gsm-yellow: #EDFF00;
+  --gsm-gray: #F5F7FA;
+  --gsm-sale: #EE0000;
+  --gsm-white: #FFFFFF;
+  --gsm-text: #1A1A2E;
+  --gsm-text-muted: #6B7280;
+  --gsm-border: #E5E7EB;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
+  --font-icons: 'Material Symbols Outlined';
+
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Border radius (rounded-2xl equivalent) */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-gsm: 0 4px 20px rgba(0, 0, 58, 0.08);
+  --shadow-gsm-card: 0 2px 12px rgba(0, 0, 58, 0.06);
+  --shadow-gsm-hover: 0 8px 30px rgba(3, 137, 252, 0.15);
+
+  /* Layout */
+  --page-width: 1400px;
+  --header-height: 70px;
+  --transition: 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--gsm-text);
+  background-color: var(--gsm-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 var(--space-4);
+}
+
+.material-symbols-outlined {
+  font-family: var(--font-icons);
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.page-width {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .page-width {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+.main-content {
+  min-height: 50vh;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-to-content:focus {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: var(--space-3) var(--space-4);
+  background: var(--gsm-yellow);
+  color: var(--gsm-dark);
+  clip: auto;
+  font-weight: 600;
+}
+
+.hidden-mobile {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hidden-mobile {
+    display: block;
+  }
+
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.btn--primary {
+  background: var(--gsm-blue);
+  color: var(--gsm-white);
+}
+
+.btn--primary:hover {
+  background: #0270d4;
+  box-shadow: var(--shadow-gsm-hover);
+  transform: translateY(-1px);
+}
+
+.btn--accent {
+  background: var(--gsm-yellow);
+  color: var(--gsm-dark);
+}
+
+.btn--accent:hover {
+  box-shadow: var(--shadow-gsm-hover);
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  border: 2px solid var(--gsm-white);
+  color: var(--gsm-white);
+}
+
+.btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.placeholder-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gsm-gray) 0%, #e2e8f0 100%);
+  color: var(--gsm-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+}
+
+.placeholder-image--square {
+  aspect-ratio: 1;
+}
+
+.placeholder-image--logo {
+  aspect-ratio: 3 / 1;
+  min-height: 40px;
+  background: var(--gsm-gray);
+  border-radius: var(--radius-sm);
+}
+
+.gsm-card {
+  background: var(--gsm-white);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-gsm-card);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.gsm-card:hover {
+  box-shadow: var(--shadow-gsm-hover);
+  transform: translateY(-2px);
+}
+
+.gsm-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-full);
+  background: var(--gsm-yellow);
+  color: var(--gsm-dark);
+}
+
+.header-sticky .gsm-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.gsm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 58, 0.5);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.gsm-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gsm-blue);
+  outline-offset: 2px;
+}

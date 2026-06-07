@@ -1,0 +1,17 @@
+{% doc %}
+  GSMPRO money display — no trailing zeros; optional currency code suffix.
+  Admin: Settings → General → Store currency format → `${{amount_no_decimals}}` (CLP).
+  @param {number} amount - Price in cents
+  @param {string} [iso_code] - Currency ISO override
+{% enddoc %}
+
+{%- liquid
+  assign currency_code = iso_code | default: cart.currency.iso_code | default: shop.currency
+  assign formatted = amount | money_without_trailing_zeros
+-%}
+
+{%- if settings.show_currency_code and currency_code != blank -%}
+  <span class="gsm-money">{{ formatted }} <span class="gsm-money__code">{{ currency_code }}</span></span>
+{%- else -%}
+  <span class="gsm-money">{{ formatted }}</span>
+{%- endif -%}

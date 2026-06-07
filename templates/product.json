@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": { "type": "vendor" },
+        "title": { "type": "title" },
+        "reviews": { "type": "reviews" },
+        "price": { "type": "price", "settings": { "show_sku": true } },
+        "variant_picker": { "type": "variant_picker" },
+        "warehouse": { "type": "warehouse" },
+        "buy_buttons": { "type": "buy_buttons" },
+        "trust_badges": { "type": "trust_badges" },
+        "share": { "type": "share" }
+      },
+      "block_order": ["vendor", "title", "reviews", "price", "variant_picker", "warehouse", "buy_buttons", "trust_badges", "share"],
+      "settings": {}
+    },
+    "recommendations": {
+      "type": "gsm-product-recommendations",
+      "settings": {
+        "heading": "También te puede interesar",
+        "show_quick_add": true
+      }
+    }
+  },
+  "order": ["main", "recommendations"]
+}

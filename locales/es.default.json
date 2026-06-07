@@ -1,0 +1,161 @@
+{
+  "general": {
+    "search": "Buscar",
+    "search_placeholder": "Buscar productos...",
+    "all_categories": "Todas las categorías",
+    "account": "Mi cuenta",
+    "login": "Iniciar sesión",
+    "cart": "Carrito",
+    "close": "Cerrar",
+    "menu": "Menú",
+    "back": "Volver",
+    "loading": "Cargando...",
+    "coupon_copied": "¡Código copiado!",
+    "continue_shopping": "Seguir comprando",
+    "pagination": "Paginación",
+    "page": "Página {{ page }}",
+    "tagged": "etiquetado \"{{ tags }}\"",
+    "image_placeholder": "Imagen",
+    "home": "Inicio"
+  },
+  "accessibility": {
+    "skip_to_content": "Ir al contenido",
+    "menu_toggle": "Abrir menú de navegación",
+    "search_toggle": "Abrir búsqueda",
+    "cart_toggle": "Abrir carrito",
+    "close_menu": "Cerrar menú",
+    "close_cart": "Cerrar carrito",
+    "slider_prev": "Anterior",
+    "slider_next": "Siguiente"
+  },
+  "header": {
+    "help_phone": "Teléfono",
+    "help_email": "Email",
+    "help_title": "¿Necesitas ayuda?",
+    "track_order": "Rastrea tu Pedido",
+    "quote": "Cotización"
+  },
+  "cart": {
+    "title": "Tu carrito",
+    "empty": "Tu carrito está vacío",
+    "empty_cta": "Explorar catálogo",
+    "subtotal": "Subtotal",
+    "checkout": "Finalizar compra",
+    "view_cart": "Ver carrito",
+    "remove": "Eliminar",
+    "update": "Actualizar carrito",
+    "continue_shopping": "Seguir comprando",
+    "quantity": "Cantidad",
+    "discount_code": "Código de descuento",
+    "discount_placeholder": "Ej: BIENVENIDO10",
+    "discount_apply": "Aplicar",
+    "free_shipping_remaining": "Gasta {{ amount }} más y obtén envío gratis",
+    "free_shipping_achieved": "¡Felicitaciones! Tienes envío gratis",
+    "items_count": {
+      "one": "{{ count }} artículo",
+      "other": "{{ count }} artículos"
+    }
+  },
+  "forms": {
+    "name": "Nombre",
+    "email": "Email",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "product_interest": "Producto de interés",
+    "order_number": "Número de pedido"
+  },
+  "blog": {
+    "read_more": "Leer más",
+    "back_to_blog": "Volver al blog",
+    "author": "Por {{ author }}",
+    "empty": "No hay artículos publicados todavía."
+  },
+  "customer": {
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Email",
+      "password": "Contraseña",
+      "sign_in": "Entrar",
+      "create_account": "Crear cuenta",
+      "forgot_password": "¿Olvidaste tu contraseña?"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "submit": "Registrarse",
+      "sign_in": "¿Ya tienes cuenta? Inicia sesión"
+    },
+    "recover": {
+      "title": "Recuperar contraseña",
+      "submit": "Enviar enlace",
+      "success": "Te enviamos un email con instrucciones para restablecer tu contraseña."
+    },
+    "account": {
+      "title": "Mi cuenta",
+      "welcome": "Hola, {{ name }}",
+      "logout": "Cerrar sesión",
+      "order_history": "Historial de pedidos",
+      "no_orders": "Aún no tienes pedidos.",
+      "details": "Detalles de la cuenta",
+      "view_addresses": "Ver direcciones"
+    },
+    "reset_password": {
+      "title": "Restablecer contraseña",
+      "subtext": "Ingresa una nueva contraseña para tu cuenta.",
+      "confirm": "Confirmar contraseña",
+      "submit": "Restablecer contraseña"
+    },
+    "activate_account": {
+      "title": "Activar cuenta",
+      "subtext": "Crea tu contraseña para activar tu cuenta.",
+      "submit": "Activar cuenta",
+      "decline": "Rechazar invitación"
+    }
+  },
+  "localization": {
+    "country_label": "País/región",
+    "language_label": "Idioma",
+    "update": "Actualizar",
+    "selector_label": "Seleccionar país y moneda",
+    "switch_to": "Ver tienda en {{ country }}"
+  },
+  "products": {
+    "add_to_cart": "Añadir al carrito",
+    "sold_out": "Agotado",
+    "from_price": "Desde {{ price }}",
+    "save": "Ahorra {{ amount }}",
+    "view_product": "Ver producto",
+    "reviews_placeholder": "Reseñas",
+    "description": "Descripción",
+    "specifications": "Especificaciones",
+    "specs_placeholder": "Especificaciones disponibles próximamente.",
+    "shipping_returns": "Envío y devoluciones",
+    "media_gallery": "Imagen",
+    "warehouse_title": "Disponibilidad en bodegas",
+    "warehouse_express": "Entrega express",
+    "warehouse_in_stock": "En stock",
+    "warehouse_available": "Disponible"
+  },
+  "collections": {
+    "filters": "Filtros",
+    "sort_by": "Ordenar por",
+    "apply": "Aplicar",
+    "empty": "No hay productos en esta colección.",
+    "all_title": "Todas las colecciones",
+    "products_count": "{{ count }} productos",
+    "filter_min": "Mín",
+    "filter_max": "Máx"
+  },
+  "search": {
+    "results_for": "resultados para \"{{ terms }}\"",
+    "no_results": "No se encontraron resultados para \"{{ terms }}\"",
+    "articles": "Artículos"
+  },
+  "404": {
+    "title": "Página no encontrada",
+    "subtext": "La página que buscas no existe.",
+    "link": "Volver al inicio",
+    "explore_categories": "Explora categorías"
+  }
+}

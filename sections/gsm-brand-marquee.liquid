@@ -1,0 +1,117 @@
+<section class="gsm-section gsm-marquee-section">
+  <div class="page-width gsm-section__header">
+    {%- if section.settings.label != blank -%}
+      <span class="gsm-section__label">{{ section.settings.label }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+  </div>
+
+  <div class="gsm-marquee gsm-marquee--row-1">
+    <div class="gsm-marquee__mask gsm-marquee__mask--left"></div>
+    <div class="gsm-marquee__mask gsm-marquee__mask--right"></div>
+    <div class="gsm-marquee__track">
+      {%- for block in section.blocks -%}
+        <div class="gsm-marquee__logo" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
+            {%- if block.settings.logo != blank -%}
+              {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'gsm-marquee__logo-img', alt: block.settings.name }}
+            {%- else -%}
+              <span class="gsm-marquee__logo-placeholder">{{ block.settings.name }}</span>
+            {%- endif -%}
+          {%- if block.settings.link != blank -%}</a>{%- endif -%}
+        </div>
+      {%- endfor -%}
+      {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        <div class="gsm-marquee__logo" aria-hidden="true">
+          {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" tabindex="-1">{%- endif -%}
+            {%- if block.settings.logo != blank -%}
+              {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'gsm-marquee__logo-img', alt: '' }}
+            {%- else -%}
+              <span class="gsm-marquee__logo-placeholder">{{ block.settings.name }}</span>
+            {%- endif -%}
+          {%- if block.settings.link != blank -%}</a>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="gsm-marquee gsm-marquee--row-2">
+    <div class="gsm-marquee__mask gsm-marquee__mask--left"></div>
+    <div class="gsm-marquee__mask gsm-marquee__mask--right"></div>
+    <div class="gsm-marquee__track gsm-marquee__track--reverse">
+      {%- for block in section.blocks reversed -%}
+        <div class="gsm-marquee__logo" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
+            {%- if block.settings.logo != blank -%}
+              {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'gsm-marquee__logo-img', alt: block.settings.name }}
+            {%- else -%}
+              <span class="gsm-marquee__logo-placeholder">{{ block.settings.name }}</span>
+            {%- endif -%}
+          {%- if block.settings.link != blank -%}</a>{%- endif -%}
+        </div>
+      {%- endfor -%}
+      {%- for block in section.blocks reversed -%}
+        <div class="gsm-marquee__logo" aria-hidden="true">
+          {%- if block.settings.logo != blank -%}
+            {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'gsm-marquee__logo-img', alt: '' }}
+          {%- else -%}
+            <span class="gsm-marquee__logo-placeholder">{{ block.settings.name }}</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GSMPRO Marcas",
+  "tag": "section",
+  "class": "section-gsm-marquee",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Etiqueta", "default": "Marcas Oficiales" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Solo las Mejores Marcas" }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Marca",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Marca" },
+        { "type": "image_picker", "id": "logo", "label": "Logo" },
+        { "type": "url", "id": "link", "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GSMPRO Marcas",
+      "blocks": [
+        { "type": "brand", "settings": { "name": "Google" } },
+        { "type": "brand", "settings": { "name": "Apple" } },
+        { "type": "brand", "settings": { "name": "Samsung" } },
+        { "type": "brand", "settings": { "name": "Motorola" } },
+        { "type": "brand", "settings": { "name": "Vivo" } },
+        { "type": "brand", "settings": { "name": "ZTE" } },
+        { "type": "brand", "settings": { "name": "Red Magic" } },
+        { "type": "brand", "settings": { "name": "CAT" } },
+        { "type": "brand", "settings": { "name": "Valve" } },
+        { "type": "brand", "settings": { "name": "Sony" } },
+        { "type": "brand", "settings": { "name": "Xbox" } },
+        { "type": "brand", "settings": { "name": "Amazon" } },
+        { "type": "brand", "settings": { "name": "Meta" } },
+        { "type": "brand", "settings": { "name": "Ray-Ban" } },
+        { "type": "brand", "settings": { "name": "Oakley" } },
+        { "type": "brand", "settings": { "name": "DJI" } },
+        { "type": "brand", "settings": { "name": "Hollyland" } },
+        { "type": "brand", "settings": { "name": "Asus ROG" } },
+        { "type": "brand", "settings": { "name": "Dell" } },
+        { "type": "brand", "settings": { "name": "HP" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{% doc %}
+  Predictive search results partial for header search.
+  @param {object} predictive_search - Shopify predictive search object
+{% enddoc %}
+
+{%- if predictive_search.resources.products.size > 0 -%}
+  <p class="gsm-predictive-search__group-title">{{ 'general.search' | t }} — Productos</p>
+  {%- for product in predictive_search.resources.products limit: 6 -%}
+    <a href="{{ product.url }}" class="gsm-predictive-search__item" role="option">
+      {%- if product.featured_media -%}
+        <img
+          class="gsm-predictive-search__thumb"
+          src="{{ product.featured_media | image_url: width: 96 }}"
+          alt="{{ product.featured_media.alt | escape }}"
+          width="48"
+          height="48"
+          loading="lazy"
+        >
+      {%- else -%}
+        <div class="gsm-predictive-search__thumb placeholder-image placeholder-image--square"></div>
+      {%- endif -%}
+      <span>{{ product.title }}</span>
+      <span class="gsm-predictive-search__price">{%- render 'gsm-money', amount: product.price -%}</span>
+    </a>
+  {%- endfor -%}
+{%- endif -%}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "gsm-page-cotizacion",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

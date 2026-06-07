@@ -1,0 +1,113 @@
+{% doc %}
+  Structured data (JSON-LD) for Organization, WebSite, BreadcrumbList, and Product.
+{% enddoc %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": {{ shop.url | append: '#organization' | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }}
+      {%- if settings.logo != blank -%}
+      ,"logo": {{ settings.logo | image_url: width: 512 | prepend: 'https:' | json }}
+      {%- endif -%}
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ shop.url | append: '#website' | json }},
+      "url": {{ shop.url | json }},
+      "name": {{ shop.name | json }},
+      "publisher": { "@id": {{ shop.url | append: '#organization' | json }} },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": {{ shop.url | append: routes.search_url | append: '?q={search_term_string}' | json }}
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+
+{%- if template.name == 'product' -%}
+  {%- assign jsonld_variant = product.selected_or_first_available_variant -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "description": {{ product.description | strip_html | truncate: 5000 | json }},
+    "url": {{ shop.url | append: product.url | json }},
+    {%- if product.featured_media -%}
+    "image": [
+      {{ product.featured_media | image_url: width: 1200 | prepend: 'https:' | json }}
+    ],
+    {%- endif -%}
+    {%- if product.vendor != blank -%}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+    {%- endif -%}
+    "sku": {{ jsonld_variant.sku | default: jsonld_variant.id | json }},
+    "offers": {
+      "@type": "Offer",
+      "url": {{ shop.url | append: product.url | json }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "price": {{ jsonld_variant.price | divided_by: 100.0 | json }},
+      "availability": "{% if jsonld_variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+      "itemCondition": "https://schema.org/NewCondition"
+    }
+  }
+  </script>
+{%- endif -%}
+
+{%- if template.name == 'collection' or template.name == 'product' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": {{ 'general.home' | t | json }},
+        "item": {{ shop.url | json }}
+      }
+      {%- if template.name == 'collection' -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ collection.title | json }},
+        "item": {{ shop.url | append: collection.url | json }}
+      }
+      {%- elsif template.name == 'product' and collection -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ collection.title | json }},
+        "item": {{ shop.url | append: collection.url | json }}
+      }
+      ,{
+        "@type": "ListItem",
+        "position": 3,
+        "name": {{ product.title | json }},
+        "item": {{ shop.url | append: product.url | json }}
+      }
+      {%- elsif template.name == 'product' -%}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ product.title | json }},
+        "item": {{ shop.url | append: product.url | json }}
+      }
+      {%- endif -%}
+    ]
+  }
+  </script>
+{%- endif -%}

@@ -1,0 +1,67 @@
+<section class="gsm-section gsm-hubs">
+  <div class="page-width">
+    <div class="gsm-section__header">
+      {%- if section.settings.label != blank -%}
+        <span class="gsm-section__label">{{ section.settings.label }}</span>
+      {%- endif -%}
+      <div class="gsm-hubs__title-row">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.stat_badge != blank -%}
+          <span class="gsm-badge gsm-hubs__badge">{{ section.settings.stat_badge }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="gsm-hubs__grid">
+      {%- for block in section.blocks -%}
+        <div class="gsm-hubs__card gsm-card" {{ block.shopify_attributes }}>
+          <div class="gsm-hubs__icon">
+            <span class="material-symbols-outlined" aria-hidden="true">{{ block.settings.icon | default: 'location_on' }}</span>
+          </div>
+          <h3 class="gsm-hubs__name">{{ block.settings.title }}</h3>
+          {%- if block.settings.subtitle != blank -%}
+            <p class="gsm-hubs__subtitle">{{ block.settings.subtitle }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GSMPRO Hubs",
+  "tag": "section",
+  "class": "section-gsm-hubs",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Etiqueta", "default": "Sourcing Internacional" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Los Mejores Precios Del Mundo" },
+    { "type": "text", "id": "stat_badge", "label": "Badge estadística", "default": "5+ Hubs de Abastecimiento" }
+  ],
+  "blocks": [
+    {
+      "type": "hub",
+      "name": "Hub",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icono Material", "default": "location_on" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Hub" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Centro de abastecimiento" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GSMPRO Hubs",
+      "blocks": [
+        { "type": "hub", "settings": { "title": "Dubai", "subtitle": "Emiratos Árabes Unidos", "icon": "flight_takeoff" } },
+        { "type": "hub", "settings": { "title": "Singapur", "subtitle": "Sudeste Asiático", "icon": "hub" } },
+        { "type": "hub", "settings": { "title": "Hong Kong", "subtitle": "Puerta de entrada a China", "icon": "sailing" } },
+        { "type": "hub", "settings": { "title": "Estados Unidos", "subtitle": "Miami & Los Angeles", "icon": "public" } },
+        { "type": "hub", "settings": { "title": "China (Shenzhen)", "subtitle": "Manufactura directa", "icon": "factory" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,198 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "blocks": {
+        "menu_nuevos": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "nuevos",
+            "title": "Nuevos Lanzamientos",
+            "url": "/collections/nuevos-lanzamientos"
+          }
+        },
+        "menu_vendidos": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "vendidos",
+            "title": "Más Vendidos",
+            "url": "/collections/mas-vendidos"
+          }
+        },
+        "menu_celulares": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "celulares",
+            "title": "Celulares",
+            "url": "/collections/celulares"
+          }
+        },
+        "child_iphone": {
+          "type": "menu_child",
+          "settings": {
+            "parent": "celulares",
+            "handle": "iphone",
+            "title": "iPhone",
+            "url": "/collections/iphone"
+          }
+        },
+        "grand_iphone16": {
+          "type": "menu_grandchild",
+          "settings": {
+            "parent": "iphone",
+            "title": "iPhone 16",
+            "url": "/collections/iphone-16"
+          }
+        },
+        "grand_iphone15": {
+          "type": "menu_grandchild",
+          "settings": {
+            "parent": "iphone",
+            "title": "iPhone 15",
+            "url": "/collections/iphone-15"
+          }
+        },
+        "grand_iphone14": {
+          "type": "menu_grandchild",
+          "settings": {
+            "parent": "iphone",
+            "title": "iPhone 14",
+            "url": "/collections/iphone-14"
+          }
+        },
+        "child_pixel": {
+          "type": "menu_child",
+          "settings": {
+            "parent": "celulares",
+            "handle": "pixel",
+            "title": "Google Pixel",
+            "url": "/collections/google-pixel"
+          }
+        },
+        "child_samsung": {
+          "type": "menu_child",
+          "settings": {
+            "parent": "celulares",
+            "handle": "samsung",
+            "title": "Samsung",
+            "url": "/collections/samsung"
+          }
+        },
+        "child_xiaomi": {
+          "type": "menu_child",
+          "settings": {
+            "parent": "celulares",
+            "handle": "xiaomi",
+            "title": "Xiaomi",
+            "url": "/collections/xiaomi"
+          }
+        },
+        "child_vivo": {
+          "type": "menu_child",
+          "settings": {
+            "parent": "celulares",
+            "handle": "vivo",
+            "title": "Vivo",
+            "url": "/collections/vivo"
+          }
+        },
+        "child_otras": {
+          "type": "menu_child",
+          "settings": {
+            "parent": "celulares",
+            "handle": "otras",
+            "title": "Otras Marcas",
+            "url": "/collections/otras-marcas"
+          }
+        },
+        "child_accesorios": {
+          "type": "menu_child",
+          "settings": {
+            "parent": "celulares",
+            "handle": "accesorios-cel",
+            "title": "Accesorios",
+            "url": "/collections/accesorios-celulares"
+          }
+        },
+        "menu_consolas": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "consolas",
+            "title": "Consolas",
+            "url": "/collections/consolas"
+          }
+        },
+        "menu_vr": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "vr",
+            "title": "Realidad Virtual",
+            "url": "/collections/realidad-virtual"
+          }
+        },
+        "menu_computacion": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "computacion",
+            "title": "Computación",
+            "url": "/collections/computacion"
+          }
+        },
+        "menu_audio": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "audio",
+            "title": "Audio",
+            "url": "/collections/audio"
+          }
+        },
+        "menu_reacondicionados": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "reacondicionados",
+            "title": "Reacondicionados",
+            "url": "/collections/reacondicionados"
+          }
+        },
+        "menu_mas_tech": {
+          "type": "menu_item",
+          "settings": {
+            "handle": "mas-tech",
+            "title": "Más Tecnología",
+            "url": "/collections/mas-tecnologia"
+          }
+        }
+      },
+      "block_order": [
+        "menu_nuevos",
+        "menu_vendidos",
+        "menu_celulares",
+        "child_iphone",
+        "grand_iphone16",
+        "grand_iphone15",
+        "grand_iphone14",
+        "child_pixel",
+        "child_samsung",
+        "child_xiaomi",
+        "child_vivo",
+        "child_otras",
+        "child_accesorios",
+        "menu_consolas",
+        "menu_vr",
+        "menu_computacion",
+        "menu_audio",
+        "menu_reacondicionados",
+        "menu_mas_tech"
+      ],
+      "settings": {
+        "quote_url": "/pages/cotizaciones",
+        "track_url": "/pages/rastrea-tu-pedido",
+        "help_phone": "+56 9 9136 9127",
+        "help_email": "contacto@gsmpro.cl"
+      }
+    }
+  },
+  "order": ["header"]
+}

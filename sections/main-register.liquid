@@ -1,0 +1,41 @@
+<section class="gsm-customer page-width">
+  <div class="gsm-customer__card">
+    <h1 class="gsm-customer__title">{{ 'customer.register.title' | t }}</h1>
+
+    {% form 'create_customer' %}
+      {%- if form.errors -%}
+        <div class="gsm-customer__errors">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+
+      <div class="gsm-form-field">
+        <label for="RegisterFirstName">{{ 'customer.register.first_name' | t }}</label>
+        <input id="RegisterFirstName" type="text" name="customer[first_name]" autocomplete="given-name" required>
+      </div>
+      <div class="gsm-form-field">
+        <label for="RegisterLastName">{{ 'customer.register.last_name' | t }}</label>
+        <input id="RegisterLastName" type="text" name="customer[last_name]" autocomplete="family-name" required>
+      </div>
+      <div class="gsm-form-field">
+        <label for="RegisterEmail">{{ 'customer.login.email' | t }}</label>
+        <input id="RegisterEmail" type="email" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="gsm-form-field">
+        <label for="RegisterPassword">{{ 'customer.login.password' | t }}</label>
+        <input id="RegisterPassword" type="password" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="btn btn--primary" style="width: 100%;">{{ 'customer.register.submit' | t }}</button>
+    {% endform %}
+
+    <p class="gsm-customer__links">
+      <a href="{{ routes.account_login_url }}">{{ 'customer.register.sign_in' | t }}</a>
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Registro cliente",
+  "class": "section-main-register",
+  "settings": []
+}
+{% endschema %}

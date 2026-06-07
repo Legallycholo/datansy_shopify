@@ -1,0 +1,92 @@
+<section class="gsm-section gsm-regions">
+  <div class="page-width">
+    <div class="gsm-section__header gsm-section__header--center">
+      {%- if section.settings.label != blank -%}
+        <span class="gsm-section__label">{{ section.settings.label }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="gsm-regions__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign use_market_switch = false
+          if section.settings.enable_market_switch and block.settings.country_iso_code != blank and block.settings.url == blank
+            assign use_market_switch = true
+          endif
+        -%}
+        <div class="gsm-regions__card gsm-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.url != blank -%}
+            <a href="{{ block.settings.url }}" class="gsm-regions__link">
+          {%- elsif use_market_switch -%}
+            <button type="button" class="gsm-regions__link gsm-regions__link--button" data-market-switch="{{ block.settings.country_iso_code }}" aria-label="{{ 'localization.switch_to' | t: country: block.settings.country }}">
+          {%- else -%}
+            <div class="gsm-regions__link gsm-regions__link--static">
+          {%- endif -%}
+            <div class="gsm-regions__flag">
+              {%- if block.settings.flag != blank -%}
+                {{ block.settings.flag | image_url: width: 120 | image_tag: loading: 'lazy', alt: block.settings.country }}
+              {%- else -%}
+                <div class="gsm-regions__flag-placeholder" aria-hidden="true">{{ block.settings.emoji | default: '🏳️' }}</div>
+              {%- endif -%}
+            </div>
+            <span class="gsm-regions__name">{{ block.settings.country }}</span>
+          {%- if block.settings.url != blank -%}
+            </a>
+          {%- elsif use_market_switch -%}
+            </button>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GSMPRO Regiones",
+  "tag": "section",
+  "class": "section-gsm-regions",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Etiqueta", "default": "Cobertura Regional" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Operamos en 6 Países" },
+    {
+      "type": "checkbox",
+      "id": "enable_market_switch",
+      "label": "Tarjetas cambian mercado (ISO)",
+      "default": true,
+      "info": "Si no hay URL, el clic envía el formulario /localization con el código ISO del país."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "country",
+      "name": "País",
+      "settings": [
+        { "type": "text", "id": "country", "label": "Nombre", "default": "Chile" },
+        { "type": "text", "id": "country_iso_code", "label": "Código ISO", "default": "CL", "info": "CL, AR, PE, CO, MX, US, BR" },
+        { "type": "text", "id": "emoji", "label": "Emoji bandera (placeholder)", "default": "🇨🇱" },
+        { "type": "image_picker", "id": "flag", "label": "Imagen bandera" },
+        { "type": "url", "id": "url", "label": "Enlace mercado (opcional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GSMPRO Regiones",
+      "blocks": [
+        { "type": "country", "settings": { "country": "Chile", "country_iso_code": "CL", "emoji": "🇨🇱" } },
+        { "type": "country", "settings": { "country": "Argentina", "country_iso_code": "AR", "emoji": "🇦🇷" } },
+        { "type": "country", "settings": { "country": "Perú", "country_iso_code": "PE", "emoji": "🇵🇪" } },
+        { "type": "country", "settings": { "country": "Colombia", "country_iso_code": "CO", "emoji": "🇨🇴" } },
+        { "type": "country", "settings": { "country": "México", "country_iso_code": "MX", "emoji": "🇲🇽" } },
+        { "type": "country", "settings": { "country": "Estados Unidos", "country_iso_code": "US", "emoji": "🇺🇸" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

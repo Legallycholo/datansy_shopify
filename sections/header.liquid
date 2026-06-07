@@ -1,0 +1,330 @@
+<header class="gsm-header" data-section-id="{{ section.id }}" data-section-type="header">
+  <div class="page-width">
+    <div class="gsm-header__inner">
+      {%- comment -%} Mobile menu toggle {%- endcomment -%}
+      <button
+        type="button"
+        class="gsm-header__menu-toggle hidden-desktop"
+        data-mobile-nav-open
+        aria-expanded="false"
+        aria-controls="GsmMobileNav"
+        aria-label="{{ 'accessibility.menu_toggle' | t }}"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      </button>
+
+      {%- comment -%} Logo {%- endcomment -%}
+      <div class="gsm-header__logo">
+        <a href="{{ routes.root_url }}" class="gsm-header__logo-link">
+          {%- if section.settings.logo != blank -%}
+            {{
+              section.settings.logo
+              | image_url: width: 400
+              | image_tag:
+                class: 'gsm-header__logo-img',
+                widths: '160, 240, 320',
+                alt: shop.name,
+                width: section.settings.logo_width,
+                loading: 'eager'
+            }}
+          {%- elsif settings.logo != blank -%}
+            {{
+              settings.logo
+              | image_url: width: 400
+              | image_tag:
+                class: 'gsm-header__logo-img',
+                widths: '160, 240, 320',
+                alt: shop.name,
+                width: settings.logo_width,
+                loading: 'eager'
+            }}
+          {%- else -%}
+            {{
+              'datansy-logo-white.png'
+              | asset_url
+              | image_tag:
+                class: 'gsm-header__logo-img',
+                alt: shop.name,
+                width: settings.logo_width,
+                height: 40,
+                loading: 'eager'
+            }}
+          {%- endif -%}
+        </a>
+      </div>
+
+      {%- comment -%} Desktop navigation {%- endcomment -%}
+      <nav class="gsm-header__nav" aria-label="{{ 'general.menu' | t }}">
+        <ul class="gsm-header__menu">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'menu_item' -%}
+              {%- assign parent_handle = block.settings.handle -%}
+              {%- assign child_count = 0 -%}
+              {%- for child in section.blocks -%}
+                {%- if child.type == 'menu_child' and child.settings.parent == parent_handle -%}
+                  {%- assign child_count = child_count | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              <li
+                class="gsm-header__menu-item{% if child_count > 0 %} gsm-header__menu-item--has-mega{% endif %}"
+                data-mega-menu-item
+                {{ block.shopify_attributes }}
+              >
+                {%- if child_count > 0 -%}
+                  <a href="{{ block.settings.url }}" class="gsm-header__menu-link">
+                    {{ block.settings.title }}
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                  </a>
+                  <div class="gsm-mega-menu gsm-mega-menu--wide">
+                    {%- for child in section.blocks -%}
+                      {%- if child.type == 'menu_child' and child.settings.parent == parent_handle -%}
+                        {%- assign child_handle = child.settings.handle -%}
+                        <div class="gsm-mega-menu__column" {{ child.shopify_attributes }}>
+                          <p class="gsm-mega-menu__column-title">
+                            {%- if child.settings.url != blank -%}
+                              <a href="{{ child.settings.url }}">{{ child.settings.title }}</a>
+                            {%- else -%}
+                              {{ child.settings.title }}
+                            {%- endif -%}
+                          </p>
+                          {%- for grand in section.blocks -%}
+                            {%- if grand.type == 'menu_grandchild' and grand.settings.parent == child_handle -%}
+                              <a href="{{ grand.settings.url }}" class="gsm-mega-menu__link" {{ grand.shopify_attributes }}>
+                                {{ grand.settings.title }}
+                              </a>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                {%- else -%}
+                  <a href="{{ block.settings.url }}" class="gsm-header__menu-link">
+                    {{ block.settings.title }}
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+
+          <li class="gsm-header__menu-item">
+            <a href="{{ section.settings.quote_url }}" class="gsm-header__menu-link">{{ 'header.quote' | t }}</a>
+          </li>
+          <li class="gsm-header__menu-item">
+            <a href="{{ section.settings.track_url }}" class="gsm-header__menu-link">{{ 'header.track_order' | t }}</a>
+          </li>
+        </ul>
+      </nav>
+
+      {%- comment -%} Desktop search {%- endcomment -%}
+      <div class="gsm-header__search hidden-mobile">
+        {% render 'gsm-search-form', id_suffix: 'desktop', show_category: true %}
+      </div>
+
+      {%- comment -%} Actions: search (mobile), localization, account, cart {%- endcomment -%}
+      <div class="gsm-header__actions">
+        <button
+          type="button"
+          class="gsm-header__action gsm-header__search-toggle hidden-desktop"
+          data-mobile-search-toggle
+          aria-expanded="false"
+          aria-label="{{ 'accessibility.search_toggle' | t }}"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        </button>
+
+        <div class="hidden-mobile">
+          {% render 'gsm-localization', form_id: 'HeaderLocalizationForm' %}
+        </div>
+
+        <a href="{{ routes.account_url }}" class="gsm-header__action" aria-label="{{ 'general.account' | t }}">
+          <span class="material-symbols-outlined" aria-hidden="true">person</span>
+          <span class="gsm-header__action-label">{{ 'general.account' | t }}</span>
+        </a>
+
+        <button
+          type="button"
+          class="gsm-header__action"
+          data-cart-open
+          aria-label="{{ 'accessibility.cart_toggle' | t }}"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
+          <span class="gsm-header__cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+          <span class="gsm-header__action-label">{{ 'general.cart' | t }}</span>
+        </button>
+      </div>
+    </div>
+
+    {%- comment -%} Mobile search bar {%- endcomment -%}
+    <div class="gsm-header__mobile-search hidden-desktop" data-mobile-search-bar>
+      {% render 'gsm-search-form', id_suffix: 'mobile', show_category: false %}
+    </div>
+  </div>
+</header>
+
+<div id="GsmOverlay" class="gsm-overlay" aria-hidden="true"></div>
+
+{% render 'gsm-mobile-nav', section: section %}
+
+{%- if settings.cart_type == 'drawer' -%}
+  {% render 'gsm-cart-drawer' %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo del header"
+    },
+    {
+      "type": "url",
+      "id": "quote_url",
+      "label": "URL Cotización"
+    },
+    {
+      "type": "url",
+      "id": "track_url",
+      "label": "URL Rastrea tu Pedido"
+    },
+    {
+      "type": "header",
+      "content": "Bloque de ayuda (mobile)"
+    },
+    {
+      "type": "text",
+      "id": "help_phone",
+      "label": "Teléfono",
+      "default": "+56 9 9136 9127"
+    },
+    {
+      "type": "text",
+      "id": "help_email",
+      "label": "Email",
+      "default": "contacto@gsmpro.cl"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "social_youtube",
+      "label": "YouTube"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_item",
+      "name": "Menú principal",
+      "settings": [
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "ID único",
+          "info": "Identificador interno (ej: celulares)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Enlace"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    },
+    {
+      "type": "menu_child",
+      "name": "Submenú (columna)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "ID menú padre",
+          "info": "Debe coincidir con el ID del menú principal"
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "ID único",
+          "info": "Identificador interno (ej: iphone)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Subcategoría"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    },
+    {
+      "type": "menu_grandchild",
+      "name": "Submenú (enlace)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "ID submenú padre",
+          "info": "Debe coincidir con el ID del submenú"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Enlace"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header GSMPRO",
+      "blocks": [
+        { "type": "menu_item", "settings": { "handle": "nuevos", "title": "Nuevos Lanzamientos", "url": "/collections/nuevos-lanzamientos" } },
+        { "type": "menu_item", "settings": { "handle": "vendidos", "title": "Más Vendidos", "url": "/collections/mas-vendidos" } },
+        { "type": "menu_item", "settings": { "handle": "celulares", "title": "Celulares", "url": "/collections/celulares" } },
+        { "type": "menu_child", "settings": { "parent": "celulares", "handle": "iphone", "title": "iPhone", "url": "/collections/iphone" } },
+        { "type": "menu_grandchild", "settings": { "parent": "iphone", "title": "iPhone 16", "url": "/collections/iphone-16" } },
+        { "type": "menu_grandchild", "settings": { "parent": "iphone", "title": "iPhone 15", "url": "/collections/iphone-15" } },
+        { "type": "menu_grandchild", "settings": { "parent": "iphone", "title": "iPhone 14", "url": "/collections/iphone-14" } },
+        { "type": "menu_child", "settings": { "parent": "celulares", "handle": "pixel", "title": "Google Pixel", "url": "/collections/google-pixel" } },
+        { "type": "menu_child", "settings": { "parent": "celulares", "handle": "samsung", "title": "Samsung", "url": "/collections/samsung" } },
+        { "type": "menu_child", "settings": { "parent": "celulares", "handle": "xiaomi", "title": "Xiaomi", "url": "/collections/xiaomi" } },
+        { "type": "menu_child", "settings": { "parent": "celulares", "handle": "vivo", "title": "Vivo", "url": "/collections/vivo" } },
+        { "type": "menu_child", "settings": { "parent": "celulares", "handle": "otras", "title": "Otras Marcas", "url": "/collections/otras-marcas" } },
+        { "type": "menu_child", "settings": { "parent": "celulares", "handle": "accesorios-cel", "title": "Accesorios", "url": "/collections/accesorios-celulares" } },
+        { "type": "menu_item", "settings": { "handle": "consolas", "title": "Consolas", "url": "/collections/consolas" } },
+        { "type": "menu_item", "settings": { "handle": "vr", "title": "Realidad Virtual", "url": "/collections/realidad-virtual" } },
+        { "type": "menu_item", "settings": { "handle": "computacion", "title": "Computación", "url": "/collections/computacion" } },
+        { "type": "menu_item", "settings": { "handle": "audio", "title": "Audio", "url": "/collections/audio" } },
+        { "type": "menu_item", "settings": { "handle": "reacondicionados", "title": "Reacondicionados", "url": "/collections/reacondicionados" } },
+        { "type": "menu_item", "settings": { "handle": "mas-tech", "title": "Más Tecnología", "url": "/collections/mas-tecnologia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

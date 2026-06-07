@@ -1,0 +1,306 @@
+<footer class="gsm-footer" data-section-id="{{ section.id }}" data-section-type="footer">
+  <div class="gsm-footer__main">
+    <div class="page-width">
+      <div class="gsm-footer__grid">
+        {%- comment -%} Column 1 — Nosotros {%- endcomment -%}
+        <div class="gsm-footer__column is-open" data-footer-column>
+          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="true">
+            {{ section.settings.column_1_title }}
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="gsm-footer__column-body">
+            <nav class="gsm-footer__links" aria-label="{{ section.settings.column_1_title }}">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'link' and block.settings.group == 'nosotros' -%}
+                  <a href="{{ block.settings.url }}" class="gsm-footer__link" {{ block.shopify_attributes }}>
+                    {{ block.settings.title }}
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </nav>
+          </div>
+        </div>
+
+        {%- comment -%} Column 2 — Menú 2026 {%- endcomment -%}
+        <div class="gsm-footer__column" data-footer-column>
+          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
+            {{ section.settings.column_2_title }}
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="gsm-footer__column-body">
+            <nav class="gsm-footer__links" aria-label="{{ section.settings.column_2_title }}">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'link' and block.settings.group == 'menu' -%}
+                  <a href="{{ block.settings.url }}" class="gsm-footer__link" {{ block.shopify_attributes }}>
+                    {{ block.settings.title }}
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </nav>
+          </div>
+        </div>
+
+        {%- comment -%} Column 3 — Contact {%- endcomment -%}
+        <div class="gsm-footer__column" data-footer-column>
+          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
+            {{ section.settings.contact_title }}
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="gsm-footer__column-body">
+            {%- if section.settings.whatsapp_cl != blank -%}
+              <div class="gsm-footer__contact-item">
+                <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+                <div>
+                  <strong>WhatsApp Chile</strong><br>
+                  <a href="https://wa.me/{{ section.settings.whatsapp_cl | replace: '+', '' | replace: ' ', '' }}">{{ section.settings.whatsapp_cl }}</a>
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.phone_intl != blank -%}
+              <div class="gsm-footer__contact-item">
+                <span class="material-symbols-outlined" aria-hidden="true">public</span>
+                <div>
+                  <strong>Internacional</strong><br>
+                  <a href="tel:{{ section.settings.phone_intl | replace: ' ', '' }}">{{ section.settings.phone_intl }}</a>
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.phone_callcenter != blank -%}
+              <div class="gsm-footer__contact-item">
+                <span class="material-symbols-outlined" aria-hidden="true">call</span>
+                <div>
+                  <strong>Call center</strong><br>
+                  <a href="tel:{{ section.settings.phone_callcenter | replace: ' ', '' }}">{{ section.settings.phone_callcenter }}</a>
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.email != blank -%}
+              <div class="gsm-footer__contact-item">
+                <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                <div>
+                  <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.hours != blank -%}
+              <div class="gsm-footer__hours">{{ section.settings.hours }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gsm-footer__bottom">
+    <div class="page-width">
+      <div class="gsm-footer__bottom-inner">
+        <div class="gsm-footer__localization">
+          {% render 'gsm-localization', class_prefix: 'gsm-localization gsm-localization--footer', form_id: 'FooterLocalizationForm', compact: true %}
+        </div>
+
+        <div class="gsm-footer__payments" aria-label="Medios de pago">
+          <span class="gsm-footer__payment-icon">VISA</span>
+          <span class="gsm-footer__payment-icon">MC</span>
+          <span class="gsm-footer__payment-icon">AMEX</span>
+          <span class="gsm-footer__payment-icon">PayPal</span>
+          <span class="gsm-footer__payment-icon">Apple Pay</span>
+          <span class="gsm-footer__payment-icon">G Pay</span>
+        </div>
+
+        <div class="gsm-footer__social">
+          {%- if section.settings.social_facebook != blank -%}
+            <a href="{{ section.settings.social_facebook }}" class="gsm-footer__social-link" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
+          {%- endif -%}
+          {%- if section.settings.social_twitter != blank -%}
+            <a href="{{ section.settings.social_twitter }}" class="gsm-footer__social-link" aria-label="Twitter" target="_blank" rel="noopener">X</a>
+          {%- endif -%}
+          {%- if section.settings.social_instagram != blank -%}
+            <a href="{{ section.settings.social_instagram }}" class="gsm-footer__social-link" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+          {%- endif -%}
+          {%- if section.settings.social_youtube != blank -%}
+            <a href="{{ section.settings.social_youtube }}" class="gsm-footer__social-link" aria-label="YouTube" target="_blank" rel="noopener">YT</a>
+          {%- endif -%}
+          {%- if section.settings.social_tiktok != blank -%}
+            <a href="{{ section.settings.social_tiktok }}" class="gsm-footer__social-link" aria-label="TikTok" target="_blank" rel="noopener">TT</a>
+          {%- endif -%}
+          {%- if section.settings.social_linkedin != blank -%}
+            <a href="{{ section.settings.social_linkedin }}" class="gsm-footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener">IN</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div style="margin-top: var(--space-6); text-align: center;">
+        {%- if section.settings.recaptcha_notice != blank -%}
+          <p class="gsm-footer__legal">{{ section.settings.recaptcha_notice }}</p>
+        {%- endif -%}
+        <p class="gsm-footer__copyright">
+          &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.
+          {%- if section.settings.copyright_text != blank -%}
+            {{ section.settings.copyright_text }}
+          {%- endif -%}
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "column_1_title",
+      "label": "Título columna 1",
+      "default": "Nosotros"
+    },
+    {
+      "type": "text",
+      "id": "column_2_title",
+      "label": "Título columna 2",
+      "default": "Menú 2026"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Título contacto",
+      "default": "Contacto"
+    },
+    {
+      "type": "header",
+      "content": "Información de contacto"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_cl",
+      "label": "WhatsApp Chile",
+      "default": "+56 9 9136 9127"
+    },
+    {
+      "type": "text",
+      "id": "phone_intl",
+      "label": "Teléfono internacional",
+      "default": "+1 754 200 9891"
+    },
+    {
+      "type": "text",
+      "id": "phone_callcenter",
+      "label": "Call center",
+      "default": "+56 2 2938 1889"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "contacto@gsmpro.cl"
+    },
+    {
+      "type": "textarea",
+      "id": "hours",
+      "label": "Horario de atención",
+      "default": "Lun–Vie 7:00–23:00\nSab–Dom 9:00–22:00"
+    },
+    {
+      "type": "header",
+      "content": "Redes sociales"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "Twitter / X"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "social_youtube",
+      "label": "YouTube"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "TikTok"
+    },
+    {
+      "type": "url",
+      "id": "social_linkedin",
+      "label": "LinkedIn"
+    },
+    {
+      "type": "header",
+      "content": "Legal"
+    },
+    {
+      "type": "textarea",
+      "id": "recaptcha_notice",
+      "label": "Aviso reCAPTCHA",
+      "default": "Este sitio está protegido por reCAPTCHA y se aplican la Política de Privacidad y los Términos de Servicio de Google."
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Texto copyright adicional",
+      "default": "Todos los derechos reservados."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Enlace",
+      "settings": [
+        {
+          "type": "select",
+          "id": "group",
+          "label": "Columna",
+          "options": [
+            { "value": "nosotros", "label": "Nosotros" },
+            { "value": "menu", "label": "Menú 2026" }
+          ],
+          "default": "nosotros"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Enlace"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer GSMPRO",
+      "blocks": [
+        { "type": "link", "settings": { "group": "nosotros", "title": "Quienes Somos", "url": "/pages/sobre-nosotros" } },
+        { "type": "link", "settings": { "group": "nosotros", "title": "Referidos", "url": "/pages/referidos" } },
+        { "type": "link", "settings": { "group": "nosotros", "title": "Venta a Empresas", "url": "/pages/club-propartner" } },
+        { "type": "link", "settings": { "group": "nosotros", "title": "Blog", "url": "/blogs/noticias" } },
+        { "type": "link", "settings": { "group": "nosotros", "title": "Contacto", "url": "/pages/contact" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Nuevos Lanzamientos", "url": "/collections/nuevos-lanzamientos" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Celulares", "url": "/collections/celulares" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Consolas", "url": "/collections/consolas" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Realidad Virtual", "url": "/collections/realidad-virtual" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Computación", "url": "/collections/computacion" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Audio", "url": "/collections/audio" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Reacondicionados", "url": "/collections/reacondicionados" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Cotización", "url": "/pages/cotizaciones" } },
+        { "type": "link", "settings": { "group": "menu", "title": "Rastrea tu Pedido", "url": "/pages/rastrea-tu-pedido" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

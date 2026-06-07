@@ -1,0 +1,33 @@
+<section class="gsm-section page-width" style="padding: var(--space-8) 0 var(--space-12);">
+  <div class="gsm-section__header gsm-section__header--center">
+    <h1 class="gsm-section__heading">{{ 'collections.all_title' | t }}</h1>
+  </div>
+
+  <div class="gsm-featured-collections__grid">
+    {%- for collection in collections -%}
+      {%- unless collection.handle == 'frontpage' -%}
+        <a href="{{ collection.url }}" class="gsm-featured-collections__card gsm-card">
+          <div class="gsm-featured-collections__media">
+            {%- if collection.featured_image -%}
+              {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: collection.title }}
+            {%- else -%}
+              <div class="placeholder-image">{{ collection.title }}</div>
+            {%- endif -%}
+          </div>
+          <div class="gsm-featured-collections__info">
+            <h2 class="gsm-featured-collections__title">{{ collection.title }}</h2>
+            <p class="gsm-featured-collections__subtitle">{{ collection.products_count }} productos</p>
+          </div>
+        </a>
+      {%- endunless -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lista de colecciones",
+  "class": "section-main-list-collections",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,23 @@
+<section class="gsm-page page-width{% if section.settings.wide_layout %} gsm-page--wide{% endif %}">
+  <header class="gsm-page__header">
+    <h1 class="gsm-page__title">{{ page.title }}</h1>
+  </header>
+  <div class="gsm-page__content rte">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Página",
+  "class": "section-main-page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wide_layout",
+      "label": "Ancho completo",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

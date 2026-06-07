@@ -1,0 +1,94 @@
+<section class="gsm-cart-page page-width" data-section-id="{{ section.id }}">
+  <div class="gsm-cart-page__header">
+    <h1 class="gsm-cart-page__title">{{ 'cart.title' | t }}</h1>
+    {%- if cart.item_count > 0 -%}
+      <p class="gsm-cart-page__count">{{ 'cart.items_count' | t: count: cart.item_count }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- if cart.item_count == 0 -%}
+    <div class="gsm-cart-page__empty">
+      <span class="material-symbols-outlined gsm-cart-page__empty-icon" aria-hidden="true">shopping_cart</span>
+      <p style="font-size: var(--text-lg); color: var(--gsm-text-muted); margin-bottom: var(--space-6);">{{ 'cart.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">{{ 'cart.empty_cta' | t }}</a>
+    </div>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post" class="gsm-cart-page__layout" data-cart-page-form data-cart-total="{{ cart.total_price }}">
+      <div class="gsm-cart-page__items">
+        <div class="gsm-cart-page__shipping" data-cart-page-shipping>
+          {%- assign threshold = settings.free_shipping_threshold | times: 100 -%}
+          {%- assign remaining = threshold | minus: cart.total_price -%}
+          <p class="gsm-cart-page__shipping-text{% if remaining <= 0 %} is-achieved{% endif %}" data-shipping-text>
+            {%- if remaining <= 0 -%}
+              {{ 'cart.free_shipping_achieved' | t }}
+            {%- else -%}
+              {%- capture remaining_formatted -%}{% render 'gsm-money', amount: remaining %}{%- endcapture -%}
+              {{ 'cart.free_shipping_remaining' | t: amount: remaining_formatted }}
+            {%- endif -%}
+          </p>
+          <div class="gsm-cart-page__shipping-progress">
+            {%- assign pct = cart.total_price | times: 100 | divided_by: threshold | at_most: 100 -%}
+            <div class="gsm-cart-page__shipping-fill" data-shipping-fill style="width: {{ pct }}%"></div>
+          </div>
+        </div>
+
+        {%- for item in cart.items -%}
+          <div class="gsm-cart-page__item">
+            {%- if item.image -%}
+              <img class="gsm-cart-page__item-image" src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" width="100" height="100" loading="lazy">
+            {%- else -%}
+              <div class="placeholder-image placeholder-image--square gsm-cart-page__item-image">IMG</div>
+            {%- endif -%}
+            <div class="gsm-cart-page__item-details">
+              <a href="{{ item.url }}" class="gsm-cart-page__item-title">{{ item.product.title }}</a>
+              {%- unless item.variant.title == 'Default Title' -%}
+                <p class="gsm-cart-page__item-variant">{{ item.variant.title }}</p>
+              {%- endunless -%}
+              <div class="gsm-cart-page__item-bottom">
+                <span class="gsm-cart-page__item-price">{%- render 'gsm-money', amount: item.final_line_price -%}</span>
+                <div class="gsm-cart-page__qty">
+                  <button type="button" class="gsm-cart-page__qty-btn" data-cart-qty-change="-1" data-line-key="{{ item.key }}" aria-label="-">−</button>
+                  <input class="gsm-cart-page__qty-input" type="number" name="updates[]" value="{{ item.quantity }}" min="0" data-line-qty="{{ item.key }}" aria-label="{{ 'cart.quantity' | t }}">
+                  <button type="button" class="gsm-cart-page__qty-btn" data-cart-qty-change="1" data-line-key="{{ item.key }}" aria-label="+">+</button>
+                </div>
+                <button type="button" class="gsm-cart-page__remove" data-cart-remove data-line-key="{{ item.key }}">{{ 'cart.remove' | t }}</button>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+
+        <button type="submit" name="update" class="visually-hidden" data-cart-update>{{ 'cart.update' | t }}</button>
+      </div>
+
+      <aside class="gsm-cart-page__sidebar">
+        <div class="gsm-cart-page__summary-row">
+          <span>{{ 'cart.subtotal' | t }}</span>
+          <span class="gsm-cart-page__summary-total">{%- render 'gsm-money', amount: cart.total_price -%}</span>
+        </div>
+
+        <div class="gsm-cart-page__discount">
+          <label class="gsm-cart-page__discount-label" for="CartDiscount">{{ 'cart.discount_code' | t }}</label>
+          <div class="gsm-cart-page__discount-row">
+            <input id="CartDiscount" class="gsm-cart-page__discount-input" type="text" name="discount" placeholder="{{ 'cart.discount_placeholder' | t }}">
+            <button type="submit" class="gsm-cart-page__discount-btn">{{ 'cart.discount_apply' | t }}</button>
+          </div>
+        </div>
+
+        <div class="gsm-cart-page__actions">
+          <button type="submit" name="checkout" class="btn btn--primary">{{ 'cart.checkout' | t }}</button>
+        </div>
+        <p class="gsm-cart-page__continue">
+          <a href="{{ routes.all_products_collection_url }}">{{ 'cart.continue_shopping' | t }}</a>
+        </p>
+      </aside>
+    </form>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Carrito",
+  "class": "section-main-cart",
+  "settings": []
+}
+{% endschema %}

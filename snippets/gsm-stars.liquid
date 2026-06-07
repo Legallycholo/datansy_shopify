@@ -1,0 +1,12 @@
+{% doc %}
+  Renders star rating icons.
+  @param {number} rating - Star count 1-5
+  @param {string} [class] - Optional extra class
+{% enddoc %}
+
+{%- assign star_count = rating | default: 5 | at_most: 5 | at_least: 1 -%}
+<span class="gsm-stars{% if class %} {{ class }}{% endif %}" aria-label="{{ star_count }} de 5 estrellas">
+  {%- for i in (1..5) -%}
+    <span class="material-symbols-outlined gsm-stars__icon{% if i > star_count %} gsm-stars__icon--empty{% endif %}" aria-hidden="true">star</span>
+  {%- endfor -%}
+</span>

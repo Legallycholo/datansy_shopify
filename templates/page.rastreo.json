@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "gsm-page-rastreo",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

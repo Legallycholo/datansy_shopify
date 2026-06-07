@@ -1,0 +1,260 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign color_option_names = 'Color,Colour,Colore,Couleur' | split: ','
+-%}
+
+<section class="gsm-product page-width" data-product-section data-section-id="{{ section.id }}">
+  <div class="gsm-product__grid">
+    {%- comment -%} Gallery {%- endcomment -%}
+    <div class="gsm-product-gallery">
+      <div class="gsm-product-gallery__main">
+        {%- if product.featured_media -%}
+          <img
+            src="{{ product.featured_media | image_url: width: 800 }}"
+            srcset="{{ product.featured_media | image_url: width: 400 }} 400w, {{ product.featured_media | image_url: width: 800 }} 800w, {{ product.featured_media | image_url: width: 1200 }} 1200w"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            alt="{{ product.featured_media.alt | default: product.title | escape }}"
+            width="800"
+            height="800"
+            data-gallery-main
+            loading="eager"
+            fetchpriority="high"
+          >
+        {%- else -%}
+          <div class="placeholder-image placeholder-image--square">Product image placeholder</div>
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="gsm-product-gallery__thumbs">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              class="gsm-product-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+              data-gallery-thumb
+              data-full-src="{{ media | image_url: width: 800 }}"
+              aria-label="{{ 'products.media_gallery' | t }} {{ forloop.index }}"
+            >
+              {{ media | image_url: width: 144 | image_tag: loading: 'lazy', alt: media.alt }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Product info {%- endcomment -%}
+    <div class="gsm-product-info">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+
+          {%- when 'vendor' -%}
+            {%- if product.vendor != blank -%}
+              <p class="gsm-product-info__vendor" {{ block.shopify_attributes }}>
+                <a href="{{ routes.collections_url }}/vendors?q={{ product.vendor | url_param_escape }}">{{ product.vendor }}</a>
+              </p>
+            {%- endif -%}
+
+          {%- when 'title' -%}
+            <h1 class="gsm-product-info__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+          {%- when 'reviews' -%}
+            <div class="gsm-product-info__reviews" {{ block.shopify_attributes }}>
+              {% render 'gsm-stars', rating: 5 %}
+              <span class="gsm-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
+            </div>
+
+          {%- when 'price' -%}
+            <div class="gsm-product-info__price-block" {{ block.shopify_attributes }}>
+              <div class="gsm-price" data-product-price>
+                {% render 'gsm-product-price', product: product, variant: current_variant, show_savings: true %}
+              </div>
+              {%- if block.settings.show_sku -%}
+                <p class="gsm-product-info__sku" data-product-sku>
+                  {%- if current_variant.sku != blank -%}SKU: {{ current_variant.sku }}{%- endif -%}
+                </p>
+              {%- endif -%}
+            </div>
+
+          {%- when 'variant_picker' -%}
+            {%- unless product.has_only_default_variant -%}
+              <div class="gsm-variant-picker" {{ block.shopify_attributes }}>
+                {%- for option in product.options_with_values -%}
+                  {%- assign is_color = false -%}
+                  {%- if color_option_names contains option.name -%}
+                    {%- assign is_color = true -%}
+                  {%- endif -%}
+                  <fieldset class="gsm-variant-picker__group">
+                    <legend class="gsm-variant-picker__label">{{ option.name }}</legend>
+                    <div class="gsm-variant-picker__options">
+                      {%- for value in option.values -%}
+                        {%- assign option_index = option.position | minus: 1 -%}
+                        {%- assign matched_variant = nil -%}
+                        {%- for variant in product.variants -%}
+                          {%- if variant.options[option_index] == value -%}
+                            {%- assign matched_variant = variant -%}
+                            {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                        <label class="gsm-variant-picker__option">
+                          <input
+                            type="radio"
+                            name="option-{{ option.position }}"
+                            value="{{ value | escape }}"
+                            data-option-input
+                            data-option-position="{{ option.position }}"
+                            {% if option.selected_value == value %}checked{% endif %}
+                            {% unless matched_variant.available %}disabled{% endunless %}
+                          >
+                          <span class="gsm-variant-picker__swatch{% if is_color %} gsm-variant-picker__color{% endif %}">
+                            {{ value }}
+                          </span>
+                        </label>
+                      {%- endfor -%}
+                    </div>
+                  </fieldset>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+          {%- when 'buy_buttons' -%}
+            {%- form 'product', product, data-product-form: true, class: 'gsm-product-form' -%}
+              <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+              <div class="gsm-product-form__qty">
+                <button type="button" class="gsm-product-form__qty-btn" data-qty-change="-1" aria-label="-">−</button>
+                <input class="gsm-product-form__qty-input" type="number" name="quantity" value="1" min="1" data-qty-input aria-label="{{ 'cart.quantity' | t }}">
+                <button type="button" class="gsm-product-form__qty-btn" data-qty-change="1" aria-label="+">+</button>
+              </div>
+
+              <div class="gsm-product-form__actions">
+                <button
+                  type="submit"
+                  class="btn btn--primary gsm-product-form__submit"
+                  data-product-submit
+                  data-available-text="{{ 'products.add_to_cart' | t }}"
+                  data-sold-out-text="{{ 'products.sold_out' | t }}"
+                  {% unless current_variant.available %}disabled{% endunless %}
+                >
+                  {%- if current_variant.available -%}
+                    {{ 'products.add_to_cart' | t }}
+                  {%- else -%}
+                    {{ 'products.sold_out' | t }}
+                  {%- endif -%}
+                </button>
+                {{ form | payment_button }}
+              </div>
+            {%- endform -%}
+
+          {%- when 'share' -%}
+            <div class="gsm-product-form__share" {{ block.shopify_attributes }}>
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+              <a href="https://twitter.com/intent/tweet?url={{ shop.url | append: product.url | url_encode }}&text={{ product.title | url_encode }}" target="_blank" rel="noopener" aria-label="Twitter">X</a>
+              <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+            </div>
+
+          {%- when 'warehouse' -%}
+            {% render 'gsm-warehouse-availability', product: product, block: block %}
+
+          {%- when 'trust_badges' -%}
+            <div class="gsm-trust-badges" {{ block.shopify_attributes }}>
+              <span class="gsm-trust-badges__item"><span class="material-symbols-outlined">verified</span> Garantía oficial</span>
+              <span class="gsm-trust-badges__item"><span class="material-symbols-outlined">local_shipping</span> Envío a todo Chile</span>
+              <span class="gsm-trust-badges__item"><span class="material-symbols-outlined">lock</span> Compra segura</span>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} Tabs {%- endcomment -%}
+  <div class="gsm-product-tabs">
+    <div class="gsm-product-tabs__nav" role="tablist">
+      <button type="button" class="gsm-product-tabs__btn is-active" data-tab-btn="description" role="tab">{{ 'products.description' | t }}</button>
+      <button type="button" class="gsm-product-tabs__btn" data-tab-btn="specs" role="tab">{{ 'products.specifications' | t }}</button>
+      <button type="button" class="gsm-product-tabs__btn" data-tab-btn="shipping" role="tab">{{ 'products.shipping_returns' | t }}</button>
+    </div>
+    <div class="gsm-product-tabs__panel is-active rte" data-tab-panel="description" role="tabpanel">
+      {{ product.description }}
+    </div>
+    <div class="gsm-product-tabs__panel rte" data-tab-panel="specs" role="tabpanel">
+      {%- if product.metafields.custom.specifications != blank -%}
+        {{ product.metafields.custom.specifications | metafield_tag }}
+      {%- else -%}
+        <p>{{ 'products.specs_placeholder' | t }}</p>
+      {%- endif -%}
+    </div>
+    <div class="gsm-product-tabs__panel rte" data-tab-panel="shipping" role="tabpanel">
+      {{ section.settings.shipping_returns_text }}
+    </div>
+  </div>
+
+  <script type="application/json" data-product-json>{{ product | json }}</script>
+</section>
+
+<div class="gsm-product-sticky" data-product-sticky>
+  <div class="gsm-product-sticky__inner">
+    <span class="gsm-product-sticky__price" data-sticky-price>{%- render 'gsm-money', amount: current_variant.price -%}</span>
+    <button
+      type="button"
+      class="btn btn--primary gsm-product-sticky__btn"
+      data-sticky-atc
+      data-available-text="{{ 'products.add_to_cart' | t }}"
+      data-sold-out-text="{{ 'products.sold_out' | t }}"
+      {% unless current_variant.available %}disabled{% endunless %}
+    >
+      {{ 'products.add_to_cart' | t }}
+    </button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Producto",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "shipping_returns_text",
+      "label": "Envío y devoluciones",
+      "default": "<p>Envíos a todo Chile. Plazos según región. Devoluciones según política GSMPRO.</p>"
+    }
+  ],
+  "blocks": [
+    { "type": "vendor", "name": "Vendor", "limit": 1 },
+    { "type": "title", "name": "Título", "limit": 1 },
+    { "type": "reviews", "name": "Reseñas (placeholder)", "limit": 1 },
+    {
+      "type": "price",
+      "name": "Precio",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_sku", "label": "Mostrar SKU", "default": true }
+      ]
+    },
+    { "type": "variant_picker", "name": "Selector de variantes", "limit": 1 },
+    { "type": "buy_buttons", "name": "Botones de compra", "limit": 1 },
+    { "type": "share", "name": "Compartir", "limit": 1 },
+    { "type": "warehouse", "name": "Disponibilidad bodegas", "limit": 1 },
+    { "type": "trust_badges", "name": "Badges de confianza", "limit": 1 },
+    { "type": "@app" }
+  ],
+  "presets": [
+    {
+      "name": "Producto GSMPRO",
+      "blocks": [
+        { "type": "vendor" },
+        { "type": "title" },
+        { "type": "reviews" },
+        { "type": "price" },
+        { "type": "variant_picker" },
+        { "type": "warehouse" },
+        { "type": "buy_buttons" },
+        { "type": "trust_badges" },
+        { "type": "share" }
+      ]
+    }
+  ]
+}
+{% endschema %}

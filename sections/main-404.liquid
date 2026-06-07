@@ -1,0 +1,50 @@
+<section class="gsm-404 page-width">
+  <p class="gsm-404__code" aria-hidden="true">404</p>
+  <h1 class="gsm-404__title">{{ '404.title' | t }}</h1>
+  <p class="gsm-404__subtext">{{ '404.subtext' | t }}</p>
+
+  <div class="gsm-404__search">
+    {% render 'gsm-search-form', id_suffix: '404', show_category: false %}
+  </div>
+
+  <p class="gsm-404__categories-title">{{ '404.explore_categories' | t }}</p>
+  <nav class="gsm-404__categories" aria-label="{{ '404.explore_categories' | t }}">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.url }}" class="gsm-404__category" {{ block.shopify_attributes }}>
+        {{ block.settings.title }}
+      </a>
+    {%- endfor -%}
+  </nav>
+
+  <a href="{{ routes.root_url }}" class="btn btn--primary">{{ '404.link' | t }}</a>
+</section>
+
+{% schema %}
+{
+  "name": "404",
+  "class": "section-main-404",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category_link",
+      "name": "Categoría",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Categoría" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "404 GSMPRO",
+      "blocks": [
+        { "type": "category_link", "settings": { "title": "Celulares", "url": "/collections/celulares" } },
+        { "type": "category_link", "settings": { "title": "Consolas", "url": "/collections/consolas" } },
+        { "type": "category_link", "settings": { "title": "Audio", "url": "/collections/audio" } },
+        { "type": "category_link", "settings": { "title": "Computación", "url": "/collections/computacion" } },
+        { "type": "category_link", "settings": { "title": "Ofertas", "url": "/collections/all" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
