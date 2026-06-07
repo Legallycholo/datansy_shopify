@@ -118,6 +118,25 @@
             {%- endunless -%}
 
           {%- when 'buy_buttons' -%}
+            {%- assign threshold = settings.free_shipping_threshold | default: 50000 -%}
+            <div class="gsm-product-shipping-info" data-product-shipping-info>
+              {%- if current_variant.price >= threshold -%}
+                <span class="gsm-product-shipping-info__badge gsm-product-shipping-info__badge--free">
+                  <span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>
+                  Envío gratis incluido
+                </span>
+              {%- else -%}
+                <span class="gsm-product-shipping-info__badge">
+                  <span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>
+                  Envío gratis sobre $50.000
+                </span>
+              {%- endif -%}
+              <span class="gsm-product-shipping-info__delivery">
+                <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                Entrega estimada: 2–5 días hábiles
+              </span>
+            </div>
+
             {%- form 'product', product, data-product-form: true, class: 'gsm-product-form' -%}
               <input type="hidden" name="id" value="{{ current_variant.id }}">
 
@@ -136,6 +155,7 @@
                   data-sold-out-text="{{ 'products.sold_out' | t }}"
                   {% unless current_variant.available %}disabled{% endunless %}
                 >
+                  <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
                   {%- if current_variant.available -%}
                     {{ 'products.add_to_cart' | t }}
                   {%- else -%}
@@ -158,9 +178,34 @@
 
           {%- when 'trust_badges' -%}
             <div class="gsm-trust-badges" {{ block.shopify_attributes }}>
-              <span class="gsm-trust-badges__item"><span class="material-symbols-outlined">verified</span> Garantía oficial</span>
-              <span class="gsm-trust-badges__item"><span class="material-symbols-outlined">local_shipping</span> Envío a todo Chile</span>
-              <span class="gsm-trust-badges__item"><span class="material-symbols-outlined">lock</span> Compra segura</span>
+              <div class="gsm-trust-badges__item">
+                <span class="material-symbols-outlined gsm-trust-badges__icon">verified</span>
+                <div class="gsm-trust-badges__text">
+                  <strong>Garantía Oficial</strong>
+                  <span>Respaldo directo del fabricante</span>
+                </div>
+              </div>
+              <div class="gsm-trust-badges__item">
+                <span class="material-symbols-outlined gsm-trust-badges__icon">local_shipping</span>
+                <div class="gsm-trust-badges__text">
+                  <strong>Envío a todo Chile</strong>
+                  <span>Gratis sobre $50.000</span>
+                </div>
+              </div>
+              <div class="gsm-trust-badges__item">
+                <span class="material-symbols-outlined gsm-trust-badges__icon">lock</span>
+                <div class="gsm-trust-badges__text">
+                  <strong>Compra Segura</strong>
+                  <span>SSL + Pago encriptado</span>
+                </div>
+              </div>
+              <div class="gsm-trust-badges__item">
+                <span class="material-symbols-outlined gsm-trust-badges__icon">replay</span>
+                <div class="gsm-trust-badges__text">
+                  <strong>Devoluciones</strong>
+                  <span>Política Datansy garantizada</span>
+                </div>
+              </div>
             </div>
         {%- endcase -%}
       {%- endfor -%}

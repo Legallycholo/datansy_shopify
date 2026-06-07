@@ -1,7 +1,7 @@
-{%- comment -%} Hero section — slogan sets rendered as JSON in data attribute {%- endcomment -%}
+{%- comment -%} Hero section — animated slogan rotation + floating category showcase {%- endcomment -%}
 
 <section class="gsm-hero" data-hero-rotation data-slogan-sets='[
-  {%- assign slogan_sets = section.blocks | where: 'type', 'slogan_set' -%}
+  {%- assign slogan_sets = section.blocks | where: "type", "slogan_set" -%}
   {%- for block in slogan_sets -%}
     ["{{ block.settings.line_1 | escape }}","{{ block.settings.line_2 | escape }}","{{ block.settings.line_3 | escape }}"]{% unless forloop.last %},{% endunless %}
   {%- endfor -%}
@@ -9,40 +9,125 @@
   <div class="gsm-hero__bg" aria-hidden="true">
     <div class="gsm-hero__circle gsm-hero__circle--1"></div>
     <div class="gsm-hero__circle gsm-hero__circle--2"></div>
+    <div class="gsm-hero__circle gsm-hero__circle--3"></div>
     <div class="gsm-hero__gradient"></div>
+    <div class="gsm-hero__dots" aria-hidden="true"></div>
   </div>
 
-  <div class="page-width gsm-hero__content">
-    {%- if section.settings.badge != blank -%}
-      <span class="gsm-badge gsm-hero__badge">{{ section.settings.badge }}</span>
-    {%- endif -%}
+  <div class="page-width gsm-hero__outer">
+    <div class="gsm-hero__inner">
 
-    <h1 class="gsm-hero__headline">
-      {%- assign first_set = slogan_sets | first -%}
-      <span class="gsm-hero__headline-line" data-hero-line>{{ first_set.settings.line_1 | default: section.settings.fallback_line_1 }}</span>
-      <span class="gsm-hero__headline-line" data-hero-line>{{ first_set.settings.line_2 | default: section.settings.fallback_line_2 }}</span>
-      <span class="gsm-hero__headline-line gsm-hero__headline-line--accent" data-hero-line>{{ first_set.settings.line_3 | default: section.settings.fallback_line_3 }}</span>
-    </h1>
+      {%- comment -%} Left — text content {%- endcomment -%}
+      <div class="gsm-hero__left">
+        {%- if section.settings.badge != blank -%}
+          <span class="gsm-badge gsm-hero__badge">
+            <span class="gsm-hero__badge-dot"></span>
+            {{ section.settings.badge }}
+          </span>
+        {%- endif -%}
 
-    {%- if section.settings.subtext != blank -%}
-      <p class="gsm-hero__subtext">{{ section.settings.subtext }}</p>
-    {%- endif -%}
+        {%- assign first_set = slogan_sets | first -%}
+        <h1 class="gsm-hero__headline">
+          <span class="gsm-hero__headline-line" data-hero-line>{{ first_set.settings.line_1 | default: section.settings.fallback_line_1 }}</span>
+          <span class="gsm-hero__headline-line" data-hero-line>{{ first_set.settings.line_2 | default: section.settings.fallback_line_2 }}</span>
+          <span class="gsm-hero__headline-line gsm-hero__headline-line--accent" data-hero-line>{{ first_set.settings.line_3 | default: section.settings.fallback_line_3 }}</span>
+        </h1>
 
-    <div class="gsm-hero__actions">
-      {%- if section.settings.cta_catalog_url != blank -%}
-        <a href="{{ section.settings.cta_catalog_url }}" class="btn btn--primary">{{ section.settings.cta_catalog_label }}</a>
-      {%- endif -%}
-      {%- if section.settings.cta_flash_url != blank -%}
-        <a href="{{ section.settings.cta_flash_url }}" class="btn btn--accent">{{ section.settings.cta_flash_label }}</a>
-      {%- endif -%}
-    </div>
+        {%- if section.settings.subtext != blank -%}
+          <p class="gsm-hero__subtext">{{ section.settings.subtext }}</p>
+        {%- endif -%}
 
-    {%- if section.settings.show_trust_row -%}
-      <div class="gsm-hero__trust">
-        {% render 'gsm-stars', rating: 5, class: 'gsm-hero__stars' %}
-        <span class="gsm-hero__trust-text">{{ section.settings.trust_text }}</span>
+        <div class="gsm-hero__actions">
+          {%- if section.settings.cta_catalog_url != blank -%}
+            <a href="{{ section.settings.cta_catalog_url }}" class="btn btn--primary gsm-hero__cta-primary">
+              <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
+              {{ section.settings.cta_catalog_label }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.cta_flash_url != blank -%}
+            <a href="{{ section.settings.cta_flash_url }}" class="btn btn--accent gsm-hero__cta-secondary">
+              <span class="material-symbols-outlined" aria-hidden="true">bolt</span>
+              {{ section.settings.cta_flash_label }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.show_trust_row -%}
+          <div class="gsm-hero__trust">
+            {% render 'gsm-stars', rating: 5, class: 'gsm-hero__stars' %}
+            <span class="gsm-hero__trust-text">{{ section.settings.trust_text }}</span>
+          </div>
+        {%- endif -%}
+
+        <div class="gsm-hero__stats" aria-hidden="true">
+          <div class="gsm-hero__stat">
+            <span class="gsm-hero__stat-number">5.000+</span>
+            <span class="gsm-hero__stat-label">Clientes</span>
+          </div>
+          <div class="gsm-hero__stat-divider"></div>
+          <div class="gsm-hero__stat">
+            <span class="gsm-hero__stat-number">6</span>
+            <span class="gsm-hero__stat-label">Países</span>
+          </div>
+          <div class="gsm-hero__stat-divider"></div>
+          <div class="gsm-hero__stat">
+            <span class="gsm-hero__stat-number">100%</span>
+            <span class="gsm-hero__stat-label">Garantía Oficial</span>
+          </div>
+        </div>
       </div>
-    {%- endif -%}
+
+      {%- comment -%} Right — floating category showcase {%- endcomment -%}
+      <div class="gsm-hero__right" aria-hidden="true">
+        <div class="gsm-hero__cards-grid">
+          <a href="/collections/audio" class="gsm-hero__card gsm-hero__card--delay-0" tabindex="-1">
+            <div class="gsm-hero__card-icon gsm-hero__card-icon--blue">
+              <span class="material-symbols-outlined">headphones</span>
+            </div>
+            <span class="gsm-hero__card-label">Audio &amp;<br>Headphones</span>
+          </a>
+          <a href="/collections/smartwatches" class="gsm-hero__card gsm-hero__card--delay-1" tabindex="-1">
+            <div class="gsm-hero__card-icon gsm-hero__card-icon--indigo">
+              <span class="material-symbols-outlined">watch</span>
+            </div>
+            <span class="gsm-hero__card-label">Smartwatches</span>
+          </a>
+          <a href="/collections/celulares" class="gsm-hero__card gsm-hero__card--delay-2" tabindex="-1">
+            <div class="gsm-hero__card-icon gsm-hero__card-icon--blue">
+              <span class="material-symbols-outlined">smartphone</span>
+            </div>
+            <span class="gsm-hero__card-label">Celulares</span>
+          </a>
+          <a href="/collections/computacion" class="gsm-hero__card gsm-hero__card--delay-3" tabindex="-1">
+            <div class="gsm-hero__card-icon gsm-hero__card-icon--indigo">
+              <span class="material-symbols-outlined">laptop_mac</span>
+            </div>
+            <span class="gsm-hero__card-label">Computación</span>
+          </a>
+          <a href="/collections/gaming" class="gsm-hero__card gsm-hero__card--delay-4" tabindex="-1">
+            <div class="gsm-hero__card-icon gsm-hero__card-icon--yellow">
+              <span class="material-symbols-outlined">sports_esports</span>
+            </div>
+            <span class="gsm-hero__card-label">Gaming</span>
+          </a>
+          <a href="/collections/ofertas" class="gsm-hero__card gsm-hero__card--delay-5" tabindex="-1">
+            <div class="gsm-hero__card-icon gsm-hero__card-icon--sale">
+              <span class="material-symbols-outlined">local_offer</span>
+            </div>
+            <span class="gsm-hero__card-label">Ofertas<br>Flash</span>
+          </a>
+        </div>
+
+        <div class="gsm-hero__delivery-badge">
+          <span class="material-symbols-outlined">local_shipping</span>
+          <div>
+            <strong>Envío gratis</strong>
+            <span>en compras sobre $50.000</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 

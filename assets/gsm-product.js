@@ -100,6 +100,26 @@
       });
     }
 
+    /* Mobile swipe on gallery */
+    var galleryMain = section.querySelector('.gsm-product-gallery__main');
+    var thumbBtns = Array.from(section.querySelectorAll('[data-gallery-thumb]'));
+    if (galleryMain && thumbBtns.length > 1) {
+      var touchStartX = 0;
+      galleryMain.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      galleryMain.addEventListener('touchend', function (e) {
+        var delta = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) < 40) return;
+        var activeThumb = section.querySelector('[data-gallery-thumb].is-active');
+        var currentIndex = thumbBtns.indexOf(activeThumb);
+        var nextIndex = delta < 0
+          ? Math.min(currentIndex + 1, thumbBtns.length - 1)
+          : Math.max(currentIndex - 1, 0);
+        if (nextIndex !== currentIndex) thumbBtns[nextIndex].click();
+      }, { passive: true });
+    }
+
     section.querySelectorAll('[data-tab-btn]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var tab = btn.dataset.tabBtn;

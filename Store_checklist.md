@@ -104,7 +104,7 @@
 ### General
 
 - [x] The value proposition needs to be prominent and one of the first things the customer notices.
-- [ ] The home page contains meaningful high-quality graphics, not clip art or pictures of models.
+- [x] The home page contains meaningful high-quality graphics, not clip art or pictures of models.
 - [ ] The home page offers a quick and easy way to contact support. **(R)**
 - [ ] The brand mission and vision need to be promoted through a section on the homepage. **(R)**
 - [ ] The home page has a "recently viewed products" section. **(R)**
@@ -152,10 +152,10 @@
 ### Image Gallery
 
 - [ ] The main product photo needs to stand out and make an amazing first impression.
-- [ ] The user can zoom in on the product images. **(R)**
+- [x] The user can zoom in on the product images. **(R)**
 - [ ] The product images show all features of the products.
-- [ ] The product gallery shows thumbnails of other available images.
-- [ ] The product gallery supports native mobile swipe.
+- [x] The product gallery shows thumbnails of other available images.
+- [x] The product gallery supports native mobile swipe.
 - [ ] Consistent photography style with ALL other product pages.
 - [ ] Features plain background photography of the product.
 - [ ] Uses only High Definition Photography of product. 1000 x 1000 pixels
@@ -163,16 +163,16 @@
 
 ### CTA Area
 
-- [ ] The main CTA is prominent and optionally contains a "cart" icon.
+- [x] The main CTA is prominent and optionally contains a "cart" icon.
 - [ ] When selecting a variant, the image attached to it becomes the main image.
-- [ ] The product page contains a quantity selector.
+- [x] The product page contains a quantity selector.
 - [ ] When selling products of different sizes, a size chart is easily accessible.
 - [ ] The CTA copy tells you what will happen if you click on it. Example: Proceed to checkout, Add to cart.
-- [ ] When CTA is pressed, there needs to be clear feedback from the website after Example: Show added product, Open mini cart, Go to Cart, Go to checkout.
+- [x] When CTA is pressed, there needs to be clear feedback from the website after Example: Show added product, Open mini cart, Go to Cart, Go to checkout.
 - [ ] The price of the product is placed near the main CTA.
 - [ ] The background color of the CTA needs to stand out and be unique on the page.
 - [ ] Old price is strike-through and present beside the new price. (if applicable)
-- [ ] If free shipping is offered, it's displayed near the CTA. **(R)**
+- [x] If free shipping is offered, it's displayed near the CTA. **(R)**
 
 ### Social Proof
 
