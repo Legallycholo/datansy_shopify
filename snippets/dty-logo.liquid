@@ -1,0 +1,60 @@
+{% doc %}
+  Datansy wordmark with correct contrast for the surface behind it.
+  Logo 1 (dark ink, datansy-logo-black.png) → light/white backgrounds.
+  Logo 2 (light ink, datansy-logo-white.png) → dark/black backgrounds.
+
+  @param {string} background - 'light' or 'dark' (required)
+  @param {string} [class] - CSS class for the img element
+  @param {string} [link_class] - CSS class for the optional link wrapper
+  @param {string} [loading] - 'eager' or 'lazy' (default lazy)
+  @param {boolean} [link] - Wrap in homepage link (default true)
+  @param {image} [image] - Optional Shopify image override from theme settings
+  @param {number} [width] - Display width in px
+{% enddoc %}
+
+{%- liquid
+  assign logo_width = width | default: settings.logo_width | default: 160
+  assign logo_loading = loading | default: 'lazy'
+  assign logo_class = class | default: 'dty-logo'
+  assign logo_link_class = link_class | default: 'dty-logo-link'
+  assign wrap_link = link
+  if wrap_link == nil
+    assign wrap_link = true
+  endif
+
+  if background == 'dark'
+    assign fallback_asset = 'datansy-logo-white.png'
+  else
+    assign fallback_asset = 'datansy-logo-black.png'
+  endif
+-%}
+
+{%- if wrap_link -%}
+  <a href="{{ routes.root_url }}" class="{{ logo_link_class }}" aria-label="{{ shop.name | escape }}">
+{%- endif -%}
+
+{%- if image != blank -%}
+  {{
+    image
+    | image_url: width: 400
+    | image_tag:
+      class: logo_class,
+      widths: '160, 240, 320',
+      alt: shop.name,
+      width: logo_width,
+      loading: logo_loading
+  }}
+{%- else -%}
+  <img
+    src="{{ fallback_asset | asset_url }}"
+    alt="{{ shop.name | escape }}"
+    width="{{ logo_width }}"
+    height="40"
+    loading="{{ logo_loading }}"
+    class="{{ logo_class }}"
+  >
+{%- endif -%}
+
+{%- if wrap_link -%}
+  </a>
+{%- endif -%}

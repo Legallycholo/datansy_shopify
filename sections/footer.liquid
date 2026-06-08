@@ -3,14 +3,14 @@
     <div class="page-width">
       <div class="dty-footer__mission-inner">
         <div class="dty-footer__mission-logo">
-          <img
-            src="{{ 'datansy-logo-white.png' | asset_url }}"
-            alt="{{ shop.name | escape }}"
-            width="140"
-            height="40"
-            loading="lazy"
-            class="dty-footer__mission-logo-img"
-          >
+          {% render 'dty-logo',
+            background: 'dark',
+            class: 'dty-footer__mission-logo-img',
+            link_class: 'dty-footer__mission-logo-link',
+            width: 140,
+            loading: 'lazy',
+            link: true
+          %}
         </div>
         <p class="dty-footer__mission-text">{{ section.settings.mission_text }}</p>
       </div>
@@ -161,10 +161,10 @@
             {%- endif -%}
             {%- if section.settings.phone_intl != blank -%}
               <div class="dty-footer__contact-item">
-                <span class="material-symbols-outlined" aria-hidden="true">public</span>
+                <span class="material-symbols-outlined" aria-hidden="true">call</span>
                 <div>
-                  <strong>Internacional</strong><br>
-                  <a href="tel:{{ section.settings.phone_intl | replace: ' ', '' }}">{{ section.settings.phone_intl }}</a>
+                  <strong>Teléfono</strong><br>
+                  <a href="tel:{{ section.settings.phone_intl | replace: ' ', '' | replace: '-', '' }}">{{ section.settings.phone_intl }}</a>
                 </div>
               </div>
             {%- endif -%}
@@ -320,26 +320,24 @@
     {
       "type": "text",
       "id": "whatsapp_cl",
-      "label": "WhatsApp Chile",
-      "default": "+56 9 9136 9127"
+      "label": "WhatsApp Chile"
     },
     {
       "type": "text",
       "id": "phone_intl",
-      "label": "Teléfono internacional",
-      "default": "+1 754 200 9891"
+      "label": "Teléfono",
+      "default": "470-440-0124"
     },
     {
       "type": "text",
       "id": "phone_callcenter",
-      "label": "Call center",
-      "default": "+56 2 2938 1889"
+      "label": "Call center (opcional)"
     },
     {
       "type": "text",
       "id": "email",
       "label": "Email",
-      "default": "contacto@datansy.com"
+      "default": "dariel@tanygrowth.com"
     },
     {
       "type": "textarea",

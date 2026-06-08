@@ -5,7 +5,16 @@
 
 <nav id="DtyMobileNav" class="dty-mobile-nav" aria-label="{{ 'general.menu' | t }}">
   <div class="dty-mobile-nav__header">
-    <span class="dty-mobile-nav__title">{{ shop.name }}</span>
+    <div class="dty-mobile-nav__brand">
+      {% render 'dty-logo',
+        background: 'dark',
+        class: 'dty-mobile-nav__logo-img',
+        link_class: 'dty-mobile-nav__logo-link',
+        width: settings.logo_width,
+        loading: 'lazy',
+        link: true
+      %}
+    </div>
     <button type="button" class="dty-mobile-nav__close" data-mobile-nav-close aria-label="{{ 'accessibility.close_menu' | t }}">
       <span class="material-symbols-outlined" aria-hidden="true">close</span>
     </button>

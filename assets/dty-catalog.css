@@ -32,7 +32,8 @@
 .dty-product-slider__arrows { display: flex; gap: var(--space-2); }
 .dty-product-slider__arrow { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--dty-border); border-radius: var(--radius-full); background: var(--dty-white); color: var(--dty-text); transition: background var(--transition), border-color var(--transition); }
 .dty-product-slider__arrow:hover { background: var(--dty-blue); border-color: var(--dty-blue); color: var(--dty-white); }
-.dty-product-slider__track-wrap { overflow: hidden; }
+.dty-product-slider__track-wrap { overflow: hidden; max-width: 100%; }
+.dty-product-slider { overflow-x: clip; max-width: 100%; }
 .dty-product-slider__track { display: flex; gap: var(--space-4); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: var(--space-2); }
 .dty-product-slider__track::-webkit-scrollbar { display: none; }
 .dty-product-slider__slide { flex: 0 0 calc(50% - var(--space-2)); scroll-snap-align: start; min-width: 0; }

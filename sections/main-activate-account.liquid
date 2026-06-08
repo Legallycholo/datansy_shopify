@@ -1,5 +1,8 @@
 <section class="dty-customer page-width">
   <div class="dty-customer__card">
+    <div class="dty-customer__brand">
+      {% render 'dty-logo', background: 'light', class: 'dty-customer__logo', link: true, width: settings.logo_width, loading: 'eager' %}
+    </div>
     <h1 class="dty-customer__title">{{ 'customer.activate_account.title' | t }}</h1>
     <p style="color: var(--dty-text-muted); margin-bottom: var(--space-6);">{{ 'customer.activate_account.subtext' | t }}</p>
 
