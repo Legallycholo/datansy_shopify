@@ -54,7 +54,6 @@
 
         {%- if section.settings.show_trust_row -%}
           <div class="dty-hero__trust">
-            {% render 'dty-stars', rating: 5, class: 'dty-hero__stars' %}
             <span class="dty-hero__trust-text">{{ section.settings.trust_text }}</span>
           </div>
         {%- endif -%}
@@ -78,39 +77,59 @@
       </div>
 
       {%- comment -%} Right — floating category showcase {%- endcomment -%}
+      {%- liquid
+        assign catalog = collections['coleccion-principal']
+        assign fallback_url = catalog.url | default: routes.all_products_collection_url
+        assign audio_url = collections['audio'].url | default: fallback_url
+        if collections['audio'].products_count == 0
+          assign audio_url = fallback_url
+        endif
+        assign watches_url = collections['smartwatches'].url | default: fallback_url
+        if collections['smartwatches'].products_count == 0
+          assign watches_url = fallback_url
+        endif
+        assign phones_url = collections['celulares'].url | default: fallback_url
+        if collections['celulares'].products_count == 0
+          assign phones_url = fallback_url
+        endif
+        assign offers_url = collections['ofertas'].url | default: fallback_url
+        if collections['ofertas'].products_count == 0
+          assign offers_url = fallback_url
+        endif
+      -%}
       <div class="dty-hero__right" aria-hidden="true">
         <div class="dty-hero__cards-grid">
-          <a href="/collections/audio" class="dty-hero__card dty-hero__card--delay-0" tabindex="-1">
+          <a href="{{ audio_url }}" class="dty-hero__card dty-hero__card--delay-0" tabindex="-1">
             <div class="dty-hero__card-icon dty-hero__card-icon--blue">
               <span class="material-symbols-outlined">headphones</span>
             </div>
             <span class="dty-hero__card-label">Audio &amp;<br>Headphones</span>
           </a>
-          <a href="/collections/smartwatches" class="dty-hero__card dty-hero__card--delay-1" tabindex="-1">
+          <a href="{{ watches_url }}" class="dty-hero__card dty-hero__card--delay-1" tabindex="-1">
             <div class="dty-hero__card-icon dty-hero__card-icon--indigo">
               <span class="material-symbols-outlined">watch</span>
             </div>
             <span class="dty-hero__card-label">Smartwatches</span>
           </a>
-          <a href="/collections/celulares" class="dty-hero__card dty-hero__card--delay-2" tabindex="-1">
+          <a href="{{ phones_url }}" class="dty-hero__card dty-hero__card--delay-2" tabindex="-1">
             <div class="dty-hero__card-icon dty-hero__card-icon--blue">
               <span class="material-symbols-outlined">smartphone</span>
             </div>
             <span class="dty-hero__card-label">Celulares</span>
           </a>
-          <a href="/collections/coleccion-principal" class="dty-hero__card dty-hero__card--delay-3" tabindex="-1">
+          <a href="{{ fallback_url }}" class="dty-hero__card dty-hero__card--delay-3" tabindex="-1">
             <div class="dty-hero__card-icon dty-hero__card-icon--indigo">
               <span class="material-symbols-outlined">laptop_mac</span>
             </div>
             <span class="dty-hero__card-label">Computación</span>
           </a>
-          <a href="/collections/coleccion-principal" class="dty-hero__card dty-hero__card--delay-4" tabindex="-1">
+          <a href="{{ fallback_url }}" class="dty-hero__card dty-hero__card--delay-4" tabindex="-1">
             <div class="dty-hero__card-icon dty-hero__card-icon--yellow">
               <span class="material-symbols-outlined">sports_esports</span>
             </div>
             <span class="dty-hero__card-label">Gaming</span>
           </a>
-          <a href="/collections/ofertas" class="dty-hero__card dty-hero__card--delay-5" tabindex="-1">
+          <a href="{{ offers_url }}" class="dty-hero__card dty-hero__card--delay-5" tabindex="-1">
             <div class="dty-hero__card-icon dty-hero__card-icon--sale">
               <span class="material-symbols-outlined">local_offer</span>
             </div>

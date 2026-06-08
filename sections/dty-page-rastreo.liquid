@@ -9,20 +9,26 @@
       <div class="rte" style="margin-bottom: var(--space-6);">{{ page.content }}</div>
     {%- endif -%}
 
-    <form class="dty-rastreo-form" action="{{ section.settings.tracking_url | default: 'https://datansy.com/pages/shipping' }}" method="get" target="_blank">
-      <div class="dty-form-field">
-        <label for="RastreoOrder">{{ 'forms.order_number' | t }}</label>
-        <input id="RastreoOrder" type="text" name="order" required placeholder="{{ section.settings.order_placeholder }}">
-      </div>
-      <div class="dty-form-field">
-        <label for="RastreoEmail">{{ 'forms.email' | t }}</label>
-        <input id="RastreoEmail" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">
-      </div>
-      <button type="submit" class="btn btn--primary" style="width: 100%;">{{ section.settings.submit_label }}</button>
-    </form>
+    <div class="dty-rastreo-actions">
+      <a href="{{ routes.account_url }}" class="btn btn--primary" style="width: 100%; margin-bottom: var(--space-4);">
+        {{ section.settings.account_cta_label }}
+      </a>
+
+      {%- if section.settings.show_guest_lookup -%}
+        <p class="dty-rastreo-actions__hint">{{ section.settings.guest_hint }}</p>
+        <a href="{{ section.settings.guest_lookup_url | default: routes.account_login_url }}" class="btn btn--outline" style="width: 100%; border-color: var(--dty-blue); color: var(--dty-blue);">
+          {{ section.settings.guest_cta_label }}
+        </a>
+      {%- endif -%}
+    </div>
 
     {%- if section.settings.help_text != blank -%}
-      <p style="margin-top: var(--space-6); font-size: var(--text-sm); color: var(--dty-text-muted); text-align: center;">{{ section.settings.help_text }}</p>
+      <p style="margin-top: var(--space-6); font-size: var(--text-sm); color: var(--dty-text-muted); text-align: center;">
+        {{ section.settings.help_text }}
+        {%- if section.settings.help_email != blank -%}
+          <a href="mailto:{{ section.settings.help_email }}">{{ section.settings.help_email }}</a>
+        {%- endif -%}
+      </p>
     {%- endif -%}
   </div>
 </section>
@@ -33,11 +39,14 @@
   "class": "section-page-rastreo",
   "settings": [
     { "type": "text", "id": "heading", "label": "Título fallback", "default": "Rastrea tu Pedido" },
-    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Ingresa tu número de pedido y email para ver el estado de tu envío." },
-    { "type": "text", "id": "order_placeholder", "label": "Placeholder pedido", "default": "Ej: #1234" },
-    { "type": "text", "id": "submit_label", "label": "Botón", "default": "Rastrear pedido" },
-    { "type": "url", "id": "tracking_url", "label": "URL servicio de rastreo (opcional)" },
-    { "type": "text", "id": "help_text", "label": "Texto ayuda", "default": "¿Problemas? Escríbenos a contacto@datansy.com" }
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Consulta el estado de tu pedido desde tu cuenta Datansy o el enlace de seguimiento en tu email de confirmación." },
+    { "type": "text", "id": "account_cta_label", "label": "Botón cuenta", "default": "Ver mis pedidos" },
+    { "type": "checkbox", "id": "show_guest_lookup", "label": "Mostrar enlace invitado", "default": true },
+    { "type": "text", "id": "guest_hint", "label": "Texto invitado", "default": "¿Compraste como invitado? Inicia sesión con el email de tu pedido." },
+    { "type": "text", "id": "guest_cta_label", "label": "Botón invitado", "default": "Iniciar sesión" },
+    { "type": "url", "id": "guest_lookup_url", "label": "URL inicio de sesión" },
+    { "type": "textarea", "id": "help_text", "label": "Texto ayuda", "default": "¿Problemas con tu envío? Escríbenos a " },
+    { "type": "text", "id": "help_email", "label": "Email ayuda", "default": "contacto@datansy.com" }
   ]
 }
 {% endschema %}

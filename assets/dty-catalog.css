@@ -90,6 +90,7 @@
 .dty-collection__pagination a { background: var(--dty-white); border: 1px solid var(--dty-border); color: var(--dty-text); }
 .dty-collection__pagination a:hover { border-color: var(--dty-blue); color: var(--dty-blue); }
 .dty-collection__pagination .current { background: var(--dty-blue); color: var(--dty-white); }
+.dty-collection__empty { text-align: center; padding: var(--space-10); color: var(--dty-text-muted); display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
 
 /* Search results */
 .dty-search-results__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-6); }

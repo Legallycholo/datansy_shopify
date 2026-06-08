@@ -25,8 +25,8 @@
 
     <div class="dty-presales__products">
       {%- for block in section.blocks -%}
-        {%- if block.type == 'product_teaser' -%}
-          <a href="{{ block.settings.url | default: '#' }}" class="dty-presales__product dty-card" {{ block.shopify_attributes }}>
+        {%- if block.type == 'product_teaser' and block.settings.url != blank -%}
+          <a href="{{ block.settings.url }}" class="dty-presales__product dty-card" {{ block.shopify_attributes }}>
             <div class="dty-presales__product-image">
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.title }}

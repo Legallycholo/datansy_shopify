@@ -19,12 +19,32 @@
 
     <div class="dty-categories__grid">
       {%- for block in section.blocks -%}
-        <a href="{{ block.settings.url }}" class="dty-categories__tile" {{ block.shopify_attributes }}>
+        {%- liquid
+          assign tile_url = block.settings.url
+          assign show_tile = true
+          if block.settings.collection != blank
+            assign tile_collection = block.settings.collection
+            if tile_collection.products_count > 0
+              assign tile_url = tile_collection.url
+            else
+              assign show_tile = false
+            endif
+          elsif block.settings.url != blank and block.settings.url contains '/collections/'
+            assign tile_handle = block.settings.url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+            assign tile_linked = collections[tile_handle]
+            if tile_linked != blank and tile_linked.products_count == 0
+              assign show_tile = false
+            endif
+          endif
+        -%}
+        {%- if show_tile and tile_url != blank -%}
+        <a href="{{ tile_url }}" class="dty-categories__tile" {{ block.shopify_attributes }}>
           <div class="dty-categories__icon-wrap">
             <span class="material-symbols-outlined dty-categories__icon" aria-hidden="true">{{ block.settings.icon | default: 'devices' }}</span>
           </div>
           <span class="dty-categories__name">{{ block.settings.title }}</span>
         </a>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -48,7 +68,8 @@
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Categoría" },
         { "type": "text", "id": "icon", "label": "Icono Material", "default": "devices" },
-        { "type": "url", "id": "url", "label": "URL colección" }
+        { "type": "collection", "id": "collection", "label": "Colección (opcional)" },
+        { "type": "url", "id": "url", "label": "URL colección (si no usas picker)" }
       ]
     }
   ],

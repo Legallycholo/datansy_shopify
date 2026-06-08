@@ -17,6 +17,19 @@
       <ul class="dty-mobile-nav__list">
         {%- for block in section.blocks -%}
           {%- if block.type == 'menu_item' -%}
+            {%- liquid
+              assign show_menu_item = true
+              if block.settings.url != blank and block.settings.url contains '/collections/'
+                assign menu_handle = block.settings.url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+                assign menu_collection = collections[menu_handle]
+                if menu_collection != blank and menu_collection.products_count == 0
+                  assign show_menu_item = false
+                endif
+              endif
+            -%}
+            {%- unless show_menu_item -%}
+              {%- continue -%}
+            {%- endunless -%}
             {%- assign has_children = false -%}
             {%- for child in section.blocks -%}
               {%- if child.type == 'menu_child' and child.settings.parent == block.settings.handle -%}

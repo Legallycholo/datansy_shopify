@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Scan theme JSON/Liquid for internal links and compare to live store collections/pages.
+ * Scan theme JSON/Liquid for internal links and compare to live store collections/pages/blogs.
  * Usage: node scripts/audit-links.mjs [store-url]
  * Example: node scripts/audit-links.mjs https://datansy.com
  */
@@ -53,20 +53,26 @@ async function fetchJson(url) {
 }
 
 async function main() {
-  const collectionsData = await fetchJson(`${store}/collections.json?limit=250`);
-  const pagesData = await fetchJson(`${store}/pages.json?limit=250`);
+  const [collectionsData, pagesData, blogsData] = await Promise.all([
+    fetchJson(`${store}/collections.json?limit=250`),
+    fetchJson(`${store}/pages.json?limit=250`),
+    fetchJson(`${store}/blogs.json?limit=50`),
+  ]);
 
-  const liveCollections = new Set(
-    (collectionsData?.collections || []).map((c) => c.handle)
+  const liveCollections = new Map(
+    (collectionsData?.collections || []).map((c) => [c.handle, c.products_count ?? 0])
   );
   const livePages = new Set((pagesData?.pages || []).map((p) => p.handle));
+  const liveBlogs = new Set((blogsData?.blogs || []).map((b) => b.handle));
 
   const links = collectLinks();
-  let issues = 0;
+  let missingIssues = 0;
+  let emptyIssues = 0;
 
   console.log(`Datansy link audit — ${store}\n`);
-  console.log(`Live collections: ${[...liveCollections].join(', ') || '(none)'}`);
-  console.log(`Live pages: ${[...livePages].join(', ') || '(none)'}\n`);
+  console.log(`Live collections: ${[...liveCollections.keys()].join(', ') || '(none)'}`);
+  console.log(`Live pages: ${[...livePages].join(', ') || '(none)'}`);
+  console.log(`Live blogs: ${[...liveBlogs].join(', ') || '(none)'}\n`);
 
   for (const [url, sources] of [...links.entries()].sort()) {
     const [, kind, handle] = url.match(/^\/(collections|pages|blogs)\/([^/?]+)/) || [];
@@ -75,24 +81,37 @@ async function main() {
     let ok = false;
     if (kind === 'collections') {
       ok = ALLOWED_COLLECTIONS.has(handle) || liveCollections.has(handle);
+      if (ok && liveCollections.has(handle) && liveCollections.get(handle) === 0) {
+        emptyIssues += 1;
+        console.warn(`EMPTY COLLECTION ${url} (0 products)`);
+        for (const src of sources) console.warn(`  → ${src}`);
+      }
     } else if (kind === 'pages') {
       ok = livePages.has(handle);
     } else if (kind === 'blogs') {
-      ok = false;
+      ok = liveBlogs.has(handle);
     }
 
     if (!ok) {
-      issues += 1;
+      missingIssues += 1;
       console.warn(`MISSING ${url}`);
       for (const src of sources) console.warn(`  → ${src}`);
     }
   }
 
-  if (issues === 0) {
-    console.log('OK: All scanned internal collection/page links resolve on the live store.');
+  const pagesRes = await fetch(`${store}/pages/contact-us`);
+  if (pagesRes.ok) {
+    const html = await pagesRes.text();
+    if (html.includes('dariel@tanygrowth.com')) {
+      console.warn('\nEMAIL MISMATCH: contact-us page still references dariel@tanygrowth.com (update in Shopify Admin)');
+    }
+  }
+
+  if (missingIssues === 0 && emptyIssues === 0) {
+    console.log('\nOK: All scanned links resolve and linked collections have products.');
   } else {
-    console.log(`\n${issues} link(s) need Admin content or theme URL updates.`);
-    process.exitCode = 1;
+    console.log(`\n${missingIssues} missing link(s), ${emptyIssues} empty collection link(s).`);
+    if (missingIssues > 0) process.exitCode = 1;
   }
 }
 

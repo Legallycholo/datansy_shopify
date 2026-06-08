@@ -126,7 +126,17 @@
           </nav>
         {%- endif -%}
       {%- else -%}
-        <p style="text-align: center; padding: var(--space-10); color: var(--dty-text-muted);">{{ 'collections.empty' | t }}</p>
+        <div class="dty-collection__empty">
+          <p>{{ 'collections.empty' | t }}</p>
+          {%- assign empty_cta = section.settings.empty_cta_url | default: '/collections/coleccion-principal' -%}
+          <a href="{{ empty_cta }}" class="btn btn--primary">
+            {%- if section.settings.empty_cta_label != blank -%}
+              {{ section.settings.empty_cta_label }}
+            {%- else -%}
+              {{ 'collections.empty_cta' | t }}
+            {%- endif -%}
+          </a>
+        </div>
       {%- endif -%}
     </div>
   </div>
@@ -140,7 +150,9 @@
   "class": "section-main-collection",
   "settings": [
     { "type": "range", "id": "products_per_page", "min": 8, "max": 48, "step": 4, "label": "Productos por página", "default": 16 },
-    { "type": "checkbox", "id": "show_quick_add", "label": "Quick add en tarjetas", "default": true }
+    { "type": "checkbox", "id": "show_quick_add", "label": "Quick add en tarjetas", "default": true },
+    { "type": "text", "id": "empty_cta_label", "label": "Botón colección vacía", "default": "Ver catálogo completo" },
+    { "type": "url", "id": "empty_cta_url", "label": "URL colección vacía" }
   ]
 }
 {% endschema %}

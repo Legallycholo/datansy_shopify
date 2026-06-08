@@ -15,9 +15,9 @@
       "type": "footer",
       "blocks": {
         "link_quienes": { "type": "link", "settings": { "group": "nosotros", "title": "Quienes Somos", "url": "/pages/about-us" } },
-        "link_referidos": { "type": "link", "settings": { "group": "nosotros", "title": "Referidos", "url": "/pages/about-us" } },
-        "link_empresas": { "type": "link", "settings": { "group": "nosotros", "title": "Venta a Empresas", "url": "/pages/contact-us" } },
-        "link_blog": { "type": "link", "settings": { "group": "nosotros", "title": "Blog", "url": "/pages/about-us" } },
+        "link_empresas": { "type": "link", "settings": { "group": "nosotros", "title": "Venta a Empresas", "url": "/pages/cotizacion" } },
+        "link_blog": { "type": "link", "settings": { "group": "nosotros", "title": "Blog", "url": "/blogs/noticias" } },
+        "link_faq": { "type": "link", "settings": { "group": "nosotros", "title": "Preguntas Frecuentes", "url": "/pages/faq" } },
         "link_contacto": { "type": "link", "settings": { "group": "nosotros", "title": "Contacto", "url": "/pages/contact-us" } },
         "menu_nuevos": { "type": "link", "settings": { "group": "menu", "title": "Nuevos Lanzamientos", "url": "/collections/frontpage" } },
         "menu_celulares": { "type": "link", "settings": { "group": "menu", "title": "Celulares", "url": "/collections/celulares" } },
@@ -25,15 +25,15 @@
         "menu_smartwatches": { "type": "link", "settings": { "group": "menu", "title": "Smartwatches", "url": "/collections/smartwatches" } },
         "menu_ofertas": { "type": "link", "settings": { "group": "menu", "title": "Ofertas", "url": "/collections/ofertas" } },
         "menu_catalogo": { "type": "link", "settings": { "group": "menu", "title": "Catálogo Completo", "url": "/collections/coleccion-principal" } },
-        "menu_cotizacion": { "type": "link", "settings": { "group": "menu", "title": "Cotización", "url": "/pages/contact-us" } },
-        "menu_rastreo": { "type": "link", "settings": { "group": "menu", "title": "Rastrea tu Pedido", "url": "/pages/shipping" } },
+        "menu_cotizacion": { "type": "link", "settings": { "group": "menu", "title": "Cotización", "url": "/pages/cotizacion" } },
+        "menu_rastreo": { "type": "link", "settings": { "group": "menu", "title": "Rastrea tu Pedido", "url": "/pages/rastreo" } },
         "legal_privacy": { "type": "link", "settings": { "group": "legal", "title": "Política de Privacidad", "url": "/policies/privacy-policy" } },
         "legal_refund": { "type": "link", "settings": { "group": "legal", "title": "Política de Devoluciones", "url": "/policies/refund-policy" } },
         "legal_terms": { "type": "link", "settings": { "group": "legal", "title": "Términos de Servicio", "url": "/policies/terms-of-service" } },
         "legal_shipping": { "type": "link", "settings": { "group": "legal", "title": "Política de Envíos", "url": "/policies/shipping-policy" } }
       },
       "block_order": [
-        "link_quienes", "link_referidos", "link_empresas", "link_blog", "link_contacto",
+        "link_quienes", "link_empresas", "link_blog", "link_faq", "link_contacto",
         "menu_nuevos", "menu_celulares", "menu_audio", "menu_smartwatches", "menu_ofertas",
         "menu_catalogo", "menu_cotizacion", "menu_rastreo",
         "legal_privacy", "legal_refund", "legal_terms", "legal_shipping"
@@ -44,6 +44,7 @@
         "phone_callcenter": "+56 2 2938 1889",
         "email": "contacto@datansy.com",
         "hours": "Lun–Vie 7:00–23:00\nSab–Dom 9:00–22:00",
+        "address": "Centro de distribución Datansy\nSantiago, Región Metropolitana\nChile",
         "social_facebook": "https://www.facebook.com/profile.php?id=61590590369336",
         "social_instagram": "https://www.instagram.com/datansy/"
       }

@@ -7,6 +7,7 @@
   endif
 -%}
 
+{%- if collection != blank and collection.products_count > 0 -%}
 <section class="dty-section dty-product-slider" data-product-slider aria-roledescription="carousel">
   <div class="page-width">
     <div class="dty-product-slider__header">
@@ -37,25 +38,15 @@
 
   <div class="dty-product-slider__track-wrap page-width">
     <div class="dty-product-slider__track" data-slider-track tabindex="0" aria-label="{{ section.settings.heading | default: collection.title | escape }}">
-      {%- if collection != blank and collection.products_count > 0 -%}
-        {%- for product in collection.products limit: product_limit -%}
-          <div class="dty-product-slider__slide">
-            {% render 'dty-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
-          </div>
-        {%- endfor -%}
-      {%- else -%}
-        {%- for i in (1..6) -%}
-          <div class="dty-product-slider__slide">
-            <article class="dty-product-card dty-product-card--placeholder">
-              <div class="placeholder-image placeholder-image--square">Producto placeholder</div>
-              <p class="dty-product-card__title">{{ section.settings.heading }} — producto {{ i }}</p>
-            </article>
-          </div>
-        {%- endfor -%}
-      {%- endif -%}
+      {%- for product in collection.products limit: product_limit -%}
+        <div class="dty-product-slider__slide">
+          {% render 'dty-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
+        </div>
+      {%- endfor -%}
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

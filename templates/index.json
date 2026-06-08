@@ -23,7 +23,7 @@
         "cta_catalog_label": "Ver Catálogo",
         "cta_catalog_url": "/collections/coleccion-principal",
         "cta_flash_label": "Ofertas Flash",
-        "cta_flash_url": "/collections/coleccion-principal",
+        "cta_flash_url": "/collections/ofertas",
         "show_trust_row": true,
         "trust_text": "+5,000 clientes felices"
       }
@@ -114,42 +114,14 @@
       "blocks": {
         "ben1": { "type": "benefit", "settings": { "icon": "sell", "title": "Precio Especial", "text": "Accede al mejor precio de preventa." } },
         "ben2": { "type": "benefit", "settings": { "icon": "priority_high", "title": "Prioridad Total", "text": "Sé de los primeros en recibirlo." } },
-        "ben3": { "type": "benefit", "settings": { "icon": "inventory", "title": "Stock Asegurado", "text": "Reserva garantizada desde el día uno." } },
-        "p1": { "type": "product_teaser", "settings": { "title": "S26 Ultra", "status": "RUMOR" } },
-        "p2": { "type": "product_teaser", "settings": { "title": "Steam Deck Machine", "status": "PROTOTIPO" } },
-        "p3": { "type": "product_teaser", "settings": { "title": "Poco F8", "status": "PRÓXIMAMENTE" } },
-        "p4": { "type": "product_teaser", "settings": { "title": "Pixel 10a", "status": "CONFIRMADO" } },
-        "p5": { "type": "product_teaser", "settings": { "title": "RTX 5090", "status": "ESPERA" } },
-        "p6": { "type": "product_teaser", "settings": { "title": "iPad Pro M5", "status": "RUMOR" } }
+        "ben3": { "type": "benefit", "settings": { "icon": "inventory", "title": "Stock Asegurado", "text": "Reserva garantizada desde el día uno." } }
       },
-      "block_order": ["ben1","ben2","ben3","p1","p2","p3","p4","p5","p6"],
+      "block_order": ["ben1","ben2","ben3"],
       "settings": {
         "label": "Preventas VIP",
-        "heading": "El Futuro Llega Primero Aquí.",
-        "cta_label": "Ver Colección Preventa",
-        "cta_url": "/collections/coleccion-principal"
-      }
-    },
-    "gsm_testimonials": {
-      "type": "dty-testimonials",
-      "blocks": {
-        "r1": { "type": "review", "settings": { "name": "Carlos M.", "product": "iPhone 15 Pro", "quote": "Llegó en 24 horas a Santiago. Impecable.", "rating": 5 } },
-        "r2": { "type": "review", "settings": { "name": "Valentina R.", "product": "Samsung Galaxy S24", "quote": "El mejor precio que encontré en Chile.", "rating": 5 } },
-        "r3": { "type": "review", "settings": { "name": "Diego P.", "product": "Google Pixel 8", "quote": "Atención excelente por WhatsApp.", "rating": 5 } },
-        "r4": { "type": "review", "settings": { "name": "Camila S.", "product": "AirPods Pro", "quote": "Producto original con garantía oficial.", "rating": 5 } },
-        "r5": { "type": "review", "settings": { "name": "Andrés L.", "product": "Steam Deck OLED", "quote": "Compré desde Concepción, todo perfecto.", "rating": 5 } },
-        "r6": { "type": "review", "settings": { "name": "Francisca H.", "product": "MacBook Air M3", "quote": "Envío gratis y embalaje impecable.", "rating": 5 } },
-        "r7": { "type": "review", "settings": { "name": "Matías G.", "product": "PlayStation 5", "quote": "Segunda compra, siempre confiable.", "rating": 5 } },
-        "r8": { "type": "review", "settings": { "name": "Javiera T.", "product": "DJI Mini 4 Pro", "quote": "Llegó a Punta Arenas sin problemas.", "rating": 5 } },
-        "r9": { "type": "review", "settings": { "name": "Rodrigo A.", "product": "RTX 4080 Super", "quote": "Precio increíble vs otras tiendas.", "rating": 5 } },
-        "r10": { "type": "review", "settings": { "name": "Constanza V.", "product": "iPad Pro M4", "quote": "Preventa cumplida a tiempo.", "rating": 5 } },
-        "r11": { "type": "review", "settings": { "name": "Felipe N.", "product": "Meta Quest 3", "quote": "Recomendado 100%.", "rating": 5 } },
-        "r12": { "type": "review", "settings": { "name": "Isidora C.", "product": "Xiaomi 14 Ultra", "quote": "Excelente experiencia de compra.", "rating": 5 } }
-      },
-      "block_order": ["r1","r2","r3","r4","r5","r6","r7","r8","r9","r10","r11","r12"],
-      "settings": {
-        "heading": "Experiencia Datansy",
-        "subheading": "Lo que dicen nuestros clientes de Arica a Punta Arenas."
+        "heading": "¿Buscas un producto que aún no tenemos?",
+        "cta_label": "Solicitar cotización",
+        "cta_url": "/pages/cotizacion"
       }
     },
     "gsm_faq": {
@@ -171,42 +143,42 @@
       "type": "dty-coupon-cta",
       "settings": {
         "heading": "Tecnología a tu Alcance",
-        "subtext": "Únete a nuestra comunidad.",
+        "subtext": "Únete a nuestra comunidad y obtén 10% off en tu primera compra.",
         "coupon_code": "BIENVENIDO10",
-        "urgency_text": "Oferta válida solo por hoy",
+        "urgency_text": "Usa el código BIENVENIDO10 al finalizar tu compra",
         "show_newsletter": true,
         "email_placeholder": "tu@email.com",
         "submit_label": "Unirme",
         "success_message": "¡Gracias por unirte!"
       }
     },
-    "slider_express": {
+    "slider_catalog": {
       "type": "dty-product-slider",
-      "settings": { "heading": "Catálogo Datansy", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
-    },
-    "slider_pixel": {
-      "type": "dty-product-slider",
-      "settings": { "heading": "Destacados", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
-    },
-    "slider_iphone": {
-      "type": "dty-product-slider",
-      "settings": { "heading": "Tecnología", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12, "label": "Tienda" }
-    },
-    "slider_vr": {
-      "type": "dty-product-slider",
-      "settings": { "heading": "Accesorios", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+      "settings": {
+        "heading": "Catálogo Datansy",
+        "collection": "coleccion-principal",
+        "view_more_url": "/collections/coleccion-principal",
+        "products_to_show": 12
+      }
     },
     "slider_new": {
       "type": "dty-product-slider",
-      "settings": { "heading": "Novedades", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+      "settings": {
+        "heading": "Nuevos Lanzamientos",
+        "collection": "frontpage",
+        "view_more_url": "/collections/frontpage",
+        "products_to_show": 8,
+        "label": "Novedades"
+      }
     },
-    "slider_drones": {
+    "slider_offers": {
       "type": "dty-product-slider",
-      "settings": { "heading": "Ofertas", "collection": "ofertas", "view_more_url": "/collections/ofertas", "products_to_show": 12 }
-    },
-    "slider_black_sale": {
-      "type": "dty-product-slider",
-      "settings": { "heading": "Promociones", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12, "label": "Datansy" }
+      "settings": {
+        "heading": "Ofertas",
+        "collection": "ofertas",
+        "view_more_url": "/collections/ofertas",
+        "products_to_show": 8
+      }
     },
     "gsm_promo": {
       "type": "dty-promo-banner",
@@ -216,24 +188,30 @@
         "heading": "!BLACK SALE!",
         "text": "Descuentos exclusivos en tecnología premium.",
         "button_label": "Ver ofertas",
-        "button_url": "/collections/coleccion-principal",
+        "button_url": "/collections/ofertas",
         "background_color": "#1C1917",
         "text_color": "#FFFFFF"
       }
     },
     "gsm_limited": {
       "type": "dty-featured-collections",
-      "settings": { "label": "Destacados", "heading": "Unidades Limitadas" },
+      "settings": { "label": "Destacados", "heading": "Explora el Catálogo" },
       "blocks": {
-        "lc1": { "type": "collection", "settings": { "collection": "coleccion-principal", "title": "Colección Principal", "subtitle": "7 productos" } },
-        "lc2": { "type": "collection", "settings": { "collection": "coleccion-principal", "title": "Tecnología", "subtitle": "Catálogo Datansy" } },
-        "lc3": { "type": "collection", "settings": { "collection": "frontpage", "title": "Inicio", "subtitle": "Destacados" } }
+        "lc1": { "type": "collection", "settings": { "collection": "coleccion-principal", "title": "Colección Principal", "subtitle": "Catálogo Datansy" } },
+        "lc2": { "type": "collection", "settings": { "collection": "frontpage", "title": "Nuevos Lanzamientos", "subtitle": "Destacados" } },
+        "lc3": { "type": "collection", "settings": { "collection": "ofertas", "title": "Ofertas", "subtitle": "Mejores precios" } }
       },
       "block_order": ["lc1", "lc2", "lc3"]
     },
     "gsm_blog": {
       "type": "dty-blog-strip",
-      "settings": { "heading": "Datansy News", "blog": "noticias", "posts_to_show": 3 }
+      "settings": {
+        "heading": "Datansy News",
+        "blog": "noticias",
+        "posts_to_show": 3,
+        "view_all_label": "Ver todas las noticias",
+        "view_all_url": "/blogs/noticias"
+      }
     }
   },
   "order": [
@@ -243,16 +221,11 @@
     "gsm_hubs",
     "gsm_categories",
     "gsm_presales",
-    "gsm_testimonials",
     "gsm_faq",
     "gsm_coupon",
-    "slider_express",
-    "slider_pixel",
-    "slider_iphone",
-    "slider_vr",
+    "slider_catalog",
     "slider_new",
-    "slider_drones",
-    "slider_black_sale",
+    "slider_offers",
     "gsm_promo",
     "gsm_limited",
     "gsm_blog"

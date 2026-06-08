@@ -339,8 +339,8 @@
         "menu_ofertas"
       ],
       "settings": {
-        "quote_url": "/pages/contact-us",
-        "track_url": "/pages/shipping",
+        "quote_url": "/pages/cotizacion",
+        "track_url": "/pages/rastreo",
         "help_phone": "+56 9 9136 9127",
         "help_email": "contacto@datansy.com",
         "social_facebook": "https://www.facebook.com/profile.php?id=61590590369336",

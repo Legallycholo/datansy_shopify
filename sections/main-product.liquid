@@ -59,10 +59,12 @@
             <h1 class="dty-product-info__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
 
           {%- when 'reviews' -%}
+            {%- if block.settings.show_placeholder_reviews -%}
             <div class="dty-product-info__reviews" {{ block.shopify_attributes }}>
               {% render 'dty-stars', rating: 5 %}
               <span class="dty-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
             </div>
+            {%- endif -%}
 
           {%- when 'price' -%}
             <div class="dty-product-info__price-block" {{ block.shopify_attributes }}>
@@ -271,7 +273,9 @@
   "blocks": [
     { "type": "vendor", "name": "Vendor", "limit": 1 },
     { "type": "title", "name": "Título", "limit": 1 },
-    { "type": "reviews", "name": "Reseñas (placeholder)", "limit": 1 },
+    { "type": "reviews", "name": "Reseñas (placeholder)", "limit": 1, "settings": [
+      { "type": "checkbox", "id": "show_placeholder_reviews", "label": "Mostrar estrellas placeholder", "default": false, "info": "Desactivado por defecto. Usa Vitals u otra app de reseñas." }
+    ] },
     {
       "type": "price",
       "name": "Precio",

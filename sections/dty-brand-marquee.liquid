@@ -1,3 +1,11 @@
+{%- assign brands_with_logos = 0 -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.logo != blank -%}
+    {%- assign brands_with_logos = brands_with_logos | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if brands_with_logos > 0 -%}
 <section class="dty-section dty-marquee-section">
   <div class="page-width dty-section__header">
     {%- if section.settings.label != blank -%}
@@ -13,27 +21,23 @@
     <div class="dty-marquee__mask dty-marquee__mask--right"></div>
     <div class="dty-marquee__track">
       {%- for block in section.blocks -%}
+        {%- if block.settings.logo != blank -%}
         <div class="dty-marquee__logo" {{ block.shopify_attributes }}>
           {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
-            {%- if block.settings.logo != blank -%}
-              {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: block.settings.name }}
-            {%- else -%}
-              <span class="dty-marquee__logo-placeholder">{{ block.settings.name }}</span>
-            {%- endif -%}
+            {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: block.settings.name }}
           {%- if block.settings.link != blank -%}</a>{%- endif -%}
         </div>
+        {%- endif -%}
       {%- endfor -%}
       {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
       {%- for block in section.blocks -%}
+        {%- if block.settings.logo != blank -%}
         <div class="dty-marquee__logo" aria-hidden="true">
           {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" tabindex="-1">{%- endif -%}
-            {%- if block.settings.logo != blank -%}
-              {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: '' }}
-            {%- else -%}
-              <span class="dty-marquee__logo-placeholder">{{ block.settings.name }}</span>
-            {%- endif -%}
+            {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: '' }}
           {%- if block.settings.link != blank -%}</a>{%- endif -%}
         </div>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -43,28 +47,25 @@
     <div class="dty-marquee__mask dty-marquee__mask--right"></div>
     <div class="dty-marquee__track dty-marquee__track--reverse">
       {%- for block in section.blocks reversed -%}
+        {%- if block.settings.logo != blank -%}
         <div class="dty-marquee__logo" {{ block.shopify_attributes }}>
           {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
-            {%- if block.settings.logo != blank -%}
-              {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: block.settings.name }}
-            {%- else -%}
-              <span class="dty-marquee__logo-placeholder">{{ block.settings.name }}</span>
-            {%- endif -%}
+            {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: block.settings.name }}
           {%- if block.settings.link != blank -%}</a>{%- endif -%}
         </div>
+        {%- endif -%}
       {%- endfor -%}
       {%- for block in section.blocks reversed -%}
+        {%- if block.settings.logo != blank -%}
         <div class="dty-marquee__logo" aria-hidden="true">
-          {%- if block.settings.logo != blank -%}
-            {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: '' }}
-          {%- else -%}
-            <span class="dty-marquee__logo-placeholder">{{ block.settings.name }}</span>
-          {%- endif -%}
+          {{ block.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'dty-marquee__logo-img', alt: '' }}
         </div>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

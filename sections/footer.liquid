@@ -72,9 +72,21 @@
             <nav class="dty-footer__links" aria-label="{{ section.settings.column_1_title }}">
               {%- for block in section.blocks -%}
                 {%- if block.type == 'link' and block.settings.group == 'nosotros' -%}
+                  {%- liquid
+                    assign show_footer_link = true
+                    if block.settings.url contains '/collections/'
+                      assign footer_handle = block.settings.url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+                      assign footer_collection = collections[footer_handle]
+                      if footer_collection != blank and footer_collection.products_count == 0
+                        assign show_footer_link = false
+                      endif
+                    endif
+                  -%}
+                  {%- if show_footer_link -%}
                   <a href="{{ block.settings.url }}" class="dty-footer__link" {{ block.shopify_attributes }}>
                     {{ block.settings.title }}
                   </a>
+                  {%- endif -%}
                 {%- endif -%}
               {%- endfor -%}
             </nav>
@@ -91,9 +103,21 @@
             <nav class="dty-footer__links" aria-label="{{ section.settings.column_2_title }}">
               {%- for block in section.blocks -%}
                 {%- if block.type == 'link' and block.settings.group == 'menu' -%}
+                  {%- liquid
+                    assign show_footer_link = true
+                    if block.settings.url contains '/collections/'
+                      assign footer_handle = block.settings.url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+                      assign footer_collection = collections[footer_handle]
+                      if footer_collection != blank and footer_collection.products_count == 0
+                        assign show_footer_link = false
+                      endif
+                    endif
+                  -%}
+                  {%- if show_footer_link -%}
                   <a href="{{ block.settings.url }}" class="dty-footer__link" {{ block.shopify_attributes }}>
                     {{ block.settings.title }}
                   </a>
+                  {%- endif -%}
                 {%- endif -%}
               {%- endfor -%}
             </nav>
@@ -163,6 +187,12 @@
             {%- endif -%}
             {%- if section.settings.hours != blank -%}
               <div class="dty-footer__hours">{{ section.settings.hours }}</div>
+            {%- endif -%}
+            {%- if section.settings.address != blank -%}
+              <div class="dty-footer__contact-item">
+                <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                <div>{{ section.settings.address | newline_to_br }}</div>
+              </div>
             {%- endif -%}
           </div>
         </div>
@@ -316,6 +346,12 @@
       "id": "hours",
       "label": "Horario de atención",
       "default": "Lun–Vie 7:00–23:00\nSab–Dom 9:00–22:00"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Dirección física",
+      "default": "Centro de distribución Datansy\nSantiago, Región Metropolitana\nChile"
     },
     {
       "type": "header",
