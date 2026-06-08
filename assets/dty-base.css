@@ -77,6 +77,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: clip;
+  width: 100%;
 }
 
 body {
@@ -87,6 +89,17 @@ body {
   color: var(--dty-text);
   background-color: var(--dty-surface);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.shopify-section,
+.shopify-section-group,
+.main-content {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 img {
@@ -139,9 +152,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-width {
   max-width: var(--page-width);
+  width: 100%;
   margin: 0 auto;
   padding-left: var(--space-4);
   padding-right: var(--space-4);
+  min-width: 0;
 }
 
 @media (min-width: 768px) {
