@@ -56,11 +56,29 @@
       var submit = form.querySelector('[data-product-submit]');
       if (submit) {
         submit.disabled = !variant.available;
-        submit.textContent = variant.available ? submit.dataset.availableText : submit.dataset.soldOutText;
+        var submitLabel = submit.querySelector('.gsm-product-form__submit-text');
+        var newLabel = variant.available ? submit.dataset.availableText : submit.dataset.soldOutText;
+        if (submitLabel) submitLabel.textContent = newLabel;
+        else submit.textContent = newLabel;
       }
       if (stickyBtn) {
         stickyBtn.disabled = !variant.available;
         stickyBtn.textContent = variant.available ? stickyBtn.dataset.availableText : stickyBtn.dataset.soldOutText;
+      }
+
+      var shippingInfo = section.querySelector('[data-product-shipping-info]');
+      if (shippingInfo) {
+        var threshold = (window.gsmSettings.freeShippingThreshold || 50000) * 100;
+        var badge = shippingInfo.querySelector('.gsm-product-shipping-info__badge');
+        if (badge) {
+          if (variant.price >= threshold) {
+            badge.classList.add('gsm-product-shipping-info__badge--free');
+            badge.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>Envío gratis incluido';
+          } else {
+            badge.classList.remove('gsm-product-shipping-info__badge--free');
+            badge.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>Envío gratis sobre $50.000';
+          }
+        }
       }
 
       var sku = section.querySelector('[data-product-sku]');
@@ -152,11 +170,14 @@
         var idInput = form.querySelector('[name="id"]');
         var qtyInput = form.querySelector('[name="quantity"]');
         var submit = form.querySelector('[data-product-submit]');
-        var originalText = submit ? submit.textContent : '';
+        var submitLabel = submit ? submit.querySelector('.gsm-product-form__submit-text') : null;
+        var originalText = submitLabel ? submitLabel.textContent.trim() : (submit ? submit.textContent : '');
 
         if (submit) {
           submit.disabled = true;
-          submit.textContent = settings.strings.loading || '...';
+          var loadingText = settings.strings && settings.strings.loading || '...';
+          if (submitLabel) submitLabel.textContent = loadingText;
+          else submit.textContent = loadingText;
         }
 
         fetch(window.gsmSettings.routes.cartAddUrl, {
@@ -185,7 +206,8 @@
           .finally(function () {
             if (submit) {
               submit.disabled = false;
-              submit.textContent = originalText;
+              if (submitLabel) submitLabel.textContent = originalText;
+              else submit.textContent = originalText;
             }
           });
       });

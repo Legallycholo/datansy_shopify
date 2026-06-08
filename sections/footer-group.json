@@ -30,7 +30,9 @@
         "phone_intl": "+1 754 200 9891",
         "phone_callcenter": "+56 2 2938 1889",
         "email": "contacto@datansy.com",
-        "hours": "Lun–Vie 7:00–23:00\nSab–Dom 9:00–22:00"
+        "hours": "Lun–Vie 7:00–23:00\nSab–Dom 9:00–22:00",
+        "social_facebook": "https://www.facebook.com/profile.php?id=61590590369336",
+        "social_instagram": "https://www.instagram.com/datansy/"
       }
     }
   },

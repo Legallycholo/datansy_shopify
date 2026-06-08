@@ -155,7 +155,8 @@
   "footer": {
     "newsletter_placeholder": "Tu correo electrónico",
     "newsletter_submit": "Suscribirme",
-    "newsletter_success": "¡Gracias! Te has suscrito correctamente."
+    "newsletter_success": "¡Gracias! Te has suscrito correctamente.",
+    "social_media": "Redes sociales"
   },
   "404": {
     "title": "Página no encontrada",

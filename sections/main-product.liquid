@@ -156,11 +156,13 @@
                   {% unless current_variant.available %}disabled{% endunless %}
                 >
                   <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
-                  {%- if current_variant.available -%}
-                    {{ 'products.add_to_cart' | t }}
-                  {%- else -%}
-                    {{ 'products.sold_out' | t }}
-                  {%- endif -%}
+                  <span class="gsm-product-form__submit-text">
+                    {%- if current_variant.available -%}
+                      {{ 'products.add_to_cart' | t }}
+                    {%- else -%}
+                      {{ 'products.sold_out' | t }}
+                    {%- endif -%}
+                  </span>
                 </button>
                 {{ form | payment_button }}
               </div>

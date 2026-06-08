@@ -67,17 +67,11 @@
           </a>
         {%- endif -%}
 
-        <div class="gsm-mobile-nav__social">
-          {%- if section.settings.social_facebook != blank -%}
-            <a href="{{ section.settings.social_facebook }}" class="gsm-mobile-nav__social-link" aria-label="Facebook">FB</a>
-          {%- endif -%}
-          {%- if section.settings.social_instagram != blank -%}
-            <a href="{{ section.settings.social_instagram }}" class="gsm-mobile-nav__social-link" aria-label="Instagram">IG</a>
-          {%- endif -%}
-          {%- if section.settings.social_youtube != blank -%}
-            <a href="{{ section.settings.social_youtube }}" class="gsm-mobile-nav__social-link" aria-label="YouTube">YT</a>
-          {%- endif -%}
-        </div>
+        {%- if section.settings.social_facebook != blank or section.settings.social_instagram != blank or section.settings.social_youtube != blank -%}
+          <nav class="gsm-mobile-nav__social" aria-label="{{ 'footer.social_media' | t }}">
+            {% render 'gsm-social-links', settings: section.settings, link_class: 'gsm-mobile-nav__social-link' %}
+          </nav>
+        {%- endif -%}
       </div>
 
       <div class="gsm-mobile-nav__localization">

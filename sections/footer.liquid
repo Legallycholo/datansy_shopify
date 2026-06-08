@@ -187,26 +187,11 @@
           <span class="gsm-footer__payment-icon">G Pay</span>
         </div>
 
-        <div class="gsm-footer__social">
-          {%- if section.settings.social_facebook != blank -%}
-            <a href="{{ section.settings.social_facebook }}" class="gsm-footer__social-link" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
-          {%- endif -%}
-          {%- if section.settings.social_twitter != blank -%}
-            <a href="{{ section.settings.social_twitter }}" class="gsm-footer__social-link" aria-label="Twitter" target="_blank" rel="noopener">X</a>
-          {%- endif -%}
-          {%- if section.settings.social_instagram != blank -%}
-            <a href="{{ section.settings.social_instagram }}" class="gsm-footer__social-link" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
-          {%- endif -%}
-          {%- if section.settings.social_youtube != blank -%}
-            <a href="{{ section.settings.social_youtube }}" class="gsm-footer__social-link" aria-label="YouTube" target="_blank" rel="noopener">YT</a>
-          {%- endif -%}
-          {%- if section.settings.social_tiktok != blank -%}
-            <a href="{{ section.settings.social_tiktok }}" class="gsm-footer__social-link" aria-label="TikTok" target="_blank" rel="noopener">TT</a>
-          {%- endif -%}
-          {%- if section.settings.social_linkedin != blank -%}
-            <a href="{{ section.settings.social_linkedin }}" class="gsm-footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener">IN</a>
-          {%- endif -%}
-        </div>
+        {%- if section.settings.social_facebook != blank or section.settings.social_instagram != blank or section.settings.social_twitter != blank or section.settings.social_youtube != blank or section.settings.social_tiktok != blank or section.settings.social_linkedin != blank -%}
+          <nav class="gsm-footer__social" aria-label="{{ 'footer.social_media' | t }}">
+            {% render 'gsm-social-links', settings: section.settings, link_class: 'gsm-footer__social-link' %}
+          </nav>
+        {%- endif -%}
 
         <button type="button" class="gsm-footer__back-to-top" data-back-to-top aria-label="Volver arriba">
           <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
