@@ -1,33 +1,33 @@
-<section class="gsm-section gsm-faq">
-  <div class="page-width gsm-faq__inner">
-    <div class="gsm-faq__header">
+<section class="dty-section dty-faq">
+  <div class="page-width dty-faq__inner">
+    <div class="dty-faq__header">
       {%- if section.settings.label != blank -%}
-        <span class="gsm-section__label">{{ section.settings.label }}</span>
+        <span class="dty-section__label">{{ section.settings.label }}</span>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+        <h2 class="dty-section__heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
     </div>
 
-    <div class="gsm-faq__list" role="region" aria-label="{{ section.settings.heading | default: section.settings.label | escape }}">
+    <div class="dty-faq__list" role="region" aria-label="{{ section.settings.heading | default: section.settings.label | escape }}">
       {%- for block in section.blocks -%}
-        <div class="gsm-faq__item" data-faq-item {{ block.shopify_attributes }}>
+        <div class="dty-faq__item" data-faq-item {{ block.shopify_attributes }}>
           <button
             type="button"
-            class="gsm-faq__question"
+            class="dty-faq__question"
             data-faq-toggle
             id="FaqQuestion-{{ block.id }}"
             aria-expanded="false"
             aria-controls="FaqAnswer-{{ block.id }}"
           >
             <span>
-              <span class="gsm-faq__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+              <span class="dty-faq__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
               {{ block.settings.question }}
             </span>
-            <span class="material-symbols-outlined gsm-faq__chevron" aria-hidden="true">expand_more</span>
+            <span class="material-symbols-outlined dty-faq__chevron" aria-hidden="true">expand_more</span>
           </button>
-          <div id="FaqAnswer-{{ block.id }}" class="gsm-faq__answer" data-faq-answer role="region" aria-labelledby="FaqQuestion-{{ block.id }}" hidden>
-            <div class="gsm-faq__answer-inner rte">{{ block.settings.answer }}</div>
+          <div id="FaqAnswer-{{ block.id }}" class="dty-faq__answer" data-faq-answer role="region" aria-labelledby="FaqQuestion-{{ block.id }}" hidden>
+            <div class="dty-faq__answer-inner rte">{{ block.settings.answer }}</div>
           </div>
         </div>
       {%- endfor -%}
@@ -39,7 +39,7 @@
 {
   "name": "Datansy FAQ",
   "tag": "section",
-  "class": "section-gsm-faq",
+  "class": "section-dty-faq",
   "settings": [
     { "type": "text", "id": "label", "label": "Etiqueta", "default": "Preguntas Frecuentes" },
     { "type": "text", "id": "heading", "label": "Título", "default": "Transparencia Total" }

@@ -84,12 +84,12 @@
   function initCouponCopy() {
     document.querySelectorAll('[data-coupon-copy]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        var code = btn.dataset.couponCode || window.gsmSettings.couponCode;
+        var code = btn.dataset.couponCode || window.dtySettings.couponCode;
         if (!code) return;
 
         navigator.clipboard.writeText(code).then(function () {
           var original = btn.textContent;
-          btn.textContent = window.gsmSettings.strings.couponCopied || '¡Copiado!';
+          btn.textContent = window.dtySettings.strings.couponCopied || '¡Copiado!';
           setTimeout(function () {
             btn.textContent = original;
           }, 2000);

@@ -1,45 +1,45 @@
-<section class="gsm-section gsm-testimonials">
+<section class="dty-section dty-testimonials">
   <div class="page-width">
-    <div class="gsm-section__header gsm-section__header--center">
+    <div class="dty-section__header dty-section__header--center">
       {%- if section.settings.heading != blank -%}
-        <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+        <h2 class="dty-section__heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
       {%- if section.settings.subheading != blank -%}
-        <p class="gsm-section__subheading">{{ section.settings.subheading }}</p>
+        <p class="dty-section__subheading">{{ section.settings.subheading }}</p>
       {%- endif -%}
     </div>
   </div>
 
-  <div class="gsm-testimonials__scroll" data-testimonials-scroll>
-    <div class="gsm-testimonials__track">
+  <div class="dty-testimonials__scroll" data-testimonials-scroll>
+    <div class="dty-testimonials__track">
       {%- for block in section.blocks -%}
-        <div class="gsm-testimonials__card gsm-card" {{ block.shopify_attributes }}>
-          <div class="gsm-testimonials__card-header">
-            <span class="gsm-testimonials__name">{{ block.settings.name }}</span>
-            <span class="gsm-testimonials__verified">Compra Verificada</span>
+        <div class="dty-testimonials__card dty-card" {{ block.shopify_attributes }}>
+          <div class="dty-testimonials__card-header">
+            <span class="dty-testimonials__name">{{ block.settings.name }}</span>
+            <span class="dty-testimonials__verified">Compra Verificada</span>
           </div>
           {%- if block.settings.product != blank -%}
-            <p class="gsm-testimonials__product">{{ block.settings.product }}</p>
+            <p class="dty-testimonials__product">{{ block.settings.product }}</p>
           {%- endif -%}
-          {% render 'gsm-stars', rating: block.settings.rating %}
+          {% render 'dty-stars', rating: block.settings.rating %}
           {%- if block.settings.quote != blank -%}
-            <blockquote class="gsm-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
+            <blockquote class="dty-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
           {%- endif -%}
         </div>
       {%- endfor -%}
       {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
       {%- for block in section.blocks -%}
-        <div class="gsm-testimonials__card gsm-card" aria-hidden="true">
-          <div class="gsm-testimonials__card-header">
-            <span class="gsm-testimonials__name">{{ block.settings.name }}</span>
-            <span class="gsm-testimonials__verified">Compra Verificada</span>
+        <div class="dty-testimonials__card dty-card" aria-hidden="true">
+          <div class="dty-testimonials__card-header">
+            <span class="dty-testimonials__name">{{ block.settings.name }}</span>
+            <span class="dty-testimonials__verified">Compra Verificada</span>
           </div>
           {%- if block.settings.product != blank -%}
-            <p class="gsm-testimonials__product">{{ block.settings.product }}</p>
+            <p class="dty-testimonials__product">{{ block.settings.product }}</p>
           {%- endif -%}
-          {% render 'gsm-stars', rating: block.settings.rating %}
+          {% render 'dty-stars', rating: block.settings.rating %}
           {%- if block.settings.quote != blank -%}
-            <blockquote class="gsm-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
+            <blockquote class="dty-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
           {%- endif -%}
         </div>
       {%- endfor -%}
@@ -51,7 +51,7 @@
 {
   "name": "Datansy Testimonios",
   "tag": "section",
-  "class": "section-gsm-testimonials",
+  "class": "section-dty-testimonials",
   "settings": [
     { "type": "text", "id": "heading", "label": "Título", "default": "Experiencia Datansy" },
     { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Lo que dicen nuestros clientes de Arica a Punta Arenas." }

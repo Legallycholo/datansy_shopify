@@ -1,26 +1,26 @@
 {%- paginate collection.products by section.settings.products_per_page -%}
 
-<section class="gsm-collection page-width">
+<section class="dty-collection page-width">
   {%- if collection.image -%}
-    <div class="gsm-collection__banner">
-      {{ collection.image | image_url: width: 1400 | image_tag: loading: 'eager', class: 'gsm-collection__banner-img', alt: collection.title }}
+    <div class="dty-collection__banner">
+      {{ collection.image | image_url: width: 1400 | image_tag: loading: 'eager', class: 'dty-collection__banner-img', alt: collection.title }}
     </div>
   {%- endif -%}
 
-  <div class="gsm-collection__header">
+  <div class="dty-collection__header">
     <div>
-      <h1 class="gsm-collection__title">{{ collection.title }}</h1>
-      <p class="gsm-collection__count">{{ 'collections.products_count' | t: count: collection.products_count }}</p>
+      <h1 class="dty-collection__title">{{ collection.title }}</h1>
+      <p class="dty-collection__count">{{ 'collections.products_count' | t: count: collection.products_count }}</p>
       {%- if collection.description != blank -%}
-        <div class="rte" style="margin-top: var(--space-3); color: var(--gsm-text-muted); font-size: var(--text-sm);">{{ collection.description }}</div>
+        <div class="rte" style="margin-top: var(--space-3); color: var(--dty-text-muted); font-size: var(--text-sm);">{{ collection.description }}</div>
       {%- endif -%}
     </div>
-    <div class="gsm-collection__toolbar">
-      <button type="button" class="gsm-collection__filter-toggle" data-filter-toggle>
+    <div class="dty-collection__toolbar">
+      <button type="button" class="dty-collection__filter-toggle" data-filter-toggle>
         <span class="material-symbols-outlined" aria-hidden="true">tune</span>
         {{ 'collections.filters' | t }}
       </button>
-      <div class="gsm-collection__sort">
+      <div class="dty-collection__sort">
         <label class="visually-hidden" for="SortBy">{{ 'collections.sort_by' | t }}</label>
         <select id="SortBy" name="sort_by" onchange="window.location.href=this.value">
           {%- for option in collection.sort_options -%}
@@ -34,20 +34,20 @@
   </div>
 
   {%- if collection.filters.size > 0 -%}
-    <div class="gsm-collection__active-filters">
+    <div class="dty-collection__active-filters">
       {%- for filter in collection.filters -%}
         {%- if filter.type == 'price_range' -%}
           {%- if filter.min_value.value or filter.max_value.value -%}
-            <span class="gsm-collection__active-tag">
-              {%- capture filter_min -%}{% render 'gsm-money', amount: filter.min_value.value %}{%- endcapture -%}
-              {%- capture filter_max -%}{% render 'gsm-money', amount: filter.max_value.value %}{%- endcapture -%}
+            <span class="dty-collection__active-tag">
+              {%- capture filter_min -%}{% render 'dty-money', amount: filter.min_value.value %}{%- endcapture -%}
+              {%- capture filter_max -%}{% render 'dty-money', amount: filter.max_value.value %}{%- endcapture -%}
               {{ filter_min }} – {{ filter_max }}
               <a href="{{ filter.url_to_remove }}">×</a>
             </span>
           {%- endif -%}
         {%- else -%}
           {%- for value in filter.active_values -%}
-            <span class="gsm-collection__active-tag">
+            <span class="dty-collection__active-tag">
               {{ filter.label }}: {{ value.label }}
               <a href="{{ value.url_to_remove }}">×</a>
             </span>
@@ -57,10 +57,10 @@
     </div>
   {%- endif -%}
 
-  <div class="gsm-collection__layout">
-    <aside class="gsm-collection__filters" data-collection-filters>
-      <div class="gsm-collection__filters-header">
-        <h2 class="gsm-section__heading" style="font-size: var(--text-lg); margin: 0;">{{ 'collections.filters' | t }}</h2>
+  <div class="dty-collection__layout">
+    <aside class="dty-collection__filters" data-collection-filters>
+      <div class="dty-collection__filters-header">
+        <h2 class="dty-section__heading" style="font-size: var(--text-lg); margin: 0;">{{ 'collections.filters' | t }}</h2>
         <button type="button" data-filter-close aria-label="{{ 'general.close' | t }}">
           <span class="material-symbols-outlined">close</span>
         </button>
@@ -69,13 +69,13 @@
       <form id="CollectionFiltersForm" action="{{ collection.url }}" method="get">
         <input type="hidden" name="sort_by" value="{{ collection.sort_by }}">
         {%- for filter in collection.filters -%}
-          <div class="gsm-collection__filter-group">
-            <p class="gsm-collection__filter-title">{{ filter.label }}</p>
-            <div class="gsm-collection__filter-list">
+          <div class="dty-collection__filter-group">
+            <p class="dty-collection__filter-title">{{ filter.label }}</p>
+            <div class="dty-collection__filter-list">
               {%- case filter.type -%}
                 {%- when 'list' -%}
                   {%- for value in filter.values -%}
-                    <div class="gsm-collection__filter-item">
+                    <div class="dty-collection__filter-item">
                       <label>
                         <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %} onchange="this.form.submit()">
                         {{ value.label }} ({{ value.count }})
@@ -83,7 +83,7 @@
                     </div>
                   {%- endfor -%}
                 {%- when 'price_range' -%}
-                  <div class="gsm-collection__filter-item">
+                  <div class="dty-collection__filter-item">
                     <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | money_without_currency | replace: '.', '' }}" placeholder="{{ 'collections.filter_min' | t }}" min="0">
                     –
                     <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | money_without_currency | replace: '.', '' }}" placeholder="{{ 'collections.filter_max' | t }}" min="0">
@@ -96,16 +96,16 @@
       </form>
     </aside>
 
-    <div class="gsm-collection__products">
+    <div class="dty-collection__products">
       {%- if collection.products.size > 0 -%}
-        <div class="gsm-collection__grid">
+        <div class="dty-collection__grid">
           {%- for product in collection.products -%}
-            {% render 'gsm-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
+            {% render 'dty-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
           {%- endfor -%}
         </div>
 
         {%- if paginate.pages > 1 -%}
-          <nav class="gsm-collection__pagination" aria-label="{{ 'general.pagination' | t }}">
+          <nav class="dty-collection__pagination" aria-label="{{ 'general.pagination' | t }}">
             {%- if paginate.previous -%}
               <a href="{{ paginate.previous.url }}">&laquo;</a>
             {%- endif -%}
@@ -126,7 +126,7 @@
           </nav>
         {%- endif -%}
       {%- else -%}
-        <p style="text-align: center; padding: var(--space-10); color: var(--gsm-text-muted);">{{ 'collections.empty' | t }}</p>
+        <p style="text-align: center; padding: var(--space-10); color: var(--dty-text-muted);">{{ 'collections.empty' | t }}</p>
       {%- endif -%}
     </div>
   </div>

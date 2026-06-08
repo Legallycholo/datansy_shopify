@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "gsm-page-cotizacion",
+      "type": "dty-page-cotizacion",
       "settings": {}
     }
   },

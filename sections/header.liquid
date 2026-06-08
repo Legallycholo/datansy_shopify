@@ -1,27 +1,27 @@
-<header class="gsm-header" data-section-id="{{ section.id }}" data-section-type="header">
+<header class="dty-header" data-section-id="{{ section.id }}" data-section-type="header">
   <div class="page-width">
-    <div class="gsm-header__inner">
+    <div class="dty-header__inner">
       {%- comment -%} Mobile menu toggle {%- endcomment -%}
       <button
         type="button"
-        class="gsm-header__menu-toggle hidden-desktop"
+        class="dty-header__menu-toggle hidden-desktop"
         data-mobile-nav-open
         aria-expanded="false"
-        aria-controls="GsmMobileNav"
+        aria-controls="DtyMobileNav"
         aria-label="{{ 'accessibility.menu_toggle' | t }}"
       >
         <span class="material-symbols-outlined" aria-hidden="true">menu</span>
       </button>
 
       {%- comment -%} Logo {%- endcomment -%}
-      <div class="gsm-header__logo">
-        <a href="{{ routes.root_url }}" class="gsm-header__logo-link">
+      <div class="dty-header__logo">
+        <a href="{{ routes.root_url }}" class="dty-header__logo-link">
           {%- if section.settings.logo != blank -%}
             {{
               section.settings.logo
               | image_url: width: 400
               | image_tag:
-                class: 'gsm-header__logo-img',
+                class: 'dty-header__logo-img',
                 widths: '160, 240, 320',
                 alt: shop.name,
                 width: section.settings.logo_width,
@@ -32,7 +32,7 @@
               settings.logo
               | image_url: width: 400
               | image_tag:
-                class: 'gsm-header__logo-img',
+                class: 'dty-header__logo-img',
                 widths: '160, 240, 320',
                 alt: shop.name,
                 width: settings.logo_width,
@@ -45,15 +45,15 @@
               width="{{ settings.logo_width }}"
               height="40"
               loading="eager"
-              class="gsm-header__logo-img"
+              class="dty-header__logo-img"
             >
           {%- endif -%}
         </a>
       </div>
 
       {%- comment -%} Desktop navigation {%- endcomment -%}
-      <nav class="gsm-header__nav" aria-label="{{ 'general.menu' | t }}">
-        <ul class="gsm-header__menu">
+      <nav class="dty-header__nav" aria-label="{{ 'general.menu' | t }}">
+        <ul class="dty-header__menu">
           {%- for block in section.blocks -%}
             {%- if block.type == 'menu_item' -%}
               {%- assign parent_handle = block.settings.handle -%}
@@ -65,21 +65,21 @@
               {%- endfor -%}
 
               <li
-                class="gsm-header__menu-item{% if child_count > 0 %} gsm-header__menu-item--has-mega{% endif %}"
+                class="dty-header__menu-item{% if child_count > 0 %} dty-header__menu-item--has-mega{% endif %}"
                 data-mega-menu-item
                 {{ block.shopify_attributes }}
               >
                 {%- if child_count > 0 -%}
-                  <a href="{{ block.settings.url }}" class="gsm-header__menu-link">
+                  <a href="{{ block.settings.url }}" class="dty-header__menu-link">
                     {{ block.settings.title }}
                     <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
                   </a>
-                  <div class="gsm-mega-menu gsm-mega-menu--wide">
+                  <div class="dty-mega-menu dty-mega-menu--wide">
                     {%- for child in section.blocks -%}
                       {%- if child.type == 'menu_child' and child.settings.parent == parent_handle -%}
                         {%- assign child_handle = child.settings.handle -%}
-                        <div class="gsm-mega-menu__column" {{ child.shopify_attributes }}>
-                          <p class="gsm-mega-menu__column-title">
+                        <div class="dty-mega-menu__column" {{ child.shopify_attributes }}>
+                          <p class="dty-mega-menu__column-title">
                             {%- if child.settings.url != blank -%}
                               <a href="{{ child.settings.url }}">{{ child.settings.title }}</a>
                             {%- else -%}
@@ -88,7 +88,7 @@
                           </p>
                           {%- for grand in section.blocks -%}
                             {%- if grand.type == 'menu_grandchild' and grand.settings.parent == child_handle -%}
-                              <a href="{{ grand.settings.url }}" class="gsm-mega-menu__link" {{ grand.shopify_attributes }}>
+                              <a href="{{ grand.settings.url }}" class="dty-mega-menu__link" {{ grand.shopify_attributes }}>
                                 {{ grand.settings.title }}
                               </a>
                             {%- endif -%}
@@ -98,7 +98,7 @@
                     {%- endfor -%}
                   </div>
                 {%- else -%}
-                  <a href="{{ block.settings.url }}" class="gsm-header__menu-link">
+                  <a href="{{ block.settings.url }}" class="dty-header__menu-link">
                     {{ block.settings.title }}
                   </a>
                 {%- endif -%}
@@ -106,25 +106,25 @@
             {%- endif -%}
           {%- endfor -%}
 
-          <li class="gsm-header__menu-item">
-            <a href="{{ section.settings.quote_url }}" class="gsm-header__menu-link">{{ 'header.quote' | t }}</a>
+          <li class="dty-header__menu-item">
+            <a href="{{ section.settings.quote_url }}" class="dty-header__menu-link">{{ 'header.quote' | t }}</a>
           </li>
-          <li class="gsm-header__menu-item">
-            <a href="{{ section.settings.track_url }}" class="gsm-header__menu-link">{{ 'header.track_order' | t }}</a>
+          <li class="dty-header__menu-item">
+            <a href="{{ section.settings.track_url }}" class="dty-header__menu-link">{{ 'header.track_order' | t }}</a>
           </li>
         </ul>
       </nav>
 
       {%- comment -%} Desktop search {%- endcomment -%}
-      <div class="gsm-header__search hidden-mobile">
-        {% render 'gsm-search-form', id_suffix: 'desktop', show_category: true %}
+      <div class="dty-header__search hidden-mobile">
+        {% render 'dty-search-form', id_suffix: 'desktop', show_category: true %}
       </div>
 
       {%- comment -%} Actions: search (mobile), localization, account, cart {%- endcomment -%}
-      <div class="gsm-header__actions">
+      <div class="dty-header__actions">
         <button
           type="button"
-          class="gsm-header__action gsm-header__search-toggle hidden-desktop"
+          class="dty-header__action dty-header__search-toggle hidden-desktop"
           data-mobile-search-toggle
           aria-expanded="false"
           aria-label="{{ 'accessibility.search_toggle' | t }}"
@@ -133,40 +133,40 @@
         </button>
 
         <div class="hidden-mobile">
-          {% render 'gsm-localization', form_id: 'HeaderLocalizationForm' %}
+          {% render 'dty-localization', form_id: 'HeaderLocalizationForm' %}
         </div>
 
-        <a href="{{ routes.account_url }}" class="gsm-header__action" aria-label="{{ 'general.account' | t }}">
+        <a href="{{ routes.account_url }}" class="dty-header__action" aria-label="{{ 'general.account' | t }}">
           <span class="material-symbols-outlined" aria-hidden="true">person</span>
-          <span class="gsm-header__action-label">{{ 'general.account' | t }}</span>
+          <span class="dty-header__action-label">{{ 'general.account' | t }}</span>
         </a>
 
         <button
           type="button"
-          class="gsm-header__action"
+          class="dty-header__action"
           data-cart-open
           aria-label="{{ 'accessibility.cart_toggle' | t }}"
         >
           <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
-          <span class="gsm-header__cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
-          <span class="gsm-header__action-label">{{ 'general.cart' | t }}</span>
+          <span class="dty-header__cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+          <span class="dty-header__action-label">{{ 'general.cart' | t }}</span>
         </button>
       </div>
     </div>
 
     {%- comment -%} Mobile search bar {%- endcomment -%}
-    <div class="gsm-header__mobile-search hidden-desktop" data-mobile-search-bar>
-      {% render 'gsm-search-form', id_suffix: 'mobile', show_category: false %}
+    <div class="dty-header__mobile-search hidden-desktop" data-mobile-search-bar>
+      {% render 'dty-search-form', id_suffix: 'mobile', show_category: false %}
     </div>
   </div>
 </header>
 
-<div id="GsmOverlay" class="gsm-overlay" aria-hidden="true"></div>
+<div id="DtyOverlay" class="dty-overlay" aria-hidden="true"></div>
 
-{% render 'gsm-mobile-nav', section: section %}
+{% render 'dty-mobile-nav', section: section %}
 
 {%- if settings.cart_type == 'drawer' -%}
-  {% render 'gsm-cart-drawer' %}
+  {% render 'dty-cart-drawer' %}
 {%- endif -%}
 
 {% schema %}

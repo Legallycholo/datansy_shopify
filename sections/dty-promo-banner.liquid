@@ -1,25 +1,25 @@
-<section class="gsm-promo-banner{% if section.settings.full_width %} gsm-promo-banner--full{% endif %}" style="--promo-bg: {{ section.settings.background_color }}; --promo-text: {{ section.settings.text_color }};">
-  <div class="{% if section.settings.full_width %}gsm-promo-banner__full{% else %}page-width{% endif %}">
-    <div class="gsm-promo-banner__inner">
-      <div class="gsm-promo-banner__content">
+<section class="dty-promo-banner{% if section.settings.full_width %} dty-promo-banner--full{% endif %}" style="--promo-bg: {{ section.settings.background_color }}; --promo-text: {{ section.settings.text_color }};">
+  <div class="{% if section.settings.full_width %}dty-promo-banner__full{% else %}page-width{% endif %}">
+    <div class="dty-promo-banner__inner">
+      <div class="dty-promo-banner__content">
         {%- if section.settings.label != blank -%}
-          <span class="gsm-promo-banner__label">{{ section.settings.label }}</span>
+          <span class="dty-promo-banner__label">{{ section.settings.label }}</span>
         {%- endif -%}
         {%- if section.settings.heading != blank -%}
-          <h2 class="gsm-promo-banner__heading">{{ section.settings.heading }}</h2>
+          <h2 class="dty-promo-banner__heading">{{ section.settings.heading }}</h2>
         {%- endif -%}
         {%- if section.settings.text != blank -%}
-          <p class="gsm-promo-banner__text">{{ section.settings.text }}</p>
+          <p class="dty-promo-banner__text">{{ section.settings.text }}</p>
         {%- endif -%}
         {%- if section.settings.button_url != blank -%}
-          <a href="{{ section.settings.button_url }}" class="btn btn--accent gsm-promo-banner__btn">{{ section.settings.button_label }}</a>
+          <a href="{{ section.settings.button_url }}" class="btn btn--accent dty-promo-banner__btn">{{ section.settings.button_label }}</a>
         {%- endif -%}
       </div>
-      <div class="gsm-promo-banner__media">
+      <div class="dty-promo-banner__media">
         {%- if section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'gsm-promo-banner__image', alt: section.settings.heading }}
+          {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'dty-promo-banner__image', alt: section.settings.heading }}
         {%- else -%}
-          <div class="placeholder-image gsm-promo-banner__placeholder">Promo banner placeholder</div>
+          <div class="placeholder-image dty-promo-banner__placeholder">Promo banner placeholder</div>
         {%- endif -%}
       </div>
     </div>
@@ -30,7 +30,7 @@
 {
   "name": "Datansy Promo Banner",
   "tag": "section",
-  "class": "section-gsm-promo",
+  "class": "section-dty-promo",
   "settings": [
     { "type": "checkbox", "id": "full_width", "label": "Ancho completo", "default": true },
     { "type": "text", "id": "label", "label": "Etiqueta", "default": "Oferta" },
@@ -39,7 +39,7 @@
     { "type": "text", "id": "button_label", "label": "Botón", "default": "Ver ofertas" },
     { "type": "url", "id": "button_url", "label": "URL botón" },
     { "type": "image_picker", "id": "image", "label": "Imagen" },
-    { "type": "color", "id": "background_color", "label": "Fondo", "default": "#00003A" },
+    { "type": "color", "id": "background_color", "label": "Fondo", "default": "#1C1917" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#FFFFFF" }
   ],
   "presets": [{ "name": "Datansy Promo Banner" }]

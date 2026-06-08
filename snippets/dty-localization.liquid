@@ -6,8 +6,8 @@
 {% enddoc %}
 
 {%- liquid
-  assign prefix = class_prefix | default: 'gsm-localization'
-  assign form_id = form_id | default: 'GsmLocalizationForm'
+  assign prefix = class_prefix | default: 'dty-localization'
+  assign form_id = form_id | default: 'DtyLocalizationForm'
   assign country_select_id = form_id | append: '-country'
   assign language_select_id = form_id | append: '-language'
   assign current_country = localization.country

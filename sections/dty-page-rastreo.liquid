@@ -1,20 +1,20 @@
-<section class="gsm-special-page page-width">
-  <div class="gsm-special-page__card">
-    <h1 class="gsm-special-page__title">{{ page.title | default: section.settings.heading }}</h1>
+<section class="dty-special-page page-width">
+  <div class="dty-special-page__card">
+    <h1 class="dty-special-page__title">{{ page.title | default: section.settings.heading }}</h1>
     {%- if section.settings.intro != blank -%}
-      <p class="gsm-special-page__intro">{{ section.settings.intro }}</p>
+      <p class="dty-special-page__intro">{{ section.settings.intro }}</p>
     {%- endif -%}
 
     {%- if page.content != blank -%}
       <div class="rte" style="margin-bottom: var(--space-6);">{{ page.content }}</div>
     {%- endif -%}
 
-    <form class="gsm-rastreo-form" action="{{ section.settings.tracking_url | default: 'https://datansy.com/pages/shipping' }}" method="get" target="_blank">
-      <div class="gsm-form-field">
+    <form class="dty-rastreo-form" action="{{ section.settings.tracking_url | default: 'https://datansy.com/pages/shipping' }}" method="get" target="_blank">
+      <div class="dty-form-field">
         <label for="RastreoOrder">{{ 'forms.order_number' | t }}</label>
         <input id="RastreoOrder" type="text" name="order" required placeholder="{{ section.settings.order_placeholder }}">
       </div>
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="RastreoEmail">{{ 'forms.email' | t }}</label>
         <input id="RastreoEmail" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">
       </div>
@@ -22,7 +22,7 @@
     </form>
 
     {%- if section.settings.help_text != blank -%}
-      <p style="margin-top: var(--space-6); font-size: var(--text-sm); color: var(--gsm-text-muted); text-align: center;">{{ section.settings.help_text }}</p>
+      <p style="margin-top: var(--space-6); font-size: var(--text-sm); color: var(--dty-text-muted); text-align: center;">{{ section.settings.help_text }}</p>
     {%- endif -%}
   </div>
 </section>

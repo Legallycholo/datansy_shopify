@@ -1,14 +1,14 @@
 <section
-  class="gsm-product-recommendations page-width"
+  class="dty-product-recommendations page-width"
   data-product-recommendations
   data-product-id="{{ product.id }}"
   data-section-id="{{ section.id }}"
 >
   {%- if recommendations.performed and recommendations.products_count > 0 -%}
-    <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
-    <div class="gsm-product-recommendations__grid">
+    <h2 class="dty-section__heading">{{ section.settings.heading }}</h2>
+    <div class="dty-product-recommendations__grid">
       {%- for product in recommendations.products -%}
-        {% render 'gsm-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
+        {% render 'dty-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
       {%- endfor -%}
     </div>
   {%- endif -%}

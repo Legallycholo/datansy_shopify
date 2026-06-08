@@ -1,24 +1,24 @@
-<section class="gsm-customer page-width">
-  <div class="gsm-customer__card">
-    <h1 class="gsm-customer__title">{{ 'customer.activate_account.title' | t }}</h1>
-    <p style="color: var(--gsm-text-muted); margin-bottom: var(--space-6);">{{ 'customer.activate_account.subtext' | t }}</p>
+<section class="dty-customer page-width">
+  <div class="dty-customer__card">
+    <h1 class="dty-customer__title">{{ 'customer.activate_account.title' | t }}</h1>
+    <p style="color: var(--dty-text-muted); margin-bottom: var(--space-6);">{{ 'customer.activate_account.subtext' | t }}</p>
 
     {% form 'activate_customer_password' %}
       {%- if form.errors -%}
-        <div class="gsm-customer__errors">{{ form.errors | default_errors }}</div>
+        <div class="dty-customer__errors">{{ form.errors | default_errors }}</div>
       {%- endif -%}
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="ActivatePassword">{{ 'customer.login.password' | t }}</label>
         <input id="ActivatePassword" type="password" name="customer[password]" autocomplete="new-password" required>
       </div>
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="ActivatePasswordConfirm">{{ 'customer.reset_password.confirm' | t }}</label>
         <input id="ActivatePasswordConfirm" type="password" name="customer[password_confirmation]" autocomplete="new-password" required>
       </div>
       <button type="submit" class="btn btn--primary" style="width: 100%;">{{ 'customer.activate_account.submit' | t }}</button>
     {% endform %}
 
-    <p class="gsm-customer__links" style="margin-top: var(--space-4);">
+    <p class="dty-customer__links" style="margin-top: var(--space-4);">
       <a href="{{ routes.account_register_url }}">{{ 'customer.activate_account.decline' | t }}</a>
     </p>
   </div>

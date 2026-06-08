@@ -1,43 +1,43 @@
-<section class="gsm-special-page page-width">
-  <div class="gsm-special-page__card">
-    <h1 class="gsm-special-page__title">{{ page.title | default: section.settings.heading }}</h1>
+<section class="dty-special-page page-width">
+  <div class="dty-special-page__card">
+    <h1 class="dty-special-page__title">{{ page.title | default: section.settings.heading }}</h1>
     {%- if section.settings.intro != blank -%}
-      <p class="gsm-special-page__intro">{{ section.settings.intro }}</p>
+      <p class="dty-special-page__intro">{{ section.settings.intro }}</p>
     {%- endif -%}
 
     {%- if page.content != blank -%}
       <div class="rte" style="margin-bottom: var(--space-6);">{{ page.content }}</div>
     {%- endif -%}
 
-    {% form 'contact', class: 'gsm-cotizacion-form' %}
+    {% form 'contact', class: 'dty-cotizacion-form' %}
       {%- if form.posted_successfully? -%}
         <p style="padding: var(--space-4); background: #ecfdf5; color: #059669; border-radius: var(--radius-md); margin-bottom: var(--space-4);">
           {{ section.settings.success_message }}
         </p>
       {%- endif -%}
       {%- if form.errors -%}
-        <div class="gsm-customer__errors">{{ form.errors | default_errors }}</div>
+        <div class="dty-customer__errors">{{ form.errors | default_errors }}</div>
       {%- endif -%}
 
       <input type="hidden" name="contact[tags]" value="cotizacion">
 
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="CotizacionName">{{ 'forms.name' | t }}</label>
         <input id="CotizacionName" type="text" name="contact[name]" required autocomplete="name">
       </div>
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="CotizacionEmail">{{ 'forms.email' | t }}</label>
         <input id="CotizacionEmail" type="email" name="contact[email]" required autocomplete="email">
       </div>
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="CotizacionPhone">{{ 'forms.phone' | t }}</label>
         <input id="CotizacionPhone" type="tel" name="contact[phone]" autocomplete="tel">
       </div>
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="CotizacionProduct">{{ 'forms.product_interest' | t }}</label>
         <input id="CotizacionProduct" type="text" name="contact[producto]" placeholder="{{ section.settings.product_placeholder }}">
       </div>
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="CotizacionMessage">{{ 'forms.message' | t }}</label>
         <textarea id="CotizacionMessage" name="contact[body]" required placeholder="{{ section.settings.message_placeholder }}"></textarea>
       </div>

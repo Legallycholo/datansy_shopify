@@ -9,7 +9,7 @@
       if (!track) return;
 
       var scrollAmount = function () {
-        var slide = track.querySelector('.gsm-product-slider__slide');
+        var slide = track.querySelector('.dty-product-slider__slide');
         return slide ? slide.offsetWidth + 16 : 280;
       };
 
@@ -47,7 +47,7 @@
       btn.disabled = true;
       btn.textContent = '...';
 
-      fetch(window.gsmSettings.routes.cartAddUrl, {
+      fetch(window.dtySettings.routes.cartAddUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: [{ id: form.querySelector('[name="id"]').value, quantity: 1 }] })
@@ -56,9 +56,9 @@
         .then(function (data) {
           if (data.status && data.status >= 400) throw new Error(data.description);
           btn.textContent = '✓';
-          if (window.gsmCart) {
-            window.gsmCart.refresh();
-            if (window.gsmSettings.cartType === 'drawer') window.gsmCart.open();
+          if (window.dtyCart) {
+            window.dtyCart.refresh();
+            if (window.dtySettings.cartType === 'drawer') window.dtyCart.open();
           }
         })
         .catch(function () {

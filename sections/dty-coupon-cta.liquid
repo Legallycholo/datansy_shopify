@@ -1,21 +1,21 @@
-<section class="gsm-section gsm-coupon-cta">
+<section class="dty-section dty-coupon-cta">
   <div class="page-width">
-    <div class="gsm-coupon-cta__card">
-      <div class="gsm-coupon-cta__content">
+    <div class="dty-coupon-cta__card">
+      <div class="dty-coupon-cta__content">
         {%- if section.settings.heading != blank -%}
-          <h2 class="gsm-coupon-cta__heading">{{ section.settings.heading }}</h2>
+          <h2 class="dty-coupon-cta__heading">{{ section.settings.heading }}</h2>
         {%- endif -%}
         {%- if section.settings.subtext != blank -%}
-          <p class="gsm-coupon-cta__subtext">{{ section.settings.subtext }}</p>
+          <p class="dty-coupon-cta__subtext">{{ section.settings.subtext }}</p>
         {%- endif -%}
 
-        <div class="gsm-coupon-cta__coupon-row">
+        <div class="dty-coupon-cta__coupon-row">
           {%- assign coupon = section.settings.coupon_code | default: settings.default_coupon_code | default: 'BIENVENIDO10' -%}
-          <div class="gsm-coupon">
-            <span class="gsm-coupon__code">{{ coupon }}</span>
+          <div class="dty-coupon">
+            <span class="dty-coupon__code">{{ coupon }}</span>
             <button
               type="button"
-              class="gsm-coupon__copy"
+              class="dty-coupon__copy"
               data-coupon-copy
               data-coupon-code="{{ coupon }}"
             >
@@ -25,13 +25,13 @@
         </div>
 
         {%- if section.settings.urgency_text != blank -%}
-          <p class="gsm-coupon-cta__urgency">{{ section.settings.urgency_text }}</p>
+          <p class="dty-coupon-cta__urgency">{{ section.settings.urgency_text }}</p>
         {%- endif -%}
       </div>
 
       {%- if section.settings.show_newsletter -%}
-        <div class="gsm-coupon-cta__form">
-          {% form 'customer', class: 'gsm-coupon-cta__newsletter' %}
+        <div class="dty-coupon-cta__form">
+          {% form 'customer', class: 'dty-coupon-cta__newsletter' %}
             <input type="hidden" name="contact[tags]" value="newsletter">
             <label class="visually-hidden" for="CouponEmail-{{ section.id }}">Email</label>
             <input
@@ -41,11 +41,11 @@
               placeholder="{{ section.settings.email_placeholder }}"
               required
               autocomplete="email"
-              class="gsm-coupon-cta__input"
+              class="dty-coupon-cta__input"
             >
             <button type="submit" class="btn btn--primary">{{ section.settings.submit_label }}</button>
             {%- if form.posted_successfully? -%}
-              <p class="gsm-coupon-cta__success">{{ section.settings.success_message }}</p>
+              <p class="dty-coupon-cta__success">{{ section.settings.success_message }}</p>
             {%- endif -%}
           {% endform %}
         </div>
@@ -58,7 +58,7 @@
 {
   "name": "Datansy Cupón CTA",
   "tag": "section",
-  "class": "section-gsm-coupon",
+  "class": "section-dty-coupon",
   "settings": [
     { "type": "text", "id": "heading", "label": "Título", "default": "Tecnología a tu Alcance" },
     { "type": "text", "id": "subtext", "label": "Subtexto", "default": "Únete a nuestra comunidad." },

@@ -17,21 +17,21 @@
   endif
 -%}
 
-<div class="gsm-price{% if price_class %} {{ price_class }}{% endif %}">
+<div class="dty-price{% if price_class %} {{ price_class }}{% endif %}">
   {%- if product.price_varies and product.compare_at_price_varies == false -%}
-    {%- capture formatted_min -%}{% render 'gsm-money', amount: product.price_min %}{%- endcapture -%}
-    <span class="gsm-price__from">{{ 'products.from_price' | t: price: formatted_min }}</span>
+    {%- capture formatted_min -%}{% render 'dty-money', amount: product.price_min %}{%- endcapture -%}
+    <span class="dty-price__from">{{ 'products.from_price' | t: price: formatted_min }}</span>
   {%- else -%}
-    <span class="gsm-price__current{% if on_sale %} gsm-price__current--sale{% endif %}">
-      {%- render 'gsm-money', amount: price -%}
+    <span class="dty-price__current{% if on_sale %} dty-price__current--sale{% endif %}">
+      {%- render 'dty-money', amount: price -%}
     </span>
   {%- endif -%}
 
   {%- if on_sale -%}
-    <s class="gsm-price__compare">{%- render 'gsm-money', amount: compare_at -%}</s>
+    <s class="dty-price__compare">{%- render 'dty-money', amount: compare_at -%}</s>
     {%- if show_savings -%}
-      {%- capture formatted_savings -%}{% render 'gsm-money', amount: savings %}{%- endcapture -%}
-      <span class="gsm-price__savings">{{ 'products.save' | t: amount: formatted_savings }}</span>
+      {%- capture formatted_savings -%}{% render 'dty-money', amount: savings %}{%- endcapture -%}
+      <span class="dty-price__savings">{{ 'products.save' | t: amount: formatted_savings }}</span>
     {%- endif -%}
   {%- endif -%}
 </div>

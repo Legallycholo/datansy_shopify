@@ -2,66 +2,66 @@
    Datansy Warehouse / inventory UI (ported placeholder — full in Phase 7)
    ========================================================================== */
 
-.gsm-warehouse {
+.dty-warehouse {
   margin-top: var(--space-4);
   padding: var(--space-4);
-  background: var(--gsm-gray);
+  background: var(--dty-gray);
   border-radius: var(--radius-lg);
 }
 
-.gsm-warehouse__title {
+.dty-warehouse__title {
   font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-3);
-  color: var(--gsm-text);
+  color: var(--dty-text);
 }
 
-.gsm-warehouse__list {
+.dty-warehouse__list {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-.gsm-warehouse__item {
+.dty-warehouse__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-2) var(--space-3);
-  background: var(--gsm-white);
+  background: var(--dty-white);
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
 }
 
-.gsm-warehouse__item--express {
+.dty-warehouse__item--express {
   border-left: 3px solid #22c55e;
 }
 
-.gsm-warehouse__item--standard {
-  border-left: 3px solid var(--gsm-blue);
+.dty-warehouse__item--standard {
+  border-left: 3px solid var(--dty-blue);
 }
 
-.gsm-warehouse__status {
+.dty-warehouse__status {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   font-weight: 500;
 }
 
-.gsm-warehouse__status-dot {
+.dty-warehouse__status-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: #22c55e;
 }
 
-.gsm-warehouse__status-dot--blue {
-  background: var(--gsm-blue);
+.dty-warehouse__status-dot--blue {
+  background: var(--dty-blue);
 }
 
-.gsm-warehouse__qty {
-  color: var(--gsm-text-muted);
+.dty-warehouse__qty {
+  color: var(--dty-text-muted);
   font-size: var(--text-xs);
 }

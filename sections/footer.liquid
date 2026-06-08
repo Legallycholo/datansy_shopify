@@ -1,55 +1,55 @@
 {%- if section.settings.show_mission and section.settings.mission_text != blank -%}
-  <div class="gsm-footer__mission">
+  <div class="dty-footer__mission">
     <div class="page-width">
-      <div class="gsm-footer__mission-inner">
-        <div class="gsm-footer__mission-logo">
+      <div class="dty-footer__mission-inner">
+        <div class="dty-footer__mission-logo">
           <img
             src="{{ 'datansy-logo-white.png' | asset_url }}"
             alt="{{ shop.name | escape }}"
             width="140"
             height="40"
             loading="lazy"
-            class="gsm-footer__mission-logo-img"
+            class="dty-footer__mission-logo-img"
           >
         </div>
-        <p class="gsm-footer__mission-text">{{ section.settings.mission_text }}</p>
+        <p class="dty-footer__mission-text">{{ section.settings.mission_text }}</p>
       </div>
     </div>
   </div>
 {%- endif -%}
 
 {%- if section.settings.show_newsletter -%}
-  <div class="gsm-footer__newsletter-band">
+  <div class="dty-footer__newsletter-band">
     <div class="page-width">
-      <div class="gsm-footer__newsletter-inner">
-        <div class="gsm-footer__newsletter-copy">
-          <p class="gsm-footer__newsletter-heading">{{ section.settings.newsletter_heading }}</p>
+      <div class="dty-footer__newsletter-inner">
+        <div class="dty-footer__newsletter-copy">
+          <p class="dty-footer__newsletter-heading">{{ section.settings.newsletter_heading }}</p>
           {%- if section.settings.newsletter_subtext != blank -%}
-            <p class="gsm-footer__newsletter-sub">{{ section.settings.newsletter_subtext }}</p>
+            <p class="dty-footer__newsletter-sub">{{ section.settings.newsletter_subtext }}</p>
           {%- endif -%}
         </div>
-        {%- form 'customer', id: 'FooterNewsletterForm', class: 'gsm-footer__newsletter-form' -%}
+        {%- form 'customer', id: 'FooterNewsletterForm', class: 'dty-footer__newsletter-form' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
           {%- if form.posted_successfully? -%}
-            <p class="gsm-footer__newsletter-success">{{ 'footer.newsletter_success' | t }}</p>
+            <p class="dty-footer__newsletter-success">{{ 'footer.newsletter_success' | t }}</p>
           {%- else -%}
-            <div class="gsm-footer__newsletter-fields">
+            <div class="dty-footer__newsletter-fields">
               <input
                 type="email"
                 name="contact[email]"
                 id="FooterNewsletterEmail"
-                class="gsm-footer__newsletter-input"
+                class="dty-footer__newsletter-input"
                 placeholder="{{ 'footer.newsletter_placeholder' | t }}"
                 autocomplete="email"
                 required
                 aria-label="{{ 'footer.newsletter_placeholder' | t }}"
               >
-              <button type="submit" class="btn btn--accent gsm-footer__newsletter-btn">
+              <button type="submit" class="btn btn--accent dty-footer__newsletter-btn">
                 {{ 'footer.newsletter_submit' | t }}
               </button>
             </div>
             {%- if form.errors -%}
-              <p class="gsm-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+              <p class="dty-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
             {%- endif -%}
           {%- endif -%}
         {%- endform -%}
@@ -58,21 +58,21 @@
   </div>
 {%- endif -%}
 
-<footer class="gsm-footer" data-section-id="{{ section.id }}" data-section-type="footer">
-  <div class="gsm-footer__main">
+<footer class="dty-footer" data-section-id="{{ section.id }}" data-section-type="footer">
+  <div class="dty-footer__main">
     <div class="page-width">
-      <div class="gsm-footer__grid">
+      <div class="dty-footer__grid">
         {%- comment -%} Column 1 — Nosotros {%- endcomment -%}
-        <div class="gsm-footer__column is-open" data-footer-column>
-          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="true">
+        <div class="dty-footer__column is-open" data-footer-column>
+          <button type="button" class="dty-footer__column-toggle" data-footer-toggle aria-expanded="true">
             {{ section.settings.column_1_title }}
             <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
           </button>
-          <div class="gsm-footer__column-body">
-            <nav class="gsm-footer__links" aria-label="{{ section.settings.column_1_title }}">
+          <div class="dty-footer__column-body">
+            <nav class="dty-footer__links" aria-label="{{ section.settings.column_1_title }}">
               {%- for block in section.blocks -%}
                 {%- if block.type == 'link' and block.settings.group == 'nosotros' -%}
-                  <a href="{{ block.settings.url }}" class="gsm-footer__link" {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.url }}" class="dty-footer__link" {{ block.shopify_attributes }}>
                     {{ block.settings.title }}
                   </a>
                 {%- endif -%}
@@ -82,16 +82,16 @@
         </div>
 
         {%- comment -%} Column 2 — Tienda {%- endcomment -%}
-        <div class="gsm-footer__column" data-footer-column>
-          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
+        <div class="dty-footer__column" data-footer-column>
+          <button type="button" class="dty-footer__column-toggle" data-footer-toggle aria-expanded="false">
             {{ section.settings.column_2_title }}
             <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
           </button>
-          <div class="gsm-footer__column-body">
-            <nav class="gsm-footer__links" aria-label="{{ section.settings.column_2_title }}">
+          <div class="dty-footer__column-body">
+            <nav class="dty-footer__links" aria-label="{{ section.settings.column_2_title }}">
               {%- for block in section.blocks -%}
                 {%- if block.type == 'link' and block.settings.group == 'menu' -%}
-                  <a href="{{ block.settings.url }}" class="gsm-footer__link" {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.url }}" class="dty-footer__link" {{ block.shopify_attributes }}>
                     {{ block.settings.title }}
                   </a>
                 {%- endif -%}
@@ -101,16 +101,16 @@
         </div>
 
         {%- comment -%} Column 3 — Legal {%- endcomment -%}
-        <div class="gsm-footer__column" data-footer-column>
-          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
+        <div class="dty-footer__column" data-footer-column>
+          <button type="button" class="dty-footer__column-toggle" data-footer-toggle aria-expanded="false">
             {{ section.settings.column_3_title }}
             <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
           </button>
-          <div class="gsm-footer__column-body">
-            <nav class="gsm-footer__links" aria-label="{{ section.settings.column_3_title }}">
+          <div class="dty-footer__column-body">
+            <nav class="dty-footer__links" aria-label="{{ section.settings.column_3_title }}">
               {%- for block in section.blocks -%}
                 {%- if block.type == 'link' and block.settings.group == 'legal' -%}
-                  <a href="{{ block.settings.url }}" class="gsm-footer__link" {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.url }}" class="dty-footer__link" {{ block.shopify_attributes }}>
                     {{ block.settings.title }}
                   </a>
                 {%- endif -%}
@@ -120,14 +120,14 @@
         </div>
 
         {%- comment -%} Column 4 — Contacto {%- endcomment -%}
-        <div class="gsm-footer__column" data-footer-column>
-          <button type="button" class="gsm-footer__column-toggle" data-footer-toggle aria-expanded="false">
+        <div class="dty-footer__column" data-footer-column>
+          <button type="button" class="dty-footer__column-toggle" data-footer-toggle aria-expanded="false">
             {{ section.settings.contact_title }}
             <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
           </button>
-          <div class="gsm-footer__column-body">
+          <div class="dty-footer__column-body">
             {%- if section.settings.whatsapp_cl != blank -%}
-              <div class="gsm-footer__contact-item">
+              <div class="dty-footer__contact-item">
                 <span class="material-symbols-outlined" aria-hidden="true">chat</span>
                 <div>
                   <strong>WhatsApp Chile</strong><br>
@@ -136,7 +136,7 @@
               </div>
             {%- endif -%}
             {%- if section.settings.phone_intl != blank -%}
-              <div class="gsm-footer__contact-item">
+              <div class="dty-footer__contact-item">
                 <span class="material-symbols-outlined" aria-hidden="true">public</span>
                 <div>
                   <strong>Internacional</strong><br>
@@ -145,7 +145,7 @@
               </div>
             {%- endif -%}
             {%- if section.settings.phone_callcenter != blank -%}
-              <div class="gsm-footer__contact-item">
+              <div class="dty-footer__contact-item">
                 <span class="material-symbols-outlined" aria-hidden="true">call</span>
                 <div>
                   <strong>Call center</strong><br>
@@ -154,7 +154,7 @@
               </div>
             {%- endif -%}
             {%- if section.settings.email != blank -%}
-              <div class="gsm-footer__contact-item">
+              <div class="dty-footer__contact-item">
                 <span class="material-symbols-outlined" aria-hidden="true">mail</span>
                 <div>
                   <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
@@ -162,7 +162,7 @@
               </div>
             {%- endif -%}
             {%- if section.settings.hours != blank -%}
-              <div class="gsm-footer__hours">{{ section.settings.hours }}</div>
+              <div class="dty-footer__hours">{{ section.settings.hours }}</div>
             {%- endif -%}
           </div>
         </div>
@@ -170,38 +170,38 @@
     </div>
   </div>
 
-  <div class="gsm-footer__bottom">
+  <div class="dty-footer__bottom">
     <div class="page-width">
-      <div class="gsm-footer__bottom-inner">
-        <div class="gsm-footer__localization">
-          {% render 'gsm-localization', class_prefix: 'gsm-localization gsm-localization--footer', form_id: 'FooterLocalizationForm', compact: true %}
+      <div class="dty-footer__bottom-inner">
+        <div class="dty-footer__localization">
+          {% render 'dty-localization', class_prefix: 'dty-localization dty-localization--footer', form_id: 'FooterLocalizationForm', compact: true %}
         </div>
 
-        <div class="gsm-footer__payments" aria-label="Medios de pago">
-          <span class="gsm-footer__payment-icon">VISA</span>
-          <span class="gsm-footer__payment-icon">MC</span>
-          <span class="gsm-footer__payment-icon">AMEX</span>
-          <span class="gsm-footer__payment-icon">PayPal</span>
-          <span class="gsm-footer__payment-icon">Apple Pay</span>
-          <span class="gsm-footer__payment-icon">G Pay</span>
+        <div class="dty-footer__payments" aria-label="Medios de pago">
+          <span class="dty-footer__payment-icon">VISA</span>
+          <span class="dty-footer__payment-icon">MC</span>
+          <span class="dty-footer__payment-icon">AMEX</span>
+          <span class="dty-footer__payment-icon">PayPal</span>
+          <span class="dty-footer__payment-icon">Apple Pay</span>
+          <span class="dty-footer__payment-icon">G Pay</span>
         </div>
 
         {%- if section.settings.social_facebook != blank or section.settings.social_instagram != blank or section.settings.social_twitter != blank or section.settings.social_youtube != blank or section.settings.social_tiktok != blank or section.settings.social_linkedin != blank -%}
-          <nav class="gsm-footer__social" aria-label="{{ 'footer.social_media' | t }}">
-            {% render 'gsm-social-links', settings: section.settings, link_class: 'gsm-footer__social-link' %}
+          <nav class="dty-footer__social" aria-label="{{ 'footer.social_media' | t }}">
+            {% render 'dty-social-links', settings: section.settings, link_class: 'dty-footer__social-link' %}
           </nav>
         {%- endif -%}
 
-        <button type="button" class="gsm-footer__back-to-top" data-back-to-top aria-label="Volver arriba">
+        <button type="button" class="dty-footer__back-to-top" data-back-to-top aria-label="Volver arriba">
           <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
         </button>
       </div>
 
       <div style="margin-top: var(--space-6); text-align: center;">
         {%- if section.settings.recaptcha_notice != blank -%}
-          <p class="gsm-footer__legal">{{ section.settings.recaptcha_notice }}</p>
+          <p class="dty-footer__legal">{{ section.settings.recaptcha_notice }}</p>
         {%- endif -%}
-        <p class="gsm-footer__copyright">
+        <p class="dty-footer__copyright">
           &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.
           {%- if section.settings.copyright_text != blank -%}
             {{ section.settings.copyright_text }}

@@ -1,23 +1,23 @@
 {%- if section.settings.enabled and section.blocks.size > 0 -%}
-<div class="gsm-announcement-bar" id="GsmAnnouncementBar" data-announcement-bar>
-  <div class="gsm-announcement-bar__track" data-announcement-track>
+<div class="dty-announcement-bar" id="DtyAnnouncementBar" data-announcement-bar>
+  <div class="dty-announcement-bar__track" data-announcement-track>
     {%- for block in section.blocks -%}
       <div
-        class="gsm-announcement-bar__item{% if forloop.first %} is-active{% endif %}"
+        class="dty-announcement-bar__item{% if forloop.first %} is-active{% endif %}"
         data-announcement-item
         {{ block.shopify_attributes }}
       >
         {%- if block.settings.url != blank -%}
-          <a href="{{ block.settings.url }}" class="gsm-announcement-bar__link">
+          <a href="{{ block.settings.url }}" class="dty-announcement-bar__link">
             {%- if block.settings.icon != blank -%}
-              <span class="material-symbols-outlined gsm-announcement-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+              <span class="material-symbols-outlined dty-announcement-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
             {%- endif -%}
             {{ block.settings.text }}
           </a>
         {%- else -%}
           <span>
             {%- if block.settings.icon != blank -%}
-              <span class="material-symbols-outlined gsm-announcement-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+              <span class="material-symbols-outlined dty-announcement-bar__icon" aria-hidden="true">{{ block.settings.icon }}</span>
             {%- endif -%}
             {{ block.settings.text }}
           </span>
@@ -27,7 +27,7 @@
   </div>
   <button
     type="button"
-    class="gsm-announcement-bar__close"
+    class="dty-announcement-bar__close"
     data-announcement-close
     aria-label="Cerrar barra"
   >

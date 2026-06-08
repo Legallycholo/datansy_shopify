@@ -3,18 +3,18 @@
   @param {object} section - Header section object with menu blocks
 {% enddoc %}
 
-<nav id="GsmMobileNav" class="gsm-mobile-nav" aria-label="{{ 'general.menu' | t }}">
-  <div class="gsm-mobile-nav__header">
-    <span class="gsm-mobile-nav__title">{{ shop.name }}</span>
-    <button type="button" class="gsm-mobile-nav__close" data-mobile-nav-close aria-label="{{ 'accessibility.close_menu' | t }}">
+<nav id="DtyMobileNav" class="dty-mobile-nav" aria-label="{{ 'general.menu' | t }}">
+  <div class="dty-mobile-nav__header">
+    <span class="dty-mobile-nav__title">{{ shop.name }}</span>
+    <button type="button" class="dty-mobile-nav__close" data-mobile-nav-close aria-label="{{ 'accessibility.close_menu' | t }}">
       <span class="material-symbols-outlined" aria-hidden="true">close</span>
     </button>
   </div>
 
-  <div class="gsm-mobile-nav__panels">
+  <div class="dty-mobile-nav__panels">
     {%- comment -%} Root panel {%- endcomment -%}
-    <div class="gsm-mobile-nav__panel is-active" data-mobile-panel="root">
-      <ul class="gsm-mobile-nav__list">
+    <div class="dty-mobile-nav__panel is-active" data-mobile-panel="root">
+      <ul class="dty-mobile-nav__list">
         {%- for block in section.blocks -%}
           {%- if block.type == 'menu_item' -%}
             {%- assign has_children = false -%}
@@ -29,14 +29,14 @@
               {%- if has_children -%}
                 <button
                   type="button"
-                  class="gsm-mobile-nav__link"
+                  class="dty-mobile-nav__link"
                   data-mobile-nav-next="{{ block.settings.handle }}"
                 >
                   {{ block.settings.title }}
                   <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
                 </button>
               {%- else -%}
-                <a href="{{ block.settings.url }}" class="gsm-mobile-nav__link">
+                <a href="{{ block.settings.url }}" class="dty-mobile-nav__link">
                   {{ block.settings.title }}
                 </a>
               {%- endif -%}
@@ -45,37 +45,37 @@
         {%- endfor -%}
 
         <li>
-          <a href="{{ section.settings.quote_url }}" class="gsm-mobile-nav__link">{{ 'header.quote' | t }}</a>
+          <a href="{{ section.settings.quote_url }}" class="dty-mobile-nav__link">{{ 'header.quote' | t }}</a>
         </li>
         <li>
-          <a href="{{ section.settings.track_url }}" class="gsm-mobile-nav__link">{{ 'header.track_order' | t }}</a>
+          <a href="{{ section.settings.track_url }}" class="dty-mobile-nav__link">{{ 'header.track_order' | t }}</a>
         </li>
       </ul>
 
-      <div class="gsm-mobile-nav__help">
-        <p class="gsm-mobile-nav__help-title">{{ 'header.help_title' | t }}</p>
+      <div class="dty-mobile-nav__help">
+        <p class="dty-mobile-nav__help-title">{{ 'header.help_title' | t }}</p>
         {%- if section.settings.help_phone != blank -%}
-          <a href="tel:{{ section.settings.help_phone | replace: ' ', '' }}" class="gsm-mobile-nav__help-item">
+          <a href="tel:{{ section.settings.help_phone | replace: ' ', '' }}" class="dty-mobile-nav__help-item">
             <span class="material-symbols-outlined" aria-hidden="true">call</span>
             {{ section.settings.help_phone }}
           </a>
         {%- endif -%}
         {%- if section.settings.help_email != blank -%}
-          <a href="mailto:{{ section.settings.help_email }}" class="gsm-mobile-nav__help-item">
+          <a href="mailto:{{ section.settings.help_email }}" class="dty-mobile-nav__help-item">
             <span class="material-symbols-outlined" aria-hidden="true">mail</span>
             {{ section.settings.help_email }}
           </a>
         {%- endif -%}
 
         {%- if section.settings.social_facebook != blank or section.settings.social_instagram != blank or section.settings.social_youtube != blank -%}
-          <nav class="gsm-mobile-nav__social" aria-label="{{ 'footer.social_media' | t }}">
-            {% render 'gsm-social-links', settings: section.settings, link_class: 'gsm-mobile-nav__social-link' %}
+          <nav class="dty-mobile-nav__social" aria-label="{{ 'footer.social_media' | t }}">
+            {% render 'dty-social-links', settings: section.settings, link_class: 'dty-mobile-nav__social-link' %}
           </nav>
         {%- endif -%}
       </div>
 
-      <div class="gsm-mobile-nav__localization">
-        {% render 'gsm-localization', class_prefix: 'gsm-localization gsm-localization--mobile', form_id: 'MobileLocalizationForm', compact: true %}
+      <div class="dty-mobile-nav__localization">
+        {% render 'dty-localization', class_prefix: 'dty-localization dty-localization--mobile', form_id: 'MobileLocalizationForm', compact: true %}
       </div>
     </div>
 
@@ -91,15 +91,15 @@
         {%- endfor -%}
 
         {%- if child_count > 0 -%}
-          <div class="gsm-mobile-nav__panel" data-mobile-panel="{{ parent_handle }}">
-            <div class="gsm-mobile-nav__panel-header">
-              <button type="button" class="gsm-mobile-nav__back" data-mobile-nav-back>
+          <div class="dty-mobile-nav__panel" data-mobile-panel="{{ parent_handle }}">
+            <div class="dty-mobile-nav__panel-header">
+              <button type="button" class="dty-mobile-nav__back" data-mobile-nav-back>
                 <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
                 {{ 'general.back' | t }}
               </button>
-              <span class="gsm-mobile-nav__panel-title">{{ block.settings.title }}</span>
+              <span class="dty-mobile-nav__panel-title">{{ block.settings.title }}</span>
             </div>
-            <ul class="gsm-mobile-nav__list">
+            <ul class="dty-mobile-nav__list">
               {%- for child in section.blocks -%}
                 {%- if child.type == 'menu_child' and child.settings.parent == parent_handle -%}
                   {%- assign has_grandchildren = false -%}
@@ -114,14 +114,14 @@
                     {%- if has_grandchildren -%}
                       <button
                         type="button"
-                        class="gsm-mobile-nav__link"
+                        class="dty-mobile-nav__link"
                         data-mobile-nav-next="{{ child.settings.handle }}"
                       >
                         {{ child.settings.title }}
                         <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
                       </button>
                     {%- else -%}
-                      <a href="{{ child.settings.url }}" class="gsm-mobile-nav__link">
+                      <a href="{{ child.settings.url }}" class="dty-mobile-nav__link">
                         {{ child.settings.title }}
                       </a>
                     {%- endif -%}
@@ -146,19 +146,19 @@
         {%- endfor -%}
 
         {%- if grand_count > 0 -%}
-          <div class="gsm-mobile-nav__panel" data-mobile-panel="{{ child_handle }}">
-            <div class="gsm-mobile-nav__panel-header">
-              <button type="button" class="gsm-mobile-nav__back" data-mobile-nav-back>
+          <div class="dty-mobile-nav__panel" data-mobile-panel="{{ child_handle }}">
+            <div class="dty-mobile-nav__panel-header">
+              <button type="button" class="dty-mobile-nav__back" data-mobile-nav-back>
                 <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
                 {{ 'general.back' | t }}
               </button>
-              <span class="gsm-mobile-nav__panel-title">{{ block.settings.title }}</span>
+              <span class="dty-mobile-nav__panel-title">{{ block.settings.title }}</span>
             </div>
-            <ul class="gsm-mobile-nav__list">
+            <ul class="dty-mobile-nav__list">
               {%- for grand in section.blocks -%}
                 {%- if grand.type == 'menu_grandchild' and grand.settings.parent == child_handle -%}
                   <li {{ grand.shopify_attributes }}>
-                    <a href="{{ grand.settings.url }}" class="gsm-mobile-nav__link">
+                    <a href="{{ grand.settings.url }}" class="dty-mobile-nav__link">
                       {{ grand.settings.title }}
                     </a>
                   </li>

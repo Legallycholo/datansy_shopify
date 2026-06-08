@@ -1,40 +1,40 @@
-<section class="gsm-customer page-width">
-  <div class="gsm-customer__card">
-    <h1 class="gsm-customer__title">{{ 'customer.login.title' | t }}</h1>
+<section class="dty-customer page-width">
+  <div class="dty-customer__card">
+    <h1 class="dty-customer__title">{{ 'customer.login.title' | t }}</h1>
 
     {% form 'customer_login' %}
       {%- if form.errors -%}
-        <div class="gsm-customer__errors">{{ form.errors | default_errors }}</div>
+        <div class="dty-customer__errors">{{ form.errors | default_errors }}</div>
       {%- endif -%}
 
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
         <input id="CustomerEmail" type="email" name="customer[email]" autocomplete="email" required>
       </div>
-      <div class="gsm-form-field">
+      <div class="dty-form-field">
         <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
         <input id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password" required>
       </div>
       <button type="submit" class="btn btn--primary" style="width: 100%;">{{ 'customer.login.sign_in' | t }}</button>
     {% endform %}
 
-    <p class="gsm-customer__links">
+    <p class="dty-customer__links">
       <a href="{{ routes.account_register_url }}">{{ 'customer.login.create_account' | t }}</a>
       &nbsp;·&nbsp;
       <a href="#recover">{{ 'customer.login.forgot_password' | t }}</a>
     </p>
 
-    <div id="recover" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--gsm-border);">
+    <div id="recover" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--dty-border);">
       <h2 style="font-family: var(--font-display); font-size: var(--text-lg); margin-bottom: var(--space-4);">{{ 'customer.recover.title' | t }}</h2>
       {% form 'recover_customer_password' %}
         {%- if form.posted_successfully? -%}
           <p style="color: #059669; font-size: var(--text-sm); margin-bottom: var(--space-4);">{{ 'customer.recover.success' | t }}</p>
         {%- endif -%}
-        <div class="gsm-form-field">
+        <div class="dty-form-field">
           <label for="RecoverEmail">{{ 'customer.login.email' | t }}</label>
           <input id="RecoverEmail" type="email" name="email" autocomplete="email" required>
         </div>
-        <button type="submit" class="btn btn--outline" style="width: 100%; border-color: var(--gsm-blue); color: var(--gsm-blue);">{{ 'customer.recover.submit' | t }}</button>
+        <button type="submit" class="btn btn--outline" style="width: 100%; border-color: var(--dty-blue); color: var(--dty-blue);">{{ 'customer.recover.submit' | t }}</button>
       {% endform %}
     </div>
   </div>

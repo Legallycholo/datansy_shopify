@@ -7,27 +7,27 @@
   endif
 -%}
 
-<section class="gsm-section gsm-product-slider" data-product-slider aria-roledescription="carousel">
+<section class="dty-section dty-product-slider" data-product-slider aria-roledescription="carousel">
   <div class="page-width">
-    <div class="gsm-product-slider__header">
+    <div class="dty-product-slider__header">
       <div>
         {%- if section.settings.label != blank -%}
-          <span class="gsm-section__label">{{ section.settings.label }}</span>
+          <span class="dty-section__label">{{ section.settings.label }}</span>
         {%- endif -%}
-        <h2 class="gsm-section__heading">{{ section.settings.heading | default: collection.title }}</h2>
+        <h2 class="dty-section__heading">{{ section.settings.heading | default: collection.title }}</h2>
       </div>
-      <div class="gsm-product-slider__controls">
+      <div class="dty-product-slider__controls">
         {%- if view_more_url != blank -%}
-          <a href="{{ view_more_url }}" class="gsm-product-slider__view-more">
+          <a href="{{ view_more_url }}" class="dty-product-slider__view-more">
             {{ section.settings.view_more_label }}
             <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
           </a>
         {%- endif -%}
-        <div class="gsm-product-slider__arrows">
-          <button type="button" class="gsm-product-slider__arrow" data-slider-prev aria-label="{{ 'accessibility.slider_prev' | t }}">
+        <div class="dty-product-slider__arrows">
+          <button type="button" class="dty-product-slider__arrow" data-slider-prev aria-label="{{ 'accessibility.slider_prev' | t }}">
             <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
           </button>
-          <button type="button" class="gsm-product-slider__arrow" data-slider-next aria-label="{{ 'accessibility.slider_next' | t }}">
+          <button type="button" class="dty-product-slider__arrow" data-slider-next aria-label="{{ 'accessibility.slider_next' | t }}">
             <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
           </button>
         </div>
@@ -35,20 +35,20 @@
     </div>
   </div>
 
-  <div class="gsm-product-slider__track-wrap page-width">
-    <div class="gsm-product-slider__track" data-slider-track tabindex="0" aria-label="{{ section.settings.heading | default: collection.title | escape }}">
+  <div class="dty-product-slider__track-wrap page-width">
+    <div class="dty-product-slider__track" data-slider-track tabindex="0" aria-label="{{ section.settings.heading | default: collection.title | escape }}">
       {%- if collection != blank and collection.products_count > 0 -%}
         {%- for product in collection.products limit: product_limit -%}
-          <div class="gsm-product-slider__slide">
-            {% render 'gsm-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
+          <div class="dty-product-slider__slide">
+            {% render 'dty-product-card', product: product, show_quick_add: section.settings.show_quick_add %}
           </div>
         {%- endfor -%}
       {%- else -%}
         {%- for i in (1..6) -%}
-          <div class="gsm-product-slider__slide">
-            <article class="gsm-product-card gsm-product-card--placeholder">
+          <div class="dty-product-slider__slide">
+            <article class="dty-product-card dty-product-card--placeholder">
               <div class="placeholder-image placeholder-image--square">Producto placeholder</div>
-              <p class="gsm-product-card__title">{{ section.settings.heading }} — producto {{ i }}</p>
+              <p class="dty-product-card__title">{{ section.settings.heading }} — producto {{ i }}</p>
             </article>
           </div>
         {%- endfor -%}
@@ -61,7 +61,7 @@
 {
   "name": "Datansy Product Slider",
   "tag": "section",
-  "class": "section-gsm-product-slider",
+  "class": "section-dty-product-slider",
   "settings": [
     { "type": "text", "id": "label", "label": "Etiqueta" },
     { "type": "text", "id": "heading", "label": "Título", "default": "Productos destacados" },

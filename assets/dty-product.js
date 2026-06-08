@@ -2,7 +2,7 @@
   'use strict';
 
   function initProductPage() {
-    var settings = window.gsmSettings || {};
+    var settings = window.dtySettings || {};
     var section = document.querySelector('[data-product-section]');
     if (!section) return;
 
@@ -42,11 +42,11 @@
         var html = '';
         var onSale = variant.compare_at_price > variant.price;
         if (onSale) {
-          html = '<span class="gsm-price__current gsm-price__current--sale">' + formatMoney(variant.price) + '</span>';
-          html += '<s class="gsm-price__compare">' + formatMoney(variant.compare_at_price) + '</s>';
-          html += '<span class="gsm-price__savings">Ahorrar ' + formatMoney(variant.compare_at_price - variant.price) + '</span>';
+          html = '<span class="dty-price__current dty-price__current--sale">' + formatMoney(variant.price) + '</span>';
+          html += '<s class="dty-price__compare">' + formatMoney(variant.compare_at_price) + '</s>';
+          html += '<span class="dty-price__savings">Ahorrar ' + formatMoney(variant.compare_at_price - variant.price) + '</span>';
         } else {
-          html = '<span class="gsm-price__current">' + formatMoney(variant.price) + '</span>';
+          html = '<span class="dty-price__current">' + formatMoney(variant.price) + '</span>';
         }
         priceEl.innerHTML = html;
       }
@@ -56,7 +56,7 @@
       var submit = form.querySelector('[data-product-submit]');
       if (submit) {
         submit.disabled = !variant.available;
-        var submitLabel = submit.querySelector('.gsm-product-form__submit-text');
+        var submitLabel = submit.querySelector('.dty-product-form__submit-text');
         var newLabel = variant.available ? submit.dataset.availableText : submit.dataset.soldOutText;
         if (submitLabel) submitLabel.textContent = newLabel;
         else submit.textContent = newLabel;
@@ -68,14 +68,14 @@
 
       var shippingInfo = section.querySelector('[data-product-shipping-info]');
       if (shippingInfo) {
-        var threshold = (window.gsmSettings.freeShippingThreshold || 50000) * 100;
-        var badge = shippingInfo.querySelector('.gsm-product-shipping-info__badge');
+        var threshold = (window.dtySettings.freeShippingThreshold || 50000) * 100;
+        var badge = shippingInfo.querySelector('.dty-product-shipping-info__badge');
         if (badge) {
           if (variant.price >= threshold) {
-            badge.classList.add('gsm-product-shipping-info__badge--free');
+            badge.classList.add('dty-product-shipping-info__badge--free');
             badge.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>Envío gratis incluido';
           } else {
-            badge.classList.remove('gsm-product-shipping-info__badge--free');
+            badge.classList.remove('dty-product-shipping-info__badge--free');
             badge.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>Envío gratis sobre $50.000';
           }
         }
@@ -114,12 +114,12 @@
 
     if (mainImage) {
       mainImage.addEventListener('click', function () {
-        mainImage.closest('.gsm-product-gallery__main').classList.toggle('is-zoomed');
+        mainImage.closest('.dty-product-gallery__main').classList.toggle('is-zoomed');
       });
     }
 
     /* Mobile swipe on gallery */
-    var galleryMain = section.querySelector('.gsm-product-gallery__main');
+    var galleryMain = section.querySelector('.dty-product-gallery__main');
     var thumbBtns = Array.from(section.querySelectorAll('[data-gallery-thumb]'));
     if (galleryMain && thumbBtns.length > 1) {
       var touchStartX = 0;
@@ -170,7 +170,7 @@
         var idInput = form.querySelector('[name="id"]');
         var qtyInput = form.querySelector('[name="quantity"]');
         var submit = form.querySelector('[data-product-submit]');
-        var submitLabel = submit ? submit.querySelector('.gsm-product-form__submit-text') : null;
+        var submitLabel = submit ? submit.querySelector('.dty-product-form__submit-text') : null;
         var originalText = submitLabel ? submitLabel.textContent.trim() : (submit ? submit.textContent : '');
 
         if (submit) {
@@ -180,7 +180,7 @@
           else submit.textContent = loadingText;
         }
 
-        fetch(window.gsmSettings.routes.cartAddUrl, {
+        fetch(window.dtySettings.routes.cartAddUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -195,9 +195,9 @@
             if (data.status && data.status >= 400) {
               throw new Error(data.description || 'Add to cart failed');
             }
-            if (window.gsmCart) {
-              window.gsmCart.refresh();
-              if (window.gsmSettings.cartType === 'drawer') window.gsmCart.open();
+            if (window.dtyCart) {
+              window.dtyCart.refresh();
+              if (window.dtySettings.cartType === 'drawer') window.dtyCart.open();
             }
           })
           .catch(function () {
@@ -226,7 +226,7 @@
     }
 
     if (stickyBar) {
-      var infoBlock = section.querySelector('.gsm-product-info');
+      var infoBlock = section.querySelector('.dty-product-info');
       if (infoBlock) {
         var observer = new IntersectionObserver(function (entries) {
           stickyBar.classList.toggle('is-visible', !entries[0].isIntersecting);
@@ -241,7 +241,7 @@
   function loadRecommendations() {
     var container = document.querySelector('[data-product-recommendations]');
     if (!container) return;
-    if (container.querySelector('.gsm-product-recommendations__grid')) return;
+    if (container.querySelector('.dty-product-recommendations__grid')) return;
 
     var productId = container.dataset.productId;
     var sectionId = container.dataset.sectionId;

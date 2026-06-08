@@ -1,36 +1,36 @@
-<section class="gsm-customer-dashboard page-width">
-  <div class="gsm-customer-dashboard__header">
+<section class="dty-customer-dashboard page-width">
+  <div class="dty-customer-dashboard__header">
     <div>
-      <h1 class="gsm-page__title" style="margin: 0;">{{ 'customer.account.title' | t }}</h1>
-      <p style="color: var(--gsm-text-muted); margin-top: var(--space-2);">{{ 'customer.account.welcome' | t: name: customer.first_name }}</p>
+      <h1 class="dty-page__title" style="margin: 0;">{{ 'customer.account.title' | t }}</h1>
+      <p style="color: var(--dty-text-muted); margin-top: var(--space-2);">{{ 'customer.account.welcome' | t: name: customer.first_name }}</p>
     </div>
-    <a href="{{ routes.account_logout_url }}" class="btn btn--outline" style="border-color: var(--gsm-border); color: var(--gsm-text);">{{ 'customer.account.logout' | t }}</a>
+    <a href="{{ routes.account_logout_url }}" class="btn btn--outline" style="border-color: var(--dty-border); color: var(--dty-text);">{{ 'customer.account.logout' | t }}</a>
   </div>
 
-  <div class="gsm-customer-dashboard__grid">
-    <div class="gsm-customer-dashboard__panel">
+  <div class="dty-customer-dashboard__grid">
+    <div class="dty-customer-dashboard__panel">
       <h2>{{ 'customer.account.order_history' | t }}</h2>
       {%- if customer.orders.size > 0 -%}
         {%- for order in customer.orders limit: 5 -%}
-          <div class="gsm-customer-dashboard__order">
+          <div class="dty-customer-dashboard__order">
             <a href="{{ order.customer_url }}">{{ order.name }}</a>
             — {{ order.created_at | date: '%d/%m/%Y' }}
-            — {%- render 'gsm-money', amount: order.total_price -%}
+            — {%- render 'dty-money', amount: order.total_price -%}
           </div>
         {%- endfor -%}
       {%- else -%}
-        <p style="font-size: var(--text-sm); color: var(--gsm-text-muted);">{{ 'customer.account.no_orders' | t }}</p>
+        <p style="font-size: var(--text-sm); color: var(--dty-text-muted);">{{ 'customer.account.no_orders' | t }}</p>
       {%- endif -%}
     </div>
 
-    <div class="gsm-customer-dashboard__panel">
+    <div class="dty-customer-dashboard__panel">
       <h2>{{ 'customer.account.details' | t }}</h2>
       <p style="font-size: var(--text-sm); line-height: 1.6;">
         {{ customer.name }}<br>
         {{ customer.email }}
       </p>
       <p style="margin-top: var(--space-4);">
-        <a href="{{ routes.account_addresses_url }}" style="color: var(--gsm-blue); font-weight: 600; font-size: var(--text-sm);">{{ 'customer.account.view_addresses' | t }}</a>
+        <a href="{{ routes.account_addresses_url }}" style="color: var(--dty-blue); font-weight: 600; font-size: var(--text-sm);">{{ 'customer.account.view_addresses' | t }}</a>
       </p>
     </div>
   </div>

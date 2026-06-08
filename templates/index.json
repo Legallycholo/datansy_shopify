@@ -1,7 +1,7 @@
 {
   "sections": {
     "gsm_hero": {
-      "type": "gsm-hero",
+      "type": "dty-hero",
       "blocks": {
         "slogan_1": { "type": "slogan_set", "settings": { "line_1": "Tecnología Premium", "line_2": "Al Precio Que", "line_3": "Debería Ser" } },
         "slogan_2": { "type": "slogan_set", "settings": { "line_1": "Innovación Total", "line_2": "Sin Fronteras", "line_3": "Ni Esperas" } },
@@ -20,7 +20,7 @@
       }
     },
     "gsm_marquee": {
-      "type": "gsm-brand-marquee",
+      "type": "dty-brand-marquee",
       "blocks": {
         "b1": { "type": "brand", "settings": { "name": "Google" } },
         "b2": { "type": "brand", "settings": { "name": "Apple" } },
@@ -50,7 +50,7 @@
       }
     },
     "gsm_regions": {
-      "type": "gsm-regions",
+      "type": "dty-regions",
       "blocks": {
         "c1": { "type": "country", "settings": { "country": "Chile", "country_iso_code": "CL", "emoji": "🇨🇱" } },
         "c2": { "type": "country", "settings": { "country": "Argentina", "country_iso_code": "AR", "emoji": "🇦🇷" } },
@@ -67,7 +67,7 @@
       }
     },
     "gsm_hubs": {
-      "type": "gsm-sourcing-hubs",
+      "type": "dty-sourcing-hubs",
       "blocks": {
         "h1": { "type": "hub", "settings": { "title": "Dubai", "subtitle": "Emiratos Árabes Unidos", "icon": "flight_takeoff" } },
         "h2": { "type": "hub", "settings": { "title": "Singapur", "subtitle": "Sudeste Asiático", "icon": "hub" } },
@@ -83,7 +83,7 @@
       }
     },
     "gsm_categories": {
-      "type": "gsm-category-grid",
+      "type": "dty-category-grid",
       "blocks": {
         "cat1": { "type": "category", "settings": { "title": "Celulares", "icon": "smartphone", "url": "/collections/celulares" } },
         "cat2": { "type": "category", "settings": { "title": "Audio", "icon": "headphones", "url": "/collections/audio" } },
@@ -101,7 +101,7 @@
       }
     },
     "gsm_presales": {
-      "type": "gsm-presales",
+      "type": "dty-presales",
       "blocks": {
         "ben1": { "type": "benefit", "settings": { "icon": "sell", "title": "Precio Especial", "text": "Accede al mejor precio de preventa." } },
         "ben2": { "type": "benefit", "settings": { "icon": "priority_high", "title": "Prioridad Total", "text": "Sé de los primeros en recibirlo." } },
@@ -122,7 +122,7 @@
       }
     },
     "gsm_testimonials": {
-      "type": "gsm-testimonials",
+      "type": "dty-testimonials",
       "blocks": {
         "r1": { "type": "review", "settings": { "name": "Carlos M.", "product": "iPhone 15 Pro", "quote": "Llegó en 24 horas a Santiago. Impecable.", "rating": 5 } },
         "r2": { "type": "review", "settings": { "name": "Valentina R.", "product": "Samsung Galaxy S24", "quote": "El mejor precio que encontré en Chile.", "rating": 5 } },
@@ -144,7 +144,7 @@
       }
     },
     "gsm_faq": {
-      "type": "gsm-faq",
+      "type": "dty-faq",
       "blocks": {
         "f1": { "type": "faq_item", "settings": { "question": "¿Los productos tienen garantía?", "answer": "<p>Sí. Todos nuestros productos cuentan con garantía oficial del fabricante y respaldo Datansy.</p>" } },
         "f2": { "type": "faq_item", "settings": { "question": "¿Cuáles son los medios de pago?", "answer": "<p>Aceptamos tarjetas de crédito y débito, transferencia bancaria, PayPal, Apple Pay y Google Pay.</p>" } },
@@ -159,7 +159,7 @@
       }
     },
     "gsm_coupon": {
-      "type": "gsm-coupon-cta",
+      "type": "dty-coupon-cta",
       "settings": {
         "heading": "Tecnología a tu Alcance",
         "subtext": "Únete a nuestra comunidad.",
@@ -172,35 +172,35 @@
       }
     },
     "slider_express": {
-      "type": "gsm-product-slider",
+      "type": "dty-product-slider",
       "settings": { "heading": "Catálogo Datansy", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
     },
     "slider_pixel": {
-      "type": "gsm-product-slider",
+      "type": "dty-product-slider",
       "settings": { "heading": "Destacados", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
     },
     "slider_iphone": {
-      "type": "gsm-product-slider",
+      "type": "dty-product-slider",
       "settings": { "heading": "Tecnología", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12, "label": "Tienda" }
     },
     "slider_vr": {
-      "type": "gsm-product-slider",
+      "type": "dty-product-slider",
       "settings": { "heading": "Accesorios", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
     },
     "slider_new": {
-      "type": "gsm-product-slider",
+      "type": "dty-product-slider",
       "settings": { "heading": "Novedades", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
     },
     "slider_drones": {
-      "type": "gsm-product-slider",
+      "type": "dty-product-slider",
       "settings": { "heading": "Ofertas", "collection": "ofertas", "view_more_url": "/collections/ofertas", "products_to_show": 12 }
     },
     "slider_black_sale": {
-      "type": "gsm-product-slider",
+      "type": "dty-product-slider",
       "settings": { "heading": "Promociones", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12, "label": "Datansy" }
     },
     "gsm_promo": {
-      "type": "gsm-promo-banner",
+      "type": "dty-promo-banner",
       "settings": {
         "full_width": true,
         "label": "BLACK SALE",
@@ -208,12 +208,12 @@
         "text": "Descuentos exclusivos en tecnología premium.",
         "button_label": "Ver ofertas",
         "button_url": "/collections/coleccion-principal",
-        "background_color": "#00003A",
+        "background_color": "#1C1917",
         "text_color": "#FFFFFF"
       }
     },
     "gsm_limited": {
-      "type": "gsm-featured-collections",
+      "type": "dty-featured-collections",
       "settings": { "label": "Destacados", "heading": "Unidades Limitadas" },
       "blocks": {
         "lc1": { "type": "collection", "settings": { "collection": "coleccion-principal", "title": "Colección Principal", "subtitle": "7 productos" } },
@@ -223,7 +223,7 @@
       "block_order": ["lc1", "lc2", "lc3"]
     },
     "gsm_blog": {
-      "type": "gsm-blog-strip",
+      "type": "dty-blog-strip",
       "settings": { "heading": "Datansy News", "blog": "noticias", "posts_to_show": 3 }
     }
   },

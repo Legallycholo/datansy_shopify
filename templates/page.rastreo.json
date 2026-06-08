@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "gsm-page-rastreo",
+      "type": "dty-page-rastreo",
       "settings": {}
     }
   },

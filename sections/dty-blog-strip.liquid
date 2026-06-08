@@ -1,32 +1,32 @@
-<section class="gsm-section gsm-blog-strip">
+<section class="dty-section dty-blog-strip">
   <div class="page-width">
-    <div class="gsm-section__header gsm-section__header--center">
+    <div class="dty-section__header dty-section__header--center">
       {%- if section.settings.heading != blank -%}
-        <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+        <h2 class="dty-section__heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
     </div>
-    <div class="gsm-blog-strip__grid">
+    <div class="dty-blog-strip__grid">
       {%- assign blog = blogs[section.settings.blog] -%}
       {%- if blog != blank -%}
         {%- for article in blog.articles limit: section.settings.posts_to_show -%}
-          <a href="{{ article.url }}" class="gsm-blog-strip__card gsm-card">
+          <a href="{{ article.url }}" class="dty-blog-strip__card dty-card">
             {%- if article.image -%}
-              {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'gsm-blog-strip__image', alt: article.title }}
+              {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'dty-blog-strip__image', alt: article.title }}
             {%- else -%}
-              <div class="placeholder-image gsm-blog-strip__image">Blog</div>
+              <div class="placeholder-image dty-blog-strip__image">Blog</div>
             {%- endif -%}
-            <div class="gsm-blog-strip__info">
-              <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}" class="gsm-blog-strip__date">{{ article.published_at | date: '%d/%m/%Y' }}</time>
-              <h3 class="gsm-blog-strip__title">{{ article.title }}</h3>
+            <div class="dty-blog-strip__info">
+              <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}" class="dty-blog-strip__date">{{ article.published_at | date: '%d/%m/%Y' }}</time>
+              <h3 class="dty-blog-strip__title">{{ article.title }}</h3>
             </div>
           </a>
         {%- endfor -%}
       {%- else -%}
         {%- for i in (1..3) -%}
-          <div class="gsm-blog-strip__card gsm-card">
-            <div class="placeholder-image gsm-blog-strip__image">Datansy News</div>
-            <div class="gsm-blog-strip__info">
-              <p class="gsm-blog-strip__title">Artículo placeholder {{ i }}</p>
+          <div class="dty-blog-strip__card dty-card">
+            <div class="placeholder-image dty-blog-strip__image">Datansy News</div>
+            <div class="dty-blog-strip__info">
+              <p class="dty-blog-strip__title">Artículo placeholder {{ i }}</p>
             </div>
           </div>
         {%- endfor -%}
@@ -36,13 +36,13 @@
 </section>
 
 <style>
-  .gsm-blog-strip__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
-  @media (min-width: 768px) { .gsm-blog-strip__grid { grid-template-columns: repeat(3, 1fr); } }
-  .gsm-blog-strip__card { overflow: hidden; text-decoration: none; color: inherit; padding: 0; }
-  .gsm-blog-strip__image { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
-  .gsm-blog-strip__info { padding: var(--space-4); }
-  .gsm-blog-strip__date { font-size: var(--text-xs); color: var(--gsm-text-muted); }
-  .gsm-blog-strip__title { font-family: var(--font-display); font-size: var(--text-base); font-weight: 600; margin: var(--space-2) 0 0; }
+  .dty-blog-strip__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+  @media (min-width: 768px) { .dty-blog-strip__grid { grid-template-columns: repeat(3, 1fr); } }
+  .dty-blog-strip__card { overflow: hidden; text-decoration: none; color: inherit; padding: 0; }
+  .dty-blog-strip__image { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
+  .dty-blog-strip__info { padding: var(--space-4); }
+  .dty-blog-strip__date { font-size: var(--text-xs); color: var(--dty-text-muted); }
+  .dty-blog-strip__title { font-family: var(--font-display); font-size: var(--text-base); font-weight: 600; margin: var(--space-2) 0 0; }
 </style>
 
 {% schema %}

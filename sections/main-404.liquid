@@ -1,16 +1,16 @@
-<section class="gsm-404 page-width">
-  <p class="gsm-404__code" aria-hidden="true">404</p>
-  <h1 class="gsm-404__title">{{ '404.title' | t }}</h1>
-  <p class="gsm-404__subtext">{{ '404.subtext' | t }}</p>
+<section class="dty-404 page-width">
+  <p class="dty-404__code" aria-hidden="true">404</p>
+  <h1 class="dty-404__title">{{ '404.title' | t }}</h1>
+  <p class="dty-404__subtext">{{ '404.subtext' | t }}</p>
 
-  <div class="gsm-404__search">
-    {% render 'gsm-search-form', id_suffix: '404', show_category: false %}
+  <div class="dty-404__search">
+    {% render 'dty-search-form', id_suffix: '404', show_category: false %}
   </div>
 
-  <p class="gsm-404__categories-title">{{ '404.explore_categories' | t }}</p>
-  <nav class="gsm-404__categories" aria-label="{{ '404.explore_categories' | t }}">
+  <p class="dty-404__categories-title">{{ '404.explore_categories' | t }}</p>
+  <nav class="dty-404__categories" aria-label="{{ '404.explore_categories' | t }}">
     {%- for block in section.blocks -%}
-      <a href="{{ block.settings.url }}" class="gsm-404__category" {{ block.shopify_attributes }}>
+      <a href="{{ block.settings.url }}" class="dty-404__category" {{ block.shopify_attributes }}>
         {{ block.settings.title }}
       </a>
     {%- endfor -%}

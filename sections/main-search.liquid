@@ -1,11 +1,11 @@
 {%- paginate search.results by 24 -%}
 
-<section class="gsm-search-results page-width" style="padding: var(--space-8) 0;">
-  <h1 class="gsm-section__heading">{{ 'general.search' | t }}</h1>
-  {% render 'gsm-search-form', id_suffix: 'results', show_category: false %}
+<section class="dty-search-results page-width" style="padding: var(--space-8) 0;">
+  <h1 class="dty-section__heading">{{ 'general.search' | t }}</h1>
+  {% render 'dty-search-form', id_suffix: 'results', show_category: false %}
 
   {%- if search.performed -%}
-    <p style="margin-top: var(--space-4); color: var(--gsm-text-muted);">
+    <p style="margin-top: var(--space-4); color: var(--dty-text-muted);">
       {{ search.results_count }} {{ 'search.results_for' | t: terms: search.terms }}
     </p>
 
@@ -13,31 +13,31 @@
     {%- assign article_results = search.results | where: 'object_type', 'article' -%}
 
     {%- if product_results.size > 0 -%}
-      <div class="gsm-search-results__grid">
+      <div class="dty-search-results__grid">
         {%- for item in product_results -%}
-          {% render 'gsm-product-card', product: item, show_quick_add: true %}
+          {% render 'dty-product-card', product: item, show_quick_add: true %}
         {%- endfor -%}
       </div>
     {%- endif -%}
 
     {%- if article_results.size > 0 -%}
-      <div class="gsm-search-results__articles">
-        <h2 class="gsm-section__heading" style="font-size: var(--text-xl); margin-top: var(--space-10);">{{ 'search.articles' | t }}</h2>
+      <div class="dty-search-results__articles">
+        <h2 class="dty-section__heading" style="font-size: var(--text-xl); margin-top: var(--space-10);">{{ 'search.articles' | t }}</h2>
         {%- for item in article_results -%}
-          <article class="gsm-search-results__article">
+          <article class="dty-search-results__article">
             <a href="{{ item.url }}">{{ item.title }}</a>
-            <p style="font-size: var(--text-sm); color: var(--gsm-text-muted); margin-top: var(--space-1);">{{ item.excerpt_or_content | strip_html | truncate: 120 }}</p>
+            <p style="font-size: var(--text-sm); color: var(--dty-text-muted); margin-top: var(--space-1);">{{ item.excerpt_or_content | strip_html | truncate: 120 }}</p>
           </article>
         {%- endfor -%}
       </div>
     {%- endif -%}
 
     {%- if search.results_count == 0 -%}
-      <p style="text-align: center; padding: var(--space-10); color: var(--gsm-text-muted);">{{ 'search.no_results' | t: terms: search.terms }}</p>
+      <p style="text-align: center; padding: var(--space-10); color: var(--dty-text-muted);">{{ 'search.no_results' | t: terms: search.terms }}</p>
     {%- endif -%}
 
     {%- if paginate.pages > 1 -%}
-      <nav class="gsm-collection__pagination" style="margin-top: var(--space-8);">
+      <nav class="dty-collection__pagination" style="margin-top: var(--space-8);">
         {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">&laquo;</a>{%- endif -%}
         {%- for part in paginate.parts -%}
           {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span{% if part.title == paginate.current_page %} class="current"{% endif %}>{{ part.title }}</span>{%- endif -%}

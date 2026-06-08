@@ -28,7 +28,7 @@
     });
   }
 
-  window.gsmMarkets = {
+  window.dtyMarkets = {
     switchCountry: switchCountry
   };
 

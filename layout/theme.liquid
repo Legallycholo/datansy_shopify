@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="{{ settings.color_header_bg }}">
   <link rel="canonical" href="{{ canonical_url }}">
-  {% render 'gsm-hreflang' %}
+  {% render 'dty-hreflang' %}
 
   {%- if settings.favicon != blank -%}
     <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -30,17 +30,17 @@
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
 
-  {% render 'gsm-social-meta' %}
-  {% render 'gsm-jsonld' %}
-  {% render 'gsm-gtm-head' %}
+  {% render 'dty-social-meta' %}
+  {% render 'dty-jsonld' %}
+  {% render 'dty-gtm-head' %}
 
   {{ content_for_header }}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@600;700&display=swap" rel="stylesheet"></noscript>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"></noscript>
 
@@ -55,43 +55,45 @@
     >
   {%- endif -%}
 
-  {{ 'gsm-base.css' | asset_url | stylesheet_tag }}
-  {{ 'gsm-header.css' | asset_url | stylesheet_tag }}
-  {{ 'gsm-footer.css' | asset_url | stylesheet_tag }}
+  {{ 'dty-base.css' | asset_url | stylesheet_tag }}
+  {{ 'dty-header.css' | asset_url | stylesheet_tag }}
+  {{ 'dty-footer.css' | asset_url | stylesheet_tag }}
   {{ 'bodegas.css' | asset_url | stylesheet_tag }}
 
   {%- if template.name == 'index' or template.name == 'collection' or template.name == 'search' or template.name == 'list-collections' or template.name == 'product' -%}
-    {{ 'gsm-catalog.css' | asset_url | stylesheet_tag }}
+    {{ 'dty-catalog.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
   {%- if template.name == 'index' -%}
-    {{ 'gsm-home.css' | asset_url | stylesheet_tag }}
+    {{ 'dty-home.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
   {%- if template.name == 'product' -%}
-    {{ 'gsm-product.css' | asset_url | stylesheet_tag }}
+    {{ 'dty-product.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
   {%- if template.name == 'cart' or template.name == 'page' or template.name == 'blog' or template.name == 'article' or template.name == '404' or template.directory == 'customers' -%}
-    {{ 'gsm-pages.css' | asset_url | stylesheet_tag }}
+    {{ 'dty-pages.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
   <style>
     :root {
-      --gsm-dark: {{ settings.color_header_bg }};
-      --gsm-blue: {{ settings.color_primary }};
-      --gsm-indigo: {{ settings.color_secondary }};
-      --gsm-yellow: {{ settings.color_accent }};
-      --gsm-gray: {{ settings.color_background_secondary }};
-      --gsm-sale: {{ settings.color_sale }};
-      --gsm-free-shipping-threshold: {{ settings.free_shipping_threshold }};
-      --gsm-coupon-code: '{{ settings.default_coupon_code }}';
+      --dty-dark: {{ settings.color_header_bg }};
+      --dty-blue: {{ settings.color_primary }};
+      --dty-indigo: {{ settings.color_secondary }};
+      --dty-yellow: {{ settings.color_accent }};
+      --dty-gray: {{ settings.color_background_secondary }};
+      --dty-surface: {{ settings.color_background }};
+      --dty-text: {{ settings.color_text }};
+      --dty-sale: {{ settings.color_sale }};
+      --dty-free-shipping-threshold: {{ settings.free_shipping_threshold }};
+      --dty-coupon-code: '{{ settings.default_coupon_code }}';
     }
   </style>
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-    window.gsmSettings = {
+    window.dtySettings = {
       freeShippingThreshold: {{ settings.free_shipping_threshold | default: 50000 }},
       couponCode: {{ settings.default_coupon_code | default: 'BIENVENIDO10' | json }},
       cartType: {{ settings.cart_type | default: 'drawer' | json }},
@@ -121,7 +123,7 @@
 </head>
 
 <body class="template-{{ template.name | handle }}{% if settings.sticky_header %} header-sticky{% endif %}">
-  {% render 'gsm-gtm-body' %}
+  {% render 'dty-gtm-body' %}
   <a class="skip-to-content visually-hidden" href="#MainContent">
     {{ 'accessibility.skip_to_content' | t }}
   </a>
@@ -134,20 +136,20 @@
 
   {% sections 'footer-group' %}
 
-  <script src="{{ 'gsm-header.js' | asset_url }}" defer></script>
-  <script src="{{ 'gsm-markets.js' | asset_url }}" defer></script>
-  <script src="{{ 'gsm-footer.js' | asset_url }}" defer></script>
+  <script src="{{ 'dty-header.js' | asset_url }}" defer></script>
+  <script src="{{ 'dty-markets.js' | asset_url }}" defer></script>
+  <script src="{{ 'dty-footer.js' | asset_url }}" defer></script>
   {%- if template.name == 'index' or template.name == 'collection' or template.name == 'search' or template.name == 'list-collections' or template.name == 'product' -%}
-    <script src="{{ 'gsm-catalog.js' | asset_url }}" defer></script>
+    <script src="{{ 'dty-catalog.js' | asset_url }}" defer></script>
   {%- endif -%}
   {%- if template.name == 'index' -%}
-    <script src="{{ 'gsm-home.js' | asset_url }}" defer></script>
+    <script src="{{ 'dty-home.js' | asset_url }}" defer></script>
   {%- endif -%}
   {%- if template.name == 'product' -%}
-    <script src="{{ 'gsm-product.js' | asset_url }}" defer></script>
+    <script src="{{ 'dty-product.js' | asset_url }}" defer></script>
   {%- endif -%}
   {%- if template.name == 'cart' -%}
-    <script src="{{ 'gsm-cart-page.js' | asset_url }}" defer></script>
+    <script src="{{ 'dty-cart-page.js' | asset_url }}" defer></script>
   {%- endif -%}
 </body>
 </html>

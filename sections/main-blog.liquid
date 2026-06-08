@@ -1,36 +1,36 @@
 {%- paginate blog.articles by section.settings.posts_per_page -%}
 
-<section class="gsm-blog page-width">
-  <header class="gsm-blog__header">
+<section class="dty-blog page-width">
+  <header class="dty-blog__header">
     {%- if section.settings.label != blank -%}
-      <span class="gsm-blog__label">{{ section.settings.label }}</span>
+      <span class="dty-blog__label">{{ section.settings.label }}</span>
     {%- endif -%}
-    <h1 class="gsm-blog__title">{{ section.settings.heading | default: blog.title }}</h1>
+    <h1 class="dty-blog__title">{{ section.settings.heading | default: blog.title }}</h1>
   </header>
 
   {%- if blog.articles.size > 0 -%}
-    <div class="gsm-blog__grid">
+    <div class="dty-blog__grid">
       {%- for article in blog.articles -%}
-        <a href="{{ article.url }}" class="gsm-blog__card gsm-card">
+        <a href="{{ article.url }}" class="dty-blog__card dty-card">
           {%- if article.image -%}
-            {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'gsm-blog__card-image', alt: article.title }}
+            {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'dty-blog__card-image', alt: article.title }}
           {%- else -%}
-            <div class="placeholder-image gsm-blog__card-image" style="border-radius: var(--radius-xl) var(--radius-xl) 0 0;">Blog</div>
+            <div class="placeholder-image dty-blog__card-image" style="border-radius: var(--radius-xl) var(--radius-xl) 0 0;">Blog</div>
           {%- endif -%}
-          <div class="gsm-blog__card-body">
-            <time class="gsm-blog__card-date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+          <div class="dty-blog__card-body">
+            <time class="dty-blog__card-date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
               {{ article.published_at | date: '%d/%m/%Y' }}
             </time>
-            <h2 class="gsm-blog__card-title">{{ article.title }}</h2>
-            <p class="gsm-blog__card-excerpt">{{ article.excerpt_or_content | strip_html | truncate: 140 }}</p>
-            <span class="gsm-blog__card-link">{{ 'blog.read_more' | t }} →</span>
+            <h2 class="dty-blog__card-title">{{ article.title }}</h2>
+            <p class="dty-blog__card-excerpt">{{ article.excerpt_or_content | strip_html | truncate: 140 }}</p>
+            <span class="dty-blog__card-link">{{ 'blog.read_more' | t }} →</span>
           </div>
         </a>
       {%- endfor -%}
     </div>
 
     {%- if paginate.pages > 1 -%}
-      <nav class="gsm-collection__pagination" style="margin-top: var(--space-10);">
+      <nav class="dty-collection__pagination" style="margin-top: var(--space-10);">
         {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">&laquo;</a>{%- endif -%}
         {%- for part in paginate.parts -%}
           {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>
@@ -41,7 +41,7 @@
       </nav>
     {%- endif -%}
   {%- else -%}
-    <p style="text-align: center; color: var(--gsm-text-muted); padding: var(--space-10);">{{ 'blog.empty' | t }}</p>
+    <p style="text-align: center; color: var(--dty-text-muted); padding: var(--space-10);">{{ 'blog.empty' | t }}</p>
   {%- endif -%}
 </section>
 

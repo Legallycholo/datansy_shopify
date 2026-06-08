@@ -12,55 +12,55 @@
     "settings": [
       {
         "type": "header",
-        "content": "Paleta Datansy"
+        "content": "Paleta Datansy — Warm Premium"
       },
       {
         "type": "color",
         "id": "color_header_bg",
-        "label": "Fondo header / navy",
-        "default": "#00003A"
+        "label": "Fondo header (stone black)",
+        "default": "#1C1917"
       },
       {
         "type": "color",
         "id": "color_primary",
-        "label": "Color primario (azul)",
-        "default": "#0389FC"
+        "label": "Color primario (burnt orange)",
+        "default": "#C2410C"
       },
       {
         "type": "color",
         "id": "color_secondary",
-        "label": "Color secundario (índigo)",
-        "default": "#413AF4"
+        "label": "Color secundario (ámbar oscuro)",
+        "default": "#92400E"
       },
       {
         "type": "color",
         "id": "color_accent",
-        "label": "Color acento (amarillo)",
-        "default": "#EDFF00"
+        "label": "Color acento (oro ámbar)",
+        "default": "#F59E0B"
       },
       {
         "type": "color",
         "id": "color_background",
         "label": "Fondo de página",
-        "default": "#FFFFFF"
+        "default": "#FAFAF9"
       },
       {
         "type": "color",
         "id": "color_background_secondary",
-        "label": "Fondo secundario (gris)",
-        "default": "#F5F7FA"
+        "label": "Fondo secundario (stone)",
+        "default": "#F5F5F4"
       },
       {
         "type": "color",
         "id": "color_text",
         "label": "Texto principal",
-        "default": "#1A1A2E"
+        "default": "#1C1917"
       },
       {
         "type": "color",
         "id": "color_sale",
-        "label": "Precio oferta / rojo",
-        "default": "#EE0000"
+        "label": "Precio oferta",
+        "default": "#B91C1C"
       }
     ]
   },
@@ -69,7 +69,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Fuentes: Space Grotesk (títulos) y Barlow (cuerpo). Configuradas en theme.liquid."
+        "content": "Fuentes: Syne (títulos) y DM Sans (cuerpo). Configuradas en theme.liquid."
       },
       {
         "type": "range",

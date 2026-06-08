@@ -1,19 +1,19 @@
-<section class="gsm-section gsm-featured-collections">
+<section class="dty-section dty-featured-collections">
   <div class="page-width">
-    <div class="gsm-section__header">
+    <div class="dty-section__header">
       {%- if section.settings.label != blank -%}
-        <span class="gsm-section__label">{{ section.settings.label }}</span>
+        <span class="dty-section__label">{{ section.settings.label }}</span>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+        <h2 class="dty-section__heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
     </div>
 
-    <div class="gsm-featured-collections__grid">
+    <div class="dty-featured-collections__grid">
       {%- for block in section.blocks -%}
         {%- assign coll = collections[block.settings.collection] -%}
-        <a href="{{ coll.url | default: block.settings.fallback_url | default: '#' }}" class="gsm-featured-collections__card gsm-card" {{ block.shopify_attributes }}>
-          <div class="gsm-featured-collections__media">
+        <a href="{{ coll.url | default: block.settings.fallback_url | default: '#' }}" class="dty-featured-collections__card dty-card" {{ block.shopify_attributes }}>
+          <div class="dty-featured-collections__media">
             {%- if coll.featured_image -%}
               {{ coll.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: coll.title }}
             {%- elsif block.settings.image != blank -%}
@@ -22,10 +22,10 @@
               <div class="placeholder-image">Colección</div>
             {%- endif -%}
           </div>
-          <div class="gsm-featured-collections__info">
-            <h3 class="gsm-featured-collections__title">{{ block.settings.title | default: coll.title }}</h3>
+          <div class="dty-featured-collections__info">
+            <h3 class="dty-featured-collections__title">{{ block.settings.title | default: coll.title }}</h3>
             {%- if block.settings.subtitle != blank -%}
-              <p class="gsm-featured-collections__subtitle">{{ block.settings.subtitle }}</p>
+              <p class="dty-featured-collections__subtitle">{{ block.settings.subtitle }}</p>
             {%- endif -%}
           </div>
         </a>
@@ -38,7 +38,7 @@
 {
   "name": "Datansy Colecciones",
   "tag": "section",
-  "class": "section-gsm-featured-collections",
+  "class": "section-dty-featured-collections",
   "settings": [
     { "type": "text", "id": "label", "label": "Etiqueta", "default": "Destacados" },
     { "type": "text", "id": "heading", "label": "Título", "default": "Unidades Limitadas" }

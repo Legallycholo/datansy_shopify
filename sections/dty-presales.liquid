@@ -1,50 +1,50 @@
-<section class="gsm-section gsm-presales">
+<section class="dty-section dty-presales">
   <div class="page-width">
-    <div class="gsm-section__header">
+    <div class="dty-section__header">
       {%- if section.settings.label != blank -%}
-        <span class="gsm-section__label">{{ section.settings.label }}</span>
+        <span class="dty-section__label">{{ section.settings.label }}</span>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="gsm-section__heading">{{ section.settings.heading }}</h2>
+        <h2 class="dty-section__heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
     </div>
 
-    <div class="gsm-presales__benefits">
+    <div class="dty-presales__benefits">
       {%- for block in section.blocks -%}
         {%- if block.type == 'benefit' -%}
-          <div class="gsm-presales__benefit gsm-card" {{ block.shopify_attributes }}>
-            <span class="material-symbols-outlined gsm-presales__benefit-icon" aria-hidden="true">{{ block.settings.icon | default: 'verified' }}</span>
-            <h3 class="gsm-presales__benefit-title">{{ block.settings.title }}</h3>
+          <div class="dty-presales__benefit dty-card" {{ block.shopify_attributes }}>
+            <span class="material-symbols-outlined dty-presales__benefit-icon" aria-hidden="true">{{ block.settings.icon | default: 'verified' }}</span>
+            <h3 class="dty-presales__benefit-title">{{ block.settings.title }}</h3>
             {%- if block.settings.text != blank -%}
-              <p class="gsm-presales__benefit-text">{{ block.settings.text }}</p>
+              <p class="dty-presales__benefit-text">{{ block.settings.text }}</p>
             {%- endif -%}
           </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
 
-    <div class="gsm-presales__products">
+    <div class="dty-presales__products">
       {%- for block in section.blocks -%}
         {%- if block.type == 'product_teaser' -%}
-          <a href="{{ block.settings.url | default: '#' }}" class="gsm-presales__product gsm-card" {{ block.shopify_attributes }}>
-            <div class="gsm-presales__product-image">
+          <a href="{{ block.settings.url | default: '#' }}" class="dty-presales__product dty-card" {{ block.shopify_attributes }}>
+            <div class="dty-presales__product-image">
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.title }}
               {%- else -%}
                 <div class="placeholder-image placeholder-image--square">IMG</div>
               {%- endif -%}
               {%- if block.settings.status != blank -%}
-                <span class="gsm-presales__status gsm-presales__status--{{ block.settings.status | handle }}">{{ block.settings.status }}</span>
+                <span class="dty-presales__status dty-presales__status--{{ block.settings.status | handle }}">{{ block.settings.status }}</span>
               {%- endif -%}
             </div>
-            <h3 class="gsm-presales__product-title">{{ block.settings.title }}</h3>
+            <h3 class="dty-presales__product-title">{{ block.settings.title }}</h3>
           </a>
         {%- endif -%}
       {%- endfor -%}
     </div>
 
     {%- if section.settings.cta_url != blank -%}
-      <div class="gsm-presales__cta-wrap">
+      <div class="dty-presales__cta-wrap">
         <a href="{{ section.settings.cta_url }}" class="btn btn--primary">{{ section.settings.cta_label }}</a>
       </div>
     {%- endif -%}
@@ -55,7 +55,7 @@
 {
   "name": "Datansy Preventas",
   "tag": "section",
-  "class": "section-gsm-presales",
+  "class": "section-dty-presales",
   "settings": [
     { "type": "text", "id": "label", "label": "Etiqueta", "default": "Preventas VIP" },
     { "type": "text", "id": "heading", "label": "Título", "default": "El Futuro Llega Primero Aquí." },

@@ -17,7 +17,7 @@
       "settings": {}
     },
     "recommendations": {
-      "type": "gsm-product-recommendations",
+      "type": "dty-product-recommendations",
       "settings": {
         "heading": "También te puede interesar",
         "show_quick_add": true

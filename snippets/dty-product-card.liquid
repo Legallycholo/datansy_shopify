@@ -15,66 +15,66 @@
   endif
 -%}
 
-<article class="gsm-product-card{% if class %} {{ class }}{% endif %}">
-  <a href="{{ product.url }}" class="gsm-product-card__media-link" tabindex="-1" aria-hidden="true">
-    <div class="gsm-product-card__media">
+<article class="dty-product-card{% if class %} {{ class }}{% endif %}">
+  <a href="{{ product.url }}" class="dty-product-card__media-link" tabindex="-1" aria-hidden="true">
+    <div class="dty-product-card__media">
       {%- if product.featured_media -%}
         {{
           product.featured_media
           | image_url: width: 600
           | image_tag:
             loading: 'lazy',
-            class: 'gsm-product-card__image',
+            class: 'dty-product-card__image',
             widths: '200, 300, 400, 600',
             sizes: '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw',
             alt: product.featured_media.alt | default: product.title
         }}
       {%- else -%}
-        <div class="placeholder-image placeholder-image--square gsm-product-card__placeholder">IMG</div>
+        <div class="placeholder-image placeholder-image--square dty-product-card__placeholder">IMG</div>
       {%- endif -%}
       {%- if on_sale -%}
-        {%- capture formatted_savings -%}{% render 'gsm-money', amount: savings %}{%- endcapture -%}
-        <span class="gsm-product-card__badge gsm-product-card__badge--sale">{{ 'products.save' | t: amount: formatted_savings }}</span>
+        {%- capture formatted_savings -%}{% render 'dty-money', amount: savings %}{%- endcapture -%}
+        <span class="dty-product-card__badge dty-product-card__badge--sale">{{ 'products.save' | t: amount: formatted_savings }}</span>
       {%- endif -%}
     </div>
   </a>
 
-  <div class="gsm-product-card__info">
+  <div class="dty-product-card__info">
     {%- if product.vendor != blank -%}
-      <p class="gsm-product-card__vendor">{{ product.vendor }}</p>
+      <p class="dty-product-card__vendor">{{ product.vendor }}</p>
     {%- endif -%}
 
-    <a href="{{ product.url }}" class="gsm-product-card__title">{{ product.title }}</a>
+    <a href="{{ product.url }}" class="dty-product-card__title">{{ product.title }}</a>
 
-    <div class="gsm-product-card__price-row">
+    <div class="dty-product-card__price-row">
       {%- if product.price_varies -%}
-        {%- capture price_min_formatted -%}{% render 'gsm-money', amount: product.price_min %}{%- endcapture -%}
-        <span class="gsm-product-card__price">{{ 'products.from_price' | t: price: price_min_formatted }}</span>
+        {%- capture price_min_formatted -%}{% render 'dty-money', amount: product.price_min %}{%- endcapture -%}
+        <span class="dty-product-card__price">{{ 'products.from_price' | t: price: price_min_formatted }}</span>
       {%- else -%}
-        <span class="gsm-product-card__price{% if on_sale %} gsm-product-card__price--sale{% endif %}">{%- render 'gsm-money', amount: product.price -%}</span>
+        <span class="dty-product-card__price{% if on_sale %} dty-product-card__price--sale{% endif %}">{%- render 'dty-money', amount: product.price -%}</span>
         {%- if on_sale -%}
-          <s class="gsm-product-card__compare">{%- render 'gsm-money', amount: product.compare_at_price -%}</s>
+          <s class="dty-product-card__compare">{%- render 'dty-money', amount: product.compare_at_price -%}</s>
         {%- endif -%}
       {%- endif -%}
     </div>
 
-    <div class="gsm-product-card__reviews" aria-label="{{ 'products.reviews_placeholder' | t }}">
-      {% render 'gsm-stars', rating: 5, class: 'gsm-product-card__stars' %}
-      <span class="gsm-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
+    <div class="dty-product-card__reviews" aria-label="{{ 'products.reviews_placeholder' | t }}">
+      {% render 'dty-stars', rating: 5, class: 'dty-product-card__stars' %}
+      <span class="dty-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
     </div>
 
-    <div class="gsm-product-card__actions">
+    <div class="dty-product-card__actions">
       {%- if show_quick_add and current_variant.available -%}
-        <form method="post" action="{{ routes.cart_add_url }}" class="gsm-product-card__form" data-product-card-form>
+        <form method="post" action="{{ routes.cart_add_url }}" class="dty-product-card__form" data-product-card-form>
           <input type="hidden" name="id" value="{{ current_variant.id }}">
-          <button type="submit" class="btn btn--primary gsm-product-card__atc" name="add">
+          <button type="submit" class="btn btn--primary dty-product-card__atc" name="add">
             {{ 'products.add_to_cart' | t }}
           </button>
         </form>
       {%- elsif show_quick_add -%}
-        <span class="btn gsm-product-card__sold-out">{{ 'products.sold_out' | t }}</span>
+        <span class="btn dty-product-card__sold-out">{{ 'products.sold_out' | t }}</span>
       {%- else -%}
-        <a href="{{ product.url }}" class="btn btn--primary gsm-product-card__view">{{ 'products.view_product' | t }}</a>
+        <a href="{{ product.url }}" class="btn btn--primary dty-product-card__view">{{ 'products.view_product' | t }}</a>
       {%- endif -%}
     </div>
   </div>
