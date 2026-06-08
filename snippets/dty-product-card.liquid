@@ -1,5 +1,6 @@
 {% doc %}
   Datansy product card for grids and sliders.
+  Includes Refresh-compatible classes for Vitals collection review stars.
   @param {object} product - Shopify product
   @param {boolean} [show_quick_add] - Show quick add button
   @param {string} [class] - Extra CSS class
@@ -15,67 +16,70 @@
   endif
 -%}
 
-<article class="dty-product-card{% if class %} {{ class }}{% endif %}">
-  <a href="{{ product.url }}" class="dty-product-card__media-link" tabindex="-1" aria-hidden="true">
-    <div class="dty-product-card__media">
-      {%- if product.featured_media -%}
-        {{
-          product.featured_media
-          | image_url: width: 600
-          | image_tag:
-            loading: 'lazy',
-            class: 'dty-product-card__image',
-            widths: '200, 300, 400, 600',
-            sizes: '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw',
-            alt: product.featured_media.alt | default: product.title
-        }}
-      {%- else -%}
-        <div class="placeholder-image placeholder-image--square dty-product-card__placeholder">IMG</div>
-      {%- endif -%}
-      {%- if on_sale -%}
-        {%- capture formatted_savings -%}{% render 'dty-money', amount: savings %}{%- endcapture -%}
-        <span class="dty-product-card__badge dty-product-card__badge--sale">{{ 'products.save' | t: amount: formatted_savings }}</span>
-      {%- endif -%}
-    </div>
-  </a>
-
-  <div class="dty-product-card__info">
-    {%- if product.vendor != blank -%}
-      <p class="dty-product-card__vendor">{{ product.vendor }}</p>
-    {%- endif -%}
-
-    <a href="{{ product.url }}" class="dty-product-card__title">{{ product.title }}</a>
-
-    <div class="dty-product-card__price-row">
-      {%- if product.price_varies -%}
-        {%- capture price_min_formatted -%}{% render 'dty-money', amount: product.price_min %}{%- endcapture -%}
-        <span class="dty-product-card__price">{{ 'products.from_price' | t: price: price_min_formatted }}</span>
-      {%- else -%}
-        <span class="dty-product-card__price{% if on_sale %} dty-product-card__price--sale{% endif %}">{%- render 'dty-money', amount: product.price -%}</span>
-        {%- if on_sale -%}
-          <s class="dty-product-card__compare">{%- render 'dty-money', amount: product.compare_at_price -%}</s>
+<article class="dty-product-card product-card-wrapper card card--standard{% if class %} {{ class }}{% endif %}">
+  <div class="card__inner">
+    <a href="{{ product.url }}" class="dty-product-card__media-link full-unstyled-link" tabindex="-1" aria-hidden="true">
+      <div class="card__media dty-product-card__media">
+        {%- if product.featured_media -%}
+          {{
+            product.featured_media
+            | image_url: width: 600
+            | image_tag:
+              loading: 'lazy',
+              class: 'dty-product-card__image',
+              widths: '200, 300, 400, 600',
+              sizes: '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw',
+              alt: product.featured_media.alt | default: product.title
+          }}
+        {%- else -%}
+          <div class="placeholder-image placeholder-image--square dty-product-card__placeholder">IMG</div>
         {%- endif -%}
-      {%- endif -%}
-    </div>
+        {%- if on_sale -%}
+          {%- capture formatted_savings -%}{% render 'dty-money', amount: savings %}{%- endcapture -%}
+          <span class="dty-product-card__badge dty-product-card__badge--sale">{{ 'products.save' | t: amount: formatted_savings }}</span>
+        {%- endif -%}
+      </div>
+    </a>
+  </div>
 
-    <div class="dty-product-card__reviews" aria-label="{{ 'products.reviews_placeholder' | t }}">
-      {% render 'dty-stars', rating: 5, class: 'dty-product-card__stars' %}
-      <span class="dty-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
-    </div>
-
-    <div class="dty-product-card__actions">
-      {%- if show_quick_add and current_variant.available -%}
-        <form method="post" action="{{ routes.cart_add_url }}" class="dty-product-card__form" data-product-card-form>
-          <input type="hidden" name="id" value="{{ current_variant.id }}">
-          <button type="submit" class="btn btn--primary dty-product-card__atc" name="add">
-            {{ 'products.add_to_cart' | t }}
-          </button>
-        </form>
-      {%- elsif show_quick_add -%}
-        <span class="btn dty-product-card__sold-out">{{ 'products.sold_out' | t }}</span>
-      {%- else -%}
-        <a href="{{ product.url }}" class="btn btn--primary dty-product-card__view">{{ 'products.view_product' | t }}</a>
+  <div class="card__content dty-product-card__info">
+    <div class="card__information">
+      {%- if product.vendor != blank -%}
+        <p class="dty-product-card__vendor">{{ product.vendor }}</p>
       {%- endif -%}
+
+      <h3 class="card__heading dty-product-card__title">
+        <a href="{{ product.url }}" class="full-unstyled-link">{{ product.title }}</a>
+      </h3>
+
+      <div class="dty-product-card__price-row">
+        {%- if product.price_varies -%}
+          {%- capture price_min_formatted -%}{% render 'dty-money', amount: product.price_min %}{%- endcapture -%}
+          <span class="dty-product-card__price">{{ 'products.from_price' | t: price: price_min_formatted }}</span>
+        {%- else -%}
+          <span class="dty-product-card__price{% if on_sale %} dty-product-card__price--sale{% endif %}">{%- render 'dty-money', amount: product.price -%}</span>
+          {%- if on_sale -%}
+            <s class="dty-product-card__compare">{%- render 'dty-money', amount: product.compare_at_price -%}</s>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Vitals injects collection review stars after .card__heading {%- endcomment -%}
+
+      <div class="dty-product-card__actions">
+        {%- if show_quick_add and current_variant.available -%}
+          <form method="post" action="{{ routes.cart_add_url }}" class="dty-product-card__form" data-product-card-form>
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            <button type="submit" class="btn btn--primary dty-product-card__atc" name="add">
+              {{ 'products.add_to_cart' | t }}
+            </button>
+          </form>
+        {%- elsif show_quick_add -%}
+          <span class="btn dty-product-card__sold-out">{{ 'products.sold_out' | t }}</span>
+        {%- else -%}
+          <a href="{{ product.url }}" class="btn btn--primary dty-product-card__view">{{ 'products.view_product' | t }}</a>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </article>
