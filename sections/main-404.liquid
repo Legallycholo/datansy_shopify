@@ -1,4 +1,7 @@
 <section class="dty-404 page-width">
+  <div class="dty-404__brand">
+    {% render 'dty-logo', background: 'light', class: 'dty-404__logo', link: false, width: settings.logo_width, loading: 'lazy' %}
+  </div>
   <p class="dty-404__code" aria-hidden="true">404</p>
   <h1 class="dty-404__title">{{ '404.title' | t }}</h1>
   <p class="dty-404__subtext">{{ '404.subtext' | t }}</p>

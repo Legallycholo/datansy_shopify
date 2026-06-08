@@ -10,7 +10,9 @@
 </head>
 <body style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui;padding:2rem;text-align:center;">
   <div>
-    <h1>{{ shop.name }}</h1>
+    <div style="margin-bottom:1.5rem;">
+      {% render 'dty-logo', background: 'light', class: 'dty-gift-card__logo', link: true, width: settings.logo_width, loading: 'eager' %}
+    </div>
     <p>{{ gift_card.balance | money_without_trailing_zeros }}</p>
     {%- if gift_card.enabled == false or gift_card.expired -%}
       <p>{{ 'gift_cards.issued.expired' | t }}</p>

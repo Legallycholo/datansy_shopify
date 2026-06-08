@@ -13,9 +13,14 @@
       "@id": {{ shop.url | append: '#organization' | json }},
       "name": {{ shop.name | json }},
       "url": {{ shop.url | json }}
-      {%- if settings.logo != blank -%}
-      ,"logo": {{ settings.logo | image_url: width: 512 | prepend: 'https:' | json }}
-      {%- endif -%}
+      {%- liquid
+        if settings.logo != blank
+          assign org_logo_url = settings.logo | image_url: width: 512 | prepend: 'https:'
+        else
+          assign org_logo_url = 'datansy-logo-black.png' | asset_url | prepend: 'https:'
+        endif
+      -%}
+      ,"logo": {{ org_logo_url | json }}
     },
     {
       "@type": "WebSite",

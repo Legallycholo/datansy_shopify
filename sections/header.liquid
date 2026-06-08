@@ -15,40 +15,13 @@
 
       {%- comment -%} Logo {%- endcomment -%}
       <div class="dty-header__logo">
-        <a href="{{ routes.root_url }}" class="dty-header__logo-link">
-          {%- if section.settings.logo != blank -%}
-            {{
-              section.settings.logo
-              | image_url: width: 400
-              | image_tag:
-                class: 'dty-header__logo-img',
-                widths: '160, 240, 320',
-                alt: shop.name,
-                width: section.settings.logo_width,
-                loading: 'eager'
-            }}
-          {%- elsif settings.logo != blank -%}
-            {{
-              settings.logo
-              | image_url: width: 400
-              | image_tag:
-                class: 'dty-header__logo-img',
-                widths: '160, 240, 320',
-                alt: shop.name,
-                width: settings.logo_width,
-                loading: 'eager'
-            }}
-          {%- else -%}
-            <img
-              src="{{ 'datansy-logo-white.png' | asset_url }}"
-              alt="{{ shop.name | escape }}"
-              width="{{ settings.logo_width }}"
-              height="40"
-              loading="eager"
-              class="dty-header__logo-img"
-            >
-          {%- endif -%}
-        </a>
+        {% render 'dty-logo',
+          background: 'dark',
+          class: 'dty-header__logo-img',
+          link_class: 'dty-header__logo-link',
+          width: settings.logo_width,
+          loading: 'eager'
+        %}
       </div>
 
       {%- comment -%} Desktop navigation {%- endcomment -%}

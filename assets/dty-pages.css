@@ -84,6 +84,8 @@
 
 /* ---- 404 ---- */
 .dty-404 { padding: var(--space-16) 0; text-align: center; }
+.dty-404__brand { display: flex; justify-content: center; margin-bottom: var(--space-6); }
+.dty-404__logo { width: auto; height: auto; max-height: 48px; max-width: min(180px, 70vw); }
 .dty-404__code { font-family: var(--font-display); font-size: clamp(4rem, 15vw, 8rem); font-weight: 700; color: var(--dty-blue); line-height: 1; opacity: 0.2; margin-bottom: var(--space-4); }
 .dty-404__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin: 0 0 var(--space-3); }
 .dty-404__subtext { color: var(--dty-text-muted); margin-bottom: var(--space-8); max-width: 480px; margin-left: auto; margin-right: auto; }
@@ -96,6 +98,8 @@
 /* ---- Customer account ---- */
 .dty-customer { padding: var(--space-10) 0 var(--space-12); }
 .dty-customer__card { max-width: 440px; margin: 0 auto; padding: var(--space-8); background: var(--dty-white); border: 1px solid var(--dty-border); border-radius: var(--radius-2xl); box-shadow: var(--shadow-dty-card); }
+.dty-customer__brand { display: flex; justify-content: center; margin-bottom: var(--space-5); }
+.dty-customer__logo { width: auto; height: auto; max-height: 44px; max-width: min(160px, 70vw); }
 .dty-customer__title { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; text-align: center; margin: 0 0 var(--space-6); }
 .dty-customer__errors { padding: var(--space-3); background: #fef2f2; color: var(--dty-sale); border-radius: var(--radius-md); font-size: var(--text-sm); margin-bottom: var(--space-4); }
 .dty-customer__links { text-align: center; margin-top: var(--space-4); font-size: var(--text-sm); }
