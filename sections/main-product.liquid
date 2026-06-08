@@ -56,7 +56,9 @@
             {%- endif -%}
 
           {%- when 'title' -%}
-            <h1 class="dty-product-info__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+            <div class="product__title" {{ block.shopify_attributes }}>
+              <h1 class="dty-product-info__title">{{ product.title }}</h1>
+            </div>
 
           {%- when 'reviews' -%}
             {%- if block.settings.show_placeholder_reviews -%}
@@ -80,7 +82,7 @@
 
           {%- when 'variant_picker' -%}
             {%- unless product.has_only_default_variant -%}
-              <div class="dty-variant-picker" {{ block.shopify_attributes }}>
+              <variant-selects class="dty-variant-picker" {{ block.shopify_attributes }}>
                 {%- for option in product.options_with_values -%}
                   {%- assign is_color = false -%}
                   {%- if color_option_names contains option.name -%}
@@ -116,7 +118,7 @@
                     </div>
                   </fieldset>
                 {%- endfor -%}
-              </div>
+              </variant-selects>
             {%- endunless -%}
 
           {%- when 'buy_buttons' -%}
@@ -151,7 +153,8 @@
               <div class="dty-product-form__actions">
                 <button
                   type="submit"
-                  class="btn btn--primary dty-product-form__submit"
+                  name="add"
+                  class="btn btn--primary dty-product-form__submit product-form__submit"
                   data-product-submit
                   data-available-text="{{ 'products.add_to_cart' | t }}"
                   data-sold-out-text="{{ 'products.sold_out' | t }}"
@@ -171,10 +174,14 @@
             {%- endform -%}
 
           {%- when 'share' -%}
+            {%- liquid
+              assign share_whatsapp = section.settings.whatsapp_number | default: '+56991369127'
+              assign share_whatsapp_digits = share_whatsapp | replace: '+', '' | replace: ' ', ''
+            -%}
             <div class="dty-product-form__share" {{ block.shopify_attributes }}>
               <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
               <a href="https://twitter.com/intent/tweet?url={{ shop.url | append: product.url | url_encode }}&text={{ product.title | url_encode }}" target="_blank" rel="noopener" aria-label="Twitter">X</a>
-              <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+              <a href="https://wa.me/{{ share_whatsapp_digits }}?text={{ product.title | url_encode }}%20{{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
             </div>
 
           {%- when 'warehouse' -%}
@@ -223,7 +230,7 @@
       <button type="button" class="dty-product-tabs__btn" data-tab-btn="specs" role="tab">{{ 'products.specifications' | t }}</button>
       <button type="button" class="dty-product-tabs__btn" data-tab-btn="shipping" role="tab">{{ 'products.shipping_returns' | t }}</button>
     </div>
-    <div class="dty-product-tabs__panel is-active rte" data-tab-panel="description" role="tabpanel">
+    <div class="dty-product-tabs__panel is-active rte product__description" data-tab-panel="description" role="tabpanel">
       {{ product.description }}
     </div>
     <div class="dty-product-tabs__panel rte" data-tab-panel="specs" role="tabpanel">
@@ -238,6 +245,9 @@
     </div>
   </div>
 
+  {%- comment -%} Vitals product reviews anchor (product_end) {%- endcomment -%}
+  <div id="vitals-product-reviews" class="vitals-product-reviews page-width" data-vitals-product-end></div>
+
   <script type="application/json" data-product-json>{{ product | json }}</script>
 </section>
 
@@ -246,7 +256,8 @@
     <span class="dty-product-sticky__price" data-sticky-price>{%- render 'dty-money', amount: current_variant.price -%}</span>
     <button
       type="button"
-      class="btn btn--primary dty-product-sticky__btn"
+      name="add"
+      class="btn btn--primary dty-product-sticky__btn product-form__submit"
       data-sticky-atc
       data-available-text="{{ 'products.add_to_cart' | t }}"
       data-sold-out-text="{{ 'products.sold_out' | t }}"
@@ -267,7 +278,13 @@
       "type": "richtext",
       "id": "shipping_returns_text",
       "label": "Envío y devoluciones",
-      "default": "<p>Envíos a todo Chile. Plazos según región. Devoluciones según política Datansy.</p>"
+      "default": "<p>Envíos a todo Chile en 2–5 días hábiles. Envío gratis en compras sobre $50.000.</p><p><a href=\"/policies/shipping-policy\">Política de envíos</a> · <a href=\"/policies/refund-policy\">Política de devoluciones</a></p>"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp (compartir producto)",
+      "default": "+56 9 9136 9127"
     }
   ],
   "blocks": [

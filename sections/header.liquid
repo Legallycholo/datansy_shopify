@@ -107,7 +107,7 @@
       </div>
 
       {%- comment -%} Actions: search (mobile), localization, account, cart {%- endcomment -%}
-      <div class="dty-header__actions">
+      <div class="dty-header__actions header__icons">
         <button
           type="button"
           class="dty-header__action dty-header__search-toggle hidden-desktop"
@@ -127,16 +127,16 @@
           <span class="dty-header__action-label">{{ 'general.account' | t }}</span>
         </a>
 
-        <button
-          type="button"
-          class="dty-header__action"
+        <a
+          href="{{ routes.cart_url }}"
+          class="dty-header__action header__icon--cart"
           data-cart-open
           aria-label="{{ 'accessibility.cart_toggle' | t }}"
         >
           <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
-          <span class="dty-header__cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+          <span class="cart-count-bubble"><span class="dty-header__cart-count" data-cart-count data-count="{{ cart.item_count }}" aria-hidden="true">{{ cart.item_count }}</span></span>
           <span class="dty-header__action-label">{{ 'general.cart' | t }}</span>
-        </button>
+        </a>
       </div>
     </div>
 

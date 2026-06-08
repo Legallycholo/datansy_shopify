@@ -152,6 +152,20 @@
         "success_message": "¡Gracias por unirte!"
       }
     },
+    "gsm_testimonials": {
+      "type": "dty-testimonials",
+      "blocks": {
+        "t1": { "type": "review", "settings": { "name": "Carlos M.", "product": "Lonmao B8 Auriculares", "quote": "Llegó en perfecto estado. Excelente relación precio-calidad.", "rating": 5 } },
+        "t2": { "type": "review", "settings": { "name": "Valentina R.", "product": "Smartwatch Vital Pro Max", "quote": "El mejor precio que encontré en Chile. Envío rápido a Santiago.", "rating": 5 } },
+        "t3": { "type": "review", "settings": { "name": "Diego P.", "product": "Datansy Tech", "quote": "Atención excelente por WhatsApp. Compra 100% recomendada.", "rating": 5 } }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "enabled": true,
+        "heading": "Experiencia Datansy",
+        "subheading": "Lo que dicen nuestros clientes en Chile."
+      }
+    },
     "slider_catalog": {
       "type": "dty-product-slider",
       "settings": {
@@ -223,6 +237,7 @@
     "gsm_presales",
     "gsm_faq",
     "gsm_coupon",
+    "gsm_testimonials",
     "slider_catalog",
     "slider_new",
     "slider_offers",
