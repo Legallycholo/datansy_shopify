@@ -22,11 +22,26 @@
       {%- endif -%}
     </div>
 
-    {%- if section.settings.help_text != blank -%}
+    {%- if section.settings.help_text != blank or section.settings.help_email != blank or section.settings.help_phone_us != blank or section.settings.help_phone_cl != blank -%}
       <p style="margin-top: var(--space-6); font-size: var(--text-sm); color: var(--dty-text-muted); text-align: center;">
-        {{ section.settings.help_text }}
+        {%- if section.settings.help_text != blank -%}
+          {{ section.settings.help_text }}
+        {%- endif -%}
         {%- if section.settings.help_email != blank -%}
           <a href="mailto:{{ section.settings.help_email }}">{{ section.settings.help_email }}</a>
+        {%- endif -%}
+        {%- if section.settings.help_phone_us != blank or section.settings.help_phone_cl != blank -%}
+          <span style="display: block; margin-top: var(--space-2);">
+            {%- if section.settings.help_phone_us != blank -%}
+              <a href="tel:+1{{ section.settings.help_phone_us | replace: ' ', '' | replace: '-', '' }}">US: {{ section.settings.help_phone_us }}</a>
+            {%- endif -%}
+            {%- if section.settings.help_phone_us != blank and section.settings.help_phone_cl != blank -%}
+              <span aria-hidden="true"> · </span>
+            {%- endif -%}
+            {%- if section.settings.help_phone_cl != blank -%}
+              <a href="tel:{{ section.settings.help_phone_cl | replace: ' ', '' | replace: '-', '' }}">Chile: {{ section.settings.help_phone_cl }}</a>
+            {%- endif -%}
+          </span>
         {%- endif -%}
       </p>
     {%- endif -%}
@@ -46,7 +61,9 @@
     { "type": "text", "id": "guest_cta_label", "label": "Botón invitado", "default": "Iniciar sesión" },
     { "type": "url", "id": "guest_lookup_url", "label": "URL inicio de sesión" },
     { "type": "textarea", "id": "help_text", "label": "Texto ayuda", "default": "¿Problemas con tu envío? Escríbenos a " },
-    { "type": "text", "id": "help_email", "label": "Email ayuda", "default": "dariel@tanygrowth.com" }
+    { "type": "text", "id": "help_email", "label": "Email ayuda", "default": "dariel@tanygrowth.com" },
+    { "type": "text", "id": "help_phone_us", "label": "Teléfono US", "default": "470-440-0721" },
+    { "type": "text", "id": "help_phone_cl", "label": "Teléfono Chile", "default": "+56 9 9136 9127" }
   ]
 }
 {% endschema %}

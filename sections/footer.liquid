@@ -163,8 +163,17 @@
               <div class="dty-footer__contact-item">
                 <span class="material-symbols-outlined" aria-hidden="true">call</span>
                 <div>
-                  <strong>Teléfono</strong><br>
-                  <a href="tel:{{ section.settings.phone_intl | replace: ' ', '' | replace: '-', '' }}">{{ section.settings.phone_intl }}</a>
+                  <strong>Teléfono US</strong><br>
+                  <a href="tel:+1{{ section.settings.phone_intl | replace: ' ', '' | replace: '-', '' }}">{{ section.settings.phone_intl }}</a>
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.phone_cl != blank -%}
+              <div class="dty-footer__contact-item">
+                <span class="material-symbols-outlined" aria-hidden="true">call</span>
+                <div>
+                  <strong>Teléfono Chile</strong><br>
+                  <a href="tel:{{ section.settings.phone_cl | replace: ' ', '' | replace: '-', '' }}">{{ section.settings.phone_cl }}</a>
                 </div>
               </div>
             {%- endif -%}
@@ -325,8 +334,14 @@
     {
       "type": "text",
       "id": "phone_intl",
-      "label": "Teléfono",
-      "default": "470-440-0124"
+      "label": "Teléfono US",
+      "default": "470-440-0721"
+    },
+    {
+      "type": "text",
+      "id": "phone_cl",
+      "label": "Teléfono Chile",
+      "default": "+56 9 9136 9127"
     },
     {
       "type": "text",

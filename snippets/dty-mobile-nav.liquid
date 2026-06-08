@@ -77,9 +77,15 @@
       <div class="dty-mobile-nav__help">
         <p class="dty-mobile-nav__help-title">{{ 'header.help_title' | t }}</p>
         {%- if section.settings.help_phone != blank -%}
-          <a href="tel:{{ section.settings.help_phone | replace: ' ', '' }}" class="dty-mobile-nav__help-item">
+          <a href="tel:+1{{ section.settings.help_phone | replace: ' ', '' | replace: '-', '' }}" class="dty-mobile-nav__help-item">
             <span class="material-symbols-outlined" aria-hidden="true">call</span>
-            {{ section.settings.help_phone }}
+            US: {{ section.settings.help_phone }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.help_phone_cl != blank -%}
+          <a href="tel:{{ section.settings.help_phone_cl | replace: ' ', '' | replace: '-', '' }}" class="dty-mobile-nav__help-item">
+            <span class="material-symbols-outlined" aria-hidden="true">call</span>
+            Chile: {{ section.settings.help_phone_cl }}
           </a>
         {%- endif -%}
         {%- if section.settings.help_email != blank -%}
