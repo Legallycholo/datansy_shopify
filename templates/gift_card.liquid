@@ -1,0 +1,22 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ 'gift_cards.issued.title_html' | t: shop: shop.name }}</title>
+  {{ content_for_header }}
+  {{ 'gsm-base.css' | asset_url | stylesheet_tag }}
+</head>
+<body style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui;padding:2rem;text-align:center;">
+  <div>
+    <h1>{{ shop.name }}</h1>
+    <p>{{ gift_card.balance | money_without_trailing_zeros }}</p>
+    {%- if gift_card.enabled == false or gift_card.expired -%}
+      <p>{{ 'gift_cards.issued.expired' | t }}</p>
+    {%- endif -%}
+    <p><code>{{ gift_card.code }}</code></p>
+    <a href="{{ shop.url }}">{{ 'gift_cards.issued.shop_link' | t }}</a>
+  </div>
+</body>
+</html>

@@ -215,7 +215,13 @@
 
     if (stickyBtn && form) {
       stickyBtn.addEventListener('click', function () {
-        form.querySelector('[data-product-submit]').click();
+        var submit = form.querySelector('[data-product-submit]');
+        if (!submit || submit.disabled) return;
+        if (typeof form.requestSubmit === 'function') {
+          form.requestSubmit(submit);
+        } else {
+          submit.click();
+        }
       });
     }
 

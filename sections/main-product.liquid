@@ -118,9 +118,9 @@
             {%- endunless -%}
 
           {%- when 'buy_buttons' -%}
-            {%- assign threshold = settings.free_shipping_threshold | default: 50000 -%}
+            {%- assign threshold_cents = settings.free_shipping_threshold | default: 50000 | times: 100 -%}
             <div class="gsm-product-shipping-info" data-product-shipping-info>
-              {%- if current_variant.price >= threshold -%}
+              {%- if current_variant.price >= threshold_cents -%}
                 <span class="gsm-product-shipping-info__badge gsm-product-shipping-info__badge--free">
                   <span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>
                   Envío gratis incluido

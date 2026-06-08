@@ -277,7 +277,8 @@
   flex-shrink: 0;
 }
 
-.gsm-footer__mission-logo img {
+.gsm-footer__mission-logo img,
+.gsm-footer__mission-logo-img {
   opacity: 0.9;
 }
 

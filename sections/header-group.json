@@ -41,7 +41,7 @@
           "settings": {
             "handle": "nuevos",
             "title": "Nuevos Lanzamientos",
-            "url": "/collections/nuevos-lanzamientos"
+            "url": "/collections/frontpage"
           }
         },
         "menu_audio": {
@@ -58,7 +58,7 @@
             "parent": "audio",
             "handle": "inear",
             "title": "Auriculares In-Ear",
-            "url": "/collections/auriculares-in-ear"
+            "url": "/collections/audio"
           }
         },
         "child_overear": {
@@ -67,7 +67,7 @@
             "parent": "audio",
             "handle": "overear",
             "title": "Auriculares Over-Ear",
-            "url": "/collections/auriculares-over-ear"
+            "url": "/collections/audio"
           }
         },
         "child_parlantes": {
@@ -76,7 +76,7 @@
             "parent": "audio",
             "handle": "parlantes",
             "title": "Parlantes Bluetooth",
-            "url": "/collections/parlantes"
+            "url": "/collections/audio"
           }
         },
         "child_audio_acc": {
@@ -85,7 +85,7 @@
             "parent": "audio",
             "handle": "audio-acc",
             "title": "Accesorios Audio",
-            "url": "/collections/accesorios-audio"
+            "url": "/collections/audio"
           }
         },
         "menu_smartwatches": {
@@ -102,7 +102,7 @@
             "parent": "smartwatches",
             "handle": "apple-watch",
             "title": "Apple Watch",
-            "url": "/collections/apple-watch"
+            "url": "/collections/smartwatches"
           }
         },
         "child_samsung_watch": {
@@ -111,7 +111,7 @@
             "parent": "smartwatches",
             "handle": "samsung-watch",
             "title": "Samsung Galaxy Watch",
-            "url": "/collections/samsung-watch"
+            "url": "/collections/smartwatches"
           }
         },
         "child_garmin": {
@@ -120,7 +120,7 @@
             "parent": "smartwatches",
             "handle": "garmin",
             "title": "Garmin",
-            "url": "/collections/garmin"
+            "url": "/collections/smartwatches"
           }
         },
         "child_xiaomi_wear": {
@@ -129,7 +129,7 @@
             "parent": "smartwatches",
             "handle": "xiaomi-wear",
             "title": "Xiaomi & Amazfit",
-            "url": "/collections/xiaomi-wearables"
+            "url": "/collections/smartwatches"
           }
         },
         "menu_celulares": {
@@ -146,7 +146,7 @@
             "parent": "celulares",
             "handle": "iphone",
             "title": "iPhone",
-            "url": "/collections/iphone"
+            "url": "/collections/celulares"
           }
         },
         "grand_iphone16": {
@@ -154,7 +154,7 @@
           "settings": {
             "parent": "iphone",
             "title": "iPhone 16",
-            "url": "/collections/iphone-16"
+            "url": "/collections/celulares"
           }
         },
         "grand_iphone15": {
@@ -162,7 +162,7 @@
           "settings": {
             "parent": "iphone",
             "title": "iPhone 15",
-            "url": "/collections/iphone-15"
+            "url": "/collections/celulares"
           }
         },
         "grand_iphone14": {
@@ -170,7 +170,7 @@
           "settings": {
             "parent": "iphone",
             "title": "iPhone 14",
-            "url": "/collections/iphone-14"
+            "url": "/collections/celulares"
           }
         },
         "child_samsung": {
@@ -179,7 +179,7 @@
             "parent": "celulares",
             "handle": "samsung",
             "title": "Samsung Galaxy",
-            "url": "/collections/samsung"
+            "url": "/collections/celulares"
           }
         },
         "child_pixel": {
@@ -188,7 +188,7 @@
             "parent": "celulares",
             "handle": "pixel",
             "title": "Google Pixel",
-            "url": "/collections/pixel"
+            "url": "/collections/celulares"
           }
         },
         "child_xiaomi": {
@@ -197,7 +197,7 @@
             "parent": "celulares",
             "handle": "xiaomi",
             "title": "Xiaomi",
-            "url": "/collections/xiaomi"
+            "url": "/collections/celulares"
           }
         },
         "child_otras": {
@@ -214,7 +214,7 @@
           "settings": {
             "handle": "computacion",
             "title": "Computación",
-            "url": "/collections/computacion"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_laptops": {
@@ -223,7 +223,7 @@
             "parent": "computacion",
             "handle": "laptops",
             "title": "Laptops",
-            "url": "/collections/laptops"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_tablets": {
@@ -232,7 +232,7 @@
             "parent": "computacion",
             "handle": "tablets",
             "title": "Tablets",
-            "url": "/collections/tablets"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_acc_pc": {
@@ -241,7 +241,7 @@
             "parent": "computacion",
             "handle": "acc-pc",
             "title": "Accesorios PC",
-            "url": "/collections/accesorios-pc"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_gaming": {
@@ -249,7 +249,7 @@
           "settings": {
             "handle": "gaming",
             "title": "Gaming",
-            "url": "/collections/gaming"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_playstation": {
@@ -258,7 +258,7 @@
             "parent": "gaming",
             "handle": "playstation",
             "title": "PlayStation",
-            "url": "/collections/playstation"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_xbox": {
@@ -267,7 +267,7 @@
             "parent": "gaming",
             "handle": "xbox",
             "title": "Xbox",
-            "url": "/collections/xbox"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_nintendo": {
@@ -276,7 +276,7 @@
             "parent": "gaming",
             "handle": "nintendo",
             "title": "Nintendo",
-            "url": "/collections/nintendo"
+            "url": "/collections/coleccion-principal"
           }
         },
         "child_pc_gaming": {
@@ -285,7 +285,7 @@
             "parent": "gaming",
             "handle": "pc-gaming",
             "title": "PC Gaming",
-            "url": "/collections/pc-gaming"
+            "url": "/collections/coleccion-principal"
           }
         },
         "menu_ofertas": {

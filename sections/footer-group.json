@@ -10,20 +10,24 @@
         "link_empresas": { "type": "link", "settings": { "group": "nosotros", "title": "Venta a Empresas", "url": "/pages/contact-us" } },
         "link_blog": { "type": "link", "settings": { "group": "nosotros", "title": "Blog", "url": "/pages/about-us" } },
         "link_contacto": { "type": "link", "settings": { "group": "nosotros", "title": "Contacto", "url": "/pages/contact-us" } },
-        "menu_nuevos": { "type": "link", "settings": { "group": "menu", "title": "Nuevos Lanzamientos", "url": "/collections/coleccion-principal" } },
-        "menu_celulares": { "type": "link", "settings": { "group": "menu", "title": "Celulares", "url": "/collections/coleccion-principal" } },
-        "menu_consolas": { "type": "link", "settings": { "group": "menu", "title": "Consolas", "url": "/collections/coleccion-principal" } },
-        "menu_vr": { "type": "link", "settings": { "group": "menu", "title": "Realidad Virtual", "url": "/collections/coleccion-principal" } },
-        "menu_computacion": { "type": "link", "settings": { "group": "menu", "title": "Computación", "url": "/collections/coleccion-principal" } },
-        "menu_audio": { "type": "link", "settings": { "group": "menu", "title": "Audio", "url": "/collections/coleccion-principal" } },
-        "menu_reacond": { "type": "link", "settings": { "group": "menu", "title": "Reacondicionados", "url": "/collections/coleccion-principal" } },
+        "menu_nuevos": { "type": "link", "settings": { "group": "menu", "title": "Nuevos Lanzamientos", "url": "/collections/frontpage" } },
+        "menu_celulares": { "type": "link", "settings": { "group": "menu", "title": "Celulares", "url": "/collections/celulares" } },
+        "menu_audio": { "type": "link", "settings": { "group": "menu", "title": "Audio", "url": "/collections/audio" } },
+        "menu_smartwatches": { "type": "link", "settings": { "group": "menu", "title": "Smartwatches", "url": "/collections/smartwatches" } },
+        "menu_ofertas": { "type": "link", "settings": { "group": "menu", "title": "Ofertas", "url": "/collections/ofertas" } },
+        "menu_catalogo": { "type": "link", "settings": { "group": "menu", "title": "Catálogo Completo", "url": "/collections/coleccion-principal" } },
         "menu_cotizacion": { "type": "link", "settings": { "group": "menu", "title": "Cotización", "url": "/pages/contact-us" } },
-        "menu_rastreo": { "type": "link", "settings": { "group": "menu", "title": "Rastrea tu Pedido", "url": "/pages/shipping" } }
+        "menu_rastreo": { "type": "link", "settings": { "group": "menu", "title": "Rastrea tu Pedido", "url": "/pages/shipping" } },
+        "legal_privacy": { "type": "link", "settings": { "group": "legal", "title": "Política de Privacidad", "url": "/policies/privacy-policy" } },
+        "legal_refund": { "type": "link", "settings": { "group": "legal", "title": "Política de Devoluciones", "url": "/policies/refund-policy" } },
+        "legal_terms": { "type": "link", "settings": { "group": "legal", "title": "Términos de Servicio", "url": "/policies/terms-of-service" } },
+        "legal_shipping": { "type": "link", "settings": { "group": "legal", "title": "Política de Envíos", "url": "/policies/shipping-policy" } }
       },
       "block_order": [
         "link_quienes", "link_referidos", "link_empresas", "link_blog", "link_contacto",
-        "menu_nuevos", "menu_celulares", "menu_consolas", "menu_vr", "menu_computacion",
-        "menu_audio", "menu_reacond", "menu_cotizacion", "menu_rastreo"
+        "menu_nuevos", "menu_celulares", "menu_audio", "menu_smartwatches", "menu_ofertas",
+        "menu_catalogo", "menu_cotizacion", "menu_rastreo",
+        "legal_privacy", "legal_refund", "legal_terms", "legal_shipping"
       ],
       "settings": {
         "whatsapp_cl": "+56 9 9136 9127",

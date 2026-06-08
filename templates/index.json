@@ -85,12 +85,12 @@
     "gsm_categories": {
       "type": "gsm-category-grid",
       "blocks": {
-        "cat1": { "type": "category", "settings": { "title": "Celulares", "icon": "smartphone", "url": "/collections/coleccion-principal" } },
-        "cat2": { "type": "category", "settings": { "title": "Audio", "icon": "headphones", "url": "/collections/coleccion-principal" } },
+        "cat1": { "type": "category", "settings": { "title": "Celulares", "icon": "smartphone", "url": "/collections/celulares" } },
+        "cat2": { "type": "category", "settings": { "title": "Audio", "icon": "headphones", "url": "/collections/audio" } },
         "cat3": { "type": "category", "settings": { "title": "Computación", "icon": "laptop_mac", "url": "/collections/coleccion-principal" } },
-        "cat4": { "type": "category", "settings": { "title": "Wearables", "icon": "watch", "url": "/collections/coleccion-principal" } },
-        "cat5": { "type": "category", "settings": { "title": "Consolas", "icon": "sports_esports", "url": "/collections/coleccion-principal" } },
-        "cat6": { "type": "category", "settings": { "title": "Fotografía", "icon": "photo_camera", "url": "/collections/coleccion-principal" } }
+        "cat4": { "type": "category", "settings": { "title": "Wearables", "icon": "watch", "url": "/collections/smartwatches" } },
+        "cat5": { "type": "category", "settings": { "title": "Ofertas", "icon": "local_offer", "url": "/collections/ofertas" } },
+        "cat6": { "type": "category", "settings": { "title": "Catálogo", "icon": "grid_view", "url": "/collections/coleccion-principal" } }
       },
       "block_order": ["cat1","cat2","cat3","cat4","cat5","cat6"],
       "settings": {
@@ -193,7 +193,7 @@
     },
     "slider_drones": {
       "type": "gsm-product-slider",
-      "settings": { "heading": "Ofertas", "collection": "coleccion-principal", "view_more_url": "/collections/coleccion-principal", "products_to_show": 12 }
+      "settings": { "heading": "Ofertas", "collection": "ofertas", "view_more_url": "/collections/ofertas", "products_to_show": 12 }
     },
     "slider_black_sale": {
       "type": "gsm-product-slider",

@@ -158,6 +158,13 @@
     "newsletter_success": "¡Gracias! Te has suscrito correctamente.",
     "social_media": "Redes sociales"
   },
+  "gift_cards": {
+    "issued": {
+      "title_html": "Tarjeta de regalo — {{ shop }}",
+      "expired": "Esta tarjeta de regalo ha expirado.",
+      "shop_link": "Ir a la tienda"
+    }
+  },
   "404": {
     "title": "Página no encontrada",
     "subtext": "La página que buscas no existe.",
