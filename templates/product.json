@@ -1,18 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": { "type": "vendor" },
-        "title": { "type": "title" },
-        "price": { "type": "price", "settings": { "show_sku": true } },
-        "variant_picker": { "type": "variant_picker" },
-        "warehouse": { "type": "warehouse" },
-        "buy_buttons": { "type": "buy_buttons" },
-        "trust_badges": { "type": "trust_badges" },
-        "share": { "type": "share" }
+        "vendor": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_sku": true
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "warehouse": {
+          "type": "warehouse",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {}
+        },
+        "trust_badges": {
+          "type": "trust_badges",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        }
       },
-      "block_order": ["vendor", "title", "price", "variant_picker", "warehouse", "buy_buttons", "trust_badges", "share"],
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "warehouse",
+        "buy_buttons",
+        "trust_badges",
+        "share"
+      ],
       "settings": {}
     },
     "recommendations": {
@@ -23,5 +67,8 @@
       }
     }
   },
-  "order": ["main", "recommendations"]
+  "order": [
+    "main",
+    "recommendations"
+  ]
 }

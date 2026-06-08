@@ -39,7 +39,9 @@
         "legal_privacy", "legal_refund", "legal_terms", "legal_shipping"
       ],
       "settings": {
+        "whatsapp_cl": "",
         "phone_intl": "470-440-0124",
+        "phone_callcenter": "",
         "email": "dariel@tanygrowth.com",
         "hours": "Lun–Vie 7:00–23:00\nSab–Dom 9:00–22:00",
         "address": "Centro de distribución Datansy\nSantiago, Región Metropolitana\nChile",
