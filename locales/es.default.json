@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "search": "Buscar",
@@ -157,6 +166,13 @@
     "newsletter_submit": "Suscribirme",
     "newsletter_success": "¡Gracias! Te has suscrito correctamente.",
     "social_media": "Redes sociales"
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Tarjeta de regalo de {{ value }} para {{ shop }}",
+      "expired": "Esta tarjeta de regalo ha expirado.",
+      "shop_link": "Ir a la tienda"
+    }
   },
   "404": {
     "title": "Página no encontrada",

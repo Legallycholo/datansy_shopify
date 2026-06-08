@@ -294,7 +294,7 @@
       body.innerHTML = '<div class="gsm-cart-drawer__empty">' +
         '<span class="material-symbols-outlined gsm-cart-drawer__empty-icon">shopping_cart</span>' +
         '<p class="gsm-cart-drawer__empty-text">' + (settings.strings.cartEmpty || 'Tu carrito está vacío') + '</p>' +
-        '<a href="/collections/all" class="btn btn--primary">' + (settings.strings.continueShopping || 'Explorar catálogo') + '</a>' +
+        '<a href="' + (settings.routes.allProductsCollectionUrl || '/collections/all') + '" class="btn btn--primary">' + (settings.strings.cartEmptyCta || settings.strings.continueShopping || 'Explorar catálogo') + '</a>' +
         '</div>';
       if (footer) footer.style.display = 'none';
       return;

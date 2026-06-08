@@ -100,12 +100,14 @@
         cartUrl: {{ routes.cart_url | json }},
         cartAddUrl: {{ routes.cart_add_url | append: '.js' | json }},
         cartChangeUrl: {{ routes.cart_change_url | append: '.js' | json }},
-        predictiveSearchUrl: {{ routes.predictive_search_url | json }}
+        predictiveSearchUrl: {{ routes.predictive_search_url | json }},
+        allProductsCollectionUrl: {{ routes.all_products_collection_url | json }}
       },
       strings: {
         freeShippingRemaining: {{ 'cart.free_shipping_remaining' | t | json }},
         freeShippingAchieved: {{ 'cart.free_shipping_achieved' | t | json }},
         cartEmpty: {{ 'cart.empty' | t | json }},
+        cartEmptyCta: {{ 'cart.empty_cta' | t | json }},
         cartViewCart: {{ 'cart.view_cart' | t | json }},
         cartCheckout: {{ 'cart.checkout' | t | json }},
         couponCopied: {{ 'general.coupon_copied' | t | json }},
