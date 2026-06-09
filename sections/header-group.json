@@ -24,14 +24,14 @@
         "msg2": {
           "type": "message",
           "settings": {
-            "text": "✅ Garantía oficial en todos los productos — Respaldo Datansy",
-            "url": "/pages/about-us"
+            "text": "🎁 Clientes nuevos: 10% off con el código BIENVENIDO10",
+            "url": "/collections/coleccion-principal"
           }
         },
         "msg3": {
           "type": "message",
           "settings": {
-            "text": "🎁 Usa el código BIENVENIDO10 y obtén 10% off en tu primera compra",
+            "text": "✅ 30 días de garantía en todos los productos",
             "url": "/collections/coleccion-principal"
           }
         }

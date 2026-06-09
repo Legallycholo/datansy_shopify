@@ -12,20 +12,26 @@
     "gsm_hero": {
       "type": "dty-hero",
       "blocks": {
-        "slogan_1": { "type": "slogan_set", "settings": { "line_1": "Tecnología Premium", "line_2": "Al Precio Que", "line_3": "Debería Ser" } },
-        "slogan_2": { "type": "slogan_set", "settings": { "line_1": "Innovación Total", "line_2": "Sin Fronteras", "line_3": "Ni Esperas" } },
-        "slogan_3": { "type": "slogan_set", "settings": { "line_1": "Las Mejores Marcas", "line_2": "Garantía Oficial", "line_3": "En Chile" } }
+        "slogan_1": { "type": "slogan_set", "settings": { "line_1": "Marcas Globales", "line_2": "Precio Directo", "line_3": "En Chile" } },
+        "slogan_2": { "type": "slogan_set", "settings": { "line_1": "Importación Oficial", "line_2": "Sin Intermediarios", "line_3": "Con Garantía" } },
+        "slogan_3": { "type": "slogan_set", "settings": { "line_1": "Tech de Primera", "line_2": "Entrega a Todo", "line_3": "Chile" } }
       },
       "block_order": ["slogan_1", "slogan_2", "slogan_3"],
       "settings": {
         "badge": "Tecnología Premium",
-        "subtext": "Envíos Gratis a todo Chile. Garantía Datansy Oficial",
+        "subtext": "Envío gratis sobre $50.000. 30 días de garantía. 10% off con BIENVENIDO10.",
         "cta_catalog_label": "Ver Catálogo",
         "cta_catalog_url": "/collections/coleccion-principal",
         "cta_flash_label": "Ofertas Flash",
         "cta_flash_url": "/collections/ofertas",
         "show_trust_row": true,
-        "trust_text": "+5,000 clientes felices"
+        "trust_text": "+5.000 clientes en Chile",
+        "stat_1_number": "30",
+        "stat_1_label": "Días de Garantía",
+        "stat_2_number": "10%",
+        "stat_2_label": "Off con BIENVENIDO10",
+        "stat_3_number": "Gratis",
+        "stat_3_label": "Envío +$50.000"
       }
     },
     "gsm_marquee": {
@@ -71,7 +77,7 @@
       "block_order": ["c1","c2","c3","c4","c5","c6"],
       "settings": {
         "label": "Cobertura Regional",
-        "heading": "Operamos en 6 Países",
+        "heading": "6 Países, Un Solo Estándar",
         "enable_market_switch": true
       }
     },
@@ -87,8 +93,8 @@
       "block_order": ["h1","h2","h3","h4","h5"],
       "settings": {
         "label": "Sourcing Internacional",
-        "heading": "Los Mejores Precios Del Mundo",
-        "stat_badge": "5+ Hubs de Abastecimiento"
+        "heading": "Compramos Donde Manda el Precio, Entregamos en Chile",
+        "stat_badge": "5 Hubs Globales de Abastecimiento"
       }
     },
     "gsm_categories": {
@@ -104,7 +110,7 @@
       "block_order": ["cat1","cat2","cat3","cat4","cat5","cat6"],
       "settings": {
         "label": "Categorías Elite",
-        "heading": "Explora por Categoría",
+        "heading": "Encuentra Lo Que Buscas",
         "catalog_label": "Ver catálogo completo",
         "catalog_url": "/collections/coleccion-principal"
       }
@@ -112,14 +118,14 @@
     "gsm_presales": {
       "type": "dty-presales",
       "blocks": {
-        "ben1": { "type": "benefit", "settings": { "icon": "sell", "title": "Precio Especial", "text": "Accede al mejor precio de preventa." } },
-        "ben2": { "type": "benefit", "settings": { "icon": "priority_high", "title": "Prioridad Total", "text": "Sé de los primeros en recibirlo." } },
-        "ben3": { "type": "benefit", "settings": { "icon": "inventory", "title": "Stock Asegurado", "text": "Reserva garantizada desde el día uno." } }
+        "ben1": { "type": "benefit", "settings": { "icon": "sell", "title": "Precio Especial", "text": "Cotiza antes del lanzamiento y accede al precio de preventa." } },
+        "ben2": { "type": "benefit", "settings": { "icon": "priority_high", "title": "Prioridad Total", "text": "Recíbelo antes que el resto del mercado." } },
+        "ben3": { "type": "benefit", "settings": { "icon": "inventory", "title": "Stock Asegurado", "text": "Tu unidad queda reservada desde el primer día." } }
       },
       "block_order": ["ben1","ben2","ben3"],
       "settings": {
         "label": "Preventas VIP",
-        "heading": "¿Buscas un producto que aún no tenemos?",
+        "heading": "¿Buscas algo que aún no está en catálogo?",
         "cta_label": "Solicitar cotización",
         "cta_url": "/pages/cotizacion"
       }
@@ -127,23 +133,23 @@
     "gsm_faq": {
       "type": "dty-faq",
       "blocks": {
-        "f1": { "type": "faq_item", "settings": { "question": "¿Los productos tienen garantía?", "answer": "<p>Sí. Todos nuestros productos cuentan con garantía oficial del fabricante y respaldo Datansy.</p>" } },
-        "f2": { "type": "faq_item", "settings": { "question": "¿Cuáles son los medios de pago?", "answer": "<p>Aceptamos tarjetas de crédito y débito, transferencia bancaria, PayPal, Apple Pay y Google Pay.</p>" } },
-        "f3": { "type": "faq_item", "settings": { "question": "¿Hacen envíos a regiones?", "answer": "<p>Sí, enviamos a todo Chile incluyendo regiones extremas.</p>" } },
-        "f4": { "type": "faq_item", "settings": { "question": "¿Tienen tienda física?", "answer": "<p>Operamos principalmente online con centros de distribución en Santiago.</p>" } },
-        "f5": { "type": "faq_item", "settings": { "question": "¿Debo preocuparme por el \"Aduanazo\"?", "answer": "<p>No. Datansy gestiona toda la importación de forma legal y transparente.</p>" } }
+        "f1": { "type": "faq_item", "settings": { "question": "¿Todos los productos tienen garantía oficial?", "answer": "<p>Sí. Todos nuestros productos cuentan con garantía oficial del fabricante y respaldo Datansy.</p>" } },
+        "f2": { "type": "faq_item", "settings": { "question": "¿Qué medios de pago puedo usar?", "answer": "<p>Aceptamos tarjetas de crédito y débito, transferencia bancaria, PayPal, Apple Pay y Google Pay.</p>" } },
+        "f3": { "type": "faq_item", "settings": { "question": "¿Envían a regiones fuera de Santiago?", "answer": "<p>Sí, enviamos a todo Chile incluyendo regiones extremas.</p>" } },
+        "f4": { "type": "faq_item", "settings": { "question": "¿Datansy tiene tienda física?", "answer": "<p>Operamos principalmente online con centros de distribución en Santiago.</p>" } },
+        "f5": { "type": "faq_item", "settings": { "question": "¿Debo pagar el \"Aduanazo\" aparte?", "answer": "<p>No. Datansy gestiona toda la importación de forma legal y transparente.</p>" } }
       },
       "block_order": ["f1","f2","f3","f4","f5"],
       "settings": {
         "label": "Preguntas Frecuentes",
-        "heading": "Transparencia Total"
+        "heading": "Resolvemos Tus Dudas"
       }
     },
     "gsm_coupon": {
       "type": "dty-coupon-cta",
       "settings": {
-        "heading": "Tecnología a tu Alcance",
-        "subtext": "Únete a nuestra comunidad y obtén 10% off en tu primera compra.",
+        "heading": "Primera Compra con Descuento",
+        "subtext": "Déjanos tu correo y recibe 10% off con el código BIENVENIDO10.",
         "coupon_code": "BIENVENIDO10",
         "urgency_text": "Usa el código BIENVENIDO10 al finalizar tu compra",
         "show_newsletter": true,
@@ -155,15 +161,15 @@
     "gsm_testimonials": {
       "type": "dty-testimonials",
       "blocks": {
-        "t1": { "type": "review", "settings": { "name": "Carlos M.", "product": "Lonmao B8 Auriculares", "quote": "Llegó en perfecto estado. Excelente relación precio-calidad.", "rating": 5 } },
-        "t2": { "type": "review", "settings": { "name": "Valentina R.", "product": "Smartwatch Vital Pro Max", "quote": "El mejor precio que encontré en Chile. Envío rápido a Santiago.", "rating": 5 } },
-        "t3": { "type": "review", "settings": { "name": "Diego P.", "product": "Datansy Tech", "quote": "Atención excelente por WhatsApp. Compra 100% recomendada.", "rating": 5 } }
+        "t1": { "type": "review", "settings": { "name": "Carlos M.", "product": "Lonmao B8 Auriculares", "quote": "Llegó sellado de fábrica. Precio imbatible para la calidad que recibí.", "rating": 5 } },
+        "t2": { "type": "review", "settings": { "name": "Valentina R.", "product": "Smartwatch Vital Pro Max", "quote": "Comparé en varias tiendas chilenas. Aquí fue la mejor opción y llegó rápido.", "rating": 5 } },
+        "t3": { "type": "review", "settings": { "name": "Diego P.", "product": "Datansy Tech", "quote": "Me asesoraron por WhatsApp antes de comprar. Proceso claro de principio a fin.", "rating": 5 } }
       },
       "block_order": ["t1", "t2", "t3"],
       "settings": {
         "enabled": true,
-        "heading": "Experiencia Datansy",
-        "subheading": "Lo que dicen nuestros clientes en Chile."
+        "heading": "Clientes Datansy",
+        "subheading": "Compras verificadas de Arica a Punta Arenas."
       }
     },
     "slider_catalog": {

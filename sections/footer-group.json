@@ -39,6 +39,11 @@
         "legal_privacy", "legal_refund", "legal_terms", "legal_shipping"
       ],
       "settings": {
+        "show_mission": true,
+        "mission_text": "Traemos tecnología premium al mundo a tu puerta en Chile: garantía oficial, precios directos de origen y envío a todo el país.",
+        "show_newsletter": true,
+        "newsletter_heading": "Ofertas y Lanzamientos Tech",
+        "newsletter_subtext": "Recibe novedades, preventas y descuentos exclusivos en tu correo.",
         "whatsapp_cl": "+56 9 9136 9127",
         "phone_intl": "470-440-0721",
         "phone_cl": "+56 9 9136 9127",

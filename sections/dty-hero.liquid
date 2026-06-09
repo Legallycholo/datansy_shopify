@@ -58,20 +58,20 @@
           </div>
         {%- endif -%}
 
-        <div class="dty-hero__stats" aria-hidden="true">
+        <div class="dty-hero__stats">
           <div class="dty-hero__stat">
-            <span class="dty-hero__stat-number">5.000+</span>
-            <span class="dty-hero__stat-label">Clientes</span>
+            <span class="dty-hero__stat-number">{{ section.settings.stat_1_number }}</span>
+            <span class="dty-hero__stat-label">{{ section.settings.stat_1_label }}</span>
           </div>
           <div class="dty-hero__stat-divider"></div>
           <div class="dty-hero__stat">
-            <span class="dty-hero__stat-number">6</span>
-            <span class="dty-hero__stat-label">Países</span>
+            <span class="dty-hero__stat-number">{{ section.settings.stat_2_number }}</span>
+            <span class="dty-hero__stat-label">{{ section.settings.stat_2_label }}</span>
           </div>
           <div class="dty-hero__stat-divider"></div>
           <div class="dty-hero__stat">
-            <span class="dty-hero__stat-number">100%</span>
-            <span class="dty-hero__stat-label">Garantía Oficial</span>
+            <span class="dty-hero__stat-number">{{ section.settings.stat_3_number }}</span>
+            <span class="dty-hero__stat-label">{{ section.settings.stat_3_label }}</span>
           </div>
         </div>
       </div>
@@ -157,25 +157,32 @@
   "class": "section-dty-hero",
   "settings": [
     { "type": "text", "id": "badge", "label": "Badge", "default": "Tecnología Premium" },
-    { "type": "text", "id": "fallback_line_1", "label": "Línea 1 (fallback)", "default": "Tecnología Premium" },
-    { "type": "text", "id": "fallback_line_2", "label": "Línea 2 (fallback)", "default": "Al Precio Que" },
-    { "type": "text", "id": "fallback_line_3", "label": "Línea 3 (fallback)", "default": "Debería Ser" },
-    { "type": "textarea", "id": "subtext", "label": "Subtexto", "default": "Envíos Gratis a todo Chile. Garantía Datansy Oficial" },
+    { "type": "text", "id": "fallback_line_1", "label": "Línea 1 (fallback)", "default": "Marcas Globales" },
+    { "type": "text", "id": "fallback_line_2", "label": "Línea 2 (fallback)", "default": "Precio Directo" },
+    { "type": "text", "id": "fallback_line_3", "label": "Línea 3 (fallback)", "default": "En Chile" },
+    { "type": "textarea", "id": "subtext", "label": "Subtexto", "default": "Envío gratis sobre $50.000. 30 días de garantía. 10% off con BIENVENIDO10." },
     { "type": "text", "id": "cta_catalog_label", "label": "CTA catálogo", "default": "Ver Catálogo" },
     { "type": "url", "id": "cta_catalog_url", "label": "URL catálogo" },
     { "type": "text", "id": "cta_flash_label", "label": "CTA ofertas", "default": "Ofertas Flash" },
     { "type": "url", "id": "cta_flash_url", "label": "URL ofertas" },
     { "type": "checkbox", "id": "show_trust_row", "label": "Mostrar fila de confianza", "default": true },
-    { "type": "text", "id": "trust_text", "label": "Texto confianza", "default": "+5,000 clientes felices" }
+    { "type": "text", "id": "trust_text", "label": "Texto confianza", "default": "+5.000 clientes en Chile" },
+    { "type": "header", "content": "Stat badges" },
+    { "type": "text", "id": "stat_1_number", "label": "Stat 1 número", "default": "30" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 etiqueta", "default": "Días de Garantía" },
+    { "type": "text", "id": "stat_2_number", "label": "Stat 2 número", "default": "10%" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 etiqueta", "default": "Off con BIENVENIDO10" },
+    { "type": "text", "id": "stat_3_number", "label": "Stat 3 número", "default": "Gratis" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 etiqueta", "default": "Envío +$50.000" }
   ],
   "blocks": [
     {
       "type": "slogan_set",
       "name": "Set de slogans",
       "settings": [
-        { "type": "text", "id": "line_1", "label": "Línea 1", "default": "Tecnología Premium" },
-        { "type": "text", "id": "line_2", "label": "Línea 2", "default": "Al Precio Que" },
-        { "type": "text", "id": "line_3", "label": "Línea 3", "default": "Debería Ser" }
+        { "type": "text", "id": "line_1", "label": "Línea 1", "default": "Marcas Globales" },
+        { "type": "text", "id": "line_2", "label": "Línea 2", "default": "Precio Directo" },
+        { "type": "text", "id": "line_3", "label": "Línea 3", "default": "En Chile" }
       ]
     }
   ],
@@ -183,9 +190,9 @@
     {
       "name": "Datansy Hero",
       "blocks": [
-        { "type": "slogan_set", "settings": { "line_1": "Tecnología Premium", "line_2": "Al Precio Que", "line_3": "Debería Ser" } },
-        { "type": "slogan_set", "settings": { "line_1": "Innovación Total", "line_2": "Sin Fronteras", "line_3": "Ni Esperas" } },
-        { "type": "slogan_set", "settings": { "line_1": "Las Mejores Marcas", "line_2": "Garantía Oficial", "line_3": "En Chile" } }
+        { "type": "slogan_set", "settings": { "line_1": "Marcas Globales", "line_2": "Precio Directo", "line_3": "En Chile" } },
+        { "type": "slogan_set", "settings": { "line_1": "Importación Oficial", "line_2": "Sin Intermediarios", "line_3": "Con Garantía" } },
+        { "type": "slogan_set", "settings": { "line_1": "Tech de Primera", "line_2": "Entrega a Todo", "line_3": "Chile" } }
       ]
     }
   ]
