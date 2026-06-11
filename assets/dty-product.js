@@ -32,6 +32,37 @@
       });
     }
 
+    function shopifyImageAtWidth(url, width) {
+      if (!url) return '';
+      if (url.indexOf('width=') !== -1) {
+        return url.replace(/width=\d+/, 'width=' + width);
+      }
+      return url.replace(/(\.[^.?]+)(\?.*)?$/, '_' + width + 'x$1$2');
+    }
+
+    function buildSrcset(url) {
+      return [400, 800, 1200].map(function (w) {
+        return shopifyImageAtWidth(url, w) + ' ' + w + 'w';
+      }).join(', ');
+    }
+
+    function setGalleryMainImage(url, alt) {
+      if (!mainImage || !url) return;
+      mainImage.src = url;
+      mainImage.srcset = buildSrcset(url);
+      if (alt != null) mainImage.alt = alt;
+    }
+
+    function activateGalleryThumb(mediaId) {
+      var matched = false;
+      section.querySelectorAll('[data-gallery-thumb]').forEach(function (btn) {
+        var isMatch = String(btn.dataset.mediaId) === String(mediaId);
+        btn.classList.toggle('is-active', isMatch);
+        if (isMatch) matched = true;
+      });
+      return matched;
+    }
+
     function updateVariant(variant) {
       if (!variant) return;
 
@@ -87,8 +118,8 @@
       if (variant.featured_media && mainImage) {
         var media = product.media.find(function (m) { return m.id === variant.featured_media.id; });
         if (media) {
-          mainImage.src = media.preview_image.src.replace(/(\.[^.?]+)(\?.*)?$/, '_800x$1$2');
-          mainImage.alt = media.alt || product.title;
+          setGalleryMainImage(shopifyImageAtWidth(media.preview_image.src, 800), media.alt || product.title);
+          activateGalleryThumb(media.id);
         }
       }
     }
@@ -105,10 +136,9 @@
 
     section.querySelectorAll('[data-gallery-thumb]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        section.querySelectorAll('[data-gallery-thumb]').forEach(function (t) { t.classList.remove('is-active'); });
-        btn.classList.add('is-active');
+        activateGalleryThumb(btn.dataset.mediaId);
         var src = btn.dataset.fullSrc;
-        if (mainImage && src) mainImage.src = src;
+        if (src) setGalleryMainImage(src);
       });
     });
 

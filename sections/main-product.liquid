@@ -31,6 +31,7 @@
               type="button"
               class="dty-product-gallery__thumb{% if forloop.first %} is-active{% endif %}"
               data-gallery-thumb
+              data-media-id="{{ media.id }}"
               data-full-src="{{ media | image_url: width: 800 }}"
               aria-label="{{ 'products.media_gallery' | t }} {{ forloop.index }}"
             >
