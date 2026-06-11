@@ -220,3 +220,29 @@ a.dty-testimonials__card:focus-visible { outline: 2px solid var(--dty-accent, #2
 .dty-coupon-cta__input { flex: 1; padding: var(--space-3) var(--space-4); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-full); background: rgba(255,255,255,0.1); color: var(--dty-white); font-size: var(--text-sm); outline: none; }
 .dty-coupon-cta__input::placeholder { color: rgba(255,255,255,0.5); }
 .dty-coupon-cta__success { margin-top: var(--space-3); color: #22c55e; font-size: var(--text-sm); font-weight: 600; }
+
+/* ---- Homepage mobile optimizations ---- */
+@media (max-width: 767px) {
+  /* Hero — tighter vertical padding on small screens */
+  .dty-hero { padding: var(--space-10) 0 var(--space-8); min-height: 0; }
+  .dty-hero__headline { font-size: clamp(1.9rem, 8vw, 2.6rem); margin-bottom: var(--space-4); }
+  .dty-hero__subtext { font-size: var(--text-base); margin-bottom: var(--space-6); }
+  .dty-hero__actions { gap: var(--space-3); }
+  .dty-hero__actions .btn { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  .dty-hero__stats { gap: var(--space-4); }
+  .dty-hero__stat-number { font-size: var(--text-lg); }
+
+  /* Testimonials — constrain card so it doesn't overflow tiny screens */
+  .dty-testimonials__card { width: min(300px, 85vw); }
+
+  /* Coupon section — single column on small mobile */
+  .dty-coupon-cta__card { padding: var(--space-6); }
+
+  /* Category grid — 2 columns already, just tighten padding */
+  .dty-categories__tile { padding: var(--space-6) var(--space-3); }
+  .dty-categories__icon-wrap { width: 52px; height: 52px; }
+  .dty-categories__icon { font-size: 26px; }
+
+  /* Section spacing */
+  .dty-section { padding: var(--space-8) 0; }
+}

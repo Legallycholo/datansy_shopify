@@ -12,7 +12,7 @@
           <img
             src="{{ product.featured_media | image_url: width: 800 }}"
             srcset="{{ product.featured_media | image_url: width: 400 }} 400w, {{ product.featured_media | image_url: width: 800 }} 800w, {{ product.featured_media | image_url: width: 1200 }} 1200w"
-            sizes="(min-width: 1024px) 50vw, 100vw"
+            sizes="(min-width: 1024px) 44vw, 100vw"
             alt="{{ product.featured_media.alt | default: product.title | escape }}"
             width="800"
             height="800"
@@ -22,6 +22,14 @@
           >
         {%- else -%}
           <div class="placeholder-image placeholder-image--square">Product image placeholder</div>
+        {%- endif -%}
+        {%- if product.media.size > 1 -%}
+          <button type="button" class="dty-gallery-arrow dty-gallery-arrow--prev" data-gallery-prev aria-label="{{ 'accessibility.slider_prev' | t }}">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button type="button" class="dty-gallery-arrow dty-gallery-arrow--next" data-gallery-next aria-label="{{ 'accessibility.slider_next' | t }}">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
         {%- endif -%}
       </div>
       {%- if product.media.size > 1 -%}

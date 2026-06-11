@@ -155,15 +155,37 @@
       });
     });
 
-    if (mainImage) {
+    var galleryMain = section.querySelector('.dty-product-gallery__main');
+    var thumbBtns = Array.from(section.querySelectorAll('[data-gallery-thumb]'));
+
+    function getActiveIndex() {
+      var active = section.querySelector('[data-gallery-thumb].is-active');
+      return thumbBtns.indexOf(active);
+    }
+
+    function navigateTo(index) {
+      var wrapped = (index + thumbBtns.length) % thumbBtns.length;
+      if (thumbBtns[wrapped]) thumbBtns[wrapped].click();
+    }
+
+    /* Click main image → advance to next */
+    if (mainImage && thumbBtns.length > 1) {
       mainImage.addEventListener('click', function () {
-        mainImage.closest('.dty-product-gallery__main').classList.toggle('is-zoomed');
+        navigateTo(getActiveIndex() + 1);
       });
     }
 
+    /* Arrow buttons */
+    var prevBtn = section.querySelector('[data-gallery-prev]');
+    var nextBtn = section.querySelector('[data-gallery-next]');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () { navigateTo(getActiveIndex() - 1); });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () { navigateTo(getActiveIndex() + 1); });
+    }
+
     /* Mobile swipe on gallery */
-    var galleryMain = section.querySelector('.dty-product-gallery__main');
-    var thumbBtns = Array.from(section.querySelectorAll('[data-gallery-thumb]'));
     if (galleryMain && thumbBtns.length > 1) {
       var touchStartX = 0;
       galleryMain.addEventListener('touchstart', function (e) {
@@ -172,12 +194,7 @@
       galleryMain.addEventListener('touchend', function (e) {
         var delta = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(delta) < 40) return;
-        var activeThumb = section.querySelector('[data-gallery-thumb].is-active');
-        var currentIndex = thumbBtns.indexOf(activeThumb);
-        var nextIndex = delta < 0
-          ? Math.min(currentIndex + 1, thumbBtns.length - 1)
-          : Math.max(currentIndex - 1, 0);
-        if (nextIndex !== currentIndex) thumbBtns[nextIndex].click();
+        navigateTo(delta < 0 ? getActiveIndex() + 1 : getActiveIndex() - 1);
       }, { passive: true });
     }
 
