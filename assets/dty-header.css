@@ -18,8 +18,12 @@
 .header-sticky .dty-header{position:sticky;top:42px;z-index:200;box-shadow:0 2px 16px rgba(var(--dty-dark-rgb),.18)}
 .dty-header__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);min-height:var(--header-height);padding:var(--space-2) 0;width:100%;min-width:0}
 .dty-header__logo{flex-shrink:1;min-width:0;display:flex;align-items:center;max-width:45vw}
-.dty-header__logo-link{display:block;max-width:100%}
-.dty-header__logo-img{width:auto;height:auto;max-height:48px;max-width:min(160px,100%)}
+.dty-header__logo-link{display:flex;align-items:center;max-width:100%;min-height:44px}
+.dty-header__logo-img{width:auto;height:auto;max-height:44px;max-width:min(var(--logo-width,160px),100%);object-fit:contain;display:block}
+@media(max-width:1023px){.dty-header__logo{max-width:38vw}.dty-header__logo-img{max-height:36px;max-width:min(128px,100%)}}
+.dty-logo-text{font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;letter-spacing:-.02em;line-height:1;white-space:nowrap}
+.dty-logo-text--dark{color:var(--dty-white)}
+.dty-logo-text--light{color:var(--dty-dark)}
 .dty-header__logo-text{font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;letter-spacing:-.02em;color:var(--dty-white)}
 .dty-header__logo-text span{color:var(--dty-blue)}
 .dty-header__nav{display:none;flex:1;justify-content:center}
@@ -85,8 +89,8 @@
 .dty-mobile-nav.is-open{transform:translateX(0)}
 .dty-mobile-nav__header{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4);background:var(--dty-dark);color:var(--dty-white);min-height:var(--header-height);flex-shrink:0}
 .dty-mobile-nav__brand{flex:1;min-width:0;display:flex;align-items:center}
-.dty-mobile-nav__logo-link{display:block;max-width:100%}
-.dty-mobile-nav__logo-img{width:auto;height:auto;max-height:40px;max-width:min(140px,100%)}
+.dty-mobile-nav__logo-link{display:flex;align-items:center;max-width:100%;min-height:44px}
+.dty-mobile-nav__logo-img{width:auto;height:auto;max-height:40px;max-width:min(var(--logo-width,160px),100%);object-fit:contain;display:block}
 .dty-mobile-nav__title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600}
 .dty-mobile-nav__close{display:flex;align-items:center;justify-content:center;width:40px;height:40px;color:var(--dty-white);border-radius:var(--radius-md)}
 .dty-mobile-nav__panels{flex:1;overflow:hidden;position:relative}

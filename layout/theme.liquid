@@ -88,6 +88,7 @@
       --dty-sale: {{ settings.color_sale }};
       --dty-free-shipping-threshold: {{ settings.free_shipping_threshold }};
       --dty-coupon-code: '{{ settings.default_coupon_code }}';
+      --logo-width: {{ settings.logo_width | default: 160 }}px;
     }
   </style>
 

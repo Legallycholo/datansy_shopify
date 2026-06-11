@@ -17,6 +17,7 @@
       <div class="dty-header__logo">
         {% render 'dty-logo',
           background: 'dark',
+          image: settings.logo,
           class: 'dty-header__logo-img',
           link_class: 'dty-header__logo-link',
           width: settings.logo_width,
@@ -160,11 +161,6 @@
   "name": "Header",
   "class": "section-header",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo del header"
-    },
     {
       "type": "url",
       "id": "quote_url",
