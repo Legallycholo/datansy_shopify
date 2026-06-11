@@ -1,0 +1,52 @@
+{%- comment -%}
+  Renders a testimonial card, optionally linked to a product or URL.
+  Accepts:
+  - block: {Object} section block
+  - decorative: {Boolean} duplicate card for infinite scroll (optional)
+{%- endcomment -%}
+{%- liquid
+  assign linked = block.settings.linked_product
+  assign card_url = linked.url | default: block.settings.link
+  assign product_name = block.settings.product
+  if product_name == blank and linked != blank
+    assign product_name = linked.title
+  endif
+  assign decorative = decorative | default: false
+-%}
+
+{%- if card_url != blank -%}
+  <a
+    href="{{ card_url }}"
+    class="dty-testimonials__card dty-card dty-testimonials__card--linked"
+    {% if decorative %}
+      aria-hidden="true" tabindex="-1"
+    {% else %}
+      {{ block.shopify_attributes }}
+    {% endif %}
+  >
+{%- else -%}
+  <div
+    class="dty-testimonials__card dty-card"
+    {% if decorative %}
+      aria-hidden="true"
+    {% else %}
+      {{ block.shopify_attributes }}
+    {% endif %}
+  >
+{%- endif -%}
+  <div class="dty-testimonials__card-header">
+    <span class="dty-testimonials__name">{{ block.settings.name }}</span>
+    <span class="dty-testimonials__verified">Compra Verificada</span>
+  </div>
+  {%- if product_name != blank -%}
+    <p class="dty-testimonials__product">{{ product_name }}</p>
+  {%- endif -%}
+  {% render 'dty-stars', rating: block.settings.rating %}
+  {%- if block.settings.quote != blank -%}
+    <blockquote class="dty-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
+  {%- endif -%}
+{%- if card_url != blank -%}
+  </a>
+{%- else -%}
+  </div>
+{%- endif -%}

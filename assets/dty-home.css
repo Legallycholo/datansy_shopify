@@ -184,6 +184,8 @@
 .dty-testimonials__scroll:hover .dty-testimonials__track { animation-play-state: paused; }
 @keyframes dty-testimonials-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .dty-testimonials__card { flex-shrink: 0; width: 320px; padding: var(--space-6); }
+a.dty-testimonials__card { display: block; text-decoration: none; color: inherit; cursor: pointer; }
+a.dty-testimonials__card:focus-visible { outline: 2px solid var(--dty-accent, #2563eb); outline-offset: 2px; }
 .dty-testimonials__card-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-2); }
 .dty-testimonials__name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); }
 .dty-testimonials__verified { font-size: 10px; font-weight: 600; text-transform: uppercase; color: #22c55e; }

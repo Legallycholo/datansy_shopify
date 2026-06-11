@@ -14,35 +14,11 @@
   <div class="dty-testimonials__scroll" data-testimonials-scroll>
     <div class="dty-testimonials__track">
       {%- for block in section.blocks -%}
-        <div class="dty-testimonials__card dty-card" {{ block.shopify_attributes }}>
-          <div class="dty-testimonials__card-header">
-            <span class="dty-testimonials__name">{{ block.settings.name }}</span>
-            <span class="dty-testimonials__verified">Compra Verificada</span>
-          </div>
-          {%- if block.settings.product != blank -%}
-            <p class="dty-testimonials__product">{{ block.settings.product }}</p>
-          {%- endif -%}
-          {% render 'dty-stars', rating: block.settings.rating %}
-          {%- if block.settings.quote != blank -%}
-            <blockquote class="dty-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
-          {%- endif -%}
-        </div>
+        {% render 'dty-testimonial-card', block: block %}
       {%- endfor -%}
       {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
       {%- for block in section.blocks -%}
-        <div class="dty-testimonials__card dty-card" aria-hidden="true">
-          <div class="dty-testimonials__card-header">
-            <span class="dty-testimonials__name">{{ block.settings.name }}</span>
-            <span class="dty-testimonials__verified">Compra Verificada</span>
-          </div>
-          {%- if block.settings.product != blank -%}
-            <p class="dty-testimonials__product">{{ block.settings.product }}</p>
-          {%- endif -%}
-          {% render 'dty-stars', rating: block.settings.rating %}
-          {%- if block.settings.quote != blank -%}
-            <blockquote class="dty-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
-          {%- endif -%}
-        </div>
+        {% render 'dty-testimonial-card', block: block, decorative: true %}
       {%- endfor -%}
     </div>
   </div>
@@ -65,7 +41,25 @@
       "name": "Reseña",
       "settings": [
         { "type": "text", "id": "name", "label": "Nombre", "default": "Cliente" },
-        { "type": "text", "id": "product", "label": "Producto", "default": "Producto Datansy" },
+        {
+          "type": "product",
+          "id": "linked_product",
+          "label": "Producto vinculado",
+          "info": "Al hacer clic, el cliente irá a la página de este producto."
+        },
+        {
+          "type": "text",
+          "id": "product",
+          "label": "Nombre del producto",
+          "default": "Producto Datansy",
+          "info": "Opcional. Si está vacío, se usa el título del producto vinculado."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace alternativo",
+          "info": "Solo si no hay producto vinculado (ej. colección o página)."
+        },
         { "type": "textarea", "id": "quote", "label": "Cita", "default": "Excelente servicio y entrega rápida." },
         { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "label": "Estrellas", "default": 5 }
       ]

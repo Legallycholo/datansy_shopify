@@ -161,9 +161,9 @@
     "gsm_testimonials": {
       "type": "dty-testimonials",
       "blocks": {
-        "t1": { "type": "review", "settings": { "name": "Carlos M.", "product": "Lonmao B8 Auriculares", "quote": "Llegó sellado de fábrica. Precio imbatible para la calidad que recibí.", "rating": 5 } },
-        "t2": { "type": "review", "settings": { "name": "Valentina R.", "product": "Smartwatch Vital Pro Max", "quote": "Comparé en varias tiendas chilenas. Aquí fue la mejor opción y llegó rápido.", "rating": 5 } },
-        "t3": { "type": "review", "settings": { "name": "Diego P.", "product": "Datansy Tech", "quote": "Me asesoraron por WhatsApp antes de comprar. Proceso claro de principio a fin.", "rating": 5 } }
+        "t1": { "type": "review", "settings": { "name": "Carlos M.", "linked_product": "audifonos-deportivos-inalambricos-open-ear-con-bluetooth-5-3", "product": "Lonmao B8 Auriculares", "quote": "Llegó sellado de fábrica. Precio imbatible para la calidad que recibí.", "rating": 5 } },
+        "t2": { "type": "review", "settings": { "name": "Valentina R.", "linked_product": "smartwatch-monitoreo-salud-avanzado", "product": "Smartwatch Vital Pro Max", "quote": "Comparé en varias tiendas chilenas. Aquí fue la mejor opción y llegó rápido.", "rating": 5 } },
+        "t3": { "type": "review", "settings": { "name": "Diego P.", "link": "/collections/coleccion-principal", "product": "Datansy Tech", "quote": "Me asesoraron por WhatsApp antes de comprar. Proceso claro de principio a fin.", "rating": 5 } }
       },
       "block_order": ["t1", "t2", "t3"],
       "settings": {
