@@ -2,14 +2,23 @@
   Warehouse availability display for PDP.
   Reads product metafield custom.warehouse_locations (JSON) or shows placeholder locations.
   @param {object} product - Shopify product
+  @param {object} variant - Selected product variant
   @param {object} block - Section block settings (optional)
 {% enddoc %}
 
 {%- liquid
+  assign selected_variant = variant | default: product.selected_or_first_available_variant
   assign warehouse_data = product.metafields.custom.warehouse_locations.value
   assign show_placeholder = true
   if warehouse_data != blank
     assign show_placeholder = false
+  endif
+
+  assign stock_label = 'products.warehouse_in_stock' | t
+  assign import_label = 'products.warehouse_available' | t
+  if selected_variant.available == false
+    assign stock_label = 'products.sold_out' | t
+    assign import_label = 'products.sold_out' | t
   endif
 -%}
 
@@ -22,21 +31,21 @@
           <span class="dty-warehouse__status-dot"></span>
           <span>Santiago — {{ 'products.warehouse_express' | t }}</span>
         </div>
-        <span class="dty-warehouse__qty">{{ 'products.warehouse_in_stock' | t }}</span>
+        <span class="dty-warehouse__qty" data-warehouse-stock>{{ stock_label }}</span>
       </div>
       <div class="dty-warehouse__item dty-warehouse__item--standard">
         <div class="dty-warehouse__status">
           <span class="dty-warehouse__status-dot dty-warehouse__status-dot--blue"></span>
           <span>Valparaíso — 2-3 días</span>
         </div>
-        <span class="dty-warehouse__qty">{{ 'products.warehouse_in_stock' | t }}</span>
+        <span class="dty-warehouse__qty" data-warehouse-stock>{{ stock_label }}</span>
       </div>
       <div class="dty-warehouse__item dty-warehouse__item--standard">
         <div class="dty-warehouse__status">
           <span class="dty-warehouse__status-dot dty-warehouse__status-dot--blue"></span>
           <span>Importación — 5-7 días</span>
         </div>
-        <span class="dty-warehouse__qty">{{ 'products.warehouse_available' | t }}</span>
+        <span class="dty-warehouse__qty" data-warehouse-import>{{ import_label }}</span>
       </div>
     {%- else -%}
       {%- for location in warehouse_data -%}

@@ -89,8 +89,17 @@
                   {%- if color_option_names contains option.name -%}
                     {%- assign is_color = true -%}
                   {%- endif -%}
-                  <fieldset class="dty-variant-picker__group">
-                    <legend class="dty-variant-picker__label">{{ option.name }}</legend>
+                  <div
+                    class="dty-variant-picker__group"
+                    role="group"
+                    aria-labelledby="variant-option-{{ section.id }}-{{ option.position }}"
+                  >
+                    <p
+                      class="dty-variant-picker__label"
+                      id="variant-option-{{ section.id }}-{{ option.position }}"
+                    >
+                      {{ option.name }}
+                    </p>
                     <div class="dty-variant-picker__options">
                       {%- for value in option.values -%}
                         {%- assign option_index = option.position | minus: 1 -%}
@@ -101,23 +110,31 @@
                             {%- break -%}
                           {%- endif -%}
                         {%- endfor -%}
-                        <label class="dty-variant-picker__option">
+                        <label class="dty-variant-picker__option" title="{{ value | escape }}">
                           <input
                             type="radio"
                             name="option-{{ option.position }}"
                             value="{{ value | escape }}"
                             data-option-input
                             data-option-position="{{ option.position }}"
+                            aria-label="{{ option.name }}: {{ value | escape }}"
                             {% if option.selected_value == value %}checked{% endif %}
                             {% unless matched_variant.available %}disabled{% endunless %}
                           >
-                          <span class="dty-variant-picker__swatch{% if is_color %} dty-variant-picker__color{% endif %}">
-                            {{ value }}
+                          <span
+                            class="dty-variant-picker__swatch{% if is_color %} dty-variant-picker__color{% endif %}"
+                            {% if is_color %}data-color-value="{{ value | handleize }}"{% endif %}
+                          >
+                            {%- if is_color -%}
+                              <span class="visually-hidden">{{ value }}</span>
+                            {%- else -%}
+                              {{ value }}
+                            {%- endif -%}
                           </span>
                         </label>
                       {%- endfor -%}
                     </div>
-                  </fieldset>
+                  </div>
                 {%- endfor -%}
               </variant-selects>
             {%- endunless -%}
@@ -186,7 +203,7 @@
             </div>
 
           {%- when 'warehouse' -%}
-            {% render 'dty-warehouse-availability', product: product, block: block %}
+            {% render 'dty-warehouse-availability', product: product, variant: current_variant, block: block %}
 
           {%- when 'trust_badges' -%}
             <div class="dty-trust-badges" {{ block.shopify_attributes }}>

@@ -115,6 +115,19 @@
       var sku = section.querySelector('[data-product-sku]');
       if (sku) sku.textContent = variant.sku ? 'SKU: ' + variant.sku : '';
 
+      var stockText = variant.available
+        ? (settings.strings && settings.strings.warehouseInStock || 'En stock')
+        : (settings.strings && settings.strings.soldOut || 'Agotado');
+      var importText = variant.available
+        ? (settings.strings && settings.strings.warehouseAvailable || 'Disponible')
+        : (settings.strings && settings.strings.soldOut || 'Agotado');
+      section.querySelectorAll('[data-warehouse-stock]').forEach(function (el) {
+        el.textContent = stockText;
+      });
+      section.querySelectorAll('[data-warehouse-import]').forEach(function (el) {
+        el.textContent = importText;
+      });
+
       if (variant.featured_media && mainImage) {
         var media = product.media.find(function (m) { return m.id === variant.featured_media.id; });
         if (media) {
