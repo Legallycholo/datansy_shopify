@@ -30,8 +30,9 @@
   {%- if on_sale -%}
     <s class="dty-price__compare">{%- render 'dty-money', amount: compare_at -%}</s>
     {%- if show_savings -%}
-      {%- capture formatted_savings -%}{% render 'dty-money', amount: savings %}{%- endcapture -%}
-      <span class="dty-price__savings">{{ 'products.save' | t: amount: formatted_savings }}</span>
+      <span class="dty-price__savings">
+        {{ 'products.save' | t }} {% render 'dty-money', amount: savings %}
+      </span>
     {%- endif -%}
   {%- endif -%}
 </div>

@@ -35,8 +35,9 @@
           <div class="placeholder-image placeholder-image--square dty-product-card__placeholder">IMG</div>
         {%- endif -%}
         {%- if on_sale -%}
-          {%- capture formatted_savings -%}{% render 'dty-money', amount: savings %}{%- endcapture -%}
-          <span class="dty-product-card__badge dty-product-card__badge--sale">{{ 'products.save' | t: amount: formatted_savings }}</span>
+          <span class="dty-product-card__badge dty-product-card__badge--sale">
+            {{ 'products.save' | t }} {% render 'dty-money', amount: savings %}
+          </span>
         {%- endif -%}
       </div>
     </a>
