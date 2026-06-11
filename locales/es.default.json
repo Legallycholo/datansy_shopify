@@ -42,7 +42,8 @@
     "help_email": "Email",
     "help_title": "¿Necesitas ayuda?",
     "track_order": "Rastrea tu Pedido",
-    "quote": "Cotización"
+    "quote": "Cotización",
+    "view_all": "Ver todo"
   },
   "cart": {
     "title": "Tu carrito",

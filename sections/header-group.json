@@ -32,7 +32,7 @@
           "type": "message",
           "settings": {
             "text": "✅ 30 días de garantía en todos los productos",
-            "url": "/collections/coleccion-principal"
+            "url": "/policies/refund-policy"
           }
         }
       },

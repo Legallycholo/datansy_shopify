@@ -218,8 +218,8 @@
       "settings": { "label": "Destacados", "heading": "Explora el Catálogo" },
       "blocks": {
         "lc1": { "type": "collection", "settings": { "collection": "coleccion-principal", "title": "Colección Principal", "subtitle": "Catálogo Datansy" } },
-        "lc2": { "type": "collection", "settings": { "collection": "frontpage", "title": "Nuevos Lanzamientos", "subtitle": "Destacados" } },
-        "lc3": { "type": "collection", "settings": { "collection": "ofertas", "title": "Ofertas", "subtitle": "Mejores precios" } }
+        "lc2": { "type": "collection", "settings": { "collection": "frontpage", "title": "Nuevos Lanzamientos", "subtitle": "Destacados", "fallback_url": "/collections/coleccion-principal" } },
+        "lc3": { "type": "collection", "settings": { "collection": "ofertas", "title": "Ofertas", "subtitle": "Mejores precios", "fallback_url": "/collections/coleccion-principal" } }
       },
       "block_order": ["lc1", "lc2", "lc3"]
     },

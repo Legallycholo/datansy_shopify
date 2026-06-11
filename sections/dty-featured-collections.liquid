@@ -12,8 +12,14 @@
     <div class="dty-featured-collections__grid">
       {%- for block in section.blocks -%}
         {%- assign coll = collections[block.settings.collection] -%}
+        {%- assign card_url = nil -%}
         {%- if coll != blank and coll.products_count > 0 -%}
-        <a href="{{ coll.url }}" class="dty-featured-collections__card dty-card" {{ block.shopify_attributes }}>
+          {%- assign card_url = coll.url -%}
+        {%- elsif block.settings.fallback_url != blank -%}
+          {%- assign card_url = block.settings.fallback_url -%}
+        {%- endif -%}
+        {%- if card_url != nil -%}
+        <a href="{{ card_url }}" class="dty-featured-collections__card dty-card" {{ block.shopify_attributes }}>
           <div class="dty-featured-collections__media">
             {%- if coll.featured_image -%}
               {{ coll.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: coll.title }}

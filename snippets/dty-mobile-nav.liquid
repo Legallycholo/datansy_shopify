@@ -126,9 +126,21 @@
                 <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
                 {{ 'general.back' | t }}
               </button>
-              <span class="dty-mobile-nav__panel-title">{{ block.settings.title }}</span>
+              {%- if block.settings.url != blank -%}
+                <a href="{{ block.settings.url }}" class="dty-mobile-nav__panel-title dty-mobile-nav__panel-title--link">{{ block.settings.title }}</a>
+              {%- else -%}
+                <span class="dty-mobile-nav__panel-title">{{ block.settings.title }}</span>
+              {%- endif -%}
             </div>
             <ul class="dty-mobile-nav__list">
+              {%- if block.settings.url != blank -%}
+                <li>
+                  <a href="{{ block.settings.url }}" class="dty-mobile-nav__link dty-mobile-nav__link--view-all">
+                    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
+                    {{ 'header.view_all' | t }}
+                  </a>
+                </li>
+              {%- endif -%}
               {%- for child in section.blocks -%}
                 {%- if child.type == 'menu_child' and child.settings.parent == parent_handle -%}
                   {%- assign has_grandchildren = false -%}

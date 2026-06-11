@@ -22,18 +22,19 @@
         {%- liquid
           assign tile_url = block.settings.url
           assign show_tile = true
+          assign catalog_fallback = collections['coleccion-principal'].url | default: routes.all_products_collection_url
           if block.settings.collection != blank
             assign tile_collection = block.settings.collection
             if tile_collection.products_count > 0
               assign tile_url = tile_collection.url
             else
-              assign show_tile = false
+              assign tile_url = block.settings.fallback_url | default: catalog_fallback
             endif
           elsif block.settings.url != blank and block.settings.url contains '/collections/'
             assign tile_handle = block.settings.url | split: '/collections/' | last | split: '?' | first | split: '/' | first
             assign tile_linked = collections[tile_handle]
             if tile_linked != blank and tile_linked.products_count == 0
-              assign show_tile = false
+              assign tile_url = catalog_fallback
             endif
           endif
         -%}
@@ -69,7 +70,8 @@
         { "type": "text", "id": "title", "label": "Título", "default": "Categoría" },
         { "type": "text", "id": "icon", "label": "Icono Material", "default": "devices" },
         { "type": "collection", "id": "collection", "label": "Colección (opcional)" },
-        { "type": "url", "id": "url", "label": "URL colección (si no usas picker)" }
+        { "type": "url", "id": "url", "label": "URL colección (si no usas picker)" },
+        { "type": "url", "id": "fallback_url", "label": "URL alternativa (si colección vacía)" }
       ]
     }
   ],
