@@ -64,8 +64,15 @@
 
   /* Layout */
   --page-width: 1400px;
-  --header-height: 70px;
+  --header-height: 56px;
+  --header-total-height: 56px;
   --transition: 0.2s ease;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-total-height: 108px;
+  }
 }
 
 *,

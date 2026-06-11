@@ -24,7 +24,7 @@
 .dty-cart-page__qty-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: var(--text-lg); }
 .dty-cart-page__qty-input { width: 40px; text-align: center; border: none; font-weight: 600; background: transparent; }
 .dty-cart-page__remove { font-size: var(--text-xs); color: var(--dty-sale); text-decoration: underline; background: none; border: none; cursor: pointer; padding: 0; }
-.dty-cart-page__sidebar { padding: var(--space-6); background: var(--dty-gray); border-radius: var(--radius-2xl); position: sticky; top: calc(var(--header-height) + var(--space-4)); }
+.dty-cart-page__sidebar { padding: var(--space-6); background: var(--dty-gray); border-radius: var(--radius-2xl); position: sticky; top: calc(var(--header-total-height) + var(--space-4)); }
 .dty-cart-page__summary-row { display: flex; justify-content: space-between; margin-bottom: var(--space-4); font-size: var(--text-lg); font-weight: 600; }
 .dty-cart-page__summary-total { color: var(--dty-blue); }
 .dty-cart-page__discount { margin-bottom: var(--space-4); }

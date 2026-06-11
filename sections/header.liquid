@@ -1,32 +1,72 @@
 <header class="dty-header" data-section-id="{{ section.id }}" data-section-type="header">
   <div class="page-width">
     <div class="dty-header__inner">
-      {%- comment -%} Mobile menu toggle {%- endcomment -%}
-      <button
-        type="button"
-        class="dty-header__menu-toggle hidden-desktop"
-        data-mobile-nav-open
-        aria-expanded="false"
-        aria-controls="DtyMobileNav"
-        aria-label="{{ 'accessibility.menu_toggle' | t }}"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
-      </button>
+      <div class="dty-header__top">
+        {%- comment -%} Mobile menu toggle {%- endcomment -%}
+        <button
+          type="button"
+          class="dty-header__menu-toggle hidden-desktop"
+          data-mobile-nav-open
+          aria-expanded="false"
+          aria-controls="DtyMobileNav"
+          aria-label="{{ 'accessibility.menu_toggle' | t }}"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
 
-      {%- comment -%} Logo {%- endcomment -%}
-      <div class="dty-header__logo">
-        {% render 'dty-logo',
-          background: 'dark',
-          image: settings.logo,
-          class: 'dty-header__logo-img',
-          link_class: 'dty-header__logo-link',
-          width: settings.logo_width,
-          loading: 'eager'
-        %}
+        {%- comment -%} Logo {%- endcomment -%}
+        <div class="dty-header__logo">
+          {% render 'dty-logo',
+            background: 'dark',
+            image: settings.logo,
+            class: 'dty-header__logo-img',
+            link_class: 'dty-header__logo-link',
+            width: settings.logo_width,
+            loading: 'eager'
+          %}
+        </div>
+
+        {%- comment -%} Desktop search {%- endcomment -%}
+        <div class="dty-header__search hidden-mobile">
+          {% render 'dty-search-form', id_suffix: 'desktop', show_category: true %}
+        </div>
+
+        {%- comment -%} Actions: search (mobile), localization, account, cart {%- endcomment -%}
+        <div class="dty-header__actions header__icons">
+          <button
+            type="button"
+            class="dty-header__action dty-header__search-toggle hidden-desktop"
+            data-mobile-search-toggle
+            aria-expanded="false"
+            aria-label="{{ 'accessibility.search_toggle' | t }}"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+          </button>
+
+          <div class="hidden-mobile">
+            {% render 'dty-localization', form_id: 'HeaderLocalizationForm' %}
+          </div>
+
+          <a href="{{ routes.account_url }}" class="dty-header__action" aria-label="{{ 'general.account' | t }}">
+            <span class="material-symbols-outlined" aria-hidden="true">person</span>
+            <span class="dty-header__action-label">{{ 'general.account' | t }}</span>
+          </a>
+
+          <a
+            href="{{ routes.cart_url }}"
+            class="dty-header__action header__icon--cart"
+            data-cart-open
+            aria-label="{{ 'accessibility.cart_toggle' | t }}"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
+            <span class="cart-count-bubble"><span class="dty-header__cart-count" data-cart-count data-count="{{ cart.item_count }}" aria-hidden="true">{{ cart.item_count }}</span></span>
+            <span class="dty-header__action-label">{{ 'general.cart' | t }}</span>
+          </a>
+        </div>
       </div>
 
-      {%- comment -%} Desktop navigation {%- endcomment -%}
-      <nav class="dty-header__nav" aria-label="{{ 'general.menu' | t }}">
+      {%- comment -%} Desktop navigation (second row) {%- endcomment -%}
+      <nav class="dty-header__nav hidden-mobile" aria-label="{{ 'general.menu' | t }}">
         <ul class="dty-header__menu">
           {%- for block in section.blocks -%}
             {%- if block.type == 'menu_item' -%}
@@ -101,44 +141,6 @@
           </li>
         </ul>
       </nav>
-
-      {%- comment -%} Desktop search {%- endcomment -%}
-      <div class="dty-header__search hidden-mobile">
-        {% render 'dty-search-form', id_suffix: 'desktop', show_category: true %}
-      </div>
-
-      {%- comment -%} Actions: search (mobile), localization, account, cart {%- endcomment -%}
-      <div class="dty-header__actions header__icons">
-        <button
-          type="button"
-          class="dty-header__action dty-header__search-toggle hidden-desktop"
-          data-mobile-search-toggle
-          aria-expanded="false"
-          aria-label="{{ 'accessibility.search_toggle' | t }}"
-        >
-          <span class="material-symbols-outlined" aria-hidden="true">search</span>
-        </button>
-
-        <div class="hidden-mobile">
-          {% render 'dty-localization', form_id: 'HeaderLocalizationForm' %}
-        </div>
-
-        <a href="{{ routes.account_url }}" class="dty-header__action" aria-label="{{ 'general.account' | t }}">
-          <span class="material-symbols-outlined" aria-hidden="true">person</span>
-          <span class="dty-header__action-label">{{ 'general.account' | t }}</span>
-        </a>
-
-        <a
-          href="{{ routes.cart_url }}"
-          class="dty-header__action header__icon--cart"
-          data-cart-open
-          aria-label="{{ 'accessibility.cart_toggle' | t }}"
-        >
-          <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
-          <span class="cart-count-bubble"><span class="dty-header__cart-count" data-cart-count data-count="{{ cart.item_count }}" aria-hidden="true">{{ cart.item_count }}</span></span>
-          <span class="dty-header__action-label">{{ 'general.cart' | t }}</span>
-        </a>
-      </div>
     </div>
 
     {%- comment -%} Mobile search bar {%- endcomment -%}
