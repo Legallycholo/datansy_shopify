@@ -24,15 +24,15 @@
     aria-label="{{ 'localization.selector_label' | t }}"
   >
     {%- if compact -%}
-      <span class="{{ prefix }}__toggle-code">{{ current_currency }}</span>
+      <span class="{{ prefix }}__toggle-code notranslate" translate="no">{{ current_currency }}</span>
     {%- else -%}
       {%- if current_country -%}
         <span class="{{ prefix }}__toggle-country">{{ current_country.name }}</span>
         <span class="{{ prefix }}__toggle-sep" aria-hidden="true">·</span>
       {%- endif -%}
-      <span class="{{ prefix }}__toggle-code">{{ current_currency }}</span>
+      <span class="{{ prefix }}__toggle-code notranslate" translate="no">{{ current_currency }}</span>
     {%- endif -%}
-    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+    <span class="material-symbols-outlined notranslate" translate="no" aria-hidden="true">expand_more</span>
   </button>
 
   <div class="{{ prefix }}__dropdown" data-localization-dropdown>

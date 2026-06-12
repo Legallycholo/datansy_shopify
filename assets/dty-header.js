@@ -429,6 +429,13 @@
     }
   }
 
+  function protectIconsFromTranslate() {
+    document.querySelectorAll('.material-symbols-outlined').forEach(function (el) {
+      el.setAttribute('translate', 'no');
+      el.classList.add('notranslate');
+    });
+  }
+
   /* ---- Floating back-to-top ---- */
   function initFloatingBackToTop() {
     var btn = document.getElementById('DtyBackToTop');
@@ -462,6 +469,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    protectIconsFromTranslate();
     initAnnouncementBar();
     initMegaMenu();
     initMobileNav();

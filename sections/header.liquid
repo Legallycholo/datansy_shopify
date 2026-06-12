@@ -11,7 +11,7 @@
           aria-controls="DtyMobileNav"
           aria-label="{{ 'accessibility.menu_toggle' | t }}"
         >
-          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+          <span class="material-symbols-outlined notranslate" translate="no" aria-hidden="true">menu</span>
         </button>
 
         {%- comment -%} Logo {%- endcomment -%}
@@ -40,27 +40,33 @@
             aria-expanded="false"
             aria-label="{{ 'accessibility.search_toggle' | t }}"
           >
-            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+            <span class="material-symbols-outlined notranslate" translate="no" aria-hidden="true">search</span>
           </button>
 
           <div class="hidden-mobile">
             {% render 'dty-localization', form_id: 'HeaderLocalizationForm' %}
           </div>
 
-          <a href="{{ routes.account_url }}" class="dty-header__action" aria-label="{{ 'general.account' | t }}">
-            <span class="material-symbols-outlined" aria-hidden="true">person</span>
-            <span class="dty-header__action-label">{{ 'general.account' | t }}</span>
+          <a
+            href="{{ routes.account_url }}"
+            class="dty-header__action"
+            aria-labelledby="HeaderAccountLabel-{{ section.id }}"
+          >
+            <span class="material-symbols-outlined notranslate" translate="no" aria-hidden="true">person</span>
+            <span class="dty-header__action-label" id="HeaderAccountLabel-{{ section.id }}">{{ 'general.account' | t }}</span>
           </a>
 
           <a
             href="{{ routes.cart_url }}"
             class="dty-header__action header__icon--cart"
             data-cart-open
-            aria-label="{{ 'accessibility.cart_toggle' | t }}"
+            aria-labelledby="HeaderCartLabel-{{ section.id }}"
           >
-            <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
-            <span class="cart-count-bubble"><span class="dty-header__cart-count" data-cart-count data-count="{{ cart.item_count }}" aria-hidden="true">{{ cart.item_count }}</span></span>
-            <span class="dty-header__action-label">{{ 'general.cart' | t }}</span>
+            <span class="material-symbols-outlined notranslate" translate="no" aria-hidden="true">shopping_cart</span>
+            <span class="cart-count-bubble notranslate" translate="no" aria-hidden="true">
+              <span class="dty-header__cart-count" data-cart-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+            </span>
+            <span class="dty-header__action-label" id="HeaderCartLabel-{{ section.id }}">{{ 'general.cart' | t }}</span>
           </a>
         </div>
       </div>
@@ -99,7 +105,7 @@
                 {%- if child_count > 0 -%}
                   <a href="{{ block.settings.url }}" class="dty-header__menu-link">
                     {{ block.settings.title }}
-                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                    <span class="material-symbols-outlined notranslate" translate="no" aria-hidden="true">expand_more</span>
                   </a>
                   <div class="dty-mega-menu dty-mega-menu--wide">
                     {%- for child in section.blocks -%}
