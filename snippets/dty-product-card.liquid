@@ -8,11 +8,21 @@
 
 {%- liquid
   assign show_quick_add = show_quick_add | default: true
-  assign current_variant = product.selected_or_first_available_variant
+  assign card_variant = product.selected_or_first_available_variant
+  assign can_purchase = false
+
+  for variant in product.variants
+    if variant.available or variant.inventory_policy == 'continue'
+      assign card_variant = variant
+      assign can_purchase = true
+      break
+    endif
+  endfor
+
   assign on_sale = false
-  if current_variant.compare_at_price > current_variant.price
+  if card_variant.compare_at_price > card_variant.price
     assign on_sale = true
-    assign savings = current_variant.compare_at_price | minus: current_variant.price
+    assign savings = card_variant.compare_at_price | minus: card_variant.price
   endif
 -%}
 
@@ -69,9 +79,9 @@
       {%- comment -%} Vitals injects collection review stars after .card__heading {%- endcomment -%}
 
       <div class="dty-product-card__actions">
-        {%- if show_quick_add and current_variant.available -%}
+        {%- if show_quick_add and can_purchase -%}
           <form method="post" action="{{ routes.cart_add_url }}" class="dty-product-card__form" data-product-card-form>
-            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            <input type="hidden" name="id" value="{{ card_variant.id }}">
             <button type="submit" class="btn btn--primary dty-product-card__atc" name="add">
               {{ 'products.add_to_cart' | t }}
             </button>
