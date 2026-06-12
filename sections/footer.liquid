@@ -216,14 +216,13 @@
           {% render 'dty-localization', class_prefix: 'dty-localization dty-localization--footer', form_id: 'FooterLocalizationForm', compact: true %}
         </div>
 
-        <div class="dty-footer__payments" aria-label="Medios de pago">
-          <span class="dty-footer__payment-icon">VISA</span>
-          <span class="dty-footer__payment-icon">MC</span>
-          <span class="dty-footer__payment-icon">AMEX</span>
-          <span class="dty-footer__payment-icon">PayPal</span>
-          <span class="dty-footer__payment-icon">Apple Pay</span>
-          <span class="dty-footer__payment-icon">G Pay</span>
-        </div>
+        {%- unless shop.enabled_payment_types == empty -%}
+          <div class="dty-footer__payments" aria-label="Medios de pago aceptados">
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_svg_tag: class: 'dty-footer__payment-svg' }}
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
 
         {%- if section.settings.social_facebook != blank or section.settings.social_instagram != blank or section.settings.social_twitter != blank or section.settings.social_youtube != blank or section.settings.social_tiktok != blank or section.settings.social_linkedin != blank -%}
           <nav class="dty-footer__social" aria-label="{{ 'footer.social_media' | t }}">

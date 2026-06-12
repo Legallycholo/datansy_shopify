@@ -194,19 +194,14 @@
   gap: var(--space-3);
 }
 
-.dty-footer__payment-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 28px;
-  padding: 0 var(--space-2);
-  background: var(--dty-white);
+.dty-footer__payment-svg {
+  height: 24px;
+  width: auto;
   border-radius: var(--radius-sm);
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--dty-dark);
-  letter-spacing: 0.02em;
-  min-width: 44px;
+  background: var(--dty-white);
+  padding: 3px 6px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .dty-footer__social {
