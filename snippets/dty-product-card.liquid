@@ -55,8 +55,9 @@
 
       <div class="dty-product-card__price-row">
         {%- if product.price_varies -%}
-          {%- capture price_min_formatted -%}{% render 'dty-money', amount: product.price_min %}{%- endcapture -%}
-          <span class="dty-product-card__price">{{ 'products.from_price' | t: price: price_min_formatted }}</span>
+          <span class="dty-product-card__price">
+            {{ 'products.from_price' | t }} {% render 'dty-money', amount: product.price_min %}
+          </span>
         {%- else -%}
           <span class="dty-product-card__price{% if on_sale %} dty-product-card__price--sale{% endif %}">{%- render 'dty-money', amount: product.price -%}</span>
           {%- if on_sale -%}

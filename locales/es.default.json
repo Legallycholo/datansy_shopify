@@ -133,7 +133,7 @@
   "products": {
     "add_to_cart": "Añadir al carrito",
     "sold_out": "Agotado",
-    "from_price": "Desde {{ price }}",
+    "from_price": "Desde",
     "save": "Ahorra",
     "view_product": "Ver producto",
     "reviews_placeholder": "Reseñas",

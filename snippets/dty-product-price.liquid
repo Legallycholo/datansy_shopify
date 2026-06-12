@@ -19,8 +19,9 @@
 
 <div class="dty-price{% if price_class %} {{ price_class }}{% endif %}">
   {%- if product.price_varies and product.compare_at_price_varies == false -%}
-    {%- capture formatted_min -%}{% render 'dty-money', amount: product.price_min %}{%- endcapture -%}
-    <span class="dty-price__from">{{ 'products.from_price' | t: price: formatted_min }}</span>
+    <span class="dty-price__from">
+      {{ 'products.from_price' | t }} {% render 'dty-money', amount: product.price_min %}
+    </span>
   {%- else -%}
     <span class="dty-price__current{% if on_sale %} dty-price__current--sale{% endif %}">
       {%- render 'dty-money', amount: price -%}
