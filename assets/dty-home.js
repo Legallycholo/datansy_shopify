@@ -136,10 +136,48 @@
     });
   }
 
+  function initStatCounters() {
+    var statNums = document.querySelectorAll('.dty-hero__stat-number');
+    if (!statNums.length) return;
+
+    // Slight delay so entrance animations complete before counter fires
+    setTimeout(function () {
+      statNums.forEach(function (el) {
+        var raw = el.textContent.trim();
+        // Match: optional prefix, digits (with optional decimal), optional suffix
+        var match = raw.match(/^([^0-9]*)([0-9]+(?:[.,][0-9]+)?)(.*)$/);
+        if (!match) return;
+
+        var prefix = match[1];
+        var numStr = match[2].replace(',', '.');
+        var suffix = match[3];
+        var target = parseFloat(numStr);
+        if (isNaN(target)) return;
+
+        var duration = 1100;
+        var start = performance.now();
+
+        function step(now) {
+          var progress = Math.min((now - start) / duration, 1);
+          var ease = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          var current = Math.round(ease * target);
+          el.textContent = prefix + current + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = raw; // restore original (preserves locale formatting)
+          }
+        }
+        requestAnimationFrame(step);
+      });
+    }, 700);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initHeroRotation();
     initFaqAccordion();
     initCouponCopy();
     initScrollReveal();
+    initStatCounters();
   });
 })();
