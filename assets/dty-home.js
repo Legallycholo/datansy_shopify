@@ -20,26 +20,39 @@
 
     var lines = hero.querySelectorAll('[data-hero-line]');
     var currentSet = 0;
+    var animating = false;
 
     function showSet(index) {
-      var set = sets[index];
-      lines.forEach(function (line, i) {
-        line.textContent = set[i] || '';
-        line.classList.remove('is-hidden');
-      });
-    }
+      if (animating) return;
+      animating = true;
 
-    setInterval(function () {
       lines.forEach(function (line) {
         line.classList.add('is-hidden');
       });
-      setTimeout(function () {
-        currentSet = (currentSet + 1) % sets.length;
-        showSet(currentSet);
-      }, 400);
-    }, 4000);
 
-    showSet(0);
+      setTimeout(function () {
+        var set = sets[index];
+        lines.forEach(function (line, i) {
+          line.textContent = set[i] || '';
+          line.classList.add('is-entering');
+          line.classList.remove('is-hidden');
+        });
+
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            lines.forEach(function (line) {
+              line.classList.remove('is-entering');
+            });
+            animating = false;
+          });
+        });
+      }, 380);
+    }
+
+    setInterval(function () {
+      currentSet = (currentSet + 1) % sets.length;
+      showSet(currentSet);
+    }, 4500);
   }
 
   function initFaqAccordion() {
@@ -98,9 +111,35 @@
     });
   }
 
+  function initScrollReveal() {
+    if (window._dtyRevealInit) return;
+    window._dtyRevealInit = true;
+
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.dty-reveal').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.dty-reveal').forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initHeroRotation();
     initFaqAccordion();
     initCouponCopy();
+    initScrollReveal();
   });
 })();

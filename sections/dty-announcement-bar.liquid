@@ -1,5 +1,5 @@
 {%- if section.settings.enabled and section.blocks.size > 0 -%}
-<div class="dty-announcement-bar" id="DtyAnnouncementBar" data-announcement-bar>
+<div class="dty-announcement-bar" id="DtyAnnouncementBar" data-announcement-bar data-speed="{{ section.settings.rotation_speed | times: 1000 }}">
   <div class="dty-announcement-bar__track" data-announcement-track>
     {%- for block in section.blocks -%}
       <div

@@ -1,6 +1,6 @@
 <section class="dty-section dty-categories">
   <div class="page-width">
-    <div class="dty-section__header dty-categories__header">
+    <div class="dty-section__header dty-categories__header dty-reveal">
       <div>
         {%- if section.settings.label != blank -%}
           <span class="dty-section__label">{{ section.settings.label }}</span>
@@ -37,9 +37,10 @@
               assign tile_url = catalog_fallback
             endif
           endif
+          assign tile_delay = forloop.index | modulo: 6
         -%}
         {%- if show_tile and tile_url != blank -%}
-        <a href="{{ tile_url }}" class="dty-categories__tile" {{ block.shopify_attributes }}>
+        <a href="{{ tile_url }}" class="dty-categories__tile dty-reveal dty-reveal--delay-{{ tile_delay }}" {{ block.shopify_attributes }}>
           <div class="dty-categories__icon-wrap">
             <span class="material-symbols-outlined dty-categories__icon" aria-hidden="true">{{ block.settings.icon | default: 'devices' }}</span>
           </div>

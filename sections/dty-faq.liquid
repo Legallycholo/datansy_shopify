@@ -1,6 +1,6 @@
 <section class="dty-section dty-faq">
   <div class="page-width dty-faq__inner">
-    <div class="dty-faq__header">
+    <div class="dty-faq__header dty-reveal dty-reveal--from-left">
       {%- if section.settings.label != blank -%}
         <span class="dty-section__label">{{ section.settings.label }}</span>
       {%- endif -%}
@@ -9,7 +9,7 @@
       {%- endif -%}
     </div>
 
-    <div class="dty-faq__list" role="region" aria-label="{{ section.settings.heading | default: section.settings.label | escape }}">
+    <div class="dty-faq__list dty-reveal dty-reveal--delay-2" role="region" aria-label="{{ section.settings.heading | default: section.settings.label | escape }}">
       {%- for block in section.blocks -%}
         <div class="dty-faq__item" data-faq-item {{ block.shopify_attributes }}>
           <button

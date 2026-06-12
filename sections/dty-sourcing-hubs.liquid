@@ -1,6 +1,6 @@
 <section class="dty-section dty-hubs">
   <div class="page-width">
-    <div class="dty-section__header">
+    <div class="dty-section__header dty-reveal">
       {%- if section.settings.label != blank -%}
         <span class="dty-section__label">{{ section.settings.label }}</span>
       {%- endif -%}
@@ -16,7 +16,8 @@
 
     <div class="dty-hubs__grid">
       {%- for block in section.blocks -%}
-        <div class="dty-hubs__card dty-card" {{ block.shopify_attributes }}>
+        {%- assign reveal_delay = forloop.index | modulo: 6 -%}
+        <div class="dty-hubs__card dty-card dty-reveal dty-reveal--delay-{{ reveal_delay }}" {{ block.shopify_attributes }}>
           <div class="dty-hubs__icon">
             <span class="material-symbols-outlined" aria-hidden="true">{{ block.settings.icon | default: 'location_on' }}</span>
           </div>
