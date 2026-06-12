@@ -16,7 +16,8 @@
 
 /* Datansy Header — see dty-header section for structure */
 .dty-header{background:var(--dty-dark);color:var(--dty-white);position:relative;z-index:100;width:100%;max-width:100%;overflow-x:clip}
-.header-sticky .dty-header{position:sticky;top:42px;z-index:200;box-shadow:0 2px 16px rgba(var(--dty-dark-rgb),.18)}
+.header-sticky .dty-header{position:sticky;top:42px;z-index:200;box-shadow:0 2px 16px rgba(var(--dty-dark-rgb),.18);transition:box-shadow 0.3s ease}
+.header-sticky .dty-header.is-scrolled{box-shadow:0 4px 24px rgba(var(--dty-dark-rgb),.28)}
 .dty-header__inner{display:flex;flex-direction:column;gap:0;width:100%;min-width:0;padding:var(--space-2) 0}
 .dty-header__top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);width:100%;min-width:0;min-height:var(--header-height)}
 .dty-header__logo{flex-shrink:0;display:flex;align-items:center;max-width:140px}

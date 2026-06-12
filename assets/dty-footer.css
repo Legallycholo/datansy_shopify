@@ -342,6 +342,18 @@
 .dty-footer__newsletter-fields {
   display: flex;
   gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 479px) {
+  .dty-footer__newsletter-fields {
+    flex-direction: column;
+  }
+
+  .dty-footer__newsletter-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .dty-footer__newsletter-input {
