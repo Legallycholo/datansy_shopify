@@ -200,19 +200,6 @@
         "products_to_show": 8
       }
     },
-    "gsm_promo": {
-      "type": "dty-promo-banner",
-      "settings": {
-        "full_width": true,
-        "label": "BLACK SALE",
-        "heading": "!BLACK SALE!",
-        "text": "Descuentos exclusivos en tecnología premium.",
-        "button_label": "Ver ofertas",
-        "button_url": "/collections/ofertas",
-        "background_color": "#1C1917",
-        "text_color": "#FFFFFF"
-      }
-    },
     "gsm_limited": {
       "type": "dty-featured-collections",
       "settings": { "label": "Destacados", "heading": "Explora el Catálogo" },
@@ -247,7 +234,6 @@
     "slider_catalog",
     "slider_new",
     "slider_offers",
-    "gsm_promo",
     "gsm_limited",
     "gsm_blog"
   ]
