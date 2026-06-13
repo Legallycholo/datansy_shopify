@@ -585,7 +585,8 @@
           "settings": {
             "collection": "coleccion-principal",
             "title": "Colección Principal",
-            "subtitle": "Catálogo Datansy"
+            "subtitle": "Catálogo Datansy",
+            "product": "cinemax-pro-smart-projector"
           }
         },
         "lc2": {
@@ -594,6 +595,7 @@
             "collection": "frontpage",
             "title": "Nuevos Lanzamientos",
             "subtitle": "Destacados",
+            "product": "stealthtrack-slim-wallet-finder",
             "fallback_url": "/collections/coleccion-principal"
           }
         },
@@ -603,6 +605,7 @@
             "collection": "ofertas",
             "title": "Ofertas",
             "subtitle": "Mejores precios",
+            "product": "lonmao-b8-auriculares-de-conduccion-osea-bluetooth-5-3-ipx5",
             "fallback_url": "/collections/coleccion-principal"
           }
         }
