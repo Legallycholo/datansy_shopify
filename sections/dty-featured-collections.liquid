@@ -19,12 +19,35 @@
           {%- assign card_url = block.settings.fallback_url -%}
         {%- endif -%}
         {%- if card_url != nil -%}
+        {%- liquid
+          assign card_image = nil
+          assign card_image_alt = block.settings.title | default: coll.title
+
+          if block.settings.image != blank
+            assign card_image = block.settings.image
+          elsif block.settings.use_collection_image and coll.featured_image
+            assign card_image = coll.featured_image
+            assign card_image_alt = coll.title
+          elsif block.settings.product != blank and block.settings.product.featured_image
+            assign card_image = block.settings.product.featured_image
+            assign card_image_alt = block.settings.product.title
+          elsif coll.products_count > 0
+            assign featured_product = coll.products.first
+            if featured_product.featured_image
+              assign card_image = featured_product.featured_image
+              assign card_image_alt = featured_product.title
+            endif
+          endif
+
+          if card_image == nil and coll.featured_image
+            assign card_image = coll.featured_image
+            assign card_image_alt = coll.title
+          endif
+        -%}
         <a href="{{ card_url }}" class="dty-featured-collections__card dty-card" {{ block.shopify_attributes }}>
           <div class="dty-featured-collections__media">
-            {%- if coll.featured_image -%}
-              {{ coll.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: coll.title }}
-            {%- elsif block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {%- if card_image -%}
+              {{ card_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_image_alt }}
             {%- else -%}
               <div class="placeholder-image">Colección</div>
             {%- endif -%}
@@ -59,7 +82,25 @@
         { "type": "collection", "id": "collection", "label": "Colección" },
         { "type": "text", "id": "title", "label": "Título personalizado" },
         { "type": "text", "id": "subtitle", "label": "Subtítulo" },
-        { "type": "image_picker", "id": "image", "label": "Imagen alternativa" },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Producto destacado",
+          "info": "Imagen del producto para esta tarjeta. Si no se elige, se usa el primer producto de la colección."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen personalizada",
+          "info": "Tiene prioridad sobre el producto y la colección."
+        },
+        {
+          "type": "checkbox",
+          "id": "use_collection_image",
+          "label": "Usar imagen de la colección",
+          "default": false,
+          "info": "Muestra la imagen destacada de la colección en lugar de un producto."
+        },
         { "type": "url", "id": "fallback_url", "label": "URL alternativa" }
       ]
     }
