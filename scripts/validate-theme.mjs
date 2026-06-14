@@ -36,6 +36,48 @@ const sectionTypes = new Set(
     .map((f) => f.replace(/\.liquid$/, ''))
 );
 
+/**
+ * Parse JSON that may contain /* *\/ comments.
+ * Shopify JSON templates and section groups permit block comments, which the
+ * built-in JSON.parse rejects. Strips comments while respecting string literals.
+ */
+function parseJsonc(raw) {
+  let out = '';
+  let inString = false;
+  let inComment = false;
+  for (let i = 0; i < raw.length; i++) {
+    const ch = raw[i];
+    const next = raw[i + 1];
+    if (inComment) {
+      if (ch === '*' && next === '/') {
+        inComment = false;
+        i++;
+      }
+      continue;
+    }
+    if (inString) {
+      out += ch;
+      if (ch === '\\') {
+        out += next;
+        i++;
+      } else if (ch === '"') {
+        inString = false;
+      }
+      continue;
+    }
+    if (ch === '"') {
+      inString = true;
+      out += ch;
+    } else if (ch === '/' && next === '*') {
+      inComment = true;
+      i++;
+    } else {
+      out += ch;
+    }
+  }
+  return JSON.parse(out);
+}
+
 function walkJsonFiles(dir) {
   const results = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -71,7 +113,7 @@ function validateTemplates() {
   for (const file of templateFiles) {
     let json;
     try {
-      json = JSON.parse(fs.readFileSync(file, 'utf8'));
+      json = parseJsonc(fs.readFileSync(file, 'utf8'));
     } catch (e) {
       fail(`${path.relative(root, file)}: invalid JSON — ${e.message}`);
       continue;
@@ -97,7 +139,13 @@ function validateSectionGroups() {
       fail(`Missing ${name}`);
       continue;
     }
-    const json = JSON.parse(fs.readFileSync(file, 'utf8'));
+    let json;
+    try {
+      json = parseJsonc(fs.readFileSync(file, 'utf8'));
+    } catch (e) {
+      fail(`${name}: invalid JSON — ${e.message}`);
+      continue;
+    }
     for (const section of Object.values(json.sections || {})) {
       if (!sectionTypes.has(section.type)) {
         fail(`${name}: unknown section type "${section.type}"`);

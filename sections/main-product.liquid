@@ -14,8 +14,8 @@
             srcset="{{ product.featured_media | image_url: width: 400 }} 400w, {{ product.featured_media | image_url: width: 800 }} 800w, {{ product.featured_media | image_url: width: 1200 }} 1200w"
             sizes="(min-width: 1024px) 44vw, 100vw"
             alt="{{ product.featured_media.alt | default: product.title | escape }}"
-            width="800"
-            height="800"
+            width="{{ product.featured_media.width | default: 800 }}"
+            height="{{ product.featured_media.height | default: 800 }}"
             data-gallery-main
             loading="eager"
             fetchpriority="high"
@@ -43,7 +43,7 @@
               data-full-src="{{ media | image_url: width: 800 }}"
               aria-label="{{ 'products.media_gallery' | t }} {{ forloop.index }}"
             >
-              {{ media | image_url: width: 144 | image_tag: loading: 'lazy', alt: media.alt }}
+              {{ media | image_url: width: 144 | image_tag: loading: 'lazy', decoding: 'async', alt: media.alt }}
             </button>
           {%- endfor -%}
         </div>
@@ -118,6 +118,24 @@
                             {%- break -%}
                           {%- endif -%}
                         {%- endfor -%}
+                        {%- comment -%}
+                          Swatch fill priority for color options:
+                          1. variant metafield hex (custom.color_hex) → exact brand color
+                          2. variant featured image → photographic accuracy
+                          3. CSS color-name map fallback (assets/dty-product.css)
+                        {%- endcomment -%}
+                        {%- assign swatch_style = '' -%}
+                        {%- assign swatch_has_image = false -%}
+                        {%- if is_color -%}
+                          {%- assign color_hex = matched_variant.metafields.custom.color_hex | default: matched_variant.metafields.custom.color | default: '' -%}
+                          {%- if color_hex != blank -%}
+                            {%- assign swatch_style = 'background-color:' | append: color_hex -%}
+                          {%- elsif matched_variant.featured_media != blank -%}
+                            {%- assign swatch_img = matched_variant.featured_media | image_url: width: 72 -%}
+                            {%- assign swatch_style = 'background-image:url(' | append: swatch_img | append: ')' -%}
+                            {%- assign swatch_has_image = true -%}
+                          {%- endif -%}
+                        {%- endif -%}
                         <label class="dty-variant-picker__option" title="{{ value | escape }}">
                           <input
                             type="radio"
@@ -130,8 +148,9 @@
                             {% unless matched_variant.available %}disabled{% endunless %}
                           >
                           <span
-                            class="dty-variant-picker__swatch{% if is_color %} dty-variant-picker__color{% endif %}"
+                            class="dty-variant-picker__swatch{% if is_color %} dty-variant-picker__color{% endif %}{% if swatch_has_image %} dty-variant-picker__color--image{% endif %}"
                             {% if is_color %}data-color-value="{{ value | handleize }}"{% endif %}
+                            {% if swatch_style != blank %}style="{{ swatch_style }}"{% endif %}
                           >
                             {%- if is_color -%}
                               <span class="visually-hidden">{{ value }}</span>
@@ -205,9 +224,15 @@
               assign share_whatsapp_digits = share_whatsapp | replace: '+', '' | replace: ' ', ''
             -%}
             <div class="dty-product-form__share" {{ block.shopify_attributes }}>
-              <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
-              <a href="https://twitter.com/intent/tweet?url={{ shop.url | append: product.url | url_encode }}&text={{ product.title | url_encode }}" target="_blank" rel="noopener" aria-label="Twitter">X</a>
-              <a href="https://wa.me/{{ share_whatsapp_digits }}?text={{ product.title | url_encode }}%20{{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6 4.39 10.97 10.13 11.85v-8.38H7.08v-3.47h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.47h-2.8v8.38C19.61 23.04 24 18.07 24 12.07Z"/></svg>
+              </a>
+              <a href="https://twitter.com/intent/tweet?url={{ shop.url | append: product.url | url_encode }}&text={{ product.title | url_encode }}" target="_blank" rel="noopener" aria-label="X">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.5h2.04L6.49 3.24H4.3L17.61 20.65Z"/></svg>
+              </a>
+              <a href="https://wa.me/{{ share_whatsapp_digits }}?text={{ product.title | url_encode }}%20{{ shop.url | append: product.url | url_encode }}" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.68-6.15a11.87 11.87 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.69-1.45L.06 24ZM6.6 20.13c1.68 1 3.28 1.6 5.46 1.6 5.45 0 9.89-4.43 9.89-9.88 0-5.46-4.42-9.89-9.88-9.89-5.46 0-9.89 4.43-9.89 9.89 0 2.29.67 4 1.8 5.66l-1 3.64 3.62-1.02Zm10.96-5.45c-.07-.12-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42Z"/></svg>
+              </a>
             </div>
 
           {%- when 'warehouse' -%}

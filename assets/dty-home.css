@@ -93,7 +93,7 @@
 
 .dty-hero__card-icon { width: 48px; height: 48px; border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .dty-hero__card-icon .material-symbols-outlined { font-size: 24px; font-variation-settings: 'FILL' 1; }
-.dty-hero__card-icon--blue { background: linear-gradient(135deg, var(--dty-blue), #9A3412); color: var(--dty-white); }
+.dty-hero__card-icon--blue { background: linear-gradient(135deg, var(--dty-blue), var(--dty-blue-hover)); color: var(--dty-white); }
 .dty-hero__card-icon--indigo { background: linear-gradient(135deg, var(--dty-indigo), #57534E); color: var(--dty-white); }
 .dty-hero__card-icon--yellow { background: linear-gradient(135deg, var(--dty-yellow), #D97706); color: var(--dty-dark); }
 .dty-hero__card-icon--sale { background: linear-gradient(135deg, var(--dty-sale), #991B1B); color: var(--dty-white); }

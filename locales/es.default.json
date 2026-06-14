@@ -35,7 +35,8 @@
     "close_menu": "Cerrar menú",
     "close_cart": "Cerrar carrito",
     "slider_prev": "Anterior",
-    "slider_next": "Siguiente"
+    "slider_next": "Siguiente",
+    "back_to_top": "Volver al inicio"
   },
   "header": {
     "help_phone": "Teléfono",

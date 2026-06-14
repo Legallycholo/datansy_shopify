@@ -17,10 +17,16 @@
   --dty-stone: #292524;
   --dty-surface: #FAFAF9;
 
-  /* RGB components for translucent overlays */
+  /* RGB components for translucent overlays.
+     Recomputed from theme settings in layout/theme.liquid so overlays track
+     admin color changes; these are the design-default fallbacks. */
   --dty-dark-rgb: 28, 25, 23;
   --dty-primary-rgb: 194, 65, 12;
   --dty-accent-rgb: 245, 158, 11;
+
+  /* Derived primary shades — track --dty-blue (set from settings) automatically */
+  --dty-blue-hover: color-mix(in srgb, var(--dty-blue, #C2410C) 85%, #000);
+  --dty-blue-tint: color-mix(in srgb, var(--dty-blue, #C2410C) 82%, #fff);
 
   /* Typography */
   --font-display: 'Syne', system-ui, sans-serif;
@@ -273,7 +279,7 @@ font {
 }
 
 .btn--primary:hover {
-  background: #9A3412;
+  background: var(--dty-blue-hover);
   box-shadow: var(--shadow-dty-hover);
   transform: translateY(-1px);
 }
@@ -302,7 +308,7 @@ font {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--dty-gray) 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--dty-gray) 0%, var(--dty-border) 100%);
   color: var(--dty-text-muted);
   font-size: var(--text-sm);
   font-weight: 500;
@@ -319,6 +325,15 @@ font {
   min-height: 40px;
   background: var(--dty-gray);
   border-radius: var(--radius-sm);
+}
+
+/* Broken-image graceful fallback (class applied by dty-header.js on <img> error) */
+img.dty-img-broken {
+  background: linear-gradient(135deg, var(--dty-gray) 0%, var(--dty-border) 100%);
+  color: transparent;
+  font-size: 0;
+  min-height: 48px;
+  object-fit: contain;
 }
 
 .dty-card {

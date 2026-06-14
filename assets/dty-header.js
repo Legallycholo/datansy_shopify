@@ -6,6 +6,37 @@
 
   var settings = window.dtySettings || {};
 
+  /**
+   * Resize a Shopify CDN image via the modern `?width=` query parameter.
+   * Strips any legacy `_120x` filename suffix so cart thumbnails never 404.
+   */
+  function cartImageAtWidth(url, width) {
+    if (!url) return '';
+    try {
+      var u = new URL(url, window.location.origin);
+      u.pathname = u.pathname.replace(/_(\d+)x(\d+)?(\.[a-z0-9]+)$/i, '$3');
+      u.searchParams.set('width', width);
+      return u.toString();
+    } catch (e) {
+      var clean = url.replace(/_(\d+)x(\d+)?(\.[a-z0-9]+)(\?|$)/i, '$3$4');
+      if (/[?&]width=\d+/.test(clean)) {
+        return clean.replace(/([?&])width=\d+/, '$1width=' + width);
+      }
+      return clean + (clean.indexOf('?') === -1 ? '?' : '&') + 'width=' + width;
+    }
+  }
+
+  /* Graceful fallback for broken images theme-wide. The `error` event does not
+     bubble, so we listen in the capture phase and swap the browser's broken-image
+     chrome for a neutral placeholder treatment. */
+  document.addEventListener('error', function (e) {
+    var el = e.target;
+    if (!el || el.tagName !== 'IMG' || el.dataset.imgFallback) return;
+    el.dataset.imgFallback = '1';
+    el.removeAttribute('srcset');
+    el.classList.add('dty-img-broken');
+  }, true);
+
   /* ---- Mega menu (desktop hover) ---- */
   function initMegaMenu() {
     var items = document.querySelectorAll('[data-mega-menu-item]');
@@ -304,8 +335,11 @@
 
     var html = '';
     cart.items.forEach(function (item) {
+      var imageMarkup = item.image
+        ? '<img class="dty-cart-drawer__item-image" src="' + cartImageAtWidth(item.image, 160) + '" alt="' + item.title + '" width="80" height="80" loading="lazy">'
+        : '<span class="dty-cart-drawer__item-image dty-cart-drawer__item-image--empty" aria-hidden="true"></span>';
       html += '<div class="dty-cart-drawer__item" data-line-key="' + item.key + '">' +
-        '<img class="dty-cart-drawer__item-image" src="' + (item.image ? item.image.replace(/(\.[^.]*)$/, '_120x$1') : '') + '" alt="' + item.title + '" width="80" height="80" loading="lazy">' +
+        imageMarkup +
         '<div class="dty-cart-drawer__item-details">' +
         '<a href="' + item.url + '" class="dty-cart-drawer__item-title">' + item.product_title + '</a>' +
         (item.variant_title && item.variant_title !== 'Default Title' ? '<p class="dty-cart-drawer__item-variant">' + item.variant_title + '</p>' : '') +

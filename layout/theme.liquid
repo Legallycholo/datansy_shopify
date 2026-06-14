@@ -50,7 +50,7 @@
       as="image"
       href="{{ product.featured_media | image_url: width: 800 }}"
       imagesrcset="{{ product.featured_media | image_url: width: 400 }} 400w, {{ product.featured_media | image_url: width: 800 }} 800w, {{ product.featured_media | image_url: width: 1200 }} 1200w"
-      imagesizes="(min-width: 1024px) 50vw, 100vw"
+      imagesizes="(min-width: 1024px) 44vw, 100vw"
       fetchpriority="high"
     >
   {%- endif -%}
@@ -86,6 +86,10 @@
       --dty-surface: {{ settings.color_background }};
       --dty-text: {{ settings.color_text }};
       --dty-sale: {{ settings.color_sale }};
+      /* RGB components recomputed from settings so translucent overlays/shadows track admin colors */
+      --dty-primary-rgb: {{ settings.color_primary | color_extract: 'red' }}, {{ settings.color_primary | color_extract: 'green' }}, {{ settings.color_primary | color_extract: 'blue' }};
+      --dty-dark-rgb: {{ settings.color_header_bg | color_extract: 'red' }}, {{ settings.color_header_bg | color_extract: 'green' }}, {{ settings.color_header_bg | color_extract: 'blue' }};
+      --dty-accent-rgb: {{ settings.color_accent | color_extract: 'red' }}, {{ settings.color_accent | color_extract: 'green' }}, {{ settings.color_accent | color_extract: 'blue' }};
       --dty-free-shipping-threshold: {{ settings.free_shipping_threshold }};
       --dty-coupon-code: '{{ settings.default_coupon_code }}';
       --logo-width: {{ settings.logo_width | default: 160 }}px;

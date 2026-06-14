@@ -32,12 +32,25 @@
       });
     }
 
+    /**
+     * Resize a Shopify CDN image using the modern `?width=` query parameter.
+     * Strips any legacy `_800x` filename suffix so URLs never 404, and preserves
+     * other params (v, crop, height) already on the URL.
+     */
     function shopifyImageAtWidth(url, width) {
       if (!url) return '';
-      if (url.indexOf('width=') !== -1) {
-        return url.replace(/width=\d+/, 'width=' + width);
+      try {
+        var u = new URL(url, window.location.origin);
+        u.pathname = u.pathname.replace(/_(\d+)x(\d+)?(\.[a-z0-9]+)$/i, '$3');
+        u.searchParams.set('width', width);
+        return u.toString();
+      } catch (e) {
+        var clean = url.replace(/_(\d+)x(\d+)?(\.[a-z0-9]+)(\?|$)/i, '$3$4');
+        if (/[?&]width=\d+/.test(clean)) {
+          return clean.replace(/([?&])width=\d+/, '$1width=' + width);
+        }
+        return clean + (clean.indexOf('?') === -1 ? '?' : '&') + 'width=' + width;
       }
-      return url.replace(/(\.[^.?]+)(\?.*)?$/, '_' + width + 'x$1$2');
     }
 
     function buildSrcset(url) {
@@ -48,8 +61,12 @@
 
     function setGalleryMainImage(url, alt) {
       if (!mainImage || !url) return;
-      mainImage.src = url;
-      mainImage.srcset = buildSrcset(url);
+      var src = shopifyImageAtWidth(url, 800);
+      /* Skip redundant work (and a wasted request) if already showing this image */
+      if (mainImage.getAttribute('src') !== src) {
+        mainImage.src = src;
+        mainImage.srcset = buildSrcset(url);
+      }
       if (alt != null) mainImage.alt = alt;
     }
 
@@ -130,8 +147,8 @@
 
       if (variant.featured_media && mainImage) {
         var media = product.media.find(function (m) { return m.id === variant.featured_media.id; });
-        if (media) {
-          setGalleryMainImage(shopifyImageAtWidth(media.preview_image.src, 800), media.alt || product.title);
+        if (media && media.preview_image) {
+          setGalleryMainImage(media.preview_image.src, media.alt || product.title);
           activateGalleryThumb(media.id);
         }
       }
@@ -168,10 +185,71 @@
       if (thumbBtns[wrapped]) thumbBtns[wrapped].click();
     }
 
-    /* Click main image → advance to next */
-    if (mainImage && thumbBtns.length > 1) {
-      mainImage.addEventListener('click', function () {
-        navigateTo(getActiveIndex() + 1);
+    /* Click main image → open zoom lightbox */
+    if (mainImage) {
+      var hasMultiple = thumbBtns.length > 1;
+      var lightbox = document.createElement('div');
+      lightbox.className = 'dty-lightbox';
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.innerHTML =
+        '<button type="button" class="dty-lightbox__close" aria-label="' + (settings.strings && settings.strings.close || 'Cerrar') + '">&times;</button>' +
+        (hasMultiple ? '<button type="button" class="dty-lightbox__nav dty-lightbox__nav--prev" aria-label="' + (settings.strings && settings.strings.previous || 'Anterior') + '">&#8249;</button>' : '') +
+        '<img class="dty-lightbox__img" alt="">' +
+        (hasMultiple ? '<button type="button" class="dty-lightbox__nav dty-lightbox__nav--next" aria-label="' + (settings.strings && settings.strings.next || 'Siguiente') + '">&#8250;</button>' : '');
+      document.body.appendChild(lightbox);
+
+      var lightboxImg = lightbox.querySelector('.dty-lightbox__img');
+      var lastFocused = null;
+
+      function syncLightboxImage() {
+        var base;
+        if (thumbBtns.length) {
+          var activeThumb = thumbBtns[getActiveIndex()] || thumbBtns[0];
+          base = activeThumb.dataset.fullSrc;
+        } else {
+          base = mainImage.getAttribute('src');
+        }
+        lightboxImg.src = shopifyImageAtWidth(base, 1600);
+        lightboxImg.alt = mainImage.alt || '';
+      }
+
+      function openLightbox() {
+        lastFocused = document.activeElement;
+        syncLightboxImage();
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('dty-lightbox-open');
+        var closeBtn = lightbox.querySelector('.dty-lightbox__close');
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('dty-lightbox-open');
+        if (lastFocused && lastFocused.focus) lastFocused.focus();
+      }
+
+      mainImage.addEventListener('click', openLightbox);
+
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox || e.target.classList.contains('dty-lightbox__close')) {
+          closeLightbox();
+        }
+      });
+
+      var lbPrev = lightbox.querySelector('.dty-lightbox__nav--prev');
+      var lbNext = lightbox.querySelector('.dty-lightbox__nav--next');
+      if (lbPrev) lbPrev.addEventListener('click', function () { navigateTo(getActiveIndex() - 1); syncLightboxImage(); });
+      if (lbNext) lbNext.addEventListener('click', function () { navigateTo(getActiveIndex() + 1); syncLightboxImage(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft' && lbPrev) { navigateTo(getActiveIndex() - 1); syncLightboxImage(); }
+        else if (e.key === 'ArrowRight' && lbNext) { navigateTo(getActiveIndex() + 1); syncLightboxImage(); }
       });
     }
 
