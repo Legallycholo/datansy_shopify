@@ -102,8 +102,8 @@ async function main() {
   const pagesRes = await fetch(`${store}/pages/contact-us`);
   if (pagesRes.ok) {
     const html = await pagesRes.text();
-    if (html.includes('dariel@tanygrowth.com')) {
-      console.warn('\nEMAIL MISMATCH: contact-us page still references dariel@tanygrowth.com (update in Shopify Admin)');
+    if (html.match(/gsmpro|GSMPRO/i)) {
+      console.warn('\nBRAND MISMATCH: contact-us page still references GSMPRO (update in Shopify Admin)');
     }
   }
 

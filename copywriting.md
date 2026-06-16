@@ -49,14 +49,14 @@ Estos archivos son los que Shopify usa en producción hoy.
 | Sección | Archivo | Claves / bloques |
 |---------|---------|------------------|
 | Announcement Bar | `sections/header-group.json` | `announcement_bar.blocks.msg1–msg3.settings.text` |
-| Hero | `templates/index.json` | `gsm_hero.settings` + `blocks.slogan_1` (headline en 3 líneas) |
-| Coverage | `templates/index.json` | `gsm_regions.settings.heading` |
-| Sourcing | `templates/index.json` | `gsm_hubs.settings.heading`, `stat_badge` + `blocks.h1–h5.settings.subtitle` |
-| Category | `templates/index.json` | `gsm_categories.settings.heading`, `catalog_label` |
-| VIP Pre-Order | `templates/index.json` | `gsm_presales.settings.heading`, `cta_label` + `blocks.ben1–ben3` |
-| FAQ | `templates/index.json` | `gsm_faq.settings.heading` + `blocks.f1–f5.settings.question` |
-| Email Capture | `templates/index.json` | `gsm_coupon.settings.heading`, `subtext`, `submit_label` |
-| Reviews | `templates/index.json` | `gsm_testimonials.settings` + `blocks.t1–t3.settings.quote` |
+| Hero | `templates/index.json` | `dty_hero.settings` + `blocks.slogan_1` (headline en 3 líneas) |
+| Coverage | `templates/index.json` | `dty_regions.settings.heading` |
+| Sourcing | `templates/index.json` | `dty_hubs.settings.heading`, `stat_badge` + `blocks.h1–h5.settings.subtitle` |
+| Category | `templates/index.json` | `dty_categories.settings.heading`, `catalog_label` |
+| VIP Pre-Order | `templates/index.json` | `dty_presales.settings.heading`, `cta_label` + `blocks.ben1–ben3` |
+| FAQ | `templates/index.json` | `dty_faq.settings.heading` + `blocks.f1–f5.settings.question` |
+| Email Capture | `templates/index.json` | `dty_coupon.settings.heading`, `subtext`, `submit_label` |
+| Reviews | `templates/index.json` | `dty_testimonials.settings` + `blocks.t1–t3.settings.quote` |
 | Footer tagline | Theme Editor → Footer → Misión | `mission_text` (no está en `footer-group.json`; configurar vía editor o añadir al JSON) |
 | Footer newsletter | Theme Editor → Footer → Newsletter | `newsletter_heading`, `newsletter_subtext` |
 | Footer CTA | `locales/es.default.json` | `footer.newsletter_submit` |

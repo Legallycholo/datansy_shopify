@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "gsm_hero": {
+    "dty_hero": {
       "type": "dty-hero",
       "blocks": {
         "slogan_1": {
@@ -59,7 +59,7 @@
         "stat_3_label": "Envío +$50.000"
       }
     },
-    "gsm_marquee": {
+    "dty_marquee": {
       "type": "dty-brand-marquee",
       "blocks": {
         "b1": {
@@ -210,7 +210,7 @@
         "heading": "Solo las Mejores Marcas"
       }
     },
-    "gsm_regions": {
+    "dty_regions": {
       "type": "dty-regions",
       "blocks": {
         "c1": {
@@ -276,7 +276,7 @@
         "enable_market_switch": true
       }
     },
-    "gsm_hubs": {
+    "dty_hubs": {
       "type": "dty-sourcing-hubs",
       "blocks": {
         "h1": {
@@ -333,7 +333,7 @@
         "stat_badge": "5 Hubs Globales de Abastecimiento"
       }
     },
-    "gsm_categories": {
+    "dty_categories": {
       "type": "dty-category-grid",
       "blocks": {
         "cat1": {
@@ -400,7 +400,7 @@
         "catalog_url": "/collections/coleccion-principal"
       }
     },
-    "gsm_presales": {
+    "dty_presales": {
       "type": "dty-presales",
       "blocks": {
         "ben1": {
@@ -440,7 +440,7 @@
         "cta_url": "/pages/cotizacion"
       }
     },
-    "gsm_faq": {
+    "dty_faq": {
       "type": "dty-faq",
       "blocks": {
         "f1": {
@@ -491,7 +491,7 @@
         "heading": "Resolvemos Tus Dudas"
       }
     },
-    "gsm_coupon": {
+    "dty_coupon": {
       "type": "dty-coupon-cta",
       "settings": {
         "heading": "Primera Compra con Descuento",
@@ -504,7 +504,7 @@
         "success_message": "¡Gracias por unirte!"
       }
     },
-    "gsm_testimonials": {
+    "dty_testimonials": {
       "type": "dty-testimonials",
       "blocks": {
         "t1": {
@@ -577,7 +577,7 @@
         "view_more_url": "/collections/ofertas"
       }
     },
-    "gsm_limited": {
+    "dty_limited": {
       "type": "dty-featured-collections",
       "blocks": {
         "lc1": {
@@ -620,7 +620,7 @@
         "heading": "Explora el Catálogo"
       }
     },
-    "gsm_blog": {
+    "dty_blog": {
       "type": "dty-blog-strip",
       "settings": {
         "heading": "Datansy News",
@@ -632,19 +632,19 @@
     }
   },
   "order": [
-    "gsm_hero",
-    "gsm_marquee",
-    "gsm_regions",
-    "gsm_hubs",
-    "gsm_categories",
-    "gsm_presales",
-    "gsm_faq",
-    "gsm_coupon",
-    "gsm_testimonials",
+    "dty_hero",
+    "dty_marquee",
+    "dty_regions",
+    "dty_hubs",
+    "dty_categories",
+    "dty_presales",
+    "dty_faq",
+    "dty_coupon",
+    "dty_testimonials",
     "slider_catalog",
     "slider_new",
     "slider_offers",
-    "gsm_limited",
-    "gsm_blog"
+    "dty_limited",
+    "dty_blog"
   ]
 }

@@ -17,7 +17,7 @@
         "link_quienes": { "type": "link", "settings": { "group": "nosotros", "title": "Quienes Somos", "url": "/pages/about-us" } },
         "link_empresas": { "type": "link", "settings": { "group": "nosotros", "title": "Venta a Empresas", "url": "/pages/cotizacion" } },
         "link_blog": { "type": "link", "settings": { "group": "nosotros", "title": "Blog", "url": "/blogs/noticias" } },
-        "link_faq": { "type": "link", "settings": { "group": "nosotros", "title": "Preguntas Frecuentes", "url": "/#shopify-section-gsm_faq" } },
+        "link_faq": { "type": "link", "settings": { "group": "nosotros", "title": "Preguntas Frecuentes", "url": "/#datansy-faq" } },
         "link_contacto": { "type": "link", "settings": { "group": "nosotros", "title": "Contacto", "url": "/pages/cotizacion" } },
         "menu_nuevos": { "type": "link", "settings": { "group": "menu", "title": "Nuevos Lanzamientos", "url": "/collections/frontpage" } },
         "menu_celulares": { "type": "link", "settings": { "group": "menu", "title": "Celulares", "url": "/collections/celulares" } },

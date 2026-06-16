@@ -191,12 +191,66 @@ function validateDeprecatedLiquid() {
   ok('Deprecated Liquid scan complete');
 }
 
+const LEGACY_BRAND_PATTERNS = [
+  { pattern: /gsm_/i, label: 'gsm_ (legacy section/key prefix)' },
+  { pattern: /gsm-/i, label: 'gsm- (legacy file/section prefix)' },
+  { pattern: /--gsm/i, label: '--gsm (legacy CSS token)' },
+  { pattern: /gsmpro/i, label: 'gsmpro (legacy brand)' },
+];
+
+const LEGACY_BRAND_SCAN_DIRS = [
+  'sections',
+  'snippets',
+  'templates',
+  'layout',
+  'assets',
+  'config',
+  'locales',
+  'scripts',
+];
+
+const LEGACY_BRAND_EXCLUDE = new Set([
+  'scripts/validate-theme.mjs',
+  'scripts/audit-links.mjs',
+]);
+
+function walkThemeFiles(dir, base = root, out = []) {
+  if (!fs.existsSync(dir)) return out;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (entry.name === 'node_modules' || entry.name === '.git') continue;
+      walkThemeFiles(full, base, out);
+    } else if (/\.(liquid|json|css|js|mjs)$/.test(entry.name)) {
+      out.push(path.relative(base, full));
+    }
+  }
+  return out;
+}
+
+function validateNoLegacyBrandNames() {
+  const files = LEGACY_BRAND_SCAN_DIRS.flatMap((rel) => walkThemeFiles(path.join(root, rel)));
+  let hits = 0;
+  for (const rel of files) {
+    if (LEGACY_BRAND_EXCLUDE.has(rel)) continue;
+    const content = fs.readFileSync(path.join(root, rel), 'utf8');
+    for (const { pattern, label } of LEGACY_BRAND_PATTERNS) {
+      if (pattern.test(content)) {
+        fail(`${rel}: contains ${label}`);
+        hits += 1;
+      }
+    }
+  }
+  if (hits === 0) ok('No legacy GSMPRO/gsm identifiers in theme code');
+}
+
 console.log('Datansy theme validation\n');
 validateRequiredFiles();
 validateSectionSchemas();
 validateSectionGroups();
 validateTemplates();
 validateDeprecatedLiquid();
+validateNoLegacyBrandNames();
 
 console.log(`\nSummary: ${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors > 0 ? 1 : 0);

@@ -75,6 +75,14 @@ with hyphens (`"Dark Gray"` → `dark-gray`).
 
 ---
 
+## Naming convention (`dty` prefix)
+
+All theme sections, snippets, assets, CSS tokens, and JSON section instance keys use
+the **`dty`** prefix (Datansy). Legacy **`gsm` / GSMPRO** identifiers are forbidden in
+theme code — `node scripts/validate-theme.mjs` fails if they reappear.
+
+---
+
 ## Validating changes
 
 Run both before deploying:

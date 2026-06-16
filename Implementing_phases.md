@@ -31,7 +31,7 @@
 | **11** | **Last** | Vitals app + GTM/GSC/FB (after site is live) |
 | 15 | Optional | Post-launch enhancements |
 
-**Phase 9 deliverables:** `assets/gsm-pages.css`, `assets/gsm-cart-page.js`, `sections/main-cart.liquid`, `main-page.liquid`, `gsm-page-cotizacion.liquid`, `gsm-page-rastreo.liquid`, `main-blog.liquid`, `main-article.liquid`, `main-404.liquid`, `main-login.liquid`, `main-register.liquid`, `main-account.liquid`, templates `page.cotizacion.json`, `page.rastreo.json`, `404.json` (category blocks), `blog.json`, `customers/*.json`.
+**Phase 9 deliverables:** `assets/dty-pages.css`, `assets/dty-cart-page.js`, `sections/main-cart.liquid`, `main-page.liquid`, `dty-page-cotizacion.liquid`, `dty-page-rastreo.liquid`, `main-blog.liquid`, `main-article.liquid`, `main-404.liquid`, `main-login.liquid`, `main-register.liquid`, `main-account.liquid`, templates `page.cotizacion.json`, `page.rastreo.json`, `404.json` (category blocks), `blog.json`, `customers/*.json`.
 
 **Verify on dev store:** assign `page.cotizacion` / `page.rastreo` templates; create `/blogs/noticias`; enable Markets in Admin; set currency format to `${{amount_no_decimals}}`; create discount **`BIENVENIDO10`** in Admin; run `shopify theme check`.
 
@@ -39,7 +39,7 @@
 
 **Store verified (public API):** Datansy · datansy.com · CLP · 7 products · collections `coleccion-principal`, `frontpage` · dev theme `#147124748348`.
 
-**Phase 12 deliverables:** `snippets/gsm-social-meta.liquid`, `snippets/gsm-jsonld.liquid`, `snippets/gsm-gtm-head.liquid`, `snippets/gsm-gtm-body.liquid`, theme settings for GTM/GSC/FB verification, font preload, PDP LCP preload, FAQ `hidden`/ARIA, slider keyboard nav.
+**Phase 12 deliverables:** `snippets/dty-social-meta.liquid`, `snippets/dty-jsonld.liquid`, `snippets/dty-gtm-head.liquid`, `snippets/dty-gtm-body.liquid`, theme settings for GTM/GSC/FB verification, font preload, PDP LCP preload, FAQ `hidden`/ARIA, slider keyboard nav.
 
 **Phase 13 deliverables:** Cart `/cart/add.js` + `/cart/change.js` fixes, `scripts/validate-theme.mjs`, customer reset/activate templates.
 
@@ -106,24 +106,24 @@
 
 ### 2.1 CSS variables & tokens
 - [x] Define Datansy color tokens in `:root`:
-  - `--gsm-dark: #00003A`
-  - `--gsm-blue: #0389FC`
-  - `--gsm-indigo: #413AF4`
-  - `--gsm-yellow: #EDFF00`
-  - `--gsm-gray: #F5F7FA`
+  - `--dty-dark: #00003A`
+  - `--dty-blue: #0389FC`
+  - `--dty-indigo: #413AF4`
+  - `--dty-yellow: #EDFF00`
+  - `--dty-gray: #F5F7FA`
   - Warehouse accent overrides (`#0389FC`, header `#00003A`, sale red `#EE0000`)
 - [x] Define typography stack:
   - Display: Space Grotesk
   - Body/shell: Barlow
   - Icons: Material Symbols Outlined (self-hosted or subset)
-- [x] Define shadow tokens (`gsm`, `gsm-card`, `gsm-hover`)
+- [x] Define shadow tokens (`dty`, `dty-card`, `dty-hover`)
 - [x] Define border-radius scale (`rounded-2xl` equivalent)
 - [x] Define responsive breakpoints (mobile / tablet / desktop)
 
 ### 2.2 Asset files
-- [x] Create `assets/gsm-base.css` (design tokens + utility classes used across sections)
-- [x] Create `assets/gsm-home.css` (homepage-specific styles)
-- [x] Create `assets/gsm-home.js` (hero rotation, FAQ accordion, coupon copy)
+- [x] Create `assets/dty-base.css` (design tokens + utility classes used across sections)
+- [x] Create `assets/dty-home.css` (homepage-specific styles)
+- [x] Create `assets/dty-home.js` (hero rotation, FAQ accordion, coupon copy)
 - [x] Create `assets/bodegas.css` (warehouse/inventory UI — port from live site)
 - [x] Load fonts via `link` tags or `@font-face` in theme (no render-blocking chains)
 - [x] **Do not** use `cdn.tailwindcss.com` in production theme
@@ -201,7 +201,7 @@
 > **Goal:** Recreate the ~108KB Custom Liquid block as native, editable sections.
 > **Source reference:** `custom_liquid_eAcPLF` on live homepage.
 
-### 5.1 Hero — `sections/gsm-hero.liquid`
+### 5.1 Hero — `sections/dty-hero.liquid`
 - [x] Badge pill: "Tecnología Premium"
 - [x] Animated headline (3-line rotation via `sloganSets` JS):
   - "Tecnología Premium / Al Precio Que / Debería Ser"
@@ -214,7 +214,7 @@
 - [x] Decorative circle / gradient background elements
 - [x] Section schema: editable headlines, CTA URLs, badge text
 
-### 5.2 Brand marquee — `sections/gsm-brand-marquee.liquid`
+### 5.2 Brand marquee — `sections/dty-brand-marquee.liquid`
 - [x] Section label: "Marcas Oficiales"
 - [x] Heading: "Solo las Mejores Marcas"
 - [x] Two auto-scrolling logo rows (opposite directions)
@@ -222,14 +222,14 @@
 - [x] Logo blocks editable via section blocks (image + link)
 - [x] Pause on hover, gradient edge masks
 
-### 5.3 Regional coverage — `sections/gsm-regions.liquid`
+### 5.3 Regional coverage — `sections/dty-regions.liquid`
 - [x] Label: "Cobertura Regional"
 - [x] Heading: "Operamos en 6 Países"
 - [x] Country cards: Chile, Argentina, Perú, Colombia, México, Estados Unidos
 - [x] Flag images + country names
 - [x] Optional link to market-specific URLs
 
-### 5.4 Sourcing hubs — `sections/gsm-sourcing-hubs.liquid`
+### 5.4 Sourcing hubs — `sections/dty-sourcing-hubs.liquid`
 - [x] Label: "Sourcing Internacional"
 - [x] Heading: "Los Mejores Precios Del Mundo"
 - [x] Stat badge: "5+ Hubs de Abastecimiento"
@@ -237,7 +237,7 @@
 - [x] Icon + title + subtitle per hub
 - [x] Blocks editable in theme editor
 
-### 5.5 Category grid — `sections/gsm-category-grid.liquid`
+### 5.5 Category grid — `sections/dty-category-grid.liquid`
 - [x] Label: "Categorías Elite"
 - [x] Heading + "Ver catálogo completo" link
 - [x] 6 category tiles with icons:
@@ -245,7 +245,7 @@
 - [x] Each tile links to collection URL
 - [x] Hover lift + border glow effect
 
-### 5.6 VIP presales — `sections/gsm-presales.liquid`
+### 5.6 VIP presales — `sections/dty-presales.liquid`
 - [x] Label: "Preventas VIP"
 - [x] Heading: "El Futuro Llega Primero Aquí."
 - [x] 3 benefit cards: Precio Especial, Prioridad Total, Stock Asegurado
@@ -255,7 +255,7 @@
 - [x] CTA: "Ver Colección Preventa"
 - [x] Blocks: image, title, status, link per item
 
-### 5.7 Testimonials — `sections/gsm-testimonials.liquid`
+### 5.7 Testimonials — `sections/dty-testimonials.liquid`
 - [x] Heading: "Experiencia Datansy"
 - [x] Subheading: "Lo que dicen nuestros clientes de Arica a Punta Arenas."
 - [x] Infinite horizontal scroll of review cards
@@ -263,7 +263,7 @@
 - [x] Sample reviews from live site (minimum 12, duplicated for seamless loop)
 - [x] Blocks editable: name, product, quote, rating
 
-### 5.8 FAQ — `sections/gsm-faq.liquid`
+### 5.8 FAQ — `sections/dty-faq.liquid`
 - [x] Label: "Preguntas Frecuentes" / "Transparencia Total"
 - [x] Accordion items (5 from live site):
   1. ¿Los productos tienen garantía?
@@ -272,10 +272,10 @@
   4. ¿Tienen tienda física?
   5. ¿Debo preocuparme por el "Aduanazo"?
 - [x] Numbered 01–05, expand/collapse animation
-- [x] JS accordion in `gsm-home.js`
+- [x] JS accordion in `dty-home.js`
 - [x] Blocks: question + answer pairs
 
-### 5.9 Coupon / newsletter CTA — `sections/gsm-coupon-cta.liquid`
+### 5.9 Coupon / newsletter CTA — `sections/dty-coupon-cta.liquid`
 - [x] Heading: "Tecnología a tu Alcance"
 - [x] Subtext: "Únete a nuestra comunidad."
 - [x] Coupon display: **`BIENVENIDO10`** (admin-editable; create matching discount in Shopify Admin)
@@ -286,20 +286,20 @@
 ### 5.10 Homepage template assembly — `templates/index.json`
 - [x] Sections 1–10 + 16 wired (header/footer via section groups; marketing sections in `index.json`):
   1. Header (group) ✓
-  2. gsm-hero ✓
-  3. gsm-brand-marquee ✓
-  4. gsm-regions ✓
-  5. gsm-sourcing-hubs ✓
-  6. gsm-category-grid ✓
-  7. gsm-presales ✓
-  8. gsm-testimonials ✓
-  9. gsm-faq ✓
-  10. gsm-coupon-cta ✓
+  2. dty-hero ✓
+  3. dty-brand-marquee ✓
+  4. dty-regions ✓
+  5. dty-sourcing-hubs ✓
+  6. dty-category-grid ✓
+  7. dty-presales ✓
+  8. dty-testimonials ✓
+  9. dty-faq ✓
+  10. dty-coupon-cta ✓
   11. Product sliders — **Phase 6** ✓
-  12. Slideshow — **Phase 6** ✓ (`gsm-promo-banner`)
-  13. Featured collection — **Phase 6** ✓ (`gsm-featured-collections`)
+  12. Slideshow — **Phase 6** ✓ (`dty-promo-banner`)
+  13. Featured collection — **Phase 6** ✓ (`dty-featured-collections`)
   14. Recently viewed — deferred (localStorage; optional post-launch)
-  15. Blog posts — **Phase 6** ✓ (`gsm-blog-strip`)
+  15. Blog posts — **Phase 6** ✓ (`dty-blog-strip`)
   16. Footer (group) ✓
 - [x] Preview homepage in dev theme — real products from `coleccion-principal`; compare styling vs datansy.com (optional)
 
@@ -310,13 +310,13 @@
 > **Goal:** Replace app-generated sliders (~228KB block) with native reusable section.
 > **Source reference:** section `1748974714ed98b36b` on live homepage.
 
-### 6.1 Reusable slider section — `sections/gsm-product-slider.liquid`
+### 6.1 Reusable slider section — `sections/dty-product-slider.liquid`
 - [x] Schema inputs: heading, collection handle, "Ver más" link, products to show (limit)
 - [x] Horizontal scroll carousel (native scroll-snap; no Flickity dependency)
 - [x] Prev / next navigation arrows
 - [x] Product card component (see 6.2)
 
-### 6.2 Product card snippet — `snippets/gsm-product-card.liquid`
+### 6.2 Product card snippet — `snippets/dty-product-card.liquid`
 - [x] Product image (lazy loaded, responsive srcset)
 - [x] Vendor name
 - [x] "Desde $X" price (handle variant price ranges)
@@ -338,10 +338,10 @@
 - [x] Verify each slider pulls live products from store catalog (`coleccion-principal` on dev store)
 
 ### 6.4 Optional promo sections
-- [x] Slideshow section (`slideshow_BBntKH` equivalent) — promo banner (`gsm-promo-banner.liquid`)
-- [x] "Unidades Limitadas" collection list section (`gsm-featured-collections.liquid`)
+- [x] Slideshow section (`slideshow_BBntKH` equivalent) — promo banner (`dty-promo-banner.liquid`)
+- [x] "Unidades Limitadas" collection list section (`dty-featured-collections.liquid`)
 - [x] BLACK SALE full-width CTA banner (if not covered by slider)
-- [x] Blog strip section (`gsm-blog-strip.liquid`) for homepage item 15
+- [x] Blog strip section (`dty-blog-strip.liquid`) for homepage item 15
 
 ---
 
@@ -373,7 +373,7 @@
 - [x] Share buttons
 - [x] SKU display (conditional)
 
-### 7.4 Warehouse inventory — `snippets/gsm-warehouse-availability.liquid`
+### 7.4 Warehouse inventory — `snippets/dty-warehouse-availability.liquid`
 - [x] Port `bodegas.css` styles
 - [x] Santiago express availability (green)
 - [x] Other warehouse locations with timing
@@ -404,7 +404,7 @@
 - [x] Filter sidebar or drawer (facets — Shopify Search & Discovery)
 - [x] Product grid: 2 col mobile, 3–4 col desktop
 - [x] Pagination or infinite scroll
-- [x] Reuse `gsm-product-card` snippet OR Warehouse `product-item` snippet
+- [x] Reuse `dty-product-card` snippet OR Warehouse `product-item` snippet
 
 ### 8.2 Collection list template — `templates/list-collections.json`
 - [x] Grid of all collections (if needed)
@@ -456,9 +456,9 @@
 > **Status:** Theme-side implemented 2026-06-07. Admin Markets setup requires store access.
 
 - [x] Wire header/footer/mobile localization forms (`/localization`) — unique form IDs, auto-submit on change
-- [x] Confirm currency display format: `${{amount_no_decimals}}` via `gsm-money` snippet + admin note in theme settings
-- [x] hreflang alternates — `gsm-hreflang.liquid` (Shopify `country.root_url` + fallback market URL settings)
-- [x] Homepage region cards switch market via ISO codes + `gsm-markets.js`
+- [x] Confirm currency display format: `${{amount_no_decimals}}` via `dty-money` snippet + admin note in theme settings
+- [x] hreflang alternates — `dty-hreflang.liquid` (Shopify `country.root_url` + fallback market URL settings)
+- [x] Homepage region cards switch market via ISO codes + `dty-markets.js`
 - [x] Spanish (`es`) as default locale in `locales/es.default.json`
 - [x] Translate remaining hardcoded English in titles/filters (page meta, Min/Max filters)
 - [ ] **Admin:** Enable Shopify Markets in admin (if not already)
@@ -481,7 +481,7 @@
 - [ ] Audit with Lighthouse (target: 70+ mobile performance minimum)
 
 ### 12.2 Accessibility
-- [x] Global `:focus-visible` outline in `gsm-base.css`
+- [x] Global `:focus-visible` outline in `dty-base.css`
 - [x] Skip-to-content link
 - [x] FAQ accordion: `aria-expanded`, `aria-controls`, `hidden` on answers
 - [x] Slider nav: `aria-label` on prev/next; keyboard ArrowLeft/ArrowRight on track
@@ -491,8 +491,8 @@
 ### 12.3 SEO
 - [x] `title` and `meta description` via Shopify + theme title tags
 - [x] Canonical URLs + hreflang (Phase 10)
-- [x] Open Graph + Twitter Card meta (`gsm-social-meta.liquid`)
-- [x] JSON-LD: Organization, WebSite, BreadcrumbList, Product (`gsm-jsonld.liquid`)
+- [x] Open Graph + Twitter Card meta (`dty-social-meta.liquid`)
+- [x] JSON-LD: Organization, WebSite, BreadcrumbList, Product (`dty-jsonld.liquid`)
 - [x] GTM + GSC + Facebook verification hooks in theme settings
 - [ ] Sitemap (Shopify native — verify in Admin after deploy)
 
@@ -603,7 +603,7 @@
 - [ ] Vitals **Cart abandonment email** — post-launch
 
 ### 11.3 Cart & checkout → **Vitals** (evaluate vs native theme)
-- [ ] **Decision:** Vitals Cart Drawer **or** native `gsm-cart-drawer` (not both)
+- [ ] **Decision:** Vitals Cart Drawer **or** native `dty-cart-drawer` (not both)
 - [ ] **Decision:** Vitals Sticky Add to Cart **or** native PDP sticky bar (not both)
 - [ ] Vitals **Volume discounts / BOGO / bundles**
 - [ ] Vitals **Free shipping bar** — vs native threshold bar
@@ -634,7 +634,7 @@
 
 | Feature | Theme (native) | Vitals module | Launch choice |
 |---------|----------------|---------------|---------------|
-| Cart drawer | `gsm-cart-drawer` | Cart drawer | TBD |
+| Cart drawer | `dty-cart-drawer` | Cart drawer | TBD |
 | Sticky ATC | `main-product` sticky bar | Sticky add to cart | TBD |
 | Reviews | Placeholder stars | Product reviews | **Vitals** |
 | Free shipping bar | Header + cart | Shipping bar | TBD |
@@ -666,24 +666,24 @@
 | `config/settings_schema.json` | 1, 2 |
 | `config/settings_data.json` | 1, 2 |
 | `locales/es.default.json` | 1 |
-| `assets/gsm-base.css` | 2 |
-| `assets/gsm-home.css` | 2 |
-| `assets/gsm-home.js` | 2, 5 |
+| `assets/dty-base.css` | 2 |
+| `assets/dty-home.css` | 2 |
+| `assets/dty-home.js` | 2, 5 |
 | `assets/bodegas.css` | 2, 7 |
 | `sections/header.liquid` | 3 |
 | `sections/footer.liquid` | 4 |
-| `sections/gsm-hero.liquid` | 5 |
-| `sections/gsm-brand-marquee.liquid` | 5 |
-| `sections/gsm-regions.liquid` | 5 |
-| `sections/gsm-sourcing-hubs.liquid` | 5 |
-| `sections/gsm-category-grid.liquid` | 5 |
-| `sections/gsm-presales.liquid` | 5 |
-| `sections/gsm-testimonials.liquid` | 5 |
-| `sections/gsm-faq.liquid` | 5 |
-| `sections/gsm-coupon-cta.liquid` | 5 |
-| `sections/gsm-product-slider.liquid` | 6 |
-| `snippets/gsm-product-card.liquid` | 6 |
-| `snippets/gsm-warehouse-availability.liquid` | 7 |
+| `sections/dty-hero.liquid` | 5 |
+| `sections/dty-brand-marquee.liquid` | 5 |
+| `sections/dty-regions.liquid` | 5 |
+| `sections/dty-sourcing-hubs.liquid` | 5 |
+| `sections/dty-category-grid.liquid` | 5 |
+| `sections/dty-presales.liquid` | 5 |
+| `sections/dty-testimonials.liquid` | 5 |
+| `sections/dty-faq.liquid` | 5 |
+| `sections/dty-coupon-cta.liquid` | 5 |
+| `sections/dty-product-slider.liquid` | 6 |
+| `snippets/dty-product-card.liquid` | 6 |
+| `snippets/dty-warehouse-availability.liquid` | 7 |
 | `templates/index.json` | 5, 6 |
 | `templates/product.json` | 7 |
 | `templates/collection.json` | 8 |
@@ -693,10 +693,10 @@
 | `templates/article.json` | 9 |
 | `templates/search.json` | 8 |
 | `templates/404.json` | 9 |
-| `snippets/gsm-social-meta.liquid` | 12 |
-| `snippets/gsm-jsonld.liquid` | 12 |
-| `snippets/gsm-gtm-head.liquid` | 12 |
-| `snippets/gsm-gtm-body.liquid` | 12 |
+| `snippets/dty-social-meta.liquid` | 12 |
+| `snippets/dty-jsonld.liquid` | 12 |
+| `snippets/dty-gtm-head.liquid` | 12 |
+| `snippets/dty-gtm-body.liquid` | 12 |
 | `scripts/validate-theme.mjs` | 13 |
 | `templates/customers/reset_password.json` | 13 |
 | `templates/customers/activate_account.json` | 13 |
