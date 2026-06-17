@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" href="{{ 'datansy-favicon-black.png' | asset_url }}">
   {%- endif -%}
 
-  <title>
+  <title>{%- if template.name == 'index' -%}{{ shop.name }}{%- else -%}
     {{ page_title }}
     {%- if current_tags -%}
       {%- assign tag_list = current_tags | join: ', ' -%}
@@ -24,7 +24,7 @@
     {%- endif -%}
     {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
     {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-  </title>
+  {%- endif -%}</title>
 
   {%- if page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
