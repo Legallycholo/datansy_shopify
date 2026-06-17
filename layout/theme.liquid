@@ -17,13 +17,17 @@
   {%- endif -%}
 
   <title>
-    {{ page_title }}
-    {%- if current_tags -%}
-      {%- assign tag_list = current_tags | join: ', ' -%}
-      &ndash; {{ 'general.tagged' | t: tags: tag_list }}
+    {%- if template.name == 'index' -%}
+      {{ shop.name }}
+    {%- else -%}
+      {{ page_title }}
+      {%- if current_tags -%}
+        {%- assign tag_list = current_tags | join: ', ' -%}
+        &ndash; {{ 'general.tagged' | t: tags: tag_list }}
+      {%- endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     {%- endif -%}
-    {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
-    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
   </title>
 
   {%- if page_description -%}
