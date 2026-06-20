@@ -155,7 +155,7 @@
                 <span class="material-symbols-outlined" aria-hidden="true">chat</span>
                 <div>
                   <strong>WhatsApp Chile</strong><br>
-                  <a href="https://wa.me/{{ section.settings.whatsapp_cl | replace: '+', '' | replace: ' ', '' }}">{{ section.settings.whatsapp_cl }}</a>
+                  <a href="https://web.whatsapp.com/send?phone={{ section.settings.whatsapp_cl | replace: '+', '' | replace: ' ', '' }}" target="_blank" rel="noopener">{{ section.settings.whatsapp_cl }}</a>
                 </div>
               </div>
             {%- endif -%}
