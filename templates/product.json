@@ -10,8 +10,8 @@
         "title": {
           "type": "title",
           "settings": {
-            "show_subtitle": true,
-            "subtitle": "Escucha tu música sin bloquear el sonido del entorno"
+            "show_subtitle": false,
+            "subtitle": ""
           }
         },
         "reviews": {
@@ -25,17 +25,6 @@
           "type": "price",
           "settings": {
             "show_sku": false
-          }
-        },
-        "feature_bullets": {
-          "type": "feature_bullets",
-          "settings": {
-            "bullet_1": "Conducción Ósea — No bloquea tus oídos",
-            "icon_1": "hearing",
-            "bullet_2": "Bluetooth 5.3 + IPX5 — Para deportes al aire libre",
-            "icon_2": "bluetooth",
-            "bullet_3": "Solo 25g — Ultraliviano, úsalo todo el día",
-            "icon_3": "fitness_center"
           }
         },
         "variant_picker": {
@@ -75,7 +64,6 @@
         "title",
         "reviews",
         "price",
-        "feature_bullets",
         "variant_picker",
         "buy_buttons",
         "trust_badges",

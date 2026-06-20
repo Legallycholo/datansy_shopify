@@ -76,7 +76,11 @@
             {%- if block.settings.show_placeholder_reviews -%}
             <div class="dty-product-info__reviews" {{ block.shopify_attributes }}>
               {% render 'dty-stars', rating: 5 %}
-              <span class="dty-product-card__review-count">({{ block.settings.review_count | default: 'products.reviews_placeholder' | t }})</span>
+              {%- if block.settings.review_count != blank -%}
+                <span class="dty-product-card__review-count">({{ block.settings.review_count }})</span>
+              {%- else -%}
+                <span class="dty-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
+              {%- endif -%}
             </div>
             {%- endif -%}
 
