@@ -67,9 +67,6 @@
           {%- when 'title' -%}
             <div class="product__title" {{ block.shopify_attributes }}>
               <h1 class="dty-product-info__title">{{ product.title }}</h1>
-              {%- if block.settings.show_subtitle and block.settings.subtitle != blank -%}
-                <p class="dty-product-info__subtitle">{{ block.settings.subtitle }}</p>
-              {%- endif -%}
             </div>
 
           {%- when 'reviews' -%}
@@ -78,8 +75,6 @@
               {% render 'dty-stars', rating: 5 %}
               {%- if block.settings.review_count != blank -%}
                 <span class="dty-product-card__review-count">({{ block.settings.review_count }})</span>
-              {%- else -%}
-                <span class="dty-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
               {%- endif -%}
             </div>
             {%- endif -%}
@@ -95,28 +90,6 @@
                 </p>
               {%- endif -%}
             </div>
-
-          {%- when 'feature_bullets' -%}
-            <ul class="dty-feature-bullets" {{ block.shopify_attributes }}>
-              {%- if block.settings.bullet_1 != blank -%}
-                <li class="dty-feature-bullets__item">
-                  <span class="material-symbols-outlined dty-feature-bullets__icon" aria-hidden="true">{{ block.settings.icon_1 | default: 'check_circle' }}</span>
-                  <span>{{ block.settings.bullet_1 }}</span>
-                </li>
-              {%- endif -%}
-              {%- if block.settings.bullet_2 != blank -%}
-                <li class="dty-feature-bullets__item">
-                  <span class="material-symbols-outlined dty-feature-bullets__icon" aria-hidden="true">{{ block.settings.icon_2 | default: 'check_circle' }}</span>
-                  <span>{{ block.settings.bullet_2 }}</span>
-                </li>
-              {%- endif -%}
-              {%- if block.settings.bullet_3 != blank -%}
-                <li class="dty-feature-bullets__item">
-                  <span class="material-symbols-outlined dty-feature-bullets__icon" aria-hidden="true">{{ block.settings.icon_3 | default: 'check_circle' }}</span>
-                  <span>{{ block.settings.bullet_3 }}</span>
-                </li>
-              {%- endif -%}
-            </ul>
 
           {%- when 'variant_picker' -%}
             {%- unless product.has_only_default_variant -%}
@@ -224,14 +197,16 @@
                   name="add"
                   class="btn btn--primary dty-product-form__submit product-form__submit"
                   data-product-submit
-                  data-available-text="{{ block.settings.atc_text | default: 'products.add_to_cart' | t }} — {{ block.settings.atc_subtext | default: 'Envío Gratis' }}"
+                  {%- assign atc_label = block.settings.atc_text | default: 'Agregar al Carrito' -%}
+                  {%- assign atc_sub = block.settings.atc_subtext | default: 'Envío Gratis' -%}
+                  data-available-text="{{ atc_label }} — {{ atc_sub }}"
                   data-sold-out-text="{{ 'products.sold_out' | t }}"
                   {% unless current_variant.available %}disabled{% endunless %}
                 >
                   <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
                   <span class="dty-product-form__submit-text">
                     {%- if current_variant.available -%}
-                      {{ block.settings.atc_text | default: 'products.add_to_cart' | t }} — {{ block.settings.atc_subtext | default: 'Envío Gratis' }}
+                      {{ atc_label }} — {{ atc_sub }}
                     {%- else -%}
                       {{ 'products.sold_out' | t }}
                     {%- endif -%}
@@ -439,18 +414,10 @@
   ],
   "blocks": [
     { "type": "vendor", "name": "Vendor", "limit": 1 },
-    {
-      "type": "title",
-      "name": "Título",
-      "limit": 1,
-      "settings": [
-        { "type": "checkbox", "id": "show_subtitle", "label": "Mostrar subtítulo", "default": true },
-        { "type": "text", "id": "subtitle", "label": "Subtítulo (beneficio principal)", "default": "Escucha tu música sin bloquear el sonido del entorno" }
-      ]
-    },
+    { "type": "title", "name": "Título", "limit": 1 },
     { "type": "reviews", "name": "Reseñas (placeholder)", "limit": 1, "settings": [
-      { "type": "checkbox", "id": "show_placeholder_reviews", "label": "Mostrar estrellas placeholder", "default": true, "info": "Desactivado por defecto. Usa Vitals u otra app de reseñas." },
-      { "type": "text", "id": "review_count", "label": "Texto del contador", "default": "127 reseñas" }
+      { "type": "checkbox", "id": "show_placeholder_reviews", "label": "Mostrar estrellas placeholder", "default": true },
+      { "type": "text", "id": "review_count", "label": "Texto del contador (ej: 127 reseñas)", "default": "127 reseñas" }
     ] },
     {
       "type": "price",
@@ -458,19 +425,6 @@
       "limit": 1,
       "settings": [
         { "type": "checkbox", "id": "show_sku", "label": "Mostrar SKU", "default": true }
-      ]
-    },
-    {
-      "type": "feature_bullets",
-      "name": "Características clave",
-      "limit": 1,
-      "settings": [
-        { "type": "text", "id": "bullet_1", "label": "Característica 1", "default": "Conducción Ósea — No bloquea tus oídos" },
-        { "type": "text", "id": "icon_1", "label": "Ícono 1 (Material Symbols)", "default": "hearing" },
-        { "type": "text", "id": "bullet_2", "label": "Característica 2", "default": "Bluetooth 5.3 + IPX5 — Para deportes al aire libre" },
-        { "type": "text", "id": "icon_2", "label": "Ícono 2 (Material Symbols)", "default": "bluetooth" },
-        { "type": "text", "id": "bullet_3", "label": "Característica 3", "default": "Solo 25g — Ultraliviano, úsalo todo el día" },
-        { "type": "text", "id": "icon_3", "label": "Ícono 3 (Material Symbols)", "default": "fitness_center" }
       ]
     },
     { "type": "variant_picker", "name": "Selector de variantes", "limit": 1 },
@@ -527,7 +481,6 @@
         { "type": "title" },
         { "type": "reviews" },
         { "type": "price" },
-        { "type": "feature_bullets" },
         { "type": "variant_picker" },
         { "type": "buy_buttons" },
         { "type": "trust_badges" },
