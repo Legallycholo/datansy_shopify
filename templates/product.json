@@ -54,6 +54,24 @@
             "point_4": "Miles de clientes satisfechos en toda Latinoamérica"
           }
         },
+        "payment_icons": {
+          "type": "payment_icons",
+          "settings": {}
+        },
+        "faq": {
+          "type": "faq",
+          "settings": {
+            "heading": "Preguntas Frecuentes",
+            "question_1": "¿Cuánto demora el envío?",
+            "answer_1": "Enviamos a todo Chile en 2–5 días hábiles. El envío es gratis en compras sobre $50.000.",
+            "question_2": "¿Tiene garantía?",
+            "answer_2": "Sí, todos nuestros productos tienen garantía oficial del fabricante. Si tienes algún problema, contáctanos y lo resolvemos.",
+            "question_3": "¿Puedo devolver el producto?",
+            "answer_3": "Claro, aceptamos devoluciones dentro de los primeros 30 días. Consulta nuestra política de devoluciones para más detalles.",
+            "question_4": "¿Qué métodos de pago aceptan?",
+            "answer_4": "Aceptamos tarjetas Visa, Mastercard, débito, transferencia bancaria, Apple Pay y Shop Pay."
+          }
+        },
         "share": {
           "type": "share",
           "settings": {}
@@ -67,7 +85,9 @@
         "variant_picker",
         "buy_buttons",
         "trust_badges",
+        "payment_icons",
         "why_buy",
+        "faq",
         "share"
       ],
       "settings": {}
