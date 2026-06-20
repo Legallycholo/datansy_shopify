@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -18,29 +9,61 @@
         },
         "title": {
           "type": "title",
-          "settings": {}
+          "settings": {
+            "show_subtitle": true,
+            "subtitle": "Escucha tu música sin bloquear el sonido del entorno"
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "show_placeholder_reviews": true,
+            "review_count": "127 reseñas"
+          }
         },
         "price": {
           "type": "price",
           "settings": {
-            "show_sku": true
+            "show_sku": false
+          }
+        },
+        "feature_bullets": {
+          "type": "feature_bullets",
+          "settings": {
+            "bullet_1": "Conducción Ósea — No bloquea tus oídos",
+            "icon_1": "hearing",
+            "bullet_2": "Bluetooth 5.3 + IPX5 — Para deportes al aire libre",
+            "icon_2": "bluetooth",
+            "bullet_3": "Solo 25g — Ultraliviano, úsalo todo el día",
+            "icon_3": "fitness_center"
           }
         },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {}
         },
-        "warehouse": {
-          "type": "warehouse",
-          "settings": {}
-        },
         "buy_buttons": {
           "type": "buy_buttons",
-          "settings": {}
+          "settings": {
+            "atc_text": "Agregar al Carrito",
+            "atc_subtext": "Envío Gratis",
+            "show_urgency": true,
+            "viewer_base": 24
+          }
         },
         "trust_badges": {
           "type": "trust_badges",
           "settings": {}
+        },
+        "why_buy": {
+          "type": "why_buy",
+          "settings": {
+            "heading": "¿Por qué comprar con nosotros?",
+            "point_1": "Entrega rápida a todo Chile en 2–5 días hábiles",
+            "point_2": "Garantía oficial del fabricante incluida",
+            "point_3": "Soporte 24/7 por WhatsApp y email",
+            "point_4": "Miles de clientes satisfechos en toda Latinoamérica"
+          }
         },
         "share": {
           "type": "share",
@@ -50,11 +73,13 @@
       "block_order": [
         "vendor",
         "title",
+        "reviews",
         "price",
+        "feature_bullets",
         "variant_picker",
-        "warehouse",
         "buy_buttons",
         "trust_badges",
+        "why_buy",
         "share"
       ],
       "settings": {}

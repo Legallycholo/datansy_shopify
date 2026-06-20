@@ -211,6 +211,12 @@
         "id": "facebook_domain_verification",
         "label": "Facebook domain verification",
         "info": "Contenido del meta facebook-domain-verification"
+      },
+      {
+        "type": "text",
+        "id": "fb_pixel_id",
+        "label": "Facebook Pixel ID",
+        "info": "Ej: 123456789012345. Activa PageView, ViewContent, y Search automáticamente. AddToCart y Purchase se disparan por eventos del carrito."
       }
     ]
   },

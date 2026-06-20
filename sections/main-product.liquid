@@ -67,13 +67,16 @@
           {%- when 'title' -%}
             <div class="product__title" {{ block.shopify_attributes }}>
               <h1 class="dty-product-info__title">{{ product.title }}</h1>
+              {%- if block.settings.show_subtitle and block.settings.subtitle != blank -%}
+                <p class="dty-product-info__subtitle">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
             </div>
 
           {%- when 'reviews' -%}
             {%- if block.settings.show_placeholder_reviews -%}
             <div class="dty-product-info__reviews" {{ block.shopify_attributes }}>
               {% render 'dty-stars', rating: 5 %}
-              <span class="dty-product-card__review-count">({{ 'products.reviews_placeholder' | t }})</span>
+              <span class="dty-product-card__review-count">({{ block.settings.review_count | default: 'products.reviews_placeholder' | t }})</span>
             </div>
             {%- endif -%}
 
@@ -88,6 +91,28 @@
                 </p>
               {%- endif -%}
             </div>
+
+          {%- when 'feature_bullets' -%}
+            <ul class="dty-feature-bullets" {{ block.shopify_attributes }}>
+              {%- if block.settings.bullet_1 != blank -%}
+                <li class="dty-feature-bullets__item">
+                  <span class="material-symbols-outlined dty-feature-bullets__icon" aria-hidden="true">{{ block.settings.icon_1 | default: 'check_circle' }}</span>
+                  <span>{{ block.settings.bullet_1 }}</span>
+                </li>
+              {%- endif -%}
+              {%- if block.settings.bullet_2 != blank -%}
+                <li class="dty-feature-bullets__item">
+                  <span class="material-symbols-outlined dty-feature-bullets__icon" aria-hidden="true">{{ block.settings.icon_2 | default: 'check_circle' }}</span>
+                  <span>{{ block.settings.bullet_2 }}</span>
+                </li>
+              {%- endif -%}
+              {%- if block.settings.bullet_3 != blank -%}
+                <li class="dty-feature-bullets__item">
+                  <span class="material-symbols-outlined dty-feature-bullets__icon" aria-hidden="true">{{ block.settings.icon_3 | default: 'check_circle' }}</span>
+                  <span>{{ block.settings.bullet_3 }}</span>
+                </li>
+              {%- endif -%}
+            </ul>
 
           {%- when 'variant_picker' -%}
             {%- unless product.has_only_default_variant -%}
@@ -118,12 +143,6 @@
                             {%- break -%}
                           {%- endif -%}
                         {%- endfor -%}
-                        {%- comment -%}
-                          Swatch fill priority for color options:
-                          1. variant metafield hex (custom.color_hex) → exact brand color
-                          2. variant featured image → photographic accuracy
-                          3. CSS color-name map fallback (assets/dty-product.css)
-                        {%- endcomment -%}
                         {%- assign swatch_style = '' -%}
                         {%- assign swatch_has_image = false -%}
                         {%- if is_color -%}
@@ -201,14 +220,14 @@
                   name="add"
                   class="btn btn--primary dty-product-form__submit product-form__submit"
                   data-product-submit
-                  data-available-text="{{ 'products.add_to_cart' | t }}"
+                  data-available-text="{{ block.settings.atc_text | default: 'products.add_to_cart' | t }} — {{ block.settings.atc_subtext | default: 'Envío Gratis' }}"
                   data-sold-out-text="{{ 'products.sold_out' | t }}"
                   {% unless current_variant.available %}disabled{% endunless %}
                 >
                   <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
                   <span class="dty-product-form__submit-text">
                     {%- if current_variant.available -%}
-                      {{ 'products.add_to_cart' | t }}
+                      {{ block.settings.atc_text | default: 'products.add_to_cart' | t }} — {{ block.settings.atc_subtext | default: 'Envío Gratis' }}
                     {%- else -%}
                       {{ 'products.sold_out' | t }}
                     {%- endif -%}
@@ -217,6 +236,22 @@
                 {{ form | payment_button }}
               </div>
             {%- endform -%}
+
+            {%- comment -%} Urgency / social proof {%- endcomment -%}
+            <div class="dty-urgency" data-urgency>
+              {%- if block.settings.show_urgency -%}
+                <p class="dty-urgency__viewers">
+                  <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                  <span data-viewer-count>{{ block.settings.viewer_base | default: 24 }}</span> personas están viendo este producto
+                </p>
+              {%- endif -%}
+              {%- if current_variant.available -%}
+                <p class="dty-urgency__stock">
+                  <span class="material-symbols-outlined" aria-hidden="true">inventory</span>
+                  En Stock — Envío dentro de 24 hrs
+                </p>
+              {%- endif -%}
+            </div>
 
           {%- when 'share' -%}
             {%- liquid
@@ -269,6 +304,28 @@
                 </div>
               </div>
             </div>
+
+          {%- when 'why_buy' -%}
+            <div class="dty-why-buy" {{ block.shopify_attributes }}>
+              <p class="dty-why-buy__heading">
+                <span class="material-symbols-outlined" aria-hidden="true">workspace_premium</span>
+                {{ block.settings.heading | default: '¿Por qué comprar con nosotros?' }}
+              </p>
+              <ul class="dty-why-buy__list">
+                {%- if block.settings.point_1 != blank -%}
+                  <li>{{ block.settings.point_1 }}</li>
+                {%- endif -%}
+                {%- if block.settings.point_2 != blank -%}
+                  <li>{{ block.settings.point_2 }}</li>
+                {%- endif -%}
+                {%- if block.settings.point_3 != blank -%}
+                  <li>{{ block.settings.point_3 }}</li>
+                {%- endif -%}
+                {%- if block.settings.point_4 != blank -%}
+                  <li>{{ block.settings.point_4 }}</li>
+                {%- endif -%}
+              </ul>
+            </div>
         {%- endcase -%}
       {%- endfor -%}
     </div>
@@ -304,7 +361,10 @@
 
 <div class="dty-product-sticky" data-product-sticky>
   <div class="dty-product-sticky__inner">
-    <span class="dty-product-sticky__price" data-sticky-price>{%- render 'dty-money', amount: current_variant.price -%}</span>
+    <div class="dty-product-sticky__info">
+      <span class="dty-product-sticky__price" data-sticky-price>{%- render 'dty-money', amount: current_variant.price -%}</span>
+      <span class="dty-product-sticky__shipping">Envío Gratis</span>
+    </div>
     <button
       type="button"
       name="add"
@@ -314,6 +374,7 @@
       data-sold-out-text="{{ 'products.sold_out' | t }}"
       {% unless current_variant.available %}disabled{% endunless %}
     >
+      <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
       {{ 'products.add_to_cart' | t }}
     </button>
   </div>
@@ -340,9 +401,18 @@
   ],
   "blocks": [
     { "type": "vendor", "name": "Vendor", "limit": 1 },
-    { "type": "title", "name": "Título", "limit": 1 },
+    {
+      "type": "title",
+      "name": "Título",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_subtitle", "label": "Mostrar subtítulo", "default": true },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo (beneficio principal)", "default": "Escucha tu música sin bloquear el sonido del entorno" }
+      ]
+    },
     { "type": "reviews", "name": "Reseñas (placeholder)", "limit": 1, "settings": [
-      { "type": "checkbox", "id": "show_placeholder_reviews", "label": "Mostrar estrellas placeholder", "default": false, "info": "Desactivado por defecto. Usa Vitals u otra app de reseñas." }
+      { "type": "checkbox", "id": "show_placeholder_reviews", "label": "Mostrar estrellas placeholder", "default": true, "info": "Desactivado por defecto. Usa Vitals u otra app de reseñas." },
+      { "type": "text", "id": "review_count", "label": "Texto del contador", "default": "127 reseñas" }
     ] },
     {
       "type": "price",
@@ -352,11 +422,46 @@
         { "type": "checkbox", "id": "show_sku", "label": "Mostrar SKU", "default": true }
       ]
     },
+    {
+      "type": "feature_bullets",
+      "name": "Características clave",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "bullet_1", "label": "Característica 1", "default": "Conducción Ósea — No bloquea tus oídos" },
+        { "type": "text", "id": "icon_1", "label": "Ícono 1 (Material Symbols)", "default": "hearing" },
+        { "type": "text", "id": "bullet_2", "label": "Característica 2", "default": "Bluetooth 5.3 + IPX5 — Para deportes al aire libre" },
+        { "type": "text", "id": "icon_2", "label": "Ícono 2 (Material Symbols)", "default": "bluetooth" },
+        { "type": "text", "id": "bullet_3", "label": "Característica 3", "default": "Solo 25g — Ultraliviano, úsalo todo el día" },
+        { "type": "text", "id": "icon_3", "label": "Ícono 3 (Material Symbols)", "default": "fitness_center" }
+      ]
+    },
     { "type": "variant_picker", "name": "Selector de variantes", "limit": 1 },
-    { "type": "buy_buttons", "name": "Botones de compra", "limit": 1 },
+    {
+      "type": "buy_buttons",
+      "name": "Botones de compra",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "atc_text", "label": "Texto del botón ATC", "default": "Agregar al Carrito" },
+        { "type": "text", "id": "atc_subtext", "label": "Subtexto ATC (después del guión)", "default": "Envío Gratis" },
+        { "type": "checkbox", "id": "show_urgency", "label": "Mostrar social proof (viewers)", "default": true },
+        { "type": "range", "id": "viewer_base", "label": "Base de viewers", "min": 10, "max": 99, "step": 1, "default": 24 }
+      ]
+    },
     { "type": "share", "name": "Compartir", "limit": 1 },
     { "type": "warehouse", "name": "Disponibilidad bodegas", "limit": 1 },
     { "type": "trust_badges", "name": "Badges de confianza", "limit": 1 },
+    {
+      "type": "why_buy",
+      "name": "¿Por qué comprar?",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "¿Por qué comprar con nosotros?" },
+        { "type": "text", "id": "point_1", "label": "Punto 1", "default": "Entrega rápida a todo Chile en 2–5 días hábiles" },
+        { "type": "text", "id": "point_2", "label": "Punto 2", "default": "Garantía oficial del fabricante incluida" },
+        { "type": "text", "id": "point_3", "label": "Punto 3", "default": "Soporte 24/7 por WhatsApp y email" },
+        { "type": "text", "id": "point_4", "label": "Punto 4", "default": "Miles de clientes satisfechos en toda Latinoamérica" }
+      ]
+    },
     { "type": "@app" }
   ],
   "presets": [
@@ -367,10 +472,11 @@
         { "type": "title" },
         { "type": "reviews" },
         { "type": "price" },
+        { "type": "feature_bullets" },
         { "type": "variant_picker" },
-        { "type": "warehouse" },
         { "type": "buy_buttons" },
         { "type": "trust_badges" },
+        { "type": "why_buy" },
         { "type": "share" }
       ]
     }
