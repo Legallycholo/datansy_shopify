@@ -45,7 +45,7 @@
       <a href="{{ routes.cart_url }}" class="btn btn--outline" style="border-color: var(--dty-blue); color: var(--dty-blue);">
         {{ 'cart.view_cart' | t }}
       </a>
-      <form action="{{ routes.cart_url }}" method="post">
+      <form action="{{ routes.cart_url }}" method="post" data-cart-checkout-form>
         <button type="submit" name="checkout" class="btn btn--primary">
           {{ 'cart.checkout' | t }}
         </button>
@@ -56,4 +56,12 @@
 
 <script>
   document.getElementById('DtyCartDrawer').removeAttribute('hidden');
+  var checkoutForm = document.querySelector('[data-cart-checkout-form]');
+  if (checkoutForm) {
+    checkoutForm.addEventListener('submit', function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout');
+      }
+    });
+  }
 </script>

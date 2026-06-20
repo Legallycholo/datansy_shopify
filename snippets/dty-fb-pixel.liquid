@@ -1,0 +1,46 @@
+{%- if settings.fb_pixel_id != blank -%}
+<!-- Facebook Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', {{ settings.fb_pixel_id | json }});
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={{ settings.fb_pixel_id }}&ev=PageView&noscript=1" alt=""></noscript>
+
+{%- if template.name == 'product' and product -%}
+<script>
+  fbq('track', 'ViewContent', {
+    content_name: {{ product.title | json }},
+    content_ids: [{{ product.selected_or_first_available_variant.id | json }}],
+    content_type: 'product',
+    value: {{ product.selected_or_first_available_variant.price | money_without_currency | replace: '.', '' | replace: ',', '.' }},
+    currency: {{ cart.currency.iso_code | json }}
+  });
+</script>
+{%- endif -%}
+
+{%- if template.name == 'collection' and collection -%}
+<script>
+  fbq('track', 'ViewContent', {
+    content_name: {{ collection.title | json }},
+    content_type: 'product_group'
+  });
+</script>
+{%- endif -%}
+
+{%- if template.name == 'search' -%}
+<script>
+  fbq('track', 'Search', {
+    search_string: {{ search.terms | json }}
+  });
+</script>
+{%- endif -%}
+<!-- End Facebook Pixel -->
+{%- endif -%}
