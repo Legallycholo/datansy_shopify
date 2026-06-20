@@ -39,6 +39,7 @@
       "block_order": ["msg1", "msg2", "msg3"],
       "settings": {
         "enabled": true,
+        "hide_on_product": true,
         "rotation_speed": 4
       }
     },

@@ -27,6 +27,10 @@
     "localization_auto_submit": true,
     "markets_enable_hreflang": true,
     "fb_pixel_id": "1731643011583334",
+    "exit_popup_enabled": true,
+    "exit_popup_heading": "¡Espera! Te tenemos un regalo",
+    "exit_popup_text": "Usa este código en tu primera compra y obtén un descuento exclusivo:",
+    "exit_popup_discount": "BIENVENIDO10",
     "sections": {
       "header": {
         "type": "header",

@@ -13,11 +13,12 @@
 .dty-announcement-bar__close:hover{background:rgba(255,255,255,.15);color:var(--dty-white)}
 .dty-announcement-bar__close .material-symbols-outlined{font-size:18px}
 .header-sticky .dty-announcement-bar{position:sticky;top:0;z-index:201}
-@media(max-width:479px){.dty-announcement-bar__item{padding:0 var(--space-8);font-size:12px}.dty-announcement-bar,.dty-announcement-bar__track{min-height:36px}}
+@media(max-width:479px){.dty-announcement-bar__item{padding:0 var(--space-8);font-size:11px}.dty-announcement-bar,.dty-announcement-bar__track{min-height:32px}}
+@media(max-width:767px){.dty-header__inner{padding:0}.dty-header__top{min-height:48px}.dty-header__logo-img{max-height:32px}.dty-header__action{min-width:36px;min-height:36px;padding:var(--space-1)}}
 
 /* Datansy Header — see dty-header section for structure */
 .dty-header{background:var(--dty-dark);color:var(--dty-white);position:relative;z-index:100;width:100%;max-width:100%;overflow-x:clip}
-.header-sticky .dty-header{position:sticky;top:42px;z-index:200;box-shadow:0 2px 20px rgba(var(--dty-dark-rgb),.20);transition:box-shadow 0.35s ease,backdrop-filter 0.35s ease}
+.header-sticky .dty-header{position:sticky;top:var(--announcement-height, 42px);z-index:200;box-shadow:0 2px 20px rgba(var(--dty-dark-rgb),.20);transition:box-shadow 0.35s ease,backdrop-filter 0.35s ease}
 .header-sticky .dty-header.is-scrolled{box-shadow:0 4px 32px rgba(var(--dty-dark-rgb),.32);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .dty-header__inner{display:flex;flex-direction:column;gap:0;width:100%;min-width:0;padding:var(--space-2) 0}
 .dty-header__top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);width:100%;min-width:0;min-height:var(--header-height)}

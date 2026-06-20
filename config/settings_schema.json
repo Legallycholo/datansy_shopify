@@ -221,6 +221,37 @@
     ]
   },
   {
+    "name": "Popup de salida",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "exit_popup_enabled",
+        "label": "Activar popup de salida",
+        "default": true,
+        "info": "Muestra un popup con código de descuento cuando el visitante intenta salir de la página."
+      },
+      {
+        "type": "text",
+        "id": "exit_popup_heading",
+        "label": "Título del popup",
+        "default": "¡Espera! Te tenemos un regalo"
+      },
+      {
+        "type": "text",
+        "id": "exit_popup_text",
+        "label": "Texto del popup",
+        "default": "Usa este código en tu primera compra y obtén un descuento exclusivo:"
+      },
+      {
+        "type": "text",
+        "id": "exit_popup_discount",
+        "label": "Código de descuento",
+        "default": "BIENVENIDO10",
+        "info": "Debe coincidir con un código creado en Marketing > Descuentos."
+      }
+    ]
+  },
+  {
     "name": "Favicon",
     "settings": [
       {

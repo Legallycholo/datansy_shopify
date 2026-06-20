@@ -1,0 +1,82 @@
+{%- comment -%}
+  Exit-intent popup — captures abandoning visitors with a discount offer.
+  Fires once per session, only on product pages, after 5 seconds of page load.
+  Controlled via theme settings: settings.exit_popup_enabled, settings.exit_popup_discount.
+{%- endcomment -%}
+
+{%- if settings.exit_popup_enabled -%}
+<div class="dty-exit-popup" data-exit-popup aria-hidden="true" role="dialog" aria-modal="true" aria-label="Oferta especial">
+  <div class="dty-exit-popup__backdrop" data-exit-popup-close></div>
+  <div class="dty-exit-popup__card">
+    <button type="button" class="dty-exit-popup__close" data-exit-popup-close aria-label="Cerrar">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+    <div class="dty-exit-popup__content">
+      <span class="material-symbols-outlined dty-exit-popup__gift" aria-hidden="true">redeem</span>
+      <h3 class="dty-exit-popup__title">{{ settings.exit_popup_heading | default: '¡Espera! Te tenemos un regalo' }}</h3>
+      <p class="dty-exit-popup__text">{{ settings.exit_popup_text | default: 'Usa este código en tu primera compra y obtén un descuento exclusivo:' }}</p>
+      <div class="dty-exit-popup__code" data-exit-popup-code>
+        <span>{{ settings.exit_popup_discount | default: settings.default_coupon_code | default: 'BIENVENIDO10' }}</span>
+        <button type="button" class="dty-exit-popup__copy" data-exit-popup-copy aria-label="Copiar código">
+          <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+        </button>
+      </div>
+      <p class="dty-exit-popup__copied" data-exit-popup-copied>Código copiado</p>
+      <a href="/collections/coleccion-principal" class="btn btn--primary dty-exit-popup__cta">Explorar Productos</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var popup = document.querySelector('[data-exit-popup]');
+  if (!popup || sessionStorage.getItem('dty_exit_shown')) return;
+
+  var ready = false;
+  setTimeout(function () { ready = true; }, 5000);
+
+  function show() {
+    if (!ready || sessionStorage.getItem('dty_exit_shown')) return;
+    sessionStorage.setItem('dty_exit_shown', '1');
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    popup.classList.remove('is-open');
+    popup.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('mouseout', function (e) {
+    if (e.clientY < 5 && e.relatedTarget == null) show();
+  });
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') show();
+  });
+
+  popup.querySelectorAll('[data-exit-popup-close]').forEach(function (el) {
+    el.addEventListener('click', close);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && popup.classList.contains('is-open')) close();
+  });
+
+  var copyBtn = popup.querySelector('[data-exit-popup-copy]');
+  var copiedMsg = popup.querySelector('[data-exit-popup-copied]');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var code = popup.querySelector('[data-exit-popup-code] span');
+      if (code && navigator.clipboard) {
+        navigator.clipboard.writeText(code.textContent.trim());
+        copiedMsg.classList.add('is-visible');
+        setTimeout(function () { copiedMsg.classList.remove('is-visible'); }, 2000);
+      }
+    });
+  }
+})();
+</script>
+{%- endif -%}

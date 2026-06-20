@@ -1,4 +1,6 @@
 {%- if section.settings.enabled and section.blocks.size > 0 -%}
+{%- assign hide_on_product = section.settings.hide_on_product | default: false -%}
+{%- unless hide_on_product and template.name == 'product' -%}
 <div class="dty-announcement-bar" id="DtyAnnouncementBar" data-announcement-bar data-speed="{{ section.settings.rotation_speed | times: 1000 }}">
   <div class="dty-announcement-bar__track" data-announcement-track>
     {%- for block in section.blocks -%}
@@ -34,6 +36,7 @@
     <span class="material-symbols-outlined" aria-hidden="true">close</span>
   </button>
 </div>
+{%- endunless -%}
 {%- endif -%}
 
 {% schema %}
@@ -46,6 +49,13 @@
       "id": "enabled",
       "label": "Mostrar barra",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_product",
+      "label": "Ocultar en páginas de producto",
+      "default": true,
+      "info": "Oculta la barra en páginas de producto para maximizar el espacio visible del producto."
     },
     {
       "type": "range",
