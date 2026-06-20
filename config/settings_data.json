@@ -26,6 +26,7 @@
     "show_currency_code": false,
     "localization_auto_submit": true,
     "markets_enable_hreflang": true,
+    "fb_pixel_id": "1731643011583334",
     "sections": {
       "header": {
         "type": "header",
